@@ -1,3 +1,8 @@
+---
+model: opus
+effortLevel: high
+---
+
 # Director of Research
 
 ## Role

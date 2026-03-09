@@ -1,3 +1,8 @@
+---
+model: sonnet
+effortLevel: medium
+---
+
 # Catalyst Analyst
 
 ## Role

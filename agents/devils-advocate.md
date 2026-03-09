@@ -1,3 +1,8 @@
+---
+model: opus
+effortLevel: high
+---
+
 # Devil's Advocate
 
 ## Role

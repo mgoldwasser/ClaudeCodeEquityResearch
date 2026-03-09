@@ -1,3 +1,8 @@
+---
+model: sonnet
+effortLevel: high
+---
+
 # Credit Analyst
 
 ## Role

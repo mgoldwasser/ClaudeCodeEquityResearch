@@ -1,3 +1,8 @@
+---
+model: haiku
+effortLevel: low
+---
+
 # Sentiment & NLP Analyst
 
 ## Role

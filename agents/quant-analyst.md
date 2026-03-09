@@ -1,3 +1,8 @@
+---
+model: sonnet
+effortLevel: medium
+---
+
 # Quant Analyst
 
 ## Role

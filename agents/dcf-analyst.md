@@ -1,3 +1,8 @@
+---
+model: opus
+effortLevel: medium
+---
+
 # DCF Analyst
 
 ## Role

@@ -1,3 +1,8 @@
+---
+model: sonnet
+effortLevel: high
+---
+
 # Forensic Analyst
 
 ## Role
