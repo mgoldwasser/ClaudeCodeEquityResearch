@@ -222,20 +222,59 @@ The high-value disagreements are **structural**, not blanket:
 | Forensic + Sentiment | Quality gate (binary pass/fail) | Given same weight as valuation debates |
 | Macro vs. DCF | Does macro overlay invalidate key assumptions? | One of 14 critiques each writes |
 
-### Recommended: Targeted Cross-Review (6-8 directed pairs)
+### Recommended: Director-Driven Dynamic Cross-Review
 
-Replace the 15×15 blanket review with **6-8 targeted cross-checks**:
+Rather than pre-defining fixed cross-check pairs, the **Director should reason through which cross-checks matter for this specific stock, thesis, and set of Pass 1 findings.** Hard-coding pairs assumes every stock has the same analytical fault lines — a pharma stock's critical cross-check might be Catalyst↔DCF (does the pipeline justify the valuation?), while a leveraged retailer's might be Credit↔Risk (can they survive the debt load?).
 
-1. **Valuation Convergence:** DCF Analyst ↔ Quant Analyst (do the numbers agree?)
-2. **Revenue Reality Check:** DCF Analyst ← Competitive Analyst (is the revenue build credible?)
-3. **Thesis Challenge:** Investment thesis ← Devil's Advocate (strongest counter-argument)
-4. **Downside Alignment:** Risk Analyst ↔ Credit Analyst (do stress tests and balance sheet agree?)
-5. **Quality Gate:** Forensic Analyst + Sentiment Analyst → Director (pass/fail, not full critique)
-6. **Macro Validity:** Macro Analyst → DCF Analyst (do macro assumptions invalidate the DCF?)
-7. **Catalyst vs. Technical:** Catalyst Analyst ↔ Technical Analyst (do catalysts align with price action?)
-8. **Sector vs. Competitive:** Sector Analyst ↔ Competitive Analyst (do sector and company-level analyses agree?)
+**How it works:**
 
-**Result:** 8-16 targeted critiques + 8-16 rebuttals = **16-32 invocations** (vs. 210 critiques + 210 rebuttals in the current blanket approach). Higher signal-to-noise ratio. The Editor gets 8 focused disagreements instead of trying to synthesize 210 mostly-redundant observations.
+After Pass 1 completes and the Summarizer produces briefs, the Director reads all 15 briefs and selects 4-8 targeted cross-checks by reasoning through:
+
+1. **Where do analysts disagree on numbers?** If DCF projects 15% revenue growth but Competitive says the market is shrinking, that's a mandatory cross-check. If they're aligned, skip it.
+
+2. **What's the thesis-critical assumption?** Every thesis has a linchpin. If the bull case depends on margin expansion, DCF↔Competitive and DCF↔Macro matter most. If it depends on a drug approval, Catalyst↔Risk is the one that matters.
+
+3. **What did the Devil's Advocate flag?** The strongest bear argument should be cross-checked against whichever analyst's work it most directly challenges — which varies by stock.
+
+4. **Are there quality gates that should short-circuit?** If the Forensic Analyst flagged a Beneish M-Score in the manipulation zone, that should go straight to the Director as a pass/fail gate before anyone debates the DCF. No point optimizing the revenue build if the books are suspect.
+
+5. **What's the binding constraint?** For a highly-levered company, Credit↔Risk is existential. For a cash-rich tech company with no debt, it's irrelevant — don't waste an agent invocation on it.
+
+6. **What surprised?** If the Sentiment Analyst detected a sharp tone shift in management's language that contradicts the bullish guidance, that's worth a targeted Sentiment→DCF cross-check. If tone was unremarkable, skip it.
+
+**Director's output:** A cross-review dispatch memo listing 4-8 specific cross-checks, each with:
+- Which two (or three) analysts are involved
+- What specific question they need to resolve
+- What the apparent disagreement or tension is
+- Why this matters for the thesis
+
+**Example for a leveraged retailer:**
+```
+Cross-Review #1: Credit Analyst ↔ Risk Analyst
+Question: Does the stress test assume the same covenant trip threshold?
+Tension: Credit says 2.5x leverage covenant has 40bps headroom; Risk's bear case implies EBITDA decline that would breach it.
+Why it matters: Covenant breach = forced restructuring, thesis breaks.
+
+Cross-Review #2: DCF Analyst ← Competitive Analyst
+Question: Is the same-store-sales recovery assumption credible given competitive entry?
+Tension: DCF assumes 3% SSS recovery in FY2027; Competitive flagged two new entrants in top-3 markets.
+Why it matters: Revenue build is the single biggest driver of the DCF.
+
+Cross-Review #3: Thesis ← Devil's Advocate
+Question: Is the "turnaround management" narrative supported by execution evidence?
+Tension: Bull case depends on new CEO's track record; Devil's Advocate found the prior turnaround at Company X was mostly multiple expansion, not operational improvement.
+Why it matters: If management execution is the linchpin and the evidence is weak, conviction should drop.
+
+[... 2-3 more as needed ...]
+```
+
+**Result:** 4-8 targeted, high-signal cross-checks instead of 210 blanket critiques. Each cross-check has a specific question to resolve, making the rebuttals focused and actionable. The Director adapts the review process to the stock rather than applying a rigid template.
+
+**Guardrails to prevent the Director from skipping important checks:**
+- Valuation convergence (DCF vs. Quant) is **always** included — it's table stakes
+- Devil's Advocate challenge is **always** included — it's the whole point of the adversarial design
+- Forensic/Sentiment quality gates **always** report to the Director, even if no cross-check is needed
+- The Director must justify any stock where fewer than 4 cross-checks are selected
 
 ---
 
