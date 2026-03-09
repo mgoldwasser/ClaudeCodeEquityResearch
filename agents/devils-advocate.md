@@ -1,3 +1,7 @@
+---
+model: opus
+---
+
 # Devil's Advocate
 
 ## Role

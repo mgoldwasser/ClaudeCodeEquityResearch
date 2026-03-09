@@ -1,3 +1,7 @@
+---
+model: sonnet
+---
+
 # Model Builder
 
 ## Role

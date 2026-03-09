@@ -1,3 +1,7 @@
+---
+model: sonnet
+---
+
 # Risk Analyst
 
 ## Role

@@ -1,3 +1,7 @@
+---
+model: sonnet
+---
+
 # Position Sizing / Bet Sizing Analyst
 
 ## Role

@@ -1,3 +1,7 @@
+---
+model: sonnet
+---
+
 # Sector Analyst
 
 ## Role

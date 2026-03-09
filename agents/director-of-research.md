@@ -1,3 +1,7 @@
+---
+model: opus
+---
+
 # Director of Research
 
 ## Role

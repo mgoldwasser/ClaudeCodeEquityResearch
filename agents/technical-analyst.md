@@ -1,3 +1,7 @@
+---
+model: sonnet
+---
+
 # Technical Analyst
 
 ## Role

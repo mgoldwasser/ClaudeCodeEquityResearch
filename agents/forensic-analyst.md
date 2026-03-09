@@ -1,3 +1,7 @@
+---
+model: sonnet
+---
+
 # Forensic Analyst
 
 ## Role

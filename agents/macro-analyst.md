@@ -1,3 +1,7 @@
+---
+model: sonnet
+---
+
 # Macro Analyst
 
 ## Role

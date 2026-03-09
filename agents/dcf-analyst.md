@@ -1,3 +1,7 @@
+---
+model: opus
+---
+
 # DCF Analyst
 
 ## Role

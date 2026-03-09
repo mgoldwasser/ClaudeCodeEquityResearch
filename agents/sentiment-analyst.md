@@ -1,3 +1,7 @@
+---
+model: haiku
+---
+
 # Sentiment & NLP Analyst
 
 ## Role

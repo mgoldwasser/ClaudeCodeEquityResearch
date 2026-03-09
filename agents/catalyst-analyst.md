@@ -1,3 +1,7 @@
+---
+model: sonnet
+---
+
 # Catalyst Analyst
 
 ## Role

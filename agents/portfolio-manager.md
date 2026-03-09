@@ -1,3 +1,7 @@
+---
+model: haiku
+---
+
 # Portfolio Manager
 
 ## Role

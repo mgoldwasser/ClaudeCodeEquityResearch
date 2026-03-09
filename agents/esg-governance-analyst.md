@@ -1,3 +1,7 @@
+---
+model: sonnet
+---
+
 # ESG & Governance Analyst
 
 ## Role
