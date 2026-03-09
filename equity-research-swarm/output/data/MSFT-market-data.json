@@ -1,0 +1,56 @@
+{
+  "ticker": "MSFT",
+  "retrieved": "2026-03-08",
+  "current_price": 408.96,
+  "price_date": "2026-03-06",
+  "52_week_high": 555.45,
+  "52_week_low": 344.79,
+  "3_year_high": 533.50,
+  "3_year_low": 307.26,
+  "pct_from_52w_high": -26.4,
+  "pct_from_3y_high": -23.3,
+  "shares_outstanding_M": 7429,
+  "market_cap_M": 3038000,
+  "dividend_per_share_annual": 3.32,
+  "dividend_yield_pct": 0.81,
+  "buyback_program_M": 60000,
+  "fy25_buybacks_M": 18420,
+  "q2_fy26_buybacks_M": 7415,
+  "analyst_consensus": {
+    "rating": "Strong Buy",
+    "buy": 55,
+    "hold": 2,
+    "sell": 0,
+    "avg_price_target": 597,
+    "high_target": 675,
+    "low_target": 392,
+    "implied_upside_pct": 46
+  },
+  "valuation_estimates": {
+    "forward_pe": 25,
+    "consensus_fy26_eps": 16.92,
+    "fy26_eps_range_low": 15.94,
+    "fy26_eps_range_high": 17.70,
+    "dcf_fair_value_low": 293.61,
+    "dcf_fair_value_high": 335.64
+  },
+  "insider_activity": {
+    "last_18m_shares_sold": 579569,
+    "last_18m_shares_bought": 3842,
+    "net_shares_sold": 575727,
+    "last_3m_shares_sold": 54100,
+    "last_3m_shares_bought": 0,
+    "notable": "Nadella sold 149K shares for $75.3M on 2025-09-03. Zero open-market buys by any insider in 18 months."
+  },
+  "short_interest": {
+    "days_to_cover": 2.02,
+    "avg_daily_volume_M": 23.99,
+    "assessment": "Low short interest for mega-cap"
+  },
+  "institutional_ownership_pct": 76,
+  "top_holders": [
+    {"name": "Vanguard Group", "pct": 9.0, "shares_M": 702},
+    {"name": "BlackRock", "pct": 7.3, "shares_M": 591},
+    {"name": "State Street", "pct": 4.0, "shares_M": 300}
+  ]
+}

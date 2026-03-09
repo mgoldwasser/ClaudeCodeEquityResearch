@@ -1,0 +1,16 @@
+{
+  "ticker": "MSFT",
+  "company": "MICROSOFT CORP",
+  "cik": "0000789019",
+  "sic": "7372",
+  "sic_description": "Services-Prepackaged Software",
+  "exchange": "Nasdaq",
+  "fiscal_year_end": "06-30",
+  "current_price": 408.96,
+  "price_date": "2026-03-06",
+  "52_week_high": 555.45,
+  "52_week_low": 344.79,
+  "shares_outstanding_billions": 7.429,
+  "market_cap_billions": 3038,
+  "retrieved_date": "2026-03-08"
+}

@@ -1,0 +1,26 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(cat:*)",
+      "Bash(head:*)",
+      "Bash(tail:*)",
+      "Bash(grep:*)",
+      "Bash(wc:*)",
+      "Bash(python3:*)",
+      "Bash(curl:*)",
+      "Bash(jq:*)",
+      "Bash(chmod:*)",
+      "Bash(ls:*)",
+      "Bash(mkdir:*)",
+      "Read(*)",
+      "Write(output/*)",
+      "Write(agents/*)",
+      "Write(templates/*)",
+      "Write(workflows/*)"
+    ]
+  },
+  "agentTeams": {
+    "enabled": true
+  }
+}

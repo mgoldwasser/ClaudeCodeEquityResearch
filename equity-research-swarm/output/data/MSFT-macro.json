@@ -1,0 +1,27 @@
+{
+  "retrieved": "2026-03-08",
+  "rates": {
+    "fed_funds_rate_pct": "3.50-3.75",
+    "fed_funds_status": "held steady",
+    "ten_year_treasury_pct": 4.12,
+    "ten_year_date": "2026-03-06",
+    "fed_next_meeting_expectation": "98% probability of hold",
+    "first_cut_expected": "July 2026",
+    "year_end_outlook": "Even probability of second cut vs pause by December"
+  },
+  "macro_conditions": {
+    "recent_jobs": "US economy shed 92K jobs (unexpected)",
+    "retail_sales": "Declined 0.2%",
+    "economic_outlook": "Weakening data raising recession concerns",
+    "impact_on_msft": "Mixed - slower enterprise spending risk, but lower rates benefit growth valuations"
+  },
+  "cloud_market": {
+    "total_market_2026_B": "917-1190",
+    "growth_cagr_pct": 16.5,
+    "us_growth_cagr_pct": 16.8,
+    "saas_share_pct": 54,
+    "public_cloud_share_pct": 55,
+    "enterprise_ai_market_B": 300,
+    "hyperscaler_ai_capex_2026_B": 690
+  }
+}

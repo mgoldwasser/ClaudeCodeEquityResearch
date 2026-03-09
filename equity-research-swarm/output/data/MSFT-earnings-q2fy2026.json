@@ -1,0 +1,78 @@
+{
+  "ticker": "MSFT",
+  "quarter": "Q2 FY2026",
+  "period_end": "2025-12-31",
+  "report_date": "2026-01-28",
+  "retrieved": "2026-03-08",
+  "total_revenue_M": 81273,
+  "revenue_growth_yoy_pct": 17,
+  "operating_income_M": 38275,
+  "oi_growth_yoy_pct": 21,
+  "net_income_gaap_M": 38458,
+  "net_income_nongaap_M": 30900,
+  "eps_gaap": 5.16,
+  "eps_nongaap": 4.14,
+  "segments": {
+    "productivity_business_processes": {
+      "revenue_M": 34100,
+      "growth_pct": 16
+    },
+    "intelligent_cloud": {
+      "revenue_M": 32900,
+      "growth_pct": 29
+    },
+    "more_personal_computing": {
+      "revenue_M": 14300,
+      "growth_pct": -3
+    }
+  },
+  "cloud_metrics": {
+    "microsoft_cloud_revenue_M": 51500,
+    "cloud_growth_pct": 26,
+    "azure_growth_pct": 39,
+    "azure_growth_cc_pct": 38,
+    "commercial_rpo_M": 625000,
+    "commercial_rpo_growth_pct": 110,
+    "openai_pct_of_rpo": 45,
+    "cloud_gross_margin_pct_guided": 65
+  },
+  "ai_metrics": {
+    "github_copilot_paid_subscribers_M": 4.7,
+    "github_copilot_growth_pct": 75,
+    "m365_copilot_paid_seats_M": 15,
+    "m365_copilot_seat_growth_pct": 160,
+    "windows11_users_B": 1.0,
+    "fabric_arr_M": 2000,
+    "fabric_growth_pct": 60,
+    "fabric_customers": 28000
+  },
+  "capital": {
+    "capex_h1_fy26_M": 49300,
+    "capex_q2_est_M": 37500,
+    "fcf_h1_fy26_M": 31500,
+    "shareholder_returns_q2_M": 12700,
+    "buybacks_q2_M": 7415
+  },
+  "guidance_q3_fy2026": {
+    "revenue_low_M": 80650,
+    "revenue_high_M": 81750,
+    "azure_growth_cc_pct_low": 37,
+    "azure_growth_cc_pct_high": 38,
+    "cloud_gross_margin_pct": 65,
+    "capex": "decrease sequentially",
+    "fy26_operating_margins": "up slightly YoY"
+  },
+  "openai_impact": {
+    "net_gain_M": 7600,
+    "description": "One-time accounting gain from OpenAI October 2025 recapitalization",
+    "openai_azure_commitment_M": 250000,
+    "msft_openai_stake_pct": 27,
+    "openai_valuation_M": 135000,
+    "openai_current_fundraise_valuation_range_M": [750000, 830000]
+  },
+  "stock_reaction": {
+    "after_hours_drop_pct": -5,
+    "next_day_drop_pct": -10.5,
+    "market_cap_lost_M": 375000
+  }
+}

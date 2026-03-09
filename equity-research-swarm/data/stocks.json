@@ -1,0 +1,397 @@
+{
+  "_metadata": {
+    "description": "Stock universe database with tags for batch execution",
+    "last_updated": "2026-03-08",
+    "version": "1.0"
+  },
+  "stocks": [
+    {
+      "ticker": "AAPL",
+      "name": "Apple Inc.",
+      "sector": "Technology",
+      "industry": "Consumer Electronics",
+      "tags": [
+        "mag7",
+        "mega-cap",
+        "hardware",
+        "services",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "MSFT",
+      "name": "Microsoft Corporation",
+      "sector": "Technology",
+      "industry": "Software - Infrastructure",
+      "tags": [
+        "mag7",
+        "mega-cap",
+        "cloud",
+        "ai",
+        "enterprise",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "GOOGL",
+      "name": "Alphabet Inc.",
+      "sector": "Technology",
+      "industry": "Internet Content & Information",
+      "tags": [
+        "mag7",
+        "mega-cap",
+        "advertising",
+        "cloud",
+        "ai",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "AMZN",
+      "name": "Amazon.com Inc.",
+      "sector": "Technology",
+      "industry": "Internet Retail / Cloud",
+      "tags": [
+        "mag7",
+        "mega-cap",
+        "cloud",
+        "ecommerce",
+        "ai",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "NVDA",
+      "name": "NVIDIA Corporation",
+      "sector": "Technology",
+      "industry": "Semiconductors",
+      "tags": [
+        "mag7",
+        "mega-cap",
+        "semiconductors",
+        "ai",
+        "gpu",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "META",
+      "name": "Meta Platforms Inc.",
+      "sector": "Technology",
+      "industry": "Internet Content & Information",
+      "tags": [
+        "mag7",
+        "mega-cap",
+        "advertising",
+        "social-media",
+        "ai",
+        "metaverse",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "TSLA",
+      "name": "Tesla Inc.",
+      "sector": "Consumer Cyclical",
+      "industry": "Auto Manufacturers",
+      "tags": [
+        "mag7",
+        "mega-cap",
+        "ev",
+        "energy",
+        "autonomous",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "JPM",
+      "name": "JPMorgan Chase & Co.",
+      "sector": "Financial Services",
+      "industry": "Banks - Diversified",
+      "tags": [
+        "financials",
+        "mega-cap",
+        "banks",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "V",
+      "name": "Visa Inc.",
+      "sector": "Financial Services",
+      "industry": "Credit Services",
+      "tags": [
+        "financials",
+        "mega-cap",
+        "payments",
+        "fintech",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "MA",
+      "name": "Mastercard Inc.",
+      "sector": "Financial Services",
+      "industry": "Credit Services",
+      "tags": [
+        "financials",
+        "mega-cap",
+        "payments",
+        "fintech",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "UNH",
+      "name": "UnitedHealth Group Inc.",
+      "sector": "Healthcare",
+      "industry": "Healthcare Plans",
+      "tags": [
+        "healthcare",
+        "mega-cap",
+        "insurance",
+        "managed-care",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "JNJ",
+      "name": "Johnson & Johnson",
+      "sector": "Healthcare",
+      "industry": "Drug Manufacturers",
+      "tags": [
+        "healthcare",
+        "mega-cap",
+        "pharma",
+        "medtech",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "LLY",
+      "name": "Eli Lilly and Company",
+      "sector": "Healthcare",
+      "industry": "Drug Manufacturers",
+      "tags": [
+        "healthcare",
+        "mega-cap",
+        "pharma",
+        "glp1",
+        "obesity",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "XOM",
+      "name": "Exxon Mobil Corporation",
+      "sector": "Energy",
+      "industry": "Oil & Gas Integrated",
+      "tags": [
+        "energy",
+        "mega-cap",
+        "oil-gas",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "CVX",
+      "name": "Chevron Corporation",
+      "sector": "Energy",
+      "industry": "Oil & Gas Integrated",
+      "tags": [
+        "energy",
+        "large-cap",
+        "oil-gas",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "PG",
+      "name": "Procter & Gamble Co.",
+      "sector": "Consumer Defensive",
+      "industry": "Household & Personal Products",
+      "tags": [
+        "consumer-staples",
+        "mega-cap",
+        "dividend",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "KO",
+      "name": "The Coca-Cola Company",
+      "sector": "Consumer Defensive",
+      "industry": "Beverages - Non-Alcoholic",
+      "tags": [
+        "consumer-staples",
+        "mega-cap",
+        "dividend",
+        "beverages",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "AVGO",
+      "name": "Broadcom Inc.",
+      "sector": "Technology",
+      "industry": "Semiconductors",
+      "tags": [
+        "semiconductors",
+        "mega-cap",
+        "ai",
+        "networking",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "AMD",
+      "name": "Advanced Micro Devices Inc.",
+      "sector": "Technology",
+      "industry": "Semiconductors",
+      "tags": [
+        "semiconductors",
+        "large-cap",
+        "ai",
+        "gpu",
+        "datacenter",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "CRM",
+      "name": "Salesforce Inc.",
+      "sector": "Technology",
+      "industry": "Software - Application",
+      "tags": [
+        "software",
+        "large-cap",
+        "cloud",
+        "enterprise",
+        "ai",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "NFLX",
+      "name": "Netflix Inc.",
+      "sector": "Communication Services",
+      "industry": "Entertainment",
+      "tags": [
+        "streaming",
+        "large-cap",
+        "media",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "DIS",
+      "name": "The Walt Disney Company",
+      "sector": "Communication Services",
+      "industry": "Entertainment",
+      "tags": [
+        "media",
+        "large-cap",
+        "streaming",
+        "parks",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "COST",
+      "name": "Costco Wholesale Corporation",
+      "sector": "Consumer Defensive",
+      "industry": "Discount Stores",
+      "tags": [
+        "retail",
+        "large-cap",
+        "consumer-staples",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "WMT",
+      "name": "Walmart Inc.",
+      "sector": "Consumer Defensive",
+      "industry": "Discount Stores",
+      "tags": [
+        "retail",
+        "mega-cap",
+        "consumer-staples",
+        "ecommerce",
+        "sp500"
+      ],
+      "last_researched": null
+    },
+    {
+      "ticker": "HD",
+      "name": "The Home Depot Inc.",
+      "sector": "Consumer Cyclical",
+      "industry": "Home Improvement Retail",
+      "tags": [
+        "retail",
+        "large-cap",
+        "housing",
+        "sp500"
+      ],
+      "last_researched": null
+    }
+  ],
+  "tag_definitions": {
+    "mag7": "Magnificent Seven mega-cap tech stocks",
+    "mega-cap": "Market cap > $200B",
+    "large-cap": "Market cap $10B-$200B",
+    "mid-cap": "Market cap $2B-$10B",
+    "small-cap": "Market cap < $2B",
+    "sp500": "S&P 500 constituent",
+    "semiconductors": "Semiconductor industry",
+    "software": "Software industry",
+    "cloud": "Cloud computing exposure",
+    "ai": "Artificial intelligence exposure",
+    "financials": "Financial services sector",
+    "healthcare": "Healthcare sector",
+    "energy": "Energy sector",
+    "consumer-staples": "Consumer staples sector",
+    "retail": "Retail industry",
+    "media": "Media & entertainment",
+    "dividend": "Significant dividend payer",
+    "ev": "Electric vehicle exposure",
+    "pharma": "Pharmaceutical industry",
+    "banks": "Banking industry",
+    "payments": "Payments / fintech",
+    "advertising": "Digital advertising exposure",
+    "ecommerce": "E-commerce exposure",
+    "streaming": "Streaming media",
+    "housing": "Housing market exposure",
+    "oil-gas": "Oil & gas industry",
+    "glp1": "GLP-1 / obesity drug exposure",
+    "gpu": "GPU / accelerated computing",
+    "datacenter": "Data center exposure",
+    "enterprise": "Enterprise software/services",
+    "metaverse": "Metaverse / VR exposure",
+    "autonomous": "Autonomous driving exposure",
+    "networking": "Networking infrastructure"
+  }
+}

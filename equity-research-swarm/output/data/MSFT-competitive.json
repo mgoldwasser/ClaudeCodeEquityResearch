@@ -1,0 +1,20 @@
+{
+  "retrieved": "2026-03-08",
+  "cloud_market_share_q4_2025": {
+    "aws": {"share_pct": "30-32", "growth_pct": 20, "revenue_q4_B": 28.5},
+    "azure": {"share_pct": "20-25", "growth_pct": 39, "revenue_q4_est_B": 25},
+    "google_cloud": {"share_pct": "11-13", "growth_pct": 28, "revenue_q4_est_B": 12}
+  },
+  "total_cloud_infra_quarterly_B": 119.1,
+  "total_cloud_infra_growth_pct": 30,
+  "azure_competitive_position": {
+    "ai_engagement_pct": 45,
+    "cloud_market_share_pct": 25,
+    "genai_engagement_vs_share": "2x cloud market share",
+    "fortune500_m365_copilot_adoption_pct": 90,
+    "key_advantage": "Deep integration with M365, Dynamics, GitHub + OpenAI partnership",
+    "key_risk": "Azure growth decelerating while Google Cloud accelerating"
+  },
+  "enterprise_software_tam_2026_B": 420,
+  "key_competitors": ["Amazon AWS", "Google Cloud", "Oracle", "Salesforce", "IBM", "SAP"]
+}

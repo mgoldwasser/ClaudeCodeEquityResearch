@@ -1,0 +1,75 @@
+{
+  "ticker": "MSFT",
+  "model": "Credit",
+  "date": "2026-03-08",
+  "current_price": 408.96,
+  "leverage": {
+    "net_debt_ebitda": 0.17,
+    "total_debt_ebitda": 0.6,
+    "debt_equity": 0.25
+  },
+  "coverage": {
+    "ebitda_interest": 68.2,
+    "ebitda_less_capex_interest": 41.1,
+    "ocf_total_debt": 1.645
+  },
+  "altman_z_score": 8.14,
+  "altman_zone": "Safe Zone",
+  "fcf_after_all_obligations": 3715,
+  "capex_to_ocf_pct": 61.7,
+  "normalize_year": 2028,
+  "near_term_maturity_coverage": 2.8,
+  "credit_rating": "AAA/Aaa",
+  "balance_sheet_score": "4/5",
+  "stress_test": [
+    {
+      "revenue_growth_pct": 5.0,
+      "net_debt_ebitda": 0.537,
+      "interest_coverage": 53.6,
+      "fcf_after_returns": -41078.0,
+      "implied_rating": "A"
+    },
+    {
+      "revenue_growth_pct": 8.0,
+      "net_debt_ebitda": 0.462,
+      "interest_coverage": 56.6,
+      "fcf_after_returns": -34872.0,
+      "implied_rating": "A"
+    },
+    {
+      "revenue_growth_pct": 10.0,
+      "net_debt_ebitda": 0.416,
+      "interest_coverage": 58.7,
+      "fcf_after_returns": -30638.0,
+      "implied_rating": "A"
+    },
+    {
+      "revenue_growth_pct": 12.0,
+      "net_debt_ebitda": 0.372,
+      "interest_coverage": 60.9,
+      "fcf_after_returns": -26327.0,
+      "implied_rating": "A"
+    },
+    {
+      "revenue_growth_pct": 15.0,
+      "net_debt_ebitda": 0.309,
+      "interest_coverage": 64.1,
+      "fcf_after_returns": -19718.0,
+      "implied_rating": "A"
+    },
+    {
+      "revenue_growth_pct": 17.0,
+      "net_debt_ebitda": 0.271,
+      "interest_coverage": 66.3,
+      "fcf_after_returns": -15216.0,
+      "implied_rating": "A"
+    },
+    {
+      "revenue_growth_pct": 20.0,
+      "net_debt_ebitda": 0.216,
+      "interest_coverage": 69.7,
+      "fcf_after_returns": -8320.0,
+      "implied_rating": "A"
+    }
+  ]
+}
