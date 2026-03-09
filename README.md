@@ -54,8 +54,6 @@ The system runs a team of twenty agents:
 ## Quick Start
 
 ```bash
-cd equity-research-swarm
-
 # Option 1: Drop filings into input/ first
 cp ~/Downloads/AAPL-10K-2024.pdf input/
 cp ~/Downloads/AAPL-Q4-transcript.txt input/
@@ -169,9 +167,9 @@ Intermediate work products (useful for debugging or deep dives):
 ## Project Structure
 
 ```
-equity-research-swarm/
 ├── CLAUDE.md                          # Master orchestration config
 ├── README.md                          # This file
+├── FREE_DATA_SOURCES_REFERENCE.md     # Free data sources guide
 ├── .claude/
 │   └── settings.json                  # Permissions + agent teams enabled
 ├── agents/
