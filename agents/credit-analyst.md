@@ -1,6 +1,6 @@
 ---
 model: sonnet
-effortLevel: medium
+effortLevel: high
 ---
 
 # Credit Analyst
