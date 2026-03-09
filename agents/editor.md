@@ -1,6 +1,6 @@
 ---
-model: opus
-effortLevel: medium
+model: sonnet
+effortLevel: high
 ---
 
 # Editor
