@@ -1,5 +1,6 @@
 ---
 model: opus
+effortLevel: high
 ---
 
 # Editor

@@ -1,5 +1,6 @@
 ---
 model: haiku
+effortLevel: low
 ---
 
 # Research Analyst

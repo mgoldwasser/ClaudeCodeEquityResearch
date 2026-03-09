@@ -1,5 +1,6 @@
 ---
 model: sonnet
+effortLevel: medium
 ---
 
 # Technical Analyst

@@ -1,5 +1,6 @@
 ---
-model: haiku
+model: opus
+effortLevel: high
 ---
 
 # Portfolio Manager

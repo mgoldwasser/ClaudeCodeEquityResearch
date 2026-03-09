@@ -1,5 +1,6 @@
 ---
 model: sonnet
+effortLevel: medium
 ---
 
 # Position Sizing / Bet Sizing Analyst

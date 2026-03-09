@@ -55,6 +55,12 @@ This is an equity research team operating as a multi-agent swarm. The lead agent
 | Portfolio Manager | `agents/portfolio-manager.md` | Specialist | Post-Pass 2 (portfolio construction from multiple stock analyses) |
 | Model Builder | `agents/model-builder.md` | Specialist | Pass 1 (generates Python models), Pass 2 (validates + cross-checks) |
 
+### Utility Agents
+
+| Role | Agent File | Type | Active In |
+|------|-----------|------|-----------|
+| Summarizer | `agents/summarizer.md` | Utility (haiku) | Between Pass 1 and Pass 2 (context compression) |
+
 ---
 
 ## Two-Pass Workflow
@@ -129,15 +135,27 @@ The Director first spawns the Research Analyst to gather external data, then spa
    - `output/models/` (all Python models from Model Builder and Sector Analyst)
    - `output/notes/` (cross-stock intelligence notes, if any)
 
+### Pass 1.5 — Context Compression
+
+Before starting Pass 2, run the Summarizer to reduce context size. This prevents each analyst from receiving 15 full reports (~50K+ tokens) during cross-critique.
+
+**Step 1.5 — Summarize Pass 1 Work Products**
+
+Spawn the Summarizer (runs on Haiku with low effort for maximum speed/cost efficiency):
+
+> "Read all 15 work products in `output/pass1/`. For each one, produce a structured brief following the Standard Brief Format in `agents/summarizer.md`. Save all briefs to `output/summaries/`. Each brief must be under 400 words while preserving all numbers, assumptions, source citations, and data gap flags."
+
+Save briefs to `output/summaries/[analyst-name]-brief.md`.
+
 ### Pass 2 — Adversarial Review + Synthesis
 
-Once all Pass 1 work products are collected:
+Once all Pass 1 work products are collected and summarized:
 
 **Step 2.1 — Cross-Critique**
 
-Feed ALL work products to EACH of the fifteen Pass 1 analysts (including Research Analyst, Devil's Advocate, Forensic, Sentiment) with this instruction:
+Feed the **summarized briefs** (from `output/summaries/`) to EACH of the fifteen Pass 1 analysts — NOT the full reports. Each analyst also retains access to their own full Pass 1 work product. Instruction:
 
-> "Review every other analyst's work product. For each one, identify: (1) the weakest assumption, (2) the most likely source of error, and (3) one thing you'd change. Use the critique format in `templates/critique-template.md`. Be specific and cite numbers."
+> "Review the summary briefs of every other analyst's work (in `output/summaries/`). For each one, identify: (1) the weakest assumption, (2) the most likely source of error, and (3) one thing you'd change. Use the critique format in `templates/critique-template.md`. Be specific and cite numbers. If you need more detail on a specific analyst's work, read their full report in `output/pass1/`."
 
 Spawn all fifteen critique tasks **in parallel**. Save critiques to `output/pass2/critiques/`.
 
@@ -151,16 +169,22 @@ Spawn all fifteen rebuttal tasks **in parallel**. Save to `output/pass2/rebuttal
 
 **CRITICAL: Only one round of rebuttals. No infinite loops.**
 
+**Step 2.2.5 — Summarize Critiques & Rebuttals**
+
+Before handing materials to the Editor, run the Summarizer again to compress the critique/rebuttal phase:
+
+> "Read all critiques in `output/pass2/critiques/` and all rebuttals in `output/pass2/rebuttals/`. Produce a single Disagreement Map following the format in `agents/summarizer.md`. Save to `output/summaries/disagreement-map.md`. Maximum 600 words."
+
 **Step 2.3 — Editor Synthesis**
 
-Hand ALL materials to the Editor:
-- All Pass 1 work products (15 analyst outputs including Data Intelligence Memo, Devil's Advocate, Forensic, Sentiment)
-- All critiques
-- All rebuttals
+Hand materials to the Editor in this priority order:
+1. **Full** Pass 1 work products (15 analyst outputs) — the Editor needs complete detail for synthesis
+2. **Disagreement Map** (from `output/summaries/disagreement-map.md`) — compressed view of all critiques and rebuttals
+3. The Editor may read individual critiques/rebuttals from `output/pass2/` only if the Disagreement Map flags an unresolved contradiction that needs the full context
 
 Instruction to Editor:
 
-> "Synthesize all materials into a final research note using `templates/research-note-template.md`. Follow the framework in `agents/editor.md`. Do NOT summarize — synthesize into one coherent argument. Flag any unresolved contradictions. Integrate risk, credit, catalyst, ESG/governance, technical, forensic, sentiment, and devil's advocate analyses into the appropriate sections. Include probability distributions using `templates/probability-output-template.md`."
+> "Synthesize all materials into a final research note using `templates/research-note-template.md`. Follow the framework in `agents/editor.md`. Do NOT summarize — synthesize into one coherent argument. Use the Disagreement Map in `output/summaries/disagreement-map.md` to identify key disputes and resolutions. Read full critiques/rebuttals only for unresolved contradictions. Integrate risk, credit, catalyst, ESG/governance, technical, forensic, sentiment, and devil's advocate analyses into the appropriate sections. Include probability distributions using `templates/probability-output-template.md`."
 
 Save Editor output to `output/pass2/editor-draft.md`.
 
@@ -249,6 +273,38 @@ When the Portfolio Manager is activated (after analyzing multiple stocks), the f
 - Flag estimated data: `[ESTIMATED]` or `[DATA GAP: No segment-level margin disclosure]`
 - Flag high-uncertainty items: `[HIGH UNCERTAINTY]`
 - Use `$` for USD. Specify currency for non-USD figures.
+
+---
+
+## Token Efficiency & Data Formats
+
+### Inter-Agent Data Passing
+
+Choose the format that minimizes tokens for the data type:
+
+| Data Type | Best Format | Why | Example |
+|-----------|------------|-----|---------|
+| Structured numerical data (prices, financials, ratios) | **JSON** | Compact, parseable, no prose overhead | `output/data/*.json` |
+| Analyst prose (reports, memos, critiques) | **Markdown** | More token-dense than JSON for text; no key/value wrapper overhead | `output/pass1/*.md` |
+| Tabular data (comp tables, sensitivity matrices) | **Markdown tables** or **CSV** | Markdown tables are readable; CSV is smallest for large datasets | Inline tables or `output/data/*.csv` |
+| Scenario parameters (bull/base/bear inputs) | **JSON** | Agents can parse directly; avoids ambiguity | `output/data/*-scenarios.json` |
+| Cross-agent summaries | **Structured markdown** (brief format) | Fixed headings + bullet points = high info density, low tokens | `output/summaries/*.md` |
+
+**Rules:**
+- Never wrap prose in JSON. A 2,000-word analyst report as a JSON string with escaped newlines costs ~30% more tokens than plain markdown.
+- Never pass raw API responses between agents. Extract only the fields needed and save structured data to `output/data/`.
+- For numerical results that downstream agents need to parse, use JSON with flat keys (avoid deep nesting).
+- For human-readable output that agents also consume, use markdown with consistent heading structure.
+- When an agent only needs 3 numbers from a 5,000-token report, use the Summarizer or have the upstream agent save a separate small file with just those numbers.
+
+### Context Budget Guidelines
+
+| Phase | What gets loaded | Target context size |
+|-------|-----------------|-------------------|
+| Pass 1 (each analyst) | Input materials + company context memo | ~10-20K tokens |
+| Pass 2 Cross-Critique (each analyst) | Own full report + 14 summary briefs | ~15-25K tokens (vs ~70K+ without summarizer) |
+| Pass 2 Editor | 15 full reports + disagreement map | ~60K tokens (vs ~120K+ with full critiques/rebuttals) |
+| Portfolio Manager | Per-stock portfolio briefs (not full notes) | ~5-10K tokens per stock |
 
 ---
 
