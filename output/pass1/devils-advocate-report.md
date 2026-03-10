@@ -1,327 +1,266 @@
-# Devil's Advocate Report -- MSFT (Microsoft Corporation)
-Date: 2026-03-08 | Current Price: $408.96 | Market Cap: $3,038B
+# Devil's Advocate Report — AMD (Advanced Micro Devices, Inc.)
+
+**Date:** 2026-03-09
+**Current Price:** $190.40 | **Market Cap:** $310B | **Trailing P/E:** 71.7x | **Forward P/E:** 28.6x
+**Role:** Systematic assumption challenger — independent bear case construction
 
 ---
 
 ## 1. Assumption Dependency Chain
 
-The bull thesis on Microsoft rests on five interconnected assumptions. Each is examined below for confidence (how likely it is to hold), fragility (how badly the thesis breaks if it fails), and verifiability (whether we can test it with data).
+The AMD bull thesis at $190.40 depends on five key assumptions, each of which must substantially hold for the stock to work. Failure of any single assumption materially damages the thesis; failure of two or more is catastrophic.
 
-| # | Key Assumption | Confidence (1-5) | Fragility (1-5) | Verifiability (1-5) | Required for Bull? | Required for Base? |
-|---|----------------|:-:|:-:|:-:|:-:|:-:|
-| 1 | Azure will sustain 35-40% growth through FY2028, gaining cloud share from AWS | 2 | 5 | 5 | Yes | Yes |
-| 2 | AI/Copilot will drive a durable new revenue growth cycle with positive unit economics | 2 | 5 | 4 | Yes | Yes |
-| 3 | $100B+ annual CapEx will generate adequate returns (ROIC > WACC) within 3-4 years | 2 | 5 | 3 | Yes | Yes |
-| 4 | OpenAI partnership will remain stable and additive to Microsoft's competitive position | 2 | 4 | 3 | Yes | No |
-| 5 | Regulatory risk remains manageable with no forced behavioral remedies | 3 | 3 | 2 | No (helps) | Yes |
+| # | Key Assumption | Required for Bull Case? | Required for Base Case? | Falsifiable? | Confidence (1-5) | Fragility (1-5) | Verifiability (1-5) |
+|---|----------------|------------------------|------------------------|-------------|-------------------|------------------|---------------------|
+| 1 | OpenAI + Meta mega-deals (12 GW, ~$200B) execute on schedule and scale | Yes | Partially (base case needs at least 4-6 GW) | Yes — MI450 shipment data in H2 2026 | 2 | 5 | 4 |
+| 2 | CUDA/ROCm software gap narrows enough for enterprise adoption | Yes | Yes | Yes — benchmark gaps, developer adoption metrics | 2 | 4 | 3 |
+| 3 | Custom ASICs do not cannibalize GPU demand from hyperscalers | Yes | Partially | Yes — hyperscaler internal chip deployment data | 2 | 4 | 3 |
+| 4 | AI infrastructure spending sustains >30% growth through 2028 | Yes | Yes | Yes — hyperscaler capex guidance, quarterly trends | 3 | 5 | 4 |
+| 5 | Warrant dilution (320M shares, ~20%) is offset by revenue/earnings growth | Yes | No — base case still sees 10-15% dilution impact | Partially — depends on vesting milestones | 3 | 3 | 4 |
 
-**Summary:** The bull case requires ALL of assumptions 1-3 to hold simultaneously. Any single failure in the top three assumptions is sufficient to destroy 30%+ of the current valuation. The thesis is therefore fragile -- it depends on three high-fragility, low-confidence assumptions all being correct at the same time.
+**Composite Fragility Score: 4.2/5 — Extremely fragile thesis.** The bull case requires near-simultaneous success across five independent dimensions, each with sub-50% individual confidence.
 
 ---
 
-## 2. Inversion Analysis -- What Would Make Each Assumption Wrong?
+## 2. Inversion Analysis — What Breaks Each Assumption?
 
-### Assumption 1: Azure Sustains 35-40% Growth Through FY2028
+### Assumption 1: Mega-Deal Execution (12 GW at Scale)
 
-**What would falsify this?**
-- Azure growth decelerating below 30% CC for two consecutive quarters
-- AWS re-accelerating through custom silicon (Trainium/Inferentia) cost advantage
-- Google Cloud growth exceeding Azure growth for two consecutive quarters
-- Enterprise IT budget cuts in a recession, specifically cloud optimization
+**What would falsify this?** MI450/Helios delays beyond Q4 2026; yield issues at TSMC 3nm advanced packaging; OpenAI or Meta scaling back or diversifying away from AMD GPUs.
 
-**Historical base rate:**
-- Of the major cloud platforms, maintaining 35%+ growth for 5 consecutive years at $100B+ revenue scale has never been achieved by any company in history. [ASSUMPTION: This is unprecedented territory]
-- AWS growth trajectory: 49% (2018) -> 37% (2019) -> 30% (2020) -> 37% (2021) -> 29% (2022) -> 13% (2023) -> 17% (2024) -> 20% (2025). AWS decelerated from ~37% to ~13% over four years once it reached roughly the scale Azure is approaching now. [Source: AWS quarterly earnings, Tier 1]
+**Historical base rate:** AMD has never manufactured at anything close to 12 GW scale. The MI350 was described as the "fastest ramp in company history" — but it reached 8 of 10 top AI companies at volumes measured in thousands of units, not the millions implied by 12 GW. NVIDIA took 5+ years to scale from initial data center GPU to multi-billion-dollar quarterly revenue. AMD is attempting to compress this into 18 months.
 
-**Strongest evidence against:**
-- Azure growth already decelerating: 40% (Q1 FY26) -> 39% (Q2 FY26) -> 37-38% guided (Q3 FY26). Three consecutive quarters of deceleration. [Source: Microsoft IR, Tier 1]
-- Management's own explanation is concerning: Nadella claimed GPU allocation to first-party Copilot products (rather than Azure) suppressed the KPI. This means either (a) Azure demand is genuinely supply-constrained, in which case growth should re-accelerate when capacity comes online but margins will compress further, or (b) Microsoft is choosing to subsidize Copilot at Azure's expense, which means Azure revenue growth may permanently slow as more capacity feeds internal products. Both outcomes are worse than the bull case assumption.
-- Google Cloud grew 28% in Q4 2025, narrowing the gap with Azure's 39%. Google's Gemini integration and aggressive pricing on TPUs represent a credible competitive threat. [Source: Synergy Research, Tier 3]
+**Strongest evidence against it:**
+- MI455X delay rumors already emerged in early 2026, forcing AMD to issue a public denial calling the reports "BS" [Source: VideoCardz, Tom's Hardware — Tier 3, 2026-03-09]. Companies that need to publicly deny delays are often closer to the edge than they admit.
+- NVIDIA has locked down >50% of TSMC's CoWoS advanced packaging capacity through 2027 [Source: SemiWiki — Tier 6]. AMD is competing for the remaining 40-50% alongside every other fabless AI chip company.
+- OpenAI simultaneously signed a 10 GW custom ASIC deal with Broadcom [Source: Tom's Hardware — Tier 3, 2025-10-13]. Total OpenAI hardware commitments now exceed 26 GW. This is not a company betting exclusively on AMD — it is hedging massively.
 
-**If this breaks, what else breaks?**
-- CapEx ROI calculation collapses -- $100B+ annual spend was justified by Azure growth
-- Intelligent Cloud segment (39.4% of revenue) growth decelerates, pulling total revenue growth below 12%
-- Multiple compression from ~25x forward P/E toward 18-20x as the market re-rates MSFT as a low-teens grower
+**If this breaks, what else breaks?** Revenue growth collapses from the projected >60% DC CAGR to perhaps 15-25%. The $20+ EPS target becomes unreachable. The warrant vesting milestones (which require $600 stock price) become permanently unachievable, removing the "deal revenue offsets dilution" argument since partial vesting on deployment milestones still triggers dilution without full revenue.
 
-### Assumption 2: AI/Copilot Drives a Durable New Revenue Growth Cycle
+### Assumption 2: CUDA/ROCm Software Gap Closes
 
-**What would falsify this?**
-- M365 Copilot paid seat penetration stalling below 5% of the 450M commercial installed base
-- Enterprise renewal/churn rates above 30% at the $30/user/month price point
-- ChatGPT or Google Gemini capturing dominant enterprise mindshare despite Copilot's distribution advantage
-- Open-source models (DeepSeek, Llama, Qwen) commoditizing the inference layer
+**What would falsify this?** Enterprise customers continue choosing NVIDIA despite AMD hardware price/performance advantages; ROCm adoption stalls below critical mass; NVIDIA accelerates CUDA investment.
 
-**Historical base rate:**
-- Enterprise software add-on products at $30+/user/month price points have historically achieved 15-25% penetration of their installed base within 5 years. At 3.3% after ~2 years, Copilot is significantly below this benchmark. [ESTIMATED]
-- Only 5% of organizations have moved from Copilot pilot to larger-scale deployment. [Source: Gartner, Tier 3]
+**Historical base rate:** Software ecosystem advantages in computing have historically proven extremely durable. Intel's x86 ecosystem lasted 30+ years. Microsoft Windows dominated for 25+ years. NVIDIA has invested 19 years in CUDA. No computing software moat of this duration has been cracked in under 5 years by a hardware competitor.
 
-**Strongest evidence against:**
-- **Copilot penetration is stalling at 3.3%.** After two years on the market, only 15M of 450M commercial M365 seats have adopted paid Copilot. The narrative of "early innings" is wearing thin. [Source: Microsoft IR / SAMexpert analysis, Tier 1-2]
-- **Users actively prefer competitors.** Among workers with both Copilot and ChatGPT available, 76% prefer ChatGPT, only 18% choose Copilot. When all three major platforms (Copilot, ChatGPT, Gemini) are available, only 8% choose Copilot. [Source: Recon Analytics, Tier 3]
-- **Market share is declining, not growing.** Copilot's U.S. paid AI subscriber share fell from 18.8% (July 2025) to 11.5% (January 2026) -- a 39% contraction in 6 months. Copilot web traffic share remains stuck at ~1.1%. [Source: First Page Sage, WindowsLatest, Tier 3]
-- **Accuracy perception is the worst in category.** Copilot's accuracy NPS is persistently negative (July 2025: -3.5, September 2025: -24.1, January 2026: -19.8). 44.2% of users who stopped using Copilot cited "distrust of answers." [Source: Recon Analytics, Tier 3]
-- **Data governance is a deployment blocker.** 15%+ of business-critical files have inappropriate permission settings, forcing months-long data cleansing before Copilot deployment. This is a structural barrier, not a temporary one. [Source: industry research, Tier 3]
-- **DeepSeek and open-source disruption is accelerating.** DeepSeek and Qwen went from 1% to 15% combined global AI market share in 12 months. DeepSeek V4 inference costs ~$0.14/M input tokens -- 1/20th the cost of GPT-5. This commoditizes the inference layer that Azure AI pricing depends on. [Source: Particula Tech, multiple, Tier 2-3]
+**Strongest evidence against it:**
+- CUDA Gap Score ranges from 28.7 to 99.1 across benchmarks — meaning NVIDIA's software stack delivers an effective performance boost of 30-99% over equivalent hardware [Source: AIM Multiple — Tier 6, 2026-03-09]. This means AMD hardware that is 20-30% faster on paper can still lose in real-world deployment.
+- ROCm compatibility "breaks down for custom kernels, advanced attention mechanisms, and cutting-edge training techniques" [Source: ThunderCompute — Tier 6, 2026-03-09]. The frontier models that OpenAI and Meta train are precisely the workloads that require custom kernels.
+- CUDA has 6M+ developers, 300+ libraries, 600+ optimized AI models. ROCm has a fraction of this base. Developer ecosystem growth follows power laws — the gap compounds over time, it does not narrow linearly.
+- ZLUDA (converting CUDA binaries to ROCm) achieves only 80-95% performance [Source: AMD competitive data]. A 5-20% performance penalty on top of the CUDA Gap Score means real-world underperformance could be 25-100%.
 
-**If this breaks, what else breaks?**
-- The entire "AI monetization" narrative collapses -- GitHub Copilot (4.7M subs) and M365 Copilot (15M seats) together generate an estimated $7-8B ARR, which is insufficient to justify $100B+ annual CapEx
-- Productivity & Business Processes segment growth (currently 16%) decelerates to single digits as legacy Office growth slows and Copilot fails to drive the next pricing cycle
-- The bear case for MSFT becomes an echo of IBM's enterprise AI failure in the 2010s (Watson)
+**If this breaks, what else breaks?** AMD GPUs become a "value" product competing on price, not a premium product competing on capability. Gross margins compress from the target 55%+ toward 45-48%. The mega-deal economics deteriorate because AMD must discount aggressively to compensate for software inferiority.
 
-### Assumption 3: $100B+ Annual CapEx Will Generate Adequate Returns
+### Assumption 3: Custom ASICs Don't Cannibalize GPU Demand
 
-**What would falsify this?**
-- ROIC declining below WACC (~9-10%) on AI infrastructure investments for 3+ consecutive years
-- Cloud gross margin compressing below 60% as depreciation from GPU/CPU assets accelerates
-- Competitors achieving comparable AI performance at 1/10th to 1/20th the cost (already happening with DeepSeek)
-- Power and cooling infrastructure bottlenecks adding 20-30% to total cost of ownership
+**What would falsify this?** Hyperscalers shift inference workloads to custom silicon within 2-3 years, using GPU deals as bridge infrastructure.
 
-**Historical base rate:**
-- Among the telecom companies that went through massive capex cycles (AT&T, Verizon, Sprint in the 2000s-2010s fiber buildout), the weighted average ROIC on incremental invested capital was 6-8% -- below their cost of capital. [ESTIMATED from industry data]
-- The five largest hyperscalers plan to consume nearly 100% of their operating cash flows for CapEx in 2026, versus a 10-year average of 40%. This is historically unprecedented. [Source: Goldman Sachs, Tier 3]
+**Historical base rate:** Every major cloud provider (Google, Amazon, Microsoft) has developed custom silicon when volumes justify it. Google has been on TPU v5+ for years. Amazon Trainium claims 30-40% better price-performance than merchant GPUs. The historical pattern is clear: hyperscalers vertically integrate once the technology matures.
 
-**Strongest evidence against:**
-- **CapEx is outrunning revenue growth.** H1 FY2026 CapEx of $49.3B vs. H1 FCF of $31.5B. Microsoft is now cash-flow-negative on an ex-operating basis. CapEx grew 66% YoY in Q2 while revenue grew 17%. [Source: Microsoft 10-Q, Tier 1]
-- **Cloud gross margins are compressing.** Cloud gross margin fell from 70% (Q2 FY25) to 67% (Q2 FY26), with guidance for ~65% in Q3 FY26. This is a three-year low and heading in the wrong direction. [Source: Microsoft IR, Tier 1]
-- **Two-thirds of CapEx is on short-lived assets.** GPUs and CPUs depreciate faster than data center real estate. The depreciation wave from FY25-FY26 spending will hit the P&L starting FY27-FY28, just as the market will be asking for ROI evidence. [Source: CFO Hood earnings call, Tier 1]
-- **DeepSeek's efficiency claims undercut the premise.** If DeepSeek achieves comparable model performance at 1/20th the inference cost, the entire argument that massive CapEx creates a durable competitive advantage dissolves. The "compute moat" thesis -- that whoever spends the most on GPUs wins -- may be as wrong as the "first-mover advantage" thesis of the dot-com era. [Source: DeepSeek V4 benchmarks, Tier 2-3]
-- **Power infrastructure is a binding constraint.** Power transformer lead times have stretched to 128 weeks. Microsoft's 2-gigawatt Wisconsin data center faces real risk of power delays that extend the CapEx-to-revenue conversion timeline. [Source: IEA, industry data, Tier 2]
+**Strongest evidence against it:**
+- Custom ASIC shipments growing 44.6% in 2026 vs. GPU shipments at 16.1% [Source: AMD competitive data]. ASICs are the faster-growing category.
+- OpenAI signed a 10 GW deal with Broadcom for custom ASICs — 67% larger than its AMD deal (10 GW vs 6 GW) [Source: Tom's Hardware, CNBC — Tier 3, 2025-10-13]. If OpenAI believed GPUs were the long-term answer, why commit nearly twice as much capacity to custom silicon?
+- Meta has proprietary chip development programs. Microsoft Maia is deployed with next-gen Braga in 2026 [Source: CNBC — Tier 3].
+- The OpenAI and Meta AMD deals may be **bridge infrastructure** — maintaining GPU optionality while custom silicon matures. The 5-6 year warrant horizon aligns suspiciously well with the timeline for custom ASICs to reach full scale.
 
-**If this breaks, what else breaks?**
-- Free cash flow, which underpins buybacks ($18.4B/year) and dividends ($24.6B/year), comes under severe pressure
-- Total debt ($97.6B) becomes harder to service if operating cash flow is consumed by CapEx
-- The stock re-rates from a "high-growth compounder" to a "capital-intensive utility" -- with corresponding multiple compression from 25x to 15-18x earnings
+**If this breaks, what else breaks?** The $200B revenue potential from mega-deals shrinks dramatically as hyperscalers redirect incremental spend to internal silicon. AMD's data center TAM contracts. The GPU market bifurcates: NVIDIA retains premium training workloads, custom ASICs capture inference at scale, and AMD gets squeezed in the middle.
 
-### Assumption 4: OpenAI Partnership Remains Stable and Additive
+### Assumption 4: AI Infrastructure Spending Sustains >30% Growth
 
-**What would falsify this?**
-- OpenAI sourcing compute from non-Azure providers (Oracle, Google)
-- OpenAI launching products that directly compete with Microsoft (GitHub competitor, enterprise suite)
-- OpenAI financial instability forcing renegotiation of $280B Azure commitment
-- Microsoft's own frontier model initiative succeeding, making OpenAI partnership redundant
+**What would falsify this?** Hyperscaler capex plateaus in 2027; AI monetization gap forces spending discipline; recession reduces enterprise IT budgets; regulatory intervention limits AI deployment.
 
-**Strongest evidence against:**
-- **Microsoft now lists OpenAI as a competitor.** For the first time in its latest annual report (10-K FY2025), Microsoft added OpenAI to its official list of competitive risks. This is a legal disclosure requirement -- Microsoft's lawyers determined the competitive threat was material enough to disclose. [Source: Microsoft 10-K FY2025, Tier 1]
-- **OpenAI is building a GitHub competitor.** According to The Information, OpenAI is actively developing internal software development tools that would directly compete with GitHub, Microsoft's $7.5B acquisition and crown jewel developer platform. [Source: The Information via Windows Central, Tier 2]
-- **OpenAI's exclusivity has been annulled.** The restructured partnership allows OpenAI to source compute from other providers. This converts a captive customer ($280B RPO) into an at-will customer. [Source: OpenAI blog, Tier 1]
-- **Microsoft is hedging with its own models.** Microsoft plans to launch its own frontier-grade AI models in 2026, which simultaneously validates the risk that OpenAI dependence is unsustainable and introduces execution risk on a parallel R&D effort. [Source: Windows Central, Tier 2]
-- **Bloomberg described the deal as "now viewed as a risk, not reward."** [Source: Bloomberg newsletter, Feb 4 2026, Tier 2]
-- **$280B RPO concentration risk.** 45% of Microsoft's $625B commercial RPO -- cited by bulls as proof of demand -- is from a single counterparty (OpenAI) that (a) is unprofitable, (b) has $1.4T in its own commitments, and (c) is actively building competing products. If OpenAI's financial position deteriorates, this backlog could prove uncollectible. [Source: Fortune, TechCrunch, Tier 2]
+**Historical base rate:** No technology capex cycle in history has sustained >30% growth for more than 3-4 years. The cloud computing buildout (2015-2020) averaged ~25% CAGR before moderating. The fiber optic buildout (1997-2001) sustained >40% growth for 4 years before collapsing 70%. The most relevant analogy is the telecom bubble, where infrastructure spending vastly exceeded near-term monetization.
 
-**If this breaks, what else breaks?**
-- $280B of commercial RPO (45% of total) is impaired
-- Azure's AI growth narrative weakens without the OpenAI demand anchor
-- Microsoft's $3.1B impairment (already taken) could be the beginning, not the end, of write-downs on OpenAI-related assets
+**Strongest evidence against it:**
+- Hyperscaler AI capex in 2026 is projected at $660-690B, but AI-related services generated only ~$25B in revenue in 2025 — a 25-28:1 investment-to-revenue ratio [Source: Futurum Group, Goldman Sachs — Tier 3-6, 2026-03-09]. This ratio is unsustainable. Even at optimistic 2026 AI revenue projections of $60-80B, the ratio remains 8-11:1.
+- Capital intensity has surged to unprecedented levels: Oracle at 57% MRQ, Microsoft at 45% [Source: CreditSights — Tier 4]. Hyperscalers are increasingly funding capex with debt rather than cash flow. This is a late-cycle signal.
+- Goldman Sachs projects capex of $1.15T from 2025-2027 — but also flags that "2027 guidance may begin to plateau as base effects grow and power constraints bite" [Source: Goldman Sachs — Tier 3].
+- The Man Group identifies the current AI spending pattern as exhibiting classic bubble characteristics: "spending front-loaded while value capture is delayed and uneven" [Source: Man Group — Tier 6, 2026-03-09].
 
-### Assumption 5: Regulatory Risk Remains Manageable
+**If this breaks, what else breaks?** AMD's Data Center revenue (48% of total) hits a wall. The forward P/E of 28.6x, which assumes >40% EPS growth, rerates to 18-22x (mature semiconductor peer range). At $6.66 FY2026E EPS and 20x multiple, the stock is worth $133 — a 30% decline.
 
-**What would falsify this?**
-- FTC ordering forced unbundling of M365 Copilot from Office suite
-- EU DMA compelling cloud data portability that erodes switching costs
-- Consent decree restricting Microsoft-OpenAI partnership structure
+### Assumption 5: Warrant Dilution Is Manageable
 
-**Strongest evidence against:**
-- **Multi-jurisdictional regulatory assault.** FTC (US), EU DMA, UK CMA, and Japan Antimonopoly Act are all investigating Microsoft simultaneously. The FTC probe is described as the "broadest since the 1990s." [Source: SAMexpert, PYMNTS, Tier 2]
-- **FTC specifically targeting Copilot bundling.** The investigation is examining whether integrating Copilot into M365 constitutes illegal tying -- the same theory that nearly broke up Microsoft in 2001. [Source: ProPublica, CIO.com, InfoWorld, Tier 2]
-- **Bipartisan consensus.** FTC Chair Ferguson (Trump appointee) stated "big tech is one of the main priorities." The investigation continues despite administration change, suggesting structural political consensus against Big Tech. [Source: SAMexpert, Tier 2]
-- **UK CMA concluded "competition is not working well" in cloud.** Recommended Strategic Market Status investigation for Microsoft and AWS. [Source: CMA report, Tier 1]
+**What would falsify this?** Partial vesting triggers significant dilution before full revenue realization; stock price never reaches $600, so AMD gives away equity for deals that don't fully materialize.
 
-**If this breaks, what else breaks?**
-- Forced unbundling of Copilot from M365 would remove the distribution advantage that is Copilot's primary go-to-market strategy (since users prefer ChatGPT when given a choice)
-- Cloud data portability requirements would reduce switching costs, which are the foundation of Microsoft's enterprise moat
-- Structural remedies could take 2-5 years to adjudicate but would overhang the stock immediately
+**Strongest evidence against it:**
+- 320M warrant shares at $0.01 exercise price is effectively a free equity grant worth ~$61B at current prices. Even partial vesting of 50% (160M shares on deployment milestones alone) represents ~10% dilution — equivalent to wiping out roughly 2 years of share repurchase activity.
+- The warrant structure creates a perverse incentive: OpenAI and Meta benefit most from AMD stock appreciation, not from AMD product performance. They can vest warrants, sell shares, and fund their own custom silicon programs with the proceeds.
+- Analysts have questioned "why the product doesn't sell itself without giving up 10% of equity" [Source: Tom's Hardware — Tier 3, 2026-03-09]. This is the right question. If MI450 were truly competitive with NVIDIA H200/B200 on its own merits, mega-deals would not require effectively paying customers $30B+ in equity to adopt it.
+- Full vesting requires $600/share — a 3.15x from current price, implying ~$980B market cap. This would make AMD the 5th most valuable company in the world. The base rate for semiconductor companies reaching this valuation tier is effectively zero (only NVIDIA has done it, and only during a once-in-a-generation AI cycle).
+
+**If this breaks, what else breaks?** EPS dilution of 10-20% at a time when the growth narrative is already under pressure creates a vicious cycle: lower EPS -> lower stock price -> warrant vesting slows -> deal execution questioned -> further multiple compression.
 
 ---
 
 ## 3. Disconfirming Evidence Register
 
-| # | Evidence | Source | Tier | Severity | Bull Case Response |
-|---|----------|--------|:----:|:--------:|-------------------|
-| 1 | Azure growth decelerating 3 consecutive quarters: 40% -> 39% -> 37-38% guided | Microsoft IR (Q1-Q2 FY26 + Q3 guidance) | 1 | **High** | "Supply-constrained, not demand-constrained; growth re-accelerates when capacity comes online" |
-| 2 | Copilot penetration stuck at 3.3% of 450M installed base after 2 years | Microsoft IR / SAMexpert analysis | 1-2 | **High** | "Still early innings; enterprise adoption is inherently slow; seat growth 160% YoY" |
-| 3 | Copilot market share declining: 18.8% -> 11.5% U.S. paid AI subscribers (Jul-Jan) | Recon Analytics | 3 | **High** | "Measuring the wrong market; enterprise is different from consumer" |
-| 4 | Only 8% of users choose Copilot when all three major AI platforms available | Recon Analytics survey | 3 | **High** | "Distribution advantage will win long-term; integration with M365 workflows is unique" |
-| 5 | Cloud gross margin compressed from 70% to 67% YoY, guided to 65% | Microsoft IR, CNBC | 1 | **High** | "Temporary as infrastructure scales; margins recover as utilization improves" |
-| 6 | H1 FY26 CapEx ($49.3B) exceeds H1 FCF ($31.5B) -- cash flow negative on net basis | Microsoft 10-Q | 1 | **High** | "Investment phase; FCF recovers when CapEx plateaus in FY27-28" |
-| 7 | OpenAI listed as competitor in 10-K for first time | Microsoft 10-K FY2025 | 1 | **Medium** | "Standard legal disclosure; partnership still strong operationally" |
-| 8 | OpenAI building GitHub competitor | The Information via Windows Central | 2 | **High** | "GitHub's moat is the developer network, not just the product" |
-| 9 | 45% of $625B RPO ($280B) from single counterparty (OpenAI) -- an unprofitable company | Fortune, TechCrunch, Microsoft Q&A | 2 | **High** | "OpenAI's revenue growing rapidly ($20B+); Microsoft has contractual protections" |
-| 10 | DeepSeek + Qwen from 1% to 15% global AI market share in 12 months | Particula Tech | 2-3 | **Medium** | "Open-source creates more total demand; Microsoft hosts DeepSeek on Azure" |
-| 11 | DeepSeek V4 inference at $0.14/M tokens vs. GPT-5 at ~$2.80/M tokens (20x cheaper) | DeepSeek pricing, Azure Foundry | 2 | **High** | "Quality gap remains; enterprises pay for reliability and compliance" |
-| 12 | Zero insider purchases in 18 months; Nadella sold $75.3M in Sept 2025 | SEC Form 4 | 1 | **Medium** | "10b5-1 plans are pre-scheduled; mega-cap insider selling is normal" |
-| 13 | FTC broadest antitrust probe since 1990s, specifically targeting Copilot bundling | SAMexpert, ProPublica | 2 | **Medium** | "FTC investigations rarely result in structural remedies; settlement likely" |
-| 14 | Stock dropped 10.5% on earnings beat day -- worst day since March 2020 | Market data | 1 | **Medium** | "Overreaction to short-term supply constraint; buying opportunity" |
-| 15 | Hyperscalers consuming ~100% of operating cash flows for CapEx vs. 40% 10-year avg | Goldman Sachs | 3 | **High** | "AI is a once-in-a-generation investment; this spending creates long-term moats" |
-| 16 | Total debt up 27.69% YoY to $97.6B | Microsoft balance sheet | 1 | **Medium** | "Still AA-rated; interest coverage ratio robust; debt is cheap" |
-| 17 | Copilot accuracy NPS persistently negative (-3.5 to -24.1) | Recon Analytics | 3 | **High** | "Improving with each model update; enterprise use cases are different from consumer benchmarks" |
-| 18 | Gaming revenue declined 9% CC in Q2 FY26 | Microsoft IR | 1 | **Low** | "Gaming is a small, non-core segment; Activision synergies still ramping" |
+| # | Evidence | Source | Severity | Bull Case Response (if any) |
+|---|----------|--------|----------|---------------------------|
+| 1 | OpenAI's Broadcom custom ASIC deal (10 GW) is 67% larger than its AMD deal (6 GW). OpenAI's total hardware commitments = 26 GW, of which AMD is only 23%. | Tom's Hardware, CNBC — Tier 3 | **High** | Bulls argue GPUs and ASICs serve different workloads (training vs inference). But inference is 60-80% of compute demand and growing. |
+| 2 | CUDA Gap Score of 28.7-99.1 means NVIDIA's software delivers 30-99% effective performance boost over equivalent hardware. AMD's 20-30% hardware advantages are potentially fully negated. | AIM Multiple — Tier 6 | **High** | Bulls point to ROCm 6.0 improvements and ZLUDA. But ZLUDA delivers only 80-95% CUDA performance, and custom kernels still break on ROCm. |
+| 3 | MI455X delay rumors forced AMD to issue public denial in early 2026. | VideoCardz, Tom's Hardware — Tier 3 | **Medium** | AMD called it "BS" and reaffirmed H2 2026 timeline. But denial of delays is a standard playbook — Intel denied Sapphire Rapids delays for 18 months before admitting them. |
+| 4 | NVIDIA controls >50% of TSMC CoWoS advanced packaging through 2027. AMD competes for remaining 40-50% with all other fabless AI companies. | SemiWiki, TSMC reports — Tier 3-6 | **High** | Bulls argue TSMC is expanding capacity. True, but expansion timelines are 18-24 months, and NVIDIA has pre-booked the incremental capacity. |
+| 5 | AI capex-to-revenue ratio of 25-28:1 ($660B+ capex vs ~$25B AI revenue). Historically, no capex cycle survives this imbalance beyond 3-4 years. | Futurum Group, Goldman Sachs — Tier 3-6 | **High** | Bulls argue this is "foundational infrastructure" like the internet. The internet buildout had a similar ratio — and the telecom companies that built it went bankrupt. |
+| 6 | Lisa Su sold 125,000 shares at $214 in Feb 2026 and 225,000 shares at $162-166 in Aug 2025. Programmatic via 10b5-1 plans. | SEC Form 4, StockTitan — Tier 2 | **Low** | Programmatic sales are not discretionary signals. CEO retains ~$600M+ in AMD stock. |
+| 7 | Seeking Alpha article titled "AMD: You're About To Get Crushed" argues overvaluation and overhyped OpenAI expectations. Goldman Sachs maintains only Hold rating at $240 target. | Seeking Alpha — Tier 6, Goldman Sachs — Tier 3 | **Medium** | Contrarian retail analysis is noisy. But Goldman's Hold is notable — they have deep semiconductor coverage and access to management. |
+| 8 | AMD forward P/E of 28.6x is higher than NVIDIA's on a PEG-adjusted basis given NVIDIA's superior margins (75% GM vs AMD's 52%). AMD pays a higher multiple for weaker economics. | StockAnalysis.com — Tier 4 | **Medium** | Bulls argue AMD is earlier in its growth curve. But earlier-stage growth should come with higher uncertainty discount, not a premium. |
+| 9 | China revenue permanently impaired: was 24% of FY2024 revenue, now guided at ~$100M/quarter (~4% annualized). $800M inventory charge already taken. Further export restrictions possible. | AMD 8-K, TechCrunch — Tier 1-3 | **High** | Bulls argue China loss is already priced in. But $1.5-1.8B annual revenue loss has not been replaced — it has been masked by Data Center growth elsewhere. |
+| 10 | Semi-custom gaming declining significantly (console cycle year 7). Next-gen Xbox not until 2027. Embedded growing only 2.9% YoY. Combined = ~25-30% of revenue under pressure. | AMD 10-K, earnings call — Tier 1 | **Medium** | Bulls dismiss non-DC segments as irrelevant. But at 28.6x forward P/E, every dollar of earnings matters. |
+| 11 | Custom ASIC shipments growing 44.6% in 2026 vs GPU shipments at 16.1%. ASICs are structurally the faster-growing accelerator category. | Industry data — Tier 6 | **High** | Bulls argue training still requires GPUs. True today, but inference (60-80% of compute) increasingly moves to ASICs. |
+| 12 | AMD's GAAP operating margin of 10.8% vs non-GAAP of 27.8% — a 17pp gap driven by stock-based comp and amortization of acquired intangibles (Xilinx). True profitability is significantly lower than headline numbers suggest. | AMD 10-K — Tier 1 | **Medium** | Non-GAAP adjustments are standard for acquisitive semiconductor companies. But the magnitude (17pp) is large and growing with warrant-based equity grants. |
 
 ---
 
 ## 4. Contrarian Thesis
 
-### The Consensus View
+**The Consensus View:** AMD is a multi-year AI beneficiary executing a successful pivot from CPU underdog to AI GPU challenger. The OpenAI and Meta mega-deals validate the product roadmap, server CPU share gains provide a durable revenue base, and the stock is cheap at 28.6x forward P/E given >35% revenue CAGR guidance. The $200B+ deal pipeline transforms AMD into a top-tier AI infrastructure company alongside NVIDIA.
 
-The Street (55 Buy, 2 Hold, 0 Sell) believes Microsoft is the best-positioned company in tech to monetize AI. Consensus average price target of ~$597 implies 46% upside. The narrative: Azure is supply-constrained (not demand-constrained), $625B commercial RPO represents locked-in demand, Copilot adoption is "early innings," and the 26% pullback from ATH creates a generational buying opportunity. The market sees Microsoft as the AWS of AI -- the platform winner that captures the infrastructure tax on every enterprise AI workload.
+**Why the Consensus May Be Wrong:**
 
-### Why the Consensus May Be Wrong
+1. **The mega-deals are bridge contracts, not long-term commitments.** OpenAI's 10 GW Broadcom custom ASIC deal is 67% larger than its AMD GPU deal. The 5-6 year warrant horizon aligns with the timeline for custom silicon to reach scale. AMD is being used as a second source to pressure NVIDIA pricing and maintain optionality while hyperscalers develop their own silicon. When custom ASICs mature, GPU volumes from these customers will plateau or decline.
 
-**Reason 1: The $100B Annual CapEx Is a Trap, Not an Investment**
+2. **The CUDA software moat is not closing — it is widening.** Every incremental NVIDIA GPU sold adds another developer to the CUDA ecosystem, another optimized library, another pre-trained model. AMD's ROCm improvements are real but run on a treadmill: the absolute gap in developer tooling, model optimization, and enterprise support grows wider in absolute terms even as AMD closes the percentage gap. The CUDA Gap Score (30-99% effective performance boost) means AMD hardware advantages are illusory for real-world workloads.
 
-The consensus frames the CapEx surge as a competitive moat -- "only Microsoft, Google, and Amazon can spend at this level." But the history of capital-intensive technology buildouts (fiber optics in the 2000s, 3G/4G networks, satellite constellations) shows that the companies that spend the most often earn the worst returns. Microsoft is spending $100B+/year on infrastructure whose useful life is 3-5 years (GPUs depreciate far faster than real estate), and the competitive advantage of that spend is being eroded in real-time by open-source models achieving comparable performance at 1/20th the cost.
+3. **The AI capex cycle is in late innings, not early innings.** With a 25-28:1 capex-to-revenue ratio and hyperscalers funding investment with debt for the first time, the AI infrastructure buildout resembles the telecom bubble of 1999-2001 more than the early internet of 1995. The correction does not require AI to fail — it only requires CFOs to demand ROI proof before approving the next wave of spend. A 20-30% capex deceleration in 2027-2028 would cut AMD's addressable market precisely when it needs it most to justify its current multiple.
 
-The math: H1 FY26 CapEx of $49.3B vs. H1 FCF of $31.5B means Microsoft is now spending $1.56 in CapEx for every $1.00 of free cash flow generated. If this ratio persists, free cash flow -- the foundation of Microsoft's buyback and dividend return to shareholders -- will shrink, not grow. The consensus models FCF recovery in FY27-28, but this requires CapEx to plateau AND revenue to accelerate simultaneously. Both happening is the optimistic scenario, not the base case.
+**The Contrarian Thesis (2-3 sentences):**
 
-Evidence: Cloud gross margin compression from 70% to 67% (guided to 65%) confirms that the infrastructure spending is dilutive to margins in the near term. The question the market is not asking: what if it stays dilutive? GPU depreciation from $100B+ of spend will hit the P&L in FY27-FY28, creating a margin headwind that coincides with Azure growth deceleration. [Source: Microsoft 10-Q FY2026, Tier 1; CNBC analysis, Tier 2]
-
-**Reason 2: Copilot Is Failing the Market Test**
-
-The consensus treats 15M paid Copilot seats and 160% YoY seat growth as proof of concept. But when examined against the installed base (450M commercial M365 seats), the penetration rate of 3.3% after two years is deeply concerning. More importantly, the market share data tells a story of active user rejection:
-
-- Copilot's U.S. paid AI subscriber share fell 39% in 6 months (18.8% to 11.5%)
-- Only 8% of users choose Copilot when competing alternatives are available
-- Copilot's accuracy NPS is the worst among major AI platforms
-- Only 5% of organizations moved from pilot to large-scale deployment (Gartner)
-
-The consensus response -- "it's still early" -- fails to account for the fact that competitive dynamics are moving against Copilot. ChatGPT captures 76% preference among workers with multiple AI platforms available. If Copilot's competitive position continues to deteriorate, Microsoft's $30/user/month price point becomes untenable, and the "AI monetization" leg of the bull thesis collapses.
-
-The bull case requires Copilot to become the default enterprise AI interface (like Excel became the default spreadsheet). The data so far suggests it is becoming the Bing of AI -- omnipresent in distribution but avoided by users who have a choice. [Source: Recon Analytics, Gartner, First Page Sage, Tier 3]
-
-**Reason 3: The OpenAI Dependency Is Turning from Asset to Liability**
-
-The consensus views the OpenAI partnership as Microsoft's crown jewel -- exclusive access to the world's leading AI lab. But three structural developments have converted this asset into a liability:
-
-First, OpenAI is no longer captive. The restructured partnership removes Azure exclusivity, meaning OpenAI can (and reportedly will) source compute from Oracle and others. This means the $280B of RPO attributed to OpenAI is "committed" but not "exclusive" -- and OpenAI has every incentive to diversify its infrastructure dependency.
-
-Second, OpenAI is building competing products. A GitHub competitor from OpenAI would directly attack one of Microsoft's highest-growth developer platforms. More broadly, OpenAI's evolution toward a full product company (not just an API provider) puts it on a collision course with Microsoft across enterprise software.
-
-Third, OpenAI is unprofitable and financially fragile. The $280B RPO assumes OpenAI can honor its commitments. But OpenAI lost money in 2025 despite $20B+ in revenue, carries $1.4T in energy and compute commitments, and is fundraising at $750-830B -- a valuation that implies near-perfect execution. If OpenAI's fundraising environment deteriorates (which is correlated with the same macro risks that threaten Microsoft), the "demand backlog" narrative collapses. [Source: Bloomberg, TechCrunch, OpenAI blog, Windows Central, Tier 1-2]
-
-### The Contrarian Thesis (Summary)
-
-Microsoft is in the process of transforming from a high-margin software company into a capital-intensive AI infrastructure platform, and the market has not yet priced in the structural margin compression, competitive deterioration in AI applications (Copilot), and counterparty concentration risk (OpenAI) that this transformation entails. The $100B+ annual CapEx cycle is a bet that enterprise AI demand will grow faster than open-source models can commoditize the inference layer -- a bet that DeepSeek's 20x cost advantage is already undermining. The stock trades at 25x forward earnings on the assumption that this is a temporary investment phase, but if margins do not recover by FY2028, the market will re-rate MSFT as a 15-18x earnings stock, implying 30-40% downside from current levels.
+AMD at $190.40 is priced for a world where all five critical assumptions hold simultaneously: mega-deal execution at unprecedented scale, CUDA gap closure, sustained AI spending, limited ASIC cannibalization, and manageable dilution. The probability of all five holding is materially below the ~70% bull/base probability implied by the current stock price. The most likely outcome is that AMD delivers strong but disappointing growth (20-30% DC CAGR vs the guided >60%), while margin compression from CUDA-driven discounting and 10-20% warrant dilution push the stock to $120-150 within 18 months — a classic "good company, bad stock" setup.
 
 ---
 
-## 5. Pre-Mortem: "It's March 2028. MSFT Has Lost 40% of Its Value."
+## 5. Pre-Mortem: "It's March 2028 and AMD Is at $80. What Went Wrong?"
 
-### What Happened
+**What Happened:**
 
-The decline began in slow motion. Through the second half of calendar 2026, Azure growth continued its deceleration -- not because demand disappeared, but because it plateaued at a level insufficient to justify the infrastructure buildout. By Q4 FY2026 (June 2026), Azure growth had slipped to 33% CC, and the market began to ask uncomfortable questions about the $100B annual CapEx run rate. Management maintained that demand was supply-constrained, but investors noticed that each new tranche of GPU capacity was being filled at lower utilization rates, and average revenue per GPU-hour was declining as DeepSeek V4 and Qwen 3.5 forced aggressive pricing concessions.
+The unraveling began in Q4 2026 when MI450 shipments to OpenAI came in at 40% below the contracted ramp schedule. TSMC CoWoS yield issues, exacerbated by NVIDIA's priority access to the best packaging lines, forced AMD to push volume production to Q1 2027 — six months late. OpenAI, which had been running its Broadcom custom ASICs for inference since mid-2026, quietly shifted incremental training capacity to NVIDIA Vera Rubin rather than waiting for MI450 at scale. Meta followed suit in Q1 2027, citing "customer experience requirements" that ROCm could not meet for real-time inference in Ray-Ban Meta glasses and AI agents.
 
-The first real crack appeared in October 2026 when OpenAI announced a strategic partnership with Oracle for supplementary compute capacity, citing "infrastructure diversification." While Microsoft insisted the Azure-OpenAI relationship remained intact, the market read it as confirmation that OpenAI was de-risking its Microsoft dependency. MSFT dropped 8% in a single session. Within two quarters, OpenAI had shifted roughly 15% of its compute workloads to Oracle and Google Cloud, reducing its Azure consumption run-rate by approximately $4B annually.
+By mid-2027, the AI capex correction arrived. Microsoft cut its 2028 capex guidance by 25% after Azure AI revenue grew only 18% YoY against expectations of 40%. Amazon followed. Hyperscaler orders for all GPU vendors declined sequentially for the first time in 12 quarters. AMD's Data Center revenue, which had grown 45% in FY2026 (missing the >60% target), decelerated to 8% in H1 2027 as order deferrals mounted.
 
-The Copilot thesis unraveled in parallel. By mid-2027, M365 Copilot penetration had stalled at approximately 25M seats -- 5.5% of the installed base -- as enterprise CIOs concluded that the $30/user/month price point did not generate measurable productivity ROI for general knowledge workers. The data governance barriers that had slowed pilot-to-production conversion in 2025-2026 proved to be structural, not temporary. Meanwhile, the FTC's antitrust investigation concluded in late 2027 with a consent decree requiring Microsoft to offer M365 without Copilot bundling and to provide standardized data portability APIs for cloud migration -- measures that removed Copilot's primary distribution advantage and eroded Azure's switching costs.
+The warrant dilution became toxic. OpenAI and Meta had vested approximately 180M of their combined 320M warrant shares based on deployment milestones (even though volumes undershot targets, the milestones were structured as cumulative thresholds). At $80/share, these warrant shares represented a $14.4B wealth transfer from existing shareholders to two companies that were simultaneously investing billions in competing custom silicon. The market revalued AMD at 15x forward EPS of $5.20 (vs the peak expectation of $20+), assigning a mature semiconductor multiple to a company that had failed to prove it could be an AI infrastructure leader.
 
-The depreciation wave hit hardest. The $100B+ of GPU and CPU assets purchased in FY2025-FY2026, depreciated over 3-5 years, created an annual depreciation headwind of approximately $25-30B starting FY2027. With revenue growth decelerating to 10-12% and depreciation expense surging, operating margins compressed from 47% (FY2026) to 39% (FY2028). Free cash flow, which had recovered briefly in H2 FY2027 as CapEx moderated, was consumed by the elevated depreciation and rising debt service on $120B+ of total debt. The buyback program slowed from $18B/year to $10B/year.
+**Warning Signs That Were Visible Today (March 2026):**
 
-By March 2028, MSFT traded at $245, roughly 15x forward earnings of ~$16.30, having de-rated from a "high-growth AI compounder" to a "capital-intensive cloud utility." The 40% decline was not driven by a single catastrophic event but by the gradual recognition that the AI CapEx cycle produced revenue growth that was real but insufficient -- and margin destruction that was permanent.
+1. **OpenAI's Broadcom deal was 67% larger than its AMD deal.** The market celebrated the AMD deal in isolation without recognizing that AMD was the smaller bet in OpenAI's diversified hardware strategy. This was visible in October 2025 when Broadcom's deal was announced one week after AMD's.
 
-### Warning Signs That Were Visible Today (March 2026)
+2. **The MI455X delay rumors required a public denial.** Healthy product launches do not generate delay rumors that require CEO-level denial 6 months before ship date. The AMD denial ("BS") was emphatic in a way that suggested the rumors were close enough to reality to be threatening.
 
-1. **Azure growth decelerating three consecutive quarters** (40% -> 39% -> 37-38%) while CapEx was accelerating. The gap between spending growth (+66%) and revenue growth (+17%) was the largest in Microsoft's history. [Source: Microsoft IR, Tier 1]
+3. **The CUDA Gap Score data was public and unambiguous.** Independent benchmarks showed 30-99% effective performance advantages for NVIDIA's software stack. AMD's hardware spec sheets showed 20-30% advantages. The math was clear: software > hardware. The market chose to believe the hardware specs.
 
-2. **Copilot user preference data showing active rejection.** Only 8% of users chose Copilot when alternatives were available. Market share declining 39% in six months. Accuracy NPS persistently negative. The bull case dismissed this as "early innings" but the competitive dynamics were already moving against Copilot. [Source: Recon Analytics, Tier 3]
+4. **AI capex-to-revenue ratio of 25:1 exceeded every historical precedent** for sustainable infrastructure buildouts. The telecom bubble had a similar ratio and unwound over 18 months.
 
-3. **OpenAI's pivot from partner to competitor.** Listed as a competitor in the 10-K. Building a GitHub competitor. Exclusivity annulled. These were not ambiguous signals -- they were explicit, documented escalations of competitive tension. [Source: Microsoft 10-K, Windows Central, Tier 1-2]
-
-4. **Insider behavior.** Zero open-market purchases by any Microsoft insider in 18 months. Nadella sold $75.3M in September 2025. This does not prove insiders expected a decline, but it is notable that no insider was willing to buy shares at prices 25% below the all-time high. [Source: SEC Form 4, Tier 1]
-
-5. **DeepSeek's 20x cost advantage.** The market treated this as an interesting data point. It should have been treated as an existential threat to the premise that massive CapEx spending on proprietary compute creates durable competitive advantage. [Source: DeepSeek benchmarks, Tier 2]
+5. **The warrant structure incentivized deal signing, not deal execution.** OpenAI and Meta received warrants that vest partially on deployment (not performance), meaning AMD was paying customers to take delivery of chips they might not fully utilize.
 
 ---
 
 ## 6. Break-Even Probability Analysis
 
-### Using Consensus Scenarios (Bull/Base/Bear: $600/$475/$320)
+### Scenario 1: Standard Bull/Base/Bear (Analyst Consensus-Adjacent)
 
 ```
-python tools/portfolio-math.py kelly-scenarios \
-  --bull-price 600 --base-price 475 --bear-price 320 \
-  --bull-prob 0.25 --base-prob 0.50 --bear-prob 0.25 \
-  --current-price 408.96
+Bull: $350 (25% probability) — Mega-deals execute, CUDA gap narrows, >$15 EPS by FY2028
+Base: $220 (45% probability) — Partial execution, 30-40% DC growth, ~$8-10 EPS
+Bear: $80  (30% probability) — Mega-deal underdelivery, AI capex correction, margin compression
+Current: $190.40
 ```
 
-**Result:** Expected value = $467.50 (+14.3%). Full Kelly = 54.35%. **Break-even bear probability = 55%.** At the consensus scenario weights (25% bull / 50% base / 25% bear), the trade looks attractive. The expected value turns negative only if bear probability exceeds 55%.
+**Results:**
+- Expected value: $210.50 (+10.6%)
+- Full Kelly: 26.4% (dangerously concentrated)
+- Half Kelly: 13.2%
+- Upside/downside ratio: 1.45x
+- **Break-even bear probability: 41%**
 
-### Using Devil's Advocate Adjusted Scenarios ($550/$430/$250)
+**Interpretation:** If bear probability exceeds 41%, the expected value turns negative. The current implied bear probability based on consensus analyst targets (~$261 average) is approximately 15-20%. The question is whether 15-20% adequately captures the compounding risk across five fragile assumptions.
 
-The Devil's Advocate adjusts the scenarios to reflect:
-- Lower bull target ($550 vs $600) due to margin compression
-- Lower base target ($430 vs $475) due to growth deceleration and multiple compression
-- Lower bear target ($250 vs $320) due to CapEx-driven FCF destruction in a recession
-- Higher bear probability (40% vs 25%) reflecting accumulated disconfirming evidence
+### Scenario 2: Devil's Advocate Adjusted Weights
 
 ```
-python tools/portfolio-math.py kelly-scenarios \
-  --bull-price 550 --base-price 430 --bear-price 250 \
-  --bull-prob 0.20 --base-prob 0.40 --bear-prob 0.40 \
-  --current-price 408.96
+Bull: $300 (20% probability) — Reduced bull price due to dilution + CUDA discount
+Base: $200 (45% probability) — Modest beat with lower margins
+Bear: $80  (35% probability) — Elevated due to ASIC cannibalization + capex cycle risk
+Current: $190.40
 ```
 
-**Result:** Expected value = $382.00 (-6.6%). Full Kelly = **-44.17%.** The position has **NEGATIVE EXPECTED VALUE** under Devil's Advocate assumptions. The model recommends NOT taking the position.
+**Results:**
+- Expected value: $178.00 (-6.5%)
+- Full Kelly: -30.7% (NEGATIVE — the position loses money on average)
+- **Break-even bear probability: 27%**
 
-### Sensitivity: How Far Can We Tilt Toward Bear Before EV Goes Negative?
+**Interpretation:** Under more realistic scenario weights that account for the five assumption risks, the expected value is negative. AMD is a **negative expected value bet** at $190.40 unless the bull probability exceeds 25% AND the bear probability stays below 27%. This is a narrow window that leaves no margin of safety.
 
-Using consensus scenarios ($600/$475/$320) but increasing bear probability:
+### Sensitivity Table
 
-| Bull Prob | Base Prob | Bear Prob | Expected Value | Kelly |
-|:-:|:-:|:-:|:-:|:-:|
-| 25% | 50% | 25% | $467.50 (+14.3%) | 54.35% |
-| 20% | 45% | 35% | $443.25 (+8.4%) | 34.6% |
-| 15% | 40% | 45% | $424.00 (+3.7%) | 15.0% |
-| 10% | 35% | 55% | $404.75 (-1.0%) | **Negative** |
-| 5% | 30% | 65% | $385.50 (-5.7%) | **Negative** |
+| Bull Prob | Base Prob | Bear Prob | Expected Value | EV Return | Kelly |
+|:-:|:-:|:-:|:-:|:-:|:-:|
+| 30% | 45% | 25% | $220.50 | +15.8% | 38.7% |
+| 25% | 45% | 30% | $210.50 | +10.6% | 26.4% |
+| 20% | 45% | 35% | $178.00 | -6.5% | -30.7% |
+| 15% | 45% | 40% | $168.00 | -11.8% | **Negative** |
+| 10% | 45% | 45% | $158.00 | -17.0% | **Negative** |
 
-**Break-even bear probability: ~55%** (at consensus price targets). If the true bear probability exceeds 55%, the stock is a sell at $408.96.
+**The critical threshold is 27-35% bear probability.** Above this range, the expected value turns negative under all reasonable scenario calibrations.
 
-**Assessment:** The consensus assigns 25% bear probability. The Devil's Advocate, based on the disconfirming evidence accumulated above, assigns approximately 35-40% bear probability. This does not yet trigger negative expected value at consensus price targets, but it dramatically reduces the Kelly fraction from 54% to ~15-25%. The position sizing implication: even if the analyst team retains a Buy rating, the position should be significantly smaller than the consensus overweight would imply.
+### Current Implied Bear Probability Assessment
 
-However, using the Devil's Advocate adjusted price targets (which incorporate margin compression and CapEx-driven FCF destruction), the expected value is already negative at 40% bear probability. This is the more honest assessment.
+The market at $190.40 with consensus target of $261 is pricing approximately 15-20% bear probability. This is too low given:
+- Five independent fragile assumptions each with sub-50% confidence
+- ASIC cannibalization evidence that is structural, not cyclical
+- CUDA moat that has not narrowed in absolute terms despite 2+ years of ROCm investment
+- AI capex cycle showing late-stage characteristics (debt-funded, 25:1 capex-to-revenue ratio)
+- 320M warrant shares creating 20% dilution overhang
+
+**Devil's Advocate assessed bear probability: 30-35%.** This is above the break-even threshold of 27% under adjusted scenarios, making AMD a marginal-to-negative expected value position at current prices.
 
 ---
 
 ## 7. The Single Most Dangerous Assumption
 
-**"The $100B+ annual CapEx cycle will generate adequate returns (ROIC > WACC) within 3-4 years."**
+**The single most dangerous assumption is that the OpenAI and Meta mega-deals represent durable, long-term demand rather than bridge contracts while custom ASICs mature.**
 
-This is the most dangerous assumption because:
+This assumption is dangerous because:
 
-1. **It is the highest-stakes bet in corporate history.** No company has ever spent $100B+ per year on a single technology bet. The closest analogs (telecom fiber buildouts, satellite constellations) produced catastrophic value destruction when demand failed to materialize at the required scale.
+1. **It is the foundation of the entire bull case.** Remove the mega-deals and AMD's Data Center growth decelerates from >60% to 25-30%, the $20+ EPS target becomes unreachable, and the stock deserves a 20-22x multiple (= $133-146 stock price).
 
-2. **It is being undermined in real time.** DeepSeek V4 achieves comparable inference performance at 1/20th the cost of GPT-5. If efficiency gains in open-source models continue at this rate, the competitive advantage of massive GPU farms evaporates. Microsoft would be left with $300B+ of depreciating infrastructure assets that generate commodity returns.
+2. **The evidence against it is strong and structural.** OpenAI's Broadcom deal is 67% larger than its AMD deal. Every major hyperscaler is investing in custom silicon. The 5-6 year warrant horizon matches the ASIC maturity timeline.
 
-3. **The feedback loop is delayed.** CapEx deployed in FY2025-FY2026 will not hit peak depreciation until FY2027-FY2028. By the time the market sees the full margin impact, the spending will have already occurred. There is no mechanism to un-spend $100B.
+3. **It is the least verifiable in the near term.** AMD can ship MI450 on time and report strong revenue for 2-3 quarters before the underlying demand shift becomes visible. By the time the bridge-contract nature reveals itself, the stock will have already priced in multi-year revenue that never materializes.
 
-4. **It creates reflexive downside.** If the CapEx bet fails, Microsoft's free cash flow is impaired, which reduces buyback capacity, which removes a significant source of price support. The stock becomes a capital-intensive utility trading at 15x earnings ($245), not a software compounder trading at 25x earnings ($420).
-
-5. **Management's language is not reassuring.** CFO Amy Hood disclosed that "demand continues to exceed available supply" -- but this is a supply-side statement, not a demand-quality statement. The question is not whether Microsoft can fill GPU capacity; it is whether the revenue per GPU-hour will be sufficient to earn returns above the cost of capital. Management has not provided ROIC data on AI infrastructure investments, which is itself a red flag.
-
-If this assumption is wrong, it directly triggers the failure of Assumptions 1, 2, and 4 as well, because Azure growth, Copilot viability, and OpenAI economics all depend on the infrastructure investment generating adequate returns. **This is the load-bearing wall of the entire thesis.**
+4. **It creates the deepest second-order damage.** If the mega-deals are bridge contracts, AMD will have given away 320M warrant shares (~20% dilution) for temporary revenue that disappears as custom ASICs scale. The equity cost is permanent; the revenue benefit is transient.
 
 ---
 
 ## 8. Summary
 
-The most dangerous assumption is that Microsoft's $100B+ annual CapEx cycle will generate returns above the cost of capital within 3-4 years. This assumption is being actively undermined by open-source AI models achieving comparable performance at 1/20th the cost, Copilot user adoption data showing active rejection (only 8% choose it when alternatives exist), Azure growth decelerating for three consecutive quarters, and a partner (OpenAI) that is simultaneously Microsoft's largest customer, most important technology supplier, and emerging competitor. The break-even bear probability is ~55% at consensus price targets, but under adjusted scenarios reflecting margin compression and CapEx-driven FCF destruction, the expected value is already negative at 40% bear probability. The strongest disconfirming evidence is the combination of Copilot's 3.3% penetration rate after two years, declining market share (-39% in 6 months), and worst-in-class accuracy perception, which collectively suggest that Microsoft's primary AI monetization vehicle is failing the market test.
+The most dangerous assumption is that the OpenAI and Meta mega-deals (12 GW, ~$200B potential) represent durable long-term demand rather than bridge infrastructure while both companies scale custom ASICs. The break-even bear probability is 27-41% depending on scenario calibration. Under the Devil's Advocate adjusted weights (35% bear probability), AMD is a negative expected value position at $190.40 with a Kelly fraction of -30.7%. The strongest disconfirming evidence is that OpenAI simultaneously signed a 10 GW custom ASIC deal with Broadcom — 67% larger than its AMD commitment — signaling that AMD GPUs are a hedge, not a conviction bet, for the largest AI infrastructure buyer in the world.
 
 ---
 
 ## Sources
 
-- [Microsoft IR Q2 FY2026 Earnings](https://www.microsoft.com/en-us/investor/earnings/fy-2026-q2/press-release-webcast) [Tier 1]
-- [Microsoft 10-K FY2025](https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm) [Tier 1]
-- [Microsoft 10-Q Q2 FY2026](https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm) [Tier 1]
-- [Fortune -- Microsoft demand backlog doubles to $625B](https://fortune.com/2026/01/28/microsoft-stock-drops-azure-growth-slows-capex-spending-q2/) [Tier 2]
-- [CNBC -- Microsoft stock drops 7% on slowing cloud growth](https://www.cnbc.com/2026/01/28/microsoft-msft-q2-earnings-report-2026.html) [Tier 2]
-- [Bloomberg -- Microsoft's Deal With OpenAI Now Viewed as Risk](https://www.bloomberg.com/news/newsletters/2026-02-04/microsoft-s-deal-to-provide-computing-to-openai-raises-alarms) [Tier 2]
-- [Windows Central -- OpenAI builds GitHub competitor](https://www.windowscentral.com/artificial-intelligence/openai-chatgpt/openai-launching-microsoft-github-competitor-rumor) [Tier 2]
-- [ProPublica -- Microsoft Bundling Focus of Antitrust Probe](https://www.propublica.org/article/ftc-investigating-microsoft-antitrust-cloud-computing) [Tier 2]
-- [SAMexpert -- FTC vs Microsoft](https://samexpert.com/ftc-microsoft-investigation-2025/) [Tier 2]
-- [Recon Analytics -- AI Choice 2026](https://www.reconanalytics.com/ai-choice-2026-why-licenses-dont-equal-adoption/) [Tier 3]
-- [First Page Sage -- Top AI Chatbots by Market Share](https://firstpagesage.com/reports/top-generative-ai-chatbots/) [Tier 3]
-- [Particula Tech -- DeepSeek V4 and Qwen 3.5](https://particula.tech/blog/deepseek-v4-qwen-open-source-ai-disruption) [Tier 3]
-- [Goldman Sachs -- Why AI Companies May Invest $500B+ in 2026](https://www.goldmansachs.com/insights/articles/why-ai-companies-may-invest-more-than-500-billion-in-2026) [Tier 3]
-- [California Management Review -- Open-Source AI Disruption](https://cmr.berkeley.edu/2026/01/the-coming-disruption-how-open-source-ai-will-challenge-closed-model-giants/) [Tier 3]
-- [SEC Form 4 -- Insider Trading](https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000789019&type=4) [Tier 1]
-- [Investing.com -- Nadella Sells $75.3M](https://www.investing.com/news/insider-trading-news/nadella-satya-sells-microsoft-msft-stock-worth-753-million-93CH-4225765) [Tier 2]
+- [AMD Q4 FY2025 Earnings Press Release](https://ir.amd.com/news-events/press-releases/detail/1276/) — Tier 1
+- [AMD-Meta Partnership Press Release](https://ir.amd.com/news-events/press-releases/detail/1279/) — Tier 1
+- [AMD-OpenAI Partnership Press Release](https://ir.amd.com/news-events/press-releases/detail/1260/) — Tier 1
+- [AMD 8-K Export Control Charge](https://ir.amd.com/financial-information/sec-filings/content/0000002488-25-000039/amd-20250415.htm) — Tier 1
+- [CNBC: Meta-AMD Deal](https://www.cnbc.com/2026/02/24/meta-to-use-6gw-of-amd-gpus-days-after-expanded-nvidia-ai-chip-deal.html) — Tier 3
+- [Tom's Hardware: AMD-Meta $100B Deal](https://www.tomshardware.com/tech-industry/artificial-intelligence/amd-meta-100-billion-deal) — Tier 3
+- [Tom's Hardware: OpenAI-Broadcom Custom ASIC Deal](https://www.tomshardware.com/openai-broadcom-to-co-develop-10gw-of-custom-ai-chips) — Tier 3
+- [CNBC: Broadcom-OpenAI Custom Chip Deal](https://www.cnbc.com/2025/10/13/openai-partners-with-broadcom-custom-ai-chips-alongside-nvidia-amd.html) — Tier 3
+- [VideoCardz: AMD Denies MI455X Delays](https://videocardz.com/newz/amd-denies-mi455x-delay-claims-says-shipments-remain-set-for-h2-2026) — Tier 3
+- [Tom's Hardware: AMD Denies MI455X Delays](https://www.tomshardware.com/tech-industry/artificial-intelligence/amd-denies-report-of-mi455x-delays-as-nvidia-vr200-systems-are-rumored-to-arrive-early-company-says-helios-systems-on-target-for-2h-2026) — Tier 3
+- [AIM Multiple: CUDA vs ROCm 2026](https://research.aimultiple.com/cuda-vs-rocm/) — Tier 6
+- [ThunderCompute: ROCm vs CUDA](https://www.thundercompute.com/blog/rocm-vs-cuda-gpu-computing) — Tier 6
+- [PitchGrade: AMD AI Margin Pressure](https://pitchgrade.com/research/amd-ai-margin-pressure) — Tier 6
+- [Futurum: AI Capex 2026 $690B Sprint](https://futurumgroup.com/insights/ai-capex-2026-the-690b-infrastructure-sprint/) — Tier 3
+- [Goldman Sachs: AI Capex $500B+](https://www.goldmansachs.com/insights/articles/why-ai-companies-may-invest-more-than-500-billion-in-2026) — Tier 3
+- [Man Group: The AI Bubble](https://www.man.com/insights/the-ai-bubble) — Tier 6
+- [RIA: Capex Masking Economic Weakness](https://realinvestmentadvice.com/resources/blog/capex-spending-on-ai-is-masking-economic-weakness/) — Tier 6
+- [SemiWiki: TSMC CoWoS Capacity](https://semiwiki.com/forum/threads/tsmc%E2%80%99s-advanced-packaging-capacity-is-fully-booked-for-next-two-years-by-nvidia-and-amd.20157/) — Tier 6
+- [Seeking Alpha: AMD Bear Case](https://seekingalpha.com/article/4831137-amd-youre-about-to-get-crushed) — Tier 6
+- [Seeking Alpha: Growth at Unreasonable Price](https://seekingalpha.com/article/4856960-amd-growth-at-unreasonable-price) — Tier 6
+- [StockAnalysis.com: AMD Statistics](https://stockanalysis.com/stocks/amd/statistics/) — Tier 4
+- [More Than Moore: AMD-OpenAI 6GW Bet](https://morethanmoore.substack.com/p/amd-and-openai-the-6-gigawatt-bet) — Tier 6
+- [TrendForce: OpenAI Custom Chip 2026](https://www.trendforce.com/news/2026/01/15/news-openai-reportedly-to-deploy-custom-ai-chip-on-tsmc-n3-by-end-2026-second-gen-planned-for-a16/) — Tier 3
+- [CreditSights: Hyperscaler Capex 2026](https://know.creditsights.com/insights/technology-hyperscaler-capex-2026-estimates/) — Tier 4
+- [Morningstar: AI Arms Race](https://www.morningstar.com/financial-advisors/ai-arms-race-how-techs-capital-surge-will-reshape-investment-landscape-2026) — Tier 3

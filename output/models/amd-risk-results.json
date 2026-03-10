@@ -1,0 +1,231 @@
+{
+  "ticker": "AMD",
+  "model": "Risk",
+  "date": "2026-03-09",
+  "current_price": 190.4,
+  "risk_adjusted_metrics": {
+    "sharpe_ratio": 0.38,
+    "sortino_ratio": 0.54,
+    "kelly_full_pct": 68.9,
+    "kelly_half_pct": 34.5,
+    "kelly_quarter_pct": 17.2
+  },
+  "historical_stress": [
+    {
+      "episode": "COVID Crash (2020-02/03)",
+      "market_drawdown_pct": -34.0,
+      "implied_stock_drawdown_pct": -95.0,
+      "trough_price": 9.52,
+      "loss_per_share": 180.88,
+      "market_cap_loss_M": 294834.0,
+      "duration_months": 1.5,
+      "recovery_months": 5
+    },
+    {
+      "episode": "2022 Tech Selloff",
+      "market_drawdown_pct": -33.0,
+      "implied_stock_drawdown_pct": -95.0,
+      "trough_price": 9.52,
+      "loss_per_share": 180.88,
+      "market_cap_loss_M": 294834.0,
+      "duration_months": 10,
+      "recovery_months": 18
+    },
+    {
+      "episode": "2018 Q4 Selloff",
+      "market_drawdown_pct": -20.0,
+      "implied_stock_drawdown_pct": -88.9,
+      "trough_price": 21.17,
+      "loss_per_share": 169.23,
+      "market_cap_loss_M": 275841.0,
+      "duration_months": 3,
+      "recovery_months": 6
+    },
+    {
+      "episode": "Dot-com Bust (2000-02)",
+      "market_drawdown_pct": -78.0,
+      "implied_stock_drawdown_pct": -95.0,
+      "trough_price": 9.52,
+      "loss_per_share": 180.88,
+      "market_cap_loss_M": 294834.0,
+      "duration_months": 30,
+      "recovery_months": 60
+    },
+    {
+      "episode": "2015-16 Semi Downturn",
+      "market_drawdown_pct": -14.0,
+      "implied_stock_drawdown_pct": -56.6,
+      "trough_price": 82.71,
+      "loss_per_share": 107.69,
+      "market_cap_loss_M": 175535.0,
+      "duration_months": 6,
+      "recovery_months": 12
+    },
+    {
+      "episode": "GFC 2008-09",
+      "market_drawdown_pct": -57.0,
+      "implied_stock_drawdown_pct": -95.0,
+      "trough_price": 9.52,
+      "loss_per_share": 180.88,
+      "market_cap_loss_M": 294834.0,
+      "duration_months": 17,
+      "recovery_months": 36
+    }
+  ],
+  "factor_stress": [
+    {
+      "factor": "CUDA Moat Proves Insurmountable",
+      "revenue_impact_pct": -15.0,
+      "margin_impact_pct": -4.0,
+      "multiple_compression_pct": -30.0,
+      "total_price_impact_pct": -64.5,
+      "implied_price": 67.59,
+      "loss_from_current": -122.81
+    },
+    {
+      "factor": "Macro Recession (GDP -2%)",
+      "revenue_impact_pct": -10.0,
+      "margin_impact_pct": -4.0,
+      "multiple_compression_pct": -30.0,
+      "total_price_impact_pct": -57.0,
+      "implied_price": 81.87,
+      "loss_from_current": -108.53
+    },
+    {
+      "factor": "AI Capex Slowdown (-30%)",
+      "revenue_impact_pct": -12.0,
+      "margin_impact_pct": -3.0,
+      "multiple_compression_pct": -25.0,
+      "total_price_impact_pct": -52.0,
+      "implied_price": 91.39,
+      "loss_from_current": -99.01
+    },
+    {
+      "factor": "Mega-Deal Cancellation (1 of 2)",
+      "revenue_impact_pct": -5.0,
+      "margin_impact_pct": -1.0,
+      "multiple_compression_pct": -35.0,
+      "total_price_impact_pct": -45.5,
+      "implied_price": 103.77,
+      "loss_from_current": -86.63
+    },
+    {
+      "factor": "MI450 12-Month Delay",
+      "revenue_impact_pct": -10.0,
+      "margin_impact_pct": -2.0,
+      "multiple_compression_pct": -20.0,
+      "total_price_impact_pct": -41.0,
+      "implied_price": 112.34,
+      "loss_from_current": -78.06
+    },
+    {
+      "factor": "Custom ASIC Cannibalization (25% GPU TAM Shift)",
+      "revenue_impact_pct": -8.0,
+      "margin_impact_pct": -2.0,
+      "multiple_compression_pct": -15.0,
+      "total_price_impact_pct": -33.0,
+      "implied_price": 127.57,
+      "loss_from_current": -62.83
+    },
+    {
+      "factor": "China Total Ban",
+      "revenue_impact_pct": -8.0,
+      "margin_impact_pct": -2.0,
+      "multiple_compression_pct": -10.0,
+      "total_price_impact_pct": -28.0,
+      "implied_price": 137.09,
+      "loss_from_current": -53.31
+    },
+    {
+      "factor": "Interest Rate Spike (+200bps)",
+      "revenue_impact_pct": -3.0,
+      "margin_impact_pct": 0.0,
+      "multiple_compression_pct": -15.0,
+      "total_price_impact_pct": -19.5,
+      "implied_price": 153.27,
+      "loss_from_current": -37.13
+    }
+  ],
+  "multi_factor_worst_case": {
+    "factors_combined": [
+      "AI Capex Slowdown (-30%)",
+      "MI450 12-Month Delay",
+      "Macro Recession (GDP -2%)"
+    ],
+    "correlation_haircut": 0.7,
+    "combined_revenue_impact_pct": -22.4,
+    "combined_margin_impact_pct": -6.3,
+    "combined_multiple_compression_pct": -52.5,
+    "total_price_impact_pct": -105.0,
+    "implied_price": 9.52,
+    "drawdown_pct": -95.0
+  },
+  "monte_carlo": {
+    "n_simulations": 10000,
+    "horizon_days": 252,
+    "mean_return_pct": 27.4,
+    "median_return_pct": 10.0,
+    "std_dev_pct": 75.1,
+    "probability_of_loss_pct": 42.4,
+    "percentiles": {
+      "p1": -69.5,
+      "p5": -55.9,
+      "p10": -45.2,
+      "p25": -23.4,
+      "p50": 10.0,
+      "p75": 57.7,
+      "p90": 121.0,
+      "p95": 167.7,
+      "p99": 293.0
+    },
+    "var_95": {
+      "var": 0.5591,
+      "cvar": 0.6436,
+      "confidence": 0.95,
+      "var_pct": 55.9,
+      "cvar_pct": 64.4
+    },
+    "var_99": {
+      "var": 0.6954,
+      "cvar": 0.7431,
+      "confidence": 0.99,
+      "var_pct": 69.5,
+      "cvar_pct": 74.3
+    },
+    "max_drawdown": {
+      "mean_pct": -44.0,
+      "median_pct": -42.6,
+      "p5_pct": -67.8,
+      "worst_pct": -88.9
+    },
+    "price_distribution": {
+      "p5": 83.94,
+      "p25": 145.86,
+      "p50": 209.4,
+      "p75": 300.3,
+      "p95": 509.72
+    }
+  },
+  "drawdown_probabilities": [
+    {
+      "drawdown_threshold_pct": 10.0,
+      "probability_pct": 85.6
+    },
+    {
+      "drawdown_threshold_pct": 20.0,
+      "probability_pct": 71.6
+    },
+    {
+      "drawdown_threshold_pct": 30.0,
+      "probability_pct": 58.5
+    },
+    {
+      "drawdown_threshold_pct": 40.0,
+      "probability_pct": 46.7
+    },
+    {
+      "drawdown_threshold_pct": 50.0,
+      "probability_pct": 36.3
+    }
+  ]
+}

@@ -1,469 +1,388 @@
-# Sector Analysis: Microsoft Corporation (MSFT)
+# Sector Analysis: Advanced Micro Devices (AMD)
 
 **Analyst:** Sector Analyst
-**Date:** 2026-03-08
-**Sectors Covered:** Cloud Infrastructure, Enterprise Software, Enterprise AI, Gaming, Developer Tools, Professional Networking
+**Date:** 2026-03-09
+**Sectors Covered:** AI Accelerators, Server CPUs, Client PC Processors, FPGA/Embedded, Gaming Semiconductors
 
 ---
 
 ## 1. Sector Definition and Scope
 
-Microsoft operates across multiple sectors. Rather than analyze "Technology" -- a meaningless category for investment purposes -- this analysis treats each as a distinct sector with its own growth dynamics, competitive structure, and value chain economics.
+AMD operates across five distinct semiconductor sub-sectors. Analyzing "semiconductors" as a monolith is useless — each sub-sector has fundamentally different growth dynamics, competitive structures, and value chain economics.
 
-| Dimension | Cloud Infrastructure | Enterprise Software (SaaS) | Enterprise AI | Gaming |
-|-----------|---------------------|---------------------------|---------------|--------|
-| **GICS Classification** | 4510 (IT Services) | 4510 (Application Software) | 4510 (Application Software) | 5020 (Entertainment) |
-| **Geographic Scope** | Global | Global | Global | Global |
-| **TAM 2025 ($B)** | $476B `[Source: Synergy Research Q3 2025 run-rate, Tier 3]` | $340B `[Source: Fortune Business Insights, Tier 3]` | $115B `[Source: Mordor Intelligence, Tier 3]` | $29B (console + cloud) `[Source: Mordor Intelligence, Tier 3]` |
-| **TAM CAGR (5Y forward)** | 17.6% (base) `[ESTIMATED]` | 12-19% `[Source: Multiple, Tier 3]` | 28.9% (base) `[ESTIMATED]` | 5-7% `[Source: Expert Market Research, Tier 3]` |
-| **MSFT Revenue Exposure** | ~$134,000M (Intelligent Cloud) | ~$138,000M (Productivity & Business) | Embedded across segments | ~$19,000M (gaming subset of MPC) |
+| Dimension | AI Accelerators | Server CPU | Client PC | FPGA/Embedded | Gaming Semi |
+|-----------|----------------|-----------|-----------|---------------|-------------|
+| **GICS Classification** | 4530 (Semiconductors) | 4530 (Semiconductors) | 4530 (Semiconductors) | 4530 (Semiconductors) | 4530 (Semiconductors) |
+| **Geographic Scope** | Global | Global | Global | Global | Global |
+| **TAM 2025 ($M)** | $140,000M (GPU only) `[Source: Bloomberg Intelligence/ESTIMATED, Tier 6]` | $42,000M `[Source: Mercury Research/ESTIMATED, Tier 6]` | $85,000M `[Source: IDC/ESTIMATED, Tier 6]` | $12,000M `[Source: ESTIMATED]` | $18,000M `[Source: ESTIMATED]` |
+| **TAM CAGR (5Y, base)** | 22.0% `[ESTIMATED]` | 8.0% `[ESTIMATED]` | 5.0% `[ESTIMATED]` | 7.0% `[ESTIMATED]` | 4.0% `[ESTIMATED]` |
+| **AMD Revenue Exposure** | ~$12,000M (MI-series GPU) | ~$10,000M (EPYC) | ~$10,640M (Ryzen) | ~$3,454M (Xilinx) | ~$3,910M (semi-custom + Radeon) |
+| **AMD Share** | ~10% | ~37% (revenue ~41%) | ~27% | ~28% | ~12% |
 
-`[ASSUMPTION: TAM estimates sourced from third-party research firms (Synergy Research, Mordor Intelligence, Fortune Business Insights, Grand View Research). Third-party TAM estimates have a historical tendency to overstate by 20-40% in growth sectors and understate by 10-20% in mature sectors. Cloud and AI TAMs should be discounted accordingly.]`
+`[ASSUMPTION: TAM sourced from WSTS, Bloomberg Intelligence, Mercury Research, IDC. Third-party TAM estimates have a historical tendency to overstate by 20-40% in growth sectors and understate by 10-20% in mature sectors.]`
+
+**Total global semiconductor market:** $772B in 2025, projected to approach $975B in 2026 (+25%) per WSTS. The industry is approaching $1T driven primarily by AI-related applications. `[Source: WSTS — Tier 5, retrieved 2026-03-09]`
 
 ---
 
 ## 2. Sector Growth Model
 
-### 2.1 Cloud Infrastructure Market Forecast ($B)
+### Growth Driver Decomposition
 
-| Year | Bull | Base | Bear |
-|------|------|------|------|
-| 2025 | $476.0 | $476.0 | $476.0 |
-| 2026 | $590.2 | $571.2 | $547.4 |
-| 2027 | $731.9 | $685.4 | $629.5 |
-| 2028 | $878.3 | $795.1 | $705.1 |
-| 2029 | $1,053.9 | $922.3 | $789.7 |
-| 2030 | $1,264.7 | $1,069.9 | $884.4 |
-| **5Y CAGR** | **21.6%** | **17.6%** | **13.2%** |
-
-`[Source: Sector growth model (output/pass1/sector-growth-model.py). Base case assumes 20% CAGR in years 1-2 (AI-driven), decelerating to 16% in years 3-5 as penetration increases.]`
-
-**Monte Carlo simulation (10,000 runs):** Cloud infra market 2030 median $1,042.5B (P10: $942.1B, P90: $1,147.5B). The base case forecast of $1,069.9B falls at approximately the 60th percentile.
-
-### 2.2 Enterprise AI Market Forecast ($B)
-
-| Year | Bull | Base | Bear |
-|------|------|------|------|
-| 2025 | $115.0 | $115.0 | $115.0 |
-| 2026 | $163.3 | $155.2 | $140.3 |
-| 2027 | $231.9 | $209.6 | $171.2 |
-| 2028 | $306.1 | $262.0 | $196.8 |
-| 2029 | $404.0 | $327.5 | $226.4 |
-| 2030 | $533.3 | $409.4 | $260.3 |
-| **5Y CAGR** | **35.9%** | **28.9%** | **17.8%** |
-| **Enterprise penetration 2030** | **55%** | **42%** | **28%** |
-
-`[ASSUMPTION: Penetration rate defined as % of enterprises with 500+ employees deploying AI in at least one production workload. Current penetration estimated at 20-25% (IDC, Tier 3). Denominator: ~500,000 enterprises globally with 500+ employees.]`
-
-### 2.3 Growth Driver Decomposition
+#### AI Accelerator Market (AMD's highest-growth segment)
 
 | Growth Driver | Current Contribution | 5-Year Trend | Sensitivity |
 |--------------|---------------------|-------------|-------------|
-| AI/ML workloads | 35% of total cloud growth | Accelerating | High |
-| Enterprise migration (lift-and-shift) | 25% | Stable-to-Decelerating | Medium |
-| SaaS expansion | 20% | Stable | Medium |
-| Data analytics / data lakes | 10% | Accelerating | Medium |
-| Edge computing | 5% | Accelerating | Low (near-term) |
-| Geographic expansion | 5% | Stable | Low |
+| Volume / unit growth | 40% of total growth | Accelerating | High |
+| Pricing / ASP growth | 25% of total growth | Stable (HBM, advanced node inflation) | Medium |
+| Mix shift (training → inference) | 20% of total growth | Accelerating | High |
+| Geographic expansion (sovereign AI) | 5% of total growth | Accelerating | Medium |
+| New use cases (edge AI, agents) | 8% of total growth | Accelerating | High |
+| M&A / consolidation | 2% of total growth | Stable | Low |
 
-**Critical insight:** AI/ML workloads are now the single largest growth driver for cloud infrastructure, contributing an estimated 35% of total sector growth. This is a structural shift from 2022-2023 when enterprise migration was the primary driver. GenAI-specific cloud services grew 140-180% in Q2 2025 `[Source: Synergy Research, Tier 3]`. The implication for MSFT: Azure's disproportionate AI engagement (45% AI engagement vs. 23% cloud share, `[Source: Industry analysis, Tier 3]`) positions it to capture above-market-share of the highest-growth segment.
+**Key observation:** Volume and mix shift are the dominant drivers. The shift from training to inference workloads materially benefits AMD — MI350/MI450 compete more effectively on inference (40% better tokens-per-dollar vs NVIDIA B200) than training where CUDA's software optimization creates a wider gap.
 
-### 2.4 Adoption Curve Analysis
+#### Server CPU Market
 
-| Stage | Description | Cloud Infra Penetration | Enterprise AI Penetration |
-|-------|------------|:-----------------------:|:------------------------:|
-| Innovators (0-2.5%) | | Passed | Passed |
-| Early Adopters (2.5-16%) | | Passed | Passed |
-| Early Majority (16-50%) | | **Here (~60%)** | **Here (~22%)** |
-| Late Majority (50-84%) | | Entering | Not yet |
-| Laggards (84-100%) | | Not yet | Not yet |
+| Growth Driver | Current Contribution | 5-Year Trend | Sensitivity |
+|--------------|---------------------|-------------|-------------|
+| Volume / unit growth | 30% of total growth | Stable | Medium |
+| Pricing / ASP growth | 20% of total growth | Stable (higher core counts) | Medium |
+| Mix shift (higher-core, multi-socket) | 25% of total growth | Accelerating | Medium |
+| Geographic expansion (India, SE Asia DC) | 10% of total growth | Accelerating | Medium |
+| New use cases (AI-adjacent CPU workloads) | 10% of total growth | Accelerating | High |
+| M&A / consolidation | 5% of total growth | Stable | Low |
 
-**Cloud infrastructure** is in the late Early Majority / entering Late Majority phase. Approximately 60% of enterprise workloads are now in the cloud `[Source: Flexera State of the Cloud 2025, Tier 3]`. Growth is increasingly driven by AI workloads and deeper cloud-native architecture rather than first-time migration. This means the easy migration wins are done; remaining growth requires higher-value workloads with greater technical complexity.
+#### Client PC Market
 
-**Enterprise AI** is in the Early Majority phase at approximately 22% penetration. This is the steepest part of the S-curve, implying 3-5 years of accelerating adoption ahead before deceleration sets in. This is the single most important sector dynamic for MSFT's investment thesis.
+| Growth Driver | Current Contribution | 5-Year Trend | Sensitivity |
+|--------------|---------------------|-------------|-------------|
+| Volume / unit growth | 35% of total growth | Accelerating (Win10 EOL refresh) | Medium |
+| Pricing / ASP growth | 15% of total growth | Stable | Low |
+| Mix shift (AI PCs with NPUs) | 30% of total growth | Accelerating | High |
+| Geographic expansion | 10% of total growth | Stable | Low |
+| New use cases (on-device AI) | 8% of total growth | Accelerating | Medium |
+| M&A / consolidation | 2% of total growth | Stable | Low |
 
-### 2.5 SaaS Market Maturation
+### Adoption Curve Analysis — AI Accelerators
 
-| Metric | 2025 | 2030E (Base) |
-|--------|------|-------------|
-| Global SaaS market ($B) | $340 | $580-650 |
-| SaaS as % of enterprise software | ~54% | ~68% |
-| Enterprise SaaS penetration | 73% | ~85% |
-| North America SaaS market ($B) | ~$180 | ~$300 |
+| Stage | Description | Current Penetration | Implied Remaining Runway |
+|-------|------------|--------------------:|--------------------------|
+| Innovators (0-2.5%) | Research labs, early hyperscaler testing | Completed (2018-2021) | -- |
+| Early Adopters (2.5-16%) | Hyperscaler training buildout | Completed (2021-2024) | -- |
+| Early Majority (16-50%) | Enterprise AI, inference at scale | **~30% penetration** | 3-4 years |
+| Late Majority (50-84%) | Mid-market enterprise, edge deployment | Not yet | 5-8 years |
+| Laggards (84-100%) | SMB, legacy replacement | Not yet | 8+ years |
 
-`[Source: Fortune Business Insights, Precedence Research, Tier 3]`
+**Current position on S-curve:** Early Majority phase, ~30% enterprise penetration. The market is past the uncertainty phase but well before saturation. This is the highest-growth phase of the adoption curve.
 
-The SaaS market is maturing but not saturated. Growth is shifting from new adoption to expansion (more seats, more products, higher-tier pricing). This directly benefits MSFT's M365 ARPU expansion strategy via Copilot upsell.
+`[ASSUMPTION: Penetration rate of 30% based on hyperscaler capex growth trajectory and enterprise survey data. TAM denominator defined as Fortune 2000 companies with compute budgets >$10M annually. Enterprise penetration estimates vary widely — Gartner estimates 25%, McKinsey estimates 35%.]`
+
+**Inflection risk:** Training compute scaling laws may plateau (as suggested by DeepSeek's efficiency breakthroughs), which would shift value from training GPUs to inference chips. This is a **net positive for AMD** — inference is where AMD's price-performance advantage is strongest.
+
+### Python Growth Model
+
+Executable model saved to: `output/models/amd-sector-growth-model.py`
+
+Key outputs:
+- AI GPU TAM: $140B (2025) → $378B (2030, base case, 22% CAGR)
+- Custom ASIC TAM: $28B (2025) → $151B (2030, base case, 40% CAGR)
+- Server CPU TAM: $42B (2025) → $62B (2030, base case, 8% CAGR)
+- Total semi TAM: $772B (2025) → $1,361B (2030, base case, 12% CAGR)
 
 ---
 
 ## 3. Competitive Structure
 
-### 3.1 Cloud Infrastructure Market Share Landscape
+### 3.1 AI GPU Market Share Landscape
 
-| Rank | Company | Market Share (Q4 2025) | Share Trend (3Y) | Quarterly Revenue | Operating Margin |
-|------|---------|:---------------------:|:----------------:|:-----------------:|:----------------:|
-| 1 | AWS | 31% | -2pp | $35.6B `[Tier 1]` | 35% `[Tier 1]` |
-| 2 | **Azure** | **23%** | **+5pp** | **~$25B `[EST]`** | **N/A (segment-level)** |
-| 3 | Google Cloud | 12% | +3pp | $17.7B `[Tier 1]` | 30% `[Tier 1]` |
-| 4 | Alibaba Cloud | 4% | -1pp | ~$4.5B `[EST]` | N/A |
-| 5 | Oracle Cloud | 3% | +1.5pp | ~$3.5B `[EST]` | N/A |
-| 6 | IBM Cloud | 2.5% | -1.5pp | ~$3B `[EST]` | N/A |
-| 7 | Neoclouds | 3.5% | +3pp (new category) | ~$4B `[EST]` | N/A |
-| | Others | 21% | -8pp | ~$25B `[EST]` | N/A |
-| | **Total** | **100%** | | **~$119B/quarter** | |
+| Rank | Company | Market Share (2025) | Share Trend (3Y) | Revenue ($M, est.) | Margin vs. Sector |
+|------|---------|:-------------------:|:---------------:|:-------------------:|:-----------------:|
+| 1 | NVIDIA | ~82% | -5pp (from 92%) | ~$114,800M | Far above (75% GM) |
+| 2 | AMD | ~10% | +5pp (from 5%) | ~$14,000M | Above (57% GM) |
+| 3 | Custom ASICs (aggregate) | ~6% | +4pp (from 2%) | ~$8,400M | N/A (internal) |
+| 4 | Others (Intel Gaudi, startups) | ~2% | +1pp | ~$2,800M | Below |
+| **Total** | | **100%** | | **~$140,000M** | |
 
-`[Source: Synergy Research Q3-Q4 2025, CNBC, SEC filings for AWS and GCP. Azure share is midpoint of 20-25% range cited by multiple sources. Tier 3 for share estimates, Tier 1 for revenue/margin where from filings.]`
+`[ESTIMATED from Bloomberg Intelligence, TrendForce, TechNetBooks Q4 2025. Revenue-weighted shares. Unit shares differ.]`
 
-### 3.2 Concentration Analysis
+**NVIDIA's moat:** CUDA ecosystem (6M developers, 300+ libraries, 600+ AI models). Software lock-in creates a 30-99% effective performance advantage across benchmarks even where AMD hardware matches or exceeds specs. `[Source: AIM Multiple — Tier 6]`
 
-| Metric | Value | Trend | Implication |
-|--------|-------|-------|-------------|
-| HHI (Herfindahl-Hirschman Index) | ~1,800 `[ESTIMATED]` | Rising | Moderately Concentrated (moving toward concentrated) |
-| CR3 (top 3 share) | 66% | Stable | Big Three maintain two-thirds |
-| CR4 (top 4 share) | 70% | Rising | Oracle entering material player tier |
-| Number of material players (>5% share) | 3 | Stable | Only AWS, Azure, GCP above 5% |
-| New entrants (last 3 years) | 5+ (neoclouds) | Increasing | CoreWeave, Lambda, Voltage Park -- AI-focused |
-| Exits / M&A (last 3 years) | Several small | Consolidating | Sub-scale providers exiting to Big Three |
+**AMD's wedge:** Price-performance in inference. MI355X delivers 40% more tokens per dollar than B200. The MI450/Helios architecture targets rack-scale economics with 50% more memory than NVIDIA Vera Rubin. The OpenAI and Meta mega-deals (12 GW combined) validate AMD as a credible second source.
 
-**Concentration assessment:** The cloud infrastructure market is an oligopoly with an expanding competitive fringe. The Big Three control 66% and this share is stable-to-rising. The key structural change is the emergence of AI-specialized neoclouds that capture workloads the Big Three cannot serve fast enough (GPU capacity constraints). This is a temporary dynamic that will dissipate as Big Three CapEx comes online.
+### 3.2 Server CPU Market Share Landscape
 
-### 3.3 Market Share Projection (Base Case)
+| Rank | Company | Market Share (2025) | Share Trend (3Y) | Revenue ($M, est.) | Margin vs. Sector |
+|------|---------|:-------------------:|:---------------:|:-------------------:|:-----------------:|
+| 1 | Intel Xeon | ~58% (unit: 71%) | -16pp (from 78%) | ~$24,335M | Below (30% GM) |
+| 2 | AMD EPYC | ~35% (unit: 29%) | +15pp (from 20%) | ~$14,524M | Above (57% GM) |
+| 3 | Arm-based (Graviton, Ampere) | ~8% (unit: ~21%) | +6pp (from 2%) | ~$3,142M | Varies |
+| **Total** | | **100%** | | **~$42,000M** | |
 
-| Provider | 2025 | 2026E | 2027E | 2028E | 2029E | 2030E | 5Y Rev CAGR |
-|----------|------|-------|-------|-------|-------|-------|:-----------:|
-| AWS | 31.0% | 30.5% | 30.1% | 29.6% | 29.1% | 28.6% | 15.7% |
-| **Azure** | **23.0%** | **23.9%** | **24.8%** | **25.8%** | **26.7%** | **27.6%** | **21.9%** |
-| GCP | 12.0% | 12.3% | 12.6% | 12.9% | 13.3% | 13.6% | 20.6% |
-| Oracle | 3.0% | 3.3% | 3.6% | 3.9% | 4.2% | 4.5% | 27.5% |
-| Others | 31.0% | 30.0% | 28.9% | 27.8% | 26.7% | 25.3% | -- |
+`[ESTIMATED: Blended from Mercury Research (unit share) and revenue-based estimates. AMD revenue share exceeds unit share because EPYC commands higher ASPs than Xeon. Arm unit share inflated by NVIDIA DGX Grace systems counted as Arm server CPUs. Source: Mercury Research Q4 2025, The Register, Fusion Worldwide — Tier 3-6]`
 
-`[Source: Sector share shift model (output/pass1/sector-share-model.py). Share shift assumptions: Azure +1.0pp/year (driven by AI engagement + enterprise integration), AWS -0.5pp/year, GCP +0.3pp/year. See model for full scenario analysis.]`
+**Note on unit vs. revenue share:** Mercury Research reports AMD at 28.8% unit share (Q4 2025), but AMD's revenue share in servers was 41% in Q2 2025. The discrepancy reflects EPYC Turin's premium pricing — higher core counts and advanced node advantage command 30-50% ASP premiums over comparable Xeon.
 
-**Bull case:** Azure surpasses AWS by 2030 (Azure 30.2% vs. AWS 27.1%).
-**Bear case:** Azure gains slowly (25.0% by 2030), AWS stabilizes at 30.0%.
+### 3.3 Concentration Analysis
 
-### 3.4 MSFT Cross-Market Share Summary
+| Metric | AI GPU Market | Server CPU Market | Client PC CPU |
+|--------|:------------:|:-----------------:|:-------------:|
+| HHI (Herfindahl-Hirschman) | 6,864 | 4,609 | 5,378 |
+| CR2 (top 2 share) | 92% | 93% | 95% |
+| Material players (>5% share) | 2 | 2 | 2 |
+| New entrants (last 3Y) | Custom ASICs, Intel Gaudi | Arm (Graviton, Ampere) | Qualcomm Snapdragon X |
+| Exits / M&A (last 3Y) | -- | -- | -- |
+| **Trend** | Moderating concentration | Moderating concentration | Beginning to fragment |
 
-| Market | MSFT Product | 2025 Share | 2030E Share | Direction | Moat Strength |
-|--------|-------------|:----------:|:-----------:|:---------:|:-------------:|
-| Cloud Infrastructure | Azure | 23.0% | 27.6% | Gaining | Strong |
-| Enterprise Productivity | M365 | 75.0% (enterprise) | 76.5% | Stable | Very Strong |
-| Developer Tools | GitHub | 60.0% | 65.5% | Gaining | Strong |
-| Professional Networking | LinkedIn | 27.4% (of TAM) | 15.1% (TAM outgrows) | Revenue growing, share diluting | Dominant (no real competitor) |
-| Gaming (Console) | Xbox | 27.0% | ~25% | Stable-to-declining | Moderate |
+All three key markets are **highly concentrated** (HHI > 2,500). The AI GPU market is a near-duopoly but concentration is declining as custom ASICs gain ground. Server CPU is transitioning from Intel monopoly to AMD-led duopoly with Arm as an emerging third force.
 
-`[Source: Market share model (output/pass1/sector-share-model.py). Enterprise productivity from 6sense/Statista; GitHub from 6sense/JetBrains; LinkedIn from Mordor Intelligence. All Tier 3.]`
+**Key dynamic:** In concentrated markets with falling HHI, the share gainer (AMD) typically benefits from both market growth and share gains — a double tailwind. This is AMD's current structural position in all three of its largest addressable markets.
+
+### Market Share Shift Model
+
+Executable model saved to: `output/models/amd-sector-share-model.py`
+
+**Projected share evolution (base case):**
+
+| Market | AMD 2025 | AMD 2027 | AMD 2030 | Direction |
+|--------|:--------:|:--------:|:--------:|:---------:|
+| AI GPU | 10.0% | 13.9% | 18.8% | Gaining ~2.5pp/year |
+| Server CPU | 34.6% | 42.0% | 48.9% | Gaining ~5pp/year, decelerating at ~50% |
+| Client PC | 27.0% | 31.1% | 36.7% | Gaining ~2.5pp/year |
+
+**AMD combined revenue projection (base case):** $34.6B (FY2025 actual) → $170B by 2030. Model output exceeds management's >35% CAGR target of ~$155B.
+
+`[ASSUMPTION: Share gains assume current product cadence continues (EPYC Turin → Venice, MI350 → MI450 → MI500). Delays or execution failures would materially slow share gains. Ceiling applied at 55% for any single market.]`
 
 ---
 
 ## 4. Regulatory Environment
 
-### 4.1 Current Regulatory Framework
+### Current Regulatory Framework
 
-| Regulation | Jurisdiction | Impact on MSFT | Affected Companies | Compliance Cost |
-|-----------|-------------|---------------|-------------------|----------------|
-| EU AI Act | EU | Negative (compliance burden, model classification) | All AI providers | $500M-$1,000M sector-wide `[ESTIMATED]` |
-| EU Data Act | EU | Negative (data portability reduces lock-in) | All cloud providers | $200M-$500M sector-wide `[ESTIMATED]` |
-| GDPR | EU | Neutral (already compliant) | All | Embedded |
-| US Executive Order on AI Safety | US | Neutral (reporting requirements) | All AI developers | Minimal |
-| UK Online Safety Act | UK | Negative | All platforms | Moderate |
+| Regulation | Jurisdiction | Impact on Sector | Affected Companies | Status |
+|-----------|:------------|:----------------|:-------------------|:-------|
+| U.S. CHIPS Act ($52.7B) | U.S. | Positive — subsidizes domestic fab construction | Intel, TSMC (AZ), Samsung (TX), GlobalFoundries | Enacted 2022, funds deploying through 2027 |
+| EU Chips Act (€86B target) | EU | Positive — subsidizes EU fab expansion | TSMC (Dresden), Intel (Magdeburg), GlobalFoundries | Enacted 2023, Chips Act 2.0 proposed Q1 2026 |
+| U.S. Export Controls (AI chips to China) | U.S. | **Negative for AMD** — $1.5-1.8B FY2025 revenue impact | AMD, NVIDIA, Intel | Evolving — Jan 2026 rule shift to case-by-case licensing |
+| 25% Semiconductor Tariff (Section 232) | U.S. | Negative — increases import costs | All fabless companies (AMD, NVIDIA, Qualcomm) relying on TSMC | Announced Jan 2026 |
+| Japan/Korea chip equipment restrictions | Japan, S. Korea | Neutral for AMD | Equipment makers (Tokyo Electron, ASML) | Implemented 2024-2025 |
 
-### 4.2 Pending Regulatory Actions
+### Pending Regulatory Actions
 
 | Action | Status | Expected Timeline | Probability | Impact if Enacted |
-|--------|--------|:------------------:|:-----------:|:----------------:|
-| **FTC MSFT Antitrust Investigation** | Active (escalating) | 2026-2027 resolution | 70% remedies `[ESTIMATED]` | Revenue: -$2,000-5,000M; Margin: -100-300bps if unbundling required |
-| EU AI Act High-Risk System Rules | Final rule, effective | 2026-08-02 | 100% (law) | Compliance cost $200-500M for MSFT; advantage vs. smaller competitors |
-| EU Cloud and AI Development Act | Proposed | 2026 Q1 passage | 60% | Mandate: triple EU data center capacity. Benefit to all hyperscalers with EU presence |
-| EU DMA Cloud Investigation | Active (3 investigations) | 2026-2027 | 80% action | Behavioral remedies: data portability, interoperability mandates |
-| UK CMA Cloud Market Investigation | Recommended (Strategic Market Status) | 2026-2027 | 65% | Portability requirements, switching cost limits |
-| Japan Antimonopoly Act Investigation | Active | 2026 | 50% action | Licensing practice modifications |
+|--------|:-------|:------------------|:------------|:-----------------|
+| SAFE Chips Act (tighter China controls) | Proposed in Congress | 2026-Q3 | 40% | Revenue: -$2-5B for AMD; blocks all AI chip exports to China |
+| EU Chips Act 2.0 revision | Commission proposal | 2026-Q1 | 70% | Neutral — targets EU fab capacity, not design |
+| TSMC tariff exemption (advanced packaging) | Under review | 2026-H1 | 50% | Positive if exempted — reduces cost for AMD/NVIDIA |
+| China retaliatory restrictions (rare earths) | Escalation risk | Ongoing | 25% | Negative — gallium/germanium supply disruption |
 
-`[Source: FTC press releases, SAMexpert, PYMNTS, EU Commission, Legalnodes. Tier 2-3. Probability estimates are ESTIMATED based on regulatory precedent.]`
-
-### 4.3 FTC Investigation Detail
-
-The FTC investigation is the most material near-term regulatory risk for MSFT. It is the broadest Microsoft antitrust probe since the 1990s `[Source: SAMexpert, Tier 2]`. Areas under investigation:
-
-1. **Product bundling:** Whether bundling M365 with cybersecurity and cloud tools violates antitrust law
-2. **Cloud licensing restrictions:** Whether licensing terms make it punitive for customers to run Microsoft software on AWS or GCP
-3. **AI partnership structures:** Whether the OpenAI exclusive cloud arrangement is anti-competitive
-4. **Data portability:** Whether Azure imposes excessive switching costs
-
-The FTC has issued civil investigative demands to 6+ Microsoft competitors `[Source: WinBuzzer, Tier 2]`. FTC Chair Ferguson confirmed "big tech is one of the main priorities of the Trump-Vance FTC" `[Source: PYMNTS, Tier 2]`.
-
-**Potential remedies if enacted:**
-- Modify licensing terms (moderate impact: -$1,000-2,000M revenue, -50-100bps margin)
-- Separate productivity software from cloud services (severe impact: -$3,000-5,000M, -200-300bps margin)
-- Improve data portability for customers (moderate: reduce Azure switching costs, accelerate multi-cloud)
-- Enhance cybersecurity standards for government contractors (low impact)
-
-### 4.4 Regulatory Trend Assessment
+### Regulatory Trend Assessment
 
 | Dimension | Direction | Evidence |
-|-----------|-----------|---------|
-| Overall regulatory intensity | **Increasing** | FTC + EU DMA + UK CMA + Japan all investigating simultaneously |
-| Compliance cost trend | **Rising** | EU AI Act penalties up to 7% global turnover; EU Data Act portability requirements |
-| Barrier-to-entry impact | **Rising barriers** | Compliance costs favor incumbents with resources; smaller AI companies cannot afford EU AI Act conformity |
-| Antitrust scrutiny | **Increasing** | Multi-jurisdictional pressure on bundling, cloud dominance, AI partnerships |
-| Cross-border regulatory convergence | **Converging** | EU, UK, Japan moving in similar direction on cloud portability and AI governance |
+|-----------|:---------:|---------|
+| Overall regulatory intensity | **Increasing** | Three new export control rules in 18 months; Section 232 tariffs |
+| Compliance cost trend | **Rising** | AMD took $800M inventory charge; 15% revenue fee on MI308 China exports |
+| Barrier-to-entry impact | **Rising barriers** | CHIPS Act subsidies favor incumbents; export controls limit market access for new entrants |
+| Antitrust scrutiny | Stable | No significant antitrust actions in AI chips |
+| Cross-border regulatory convergence | **Diverging** | U.S., EU, Japan imposing unilateral restrictions; China building parallel ecosystem |
 
-**Net regulatory assessment for MSFT:** Mixed. In the near term (12-18 months), regulatory risk is elevated -- the FTC investigation could force behavioral changes that partially erode the bundling moat. In the medium term (3-5 years), rising compliance costs and regulatory complexity actually benefit MSFT as an incumbent with resources to comply. The EU AI Act, with penalties up to 7% of global turnover (or ~$23B for MSFT), creates a moat for companies with established compliance infrastructure. Smaller AI competitors face disproportionate burdens. Net assessment: **Slight Negative** near-term, **Slight Positive** medium-term.
+**Net regulatory assessment for AMD: Net Negative.** AMD's fabless model means it cannot directly benefit from CHIPS Act manufacturing subsidies (which flow to Intel and TSMC). Meanwhile, export controls have already cost AMD $1.5-1.8B in FY2025 revenue and could worsen. The January 2026 shift to case-by-case licensing offers marginal relief (MI325X exports now possible) but uncertainty remains high. China was 24% of AMD's FY2024 revenue — now guided at ~$100M/quarter. The 25% Section 232 semiconductor tariff directly raises AMD's input costs since all AMD chips are manufactured at TSMC (Taiwan, which is a tariff target). AMD bears regulatory cost without receiving regulatory subsidy.
 
 ---
 
 ## 5. Value Chain Analysis
 
-### 5.1 Cloud/AI Stack Value Chain
+### Semiconductor Value Chain (AI Accelerator Focus)
 
 ```
-[Silicon / Hardware] -> [Infrastructure (IaaS)] -> [Platform (PaaS)] -> [Application (SaaS)] -> [End Customer]
-     15-25% margin        35-45% margin              45-55% margin          65-80% margin
-     $80B pool            $200B pool                  $120B pool             $280B pool
-     (NVIDIA, AMD)        (AWS, Azure, GCP)           (Azure, GCP, MSFT)     (M365, Salesforce)
+[IP/Design]  →  [Foundry/Fab]  →  [Packaging]  →  [System Integration]  →  [Cloud/End User]
+  35-75% GM       50-60% GM        25-40% GM         15-25% GM              Varies
+  $200B+ pool     $120B+ pool      $40B+ pool        $80B+ pool             N/A
 ```
 
-| Value Chain Position | Gross Margin Range | Key Players | Margin Trend | MSFT Position |
-|---------------------|:------------------:|-------------|:-----------:|:-------------:|
-| **Silicon / Accelerators** | 60-75% (NVIDIA) | NVIDIA, AMD, custom (MSFT Maya, AWS Trainium) | Compressing (competition) | Entering (Maya 200) |
-| **Infrastructure (IaaS)** | 35-45% | AWS, Azure, GCP, Oracle | Compressing (CapEx intensity) | **Core position** |
-| **Platform (PaaS / AI Platform)** | 45-55% | Azure, AWS, GCP, Databricks | Expanding (AI premium) | **Core position** |
-| **Application (SaaS)** | 65-80% | M365, Salesforce, SAP, Workday | Stable-to-expanding | **Dominant position** |
-| **AI Model / API Layer** | 50-70% (est) | OpenAI, Anthropic, Google (Gemini) | Unknown (early stage) | Via OpenAI partnership (27% stake) |
+| Value Chain Position | Gross Margin Range | Key Players | Margin Trend | AMD Position |
+|---------------------|:-----------------:|:-----------|:------------|:------------|
+| IP / Chip Design (fabless) | 55-75% | NVIDIA, AMD, Qualcomm, Broadcom | Expanding (AI premium) | **HERE — 57% GM** |
+| Foundry / Manufacturing | 50-60% | TSMC, Samsung, Intel Foundry | Stable-Expanding | Not here (fabless) |
+| Advanced Packaging (CoWoS, HBM) | 25-40% | TSMC, ASE, Amkor, SK Hynix | Expanding (supply-constrained) | Not here (TSMC dependency) |
+| Memory (HBM) | 30-50% | SK Hynix, Samsung, Micron | Expanding (HBM scarcity) | Not here |
+| System Integration (servers, racks) | 15-25% | Dell, HPE, Supermicro, ODMs | Compressing | Not here (Helios = partial entry) |
+| Software / Ecosystem | 80-90% | NVIDIA (CUDA), AMD (ROCm) | Stable | **Partial — ROCm maturing** |
 
-`[Source: Company filings (margins), industry analysis. Infrastructure margins estimated from AWS 35% operating margin and MSFT Intelligent Cloud segment. SaaS margins from M365 segment profitability. Tier 1-3.]`
+**Value migration assessment:** Value is migrating **upstream** toward chip design and advanced packaging. The shift to AI accelerators has increased the design-stage margin pool dramatically — NVIDIA's 75% gross margin reflects the value accruing to chip architects who control the AI compute stack. AMD at 57% gross margin sits in the second-highest margin pool.
 
-**Value migration assessment:** Value is migrating from infrastructure (commodity compute) toward the platform and application layers, particularly AI-enhanced applications. The infrastructure layer faces margin compression as CapEx requirements surge -- hyperscalers are spending $690B combined in 2026 `[Source: Futurum Group, Tier 3]` with no proportional near-term revenue increase. The application layer (SaaS) captures the highest margins because switching costs lock in customers.
+**Critical dependency — TSMC:** AMD is 100% dependent on TSMC for leading-edge manufacturing (3nm for MI450, 4nm for MI350, 5nm for EPYC Turin). This creates three risks:
 
-MSFT is uniquely positioned across all four layers: it has custom silicon (Maya 200), infrastructure (Azure), platform (Azure AI, GitHub), and applications (M365, Dynamics 365, LinkedIn). No other company has this full-stack presence. AWS lacks the application layer; Google Cloud lacks enterprise distribution; Salesforce/SAP lack infrastructure.
+1. **Capacity allocation:** TSMC CoWoS capacity is fully booked through 2026. NVIDIA has ~60% allocation, Broadcom ~15%. AMD must compete for the remaining ~25% with all other customers. At 12 GW of committed deployment (OpenAI + Meta), AMD's TSMC capacity requirements will increase dramatically in 2026-2027.
 
-**Disintermediation risk:** Two threats.
+2. **Pricing power:** TSMC raised advanced node prices 5-8% in 2025 and is expected to raise again in 2026. AMD absorbs this as COGS — unlike Intel, which manufactures internally.
 
-1. **Open-source AI models (DeepSeek, Llama):** Could disintermediate the AI model/API layer. DeepSeek V3.2 matches GPT-5 at 10x lower cost `[Source: Introl Blog, Tier 3]`. If enterprises deploy open-source models directly on cloud infrastructure, the AI platform premium erodes. Impact: negative for Azure AI margin premiums, positive for base IaaS demand (enterprises still need compute).
+3. **Geopolitical risk:** TSMC's primary fabs are in Taiwan. A cross-strait disruption would halt AMD's entire product line. TSMC's Arizona fabs (expected 2025-2027) provide partial mitigation but are not yet at scale for leading-edge AI chips.
 
-2. **Neoclouds (CoreWeave, Lambda):** Could disintermediate the infrastructure layer for AI-specific workloads. Purpose-built GPU clouds with 20-30% lower costs for AI training. Impact: negative for Azure AI infrastructure revenue share, but limited to the training segment (inference requires broader enterprise integration that neoclouds lack).
+`[Source: TSMC earnings, TrendForce, Digitimes — Tier 3, retrieved 2026-03-09]`
 
-### 5.2 MSFT Value Capture Position
-
-| Layer | MSFT Revenue Contribution | MSFT Margin | Lock-in Mechanism |
-|-------|:------------------------:|:-----------:|:-----------------:|
-| Infrastructure (Azure IaaS) | ~$60B (est) | ~35% | Networking, data gravity, hybrid cloud |
-| Platform (Azure PaaS + AI) | ~$40B (est) | ~45% | API integration, developer tools, model fine-tuning |
-| Application (M365, Dynamics, LinkedIn) | ~$170B (est) | ~65-70% | AD/Identity, training data, workflow integration, Copilot context |
-| Total | ~$270B | ~55% blended | Full-stack integration across all layers |
-
-`[ESTIMATED: Revenue breakdowns within Intelligent Cloud not disclosed. Estimates derived from segment reporting, Azure growth composition, and analyst models. Tier 3.]`
-
-**Key insight:** MSFT captures ~63% of its revenue from the application layer (highest margin), with cloud infrastructure and platform contributing the remaining ~37%. This is a structurally superior mix compared to AWS (85%+ from infrastructure) or GCP (60-70% from infrastructure). The application-layer dominance means MSFT can tolerate cloud infrastructure margin compression better than pure-play cloud competitors.
+**Disintermediation risk:** Hyperscaler custom ASICs (Google TPU, Amazon Trainium, Microsoft Maia) bypass the GPU design layer entirely, going directly from in-house design to TSMC fabrication. This disintermediates both NVIDIA and AMD for a portion of inference workloads. The offsetting factor: AMD's OpenAI and Meta mega-deals demonstrate that even hyperscalers building custom silicon still need GPU infrastructure. GPUs and ASICs are complementary, not purely substitutional — but the ratio may shift toward ASICs over time.
 
 ---
 
 ## 6. Secular Trends
 
-| # | Secular Trend | Stage | Impact on MSFT | Timeline |
-|---|--------------|:-----:|:--------------:|:--------:|
-| 1 | Enterprise AI adoption | **Inflecting** | Strong Tailwind | 2-5 years to peak adoption |
-| 2 | Digital transformation / cloud migration | Mature (Late Early Majority) | Moderate Tailwind | Ongoing, decelerating |
-| 3 | Multi-cloud / hybrid cloud architecture | Early Majority | Mixed (reduces lock-in but increases platform importance) | 3-5 years |
-| 4 | Open-source AI / model commoditization | Early Adopters | Headwind for AI premium pricing | 2-4 years |
-| 5 | Data sovereignty / regulatory fragmentation | Accelerating | Tailwind (compliance moat favors scale) | 3-7 years |
+| # | Secular Trend | Stage | Impact on AMD | Timeline |
+|---|:-------------|:------|:-------------|:---------|
+| 1 | AI infrastructure buildout | Early Majority (inflecting) | **Strong tailwind** — Data Center revenue +39% YoY, 12 GW committed | 3-5 years of above-trend growth |
+| 2 | Inference scaling (vs. training) | Early | **Tailwind** — AMD's price-performance advantage strongest in inference | 2-4 years to material shift |
+| 3 | Cloud/data center expansion | Mature growth | **Tailwind** — EPYC share gains continue | Ongoing |
+| 4 | Edge AI / on-device inference | Early Adopters | **Moderate tailwind** — Ryzen AI NPUs, embedded FPGA | 3-5 years |
+| 5 | China technology decoupling | Accelerating | **Headwind** — Lost $1.5-1.8B FY2025; further restrictions possible | Ongoing, worsening |
 
-### Trend 1: Enterprise AI Adoption (Inflection Point)
+### Trend Detail
 
-This is the most important secular trend for MSFT's thesis. Enterprise AI is at approximately 22% penetration -- the steepest part of the S-curve.
+**1. AI Infrastructure Buildout — Who Benefits Most**
+- **NVIDIA** benefits most today due to CUDA lock-in for training workloads
+- **AMD** is the primary beneficiary of the "second source" dynamic — hyperscalers want to avoid NVIDIA monopoly pricing
+- **Broadcom/Marvell** benefit from custom ASIC trend
+- **Financial magnitude for AMD:** AI GPU revenue could grow from ~$12B (FY2025) to $50-71B by 2030 (base case model)
+- **Leading indicators:** Hyperscaler capex announcements, TSMC CoWoS booking rates, MI450 benchmark results
 
-- **Who benefits most:** Microsoft (M365 Copilot + Azure AI + GitHub Copilot creates a three-vector AI monetization path that no competitor can match)
-- **Who is most at risk:** Legacy enterprise software vendors (SAP, Oracle on-premise, IBM) without credible AI platforms
-- **Financial magnitude:** $50,000-100,000M incremental MSFT revenue over 5 years (Copilot + Azure AI combined)
-- **Leading indicators:** M365 Copilot paid seats (currently 15M, +160% YoY), GitHub Copilot subscribers (4.7M, +75% YoY), Azure AI revenue contribution (16pp of Azure growth)
+**2. Inference Scaling**
+- Training compute may be approaching efficiency plateaus (DeepSeek demonstrated 20x training cost reduction)
+- Inference demand is growing faster than training as deployed AI models serve billions of queries
+- AMD's MI355X delivers 40% better tokens-per-dollar vs NVIDIA B200 in inference benchmarks
+- **Who is most at risk:** NVIDIA — training monopoly is durable but inference competition is intensifying
+- **Leading indicators:** Inference-to-training ratio in hyperscaler capex, tokens served per day metrics
 
-`[ASSUMPTION: Copilot ARPU of $30/user/month. If 30% of M365's 446M users adopt Copilot by 2030, that is $48B+ in annual Copilot revenue alone. This is aggressive but not implausible given the trajectory.]`
+**3. Cloud/Data Center Expansion**
+- Global data center capacity growing ~15-20% annually
+- AMD EPYC is the structural share gainer, benefiting from Intel's multi-generation lag
+- **Who is most at risk:** Intel — Xeon losing share on performance AND price
+- **Financial magnitude for AMD:** Server CPU revenue could grow from ~$10B to $30B by 2030
 
-### Trend 2: Digital Transformation / Cloud Migration
+**4. Edge AI / On-Device AI**
+- Edge AI chip market growing at 21% CAGR ($3.7B in 2025 → $9.5B by 2030)
+- AMD positioned via Ryzen AI (NPU-equipped laptop/desktop CPUs) and Xilinx FPGAs
+- **Who benefits most:** Qualcomm (mobile inference), NVIDIA (Jetson), AMD (PC inference)
+- **Financial magnitude for AMD:** Incremental — ~$2-5B of revenue uplift by 2030 from AI PC premium
 
-- **Who benefits most:** Azure and AWS (incumbents with broadest feature sets)
-- **Who is most at risk:** On-premise infrastructure vendors (Dell, HPE for server revenue)
-- **Financial magnitude:** $20,000-30,000M incremental MSFT revenue over 5 years (base Azure growth excluding AI)
-- **Leading indicators:** Enterprise workload % in cloud (currently ~60%), hybrid cloud deployments, Azure Arc adoption
-
-### Trend 3: Multi-Cloud / Hybrid Architecture
-
-- **Who benefits most:** GCP (as the #3 provider, multi-cloud mandates guarantee them a seat at the table), Kubernetes/container platforms
-- **Who is most at risk:** Azure's licensing practices that penalize running Microsoft software on non-Azure clouds could face regulatory intervention, reducing lock-in
-- **Financial magnitude:** -$5,000-10,000M for MSFT if FTC forces licensing portability; +$10,000-15,000M if Azure wins multi-cloud management layer
-- **Leading indicators:** FTC investigation outcome, EU Data Act enforcement, Azure Arc adoption rates
-
-### Trend 4: Open-Source AI / Model Commoditization
-
-This is the primary secular headwind for MSFT's AI premium pricing.
-
-- **Who benefits most:** Enterprises (lower AI costs), neoclouds (infrastructure-only providers)
-- **Who is most at risk:** Companies dependent on proprietary model access premiums -- including MSFT via OpenAI
-- **Financial magnitude:** -$10,000-20,000M in forgone AI premium pricing over 5 years if open-source models reach parity
-- **Leading indicators:** DeepSeek V3.2 vs. GPT-5 benchmark performance, enterprise adoption of open-source models, Azure AI pricing trends
-
-**Critical observation:** MSFT's response to this threat has been smart. By offering DeepSeek, Claude, Llama, and other open-source models on Azure alongside OpenAI models ("broadest selection of models of any hyperscaler" -- Nadella, Q2 FY2026), MSFT hedges its OpenAI dependency and positions Azure as a model-agnostic platform. If the AI model layer commoditizes, MSFT still captures value from the infrastructure and application layers.
-
-### Trend 5: Data Sovereignty and Regulatory Fragmentation
-
-- **Who benefits most:** Hyperscalers with global data center footprints (MSFT, AWS, GCP all have 60+ regions)
-- **Who is most at risk:** Smaller cloud providers without regional presence; companies dependent on US-EU data flows
-- **Financial magnitude:** $5,000-10,000M addressable market expansion for MSFT from sovereign cloud deployments
-- **Leading indicators:** Number of countries with data localization laws (currently 60+), EU Cloud Act enforcement, Azure sovereign cloud deployments
+**5. China Technology Decoupling**
+- U.S. export controls have cost AMD $1.5-1.8B in FY2025 and continue to evolve
+- January 2026 rule: case-by-case licensing replaces presumption of denial, but uncertainty remains
+- China building parallel AI chip ecosystem (Huawei Ascend) — likely closed to AMD long-term
+- **Who is most at risk:** AMD and NVIDIA equally (~20-25% of pre-restriction revenue from China)
+- **Financial magnitude for AMD:** $1.5-3B annual revenue at risk, partially offset by MI308 approved exports at 15% fee
 
 ---
 
 ## 7. Sector Financial Benchmarks
 
-### 7.1 Profitability Tiers
+### Profitability Tiers
 
-| Tier | Companies | Rev Growth | Gross Margin | EBITDA Margin | ROIC | What Separates Them |
-|------|-----------|:----------:|:------------:|:-------------:|:----:|:-------------------:|
-| Top Quartile | MSFT, AAPL, Salesforce | 15%+ | 68%+ | 45%+ | 25%+ | Platform scale + network effects |
-| Median | Oracle, SAP, Google Cloud | 10-15% | 55-65% | 30-40% | 15-20% | Established moats, growing |
-| Bottom Quartile | IBM, legacy vendors | <10% | <55% | <30% | <15% | Commoditized or declining |
-| **MSFT** | **MSFT** | **17%** | **68%** | **~49%** | **~30% `[EST]`** | **Tier: Top Quartile** |
+| Tier | Companies | Rev Growth | Gross Margin | EBITDA Margin | ROIC | Differentiator |
+|:-----|:----------|:---------:|:----------:|:-----------:|:---:|:--------------|
+| Top quartile | NVIDIA, Broadcom, ASML | >30% | >65% | >50% | >40% | AI monopoly / deep moat |
+| Median | AMD, Qualcomm, Marvell | 15-30% | 50-65% | 25-40% | 15-25% | Competitive but scaling |
+| Bottom quartile | Intel, GlobalFoundries | <10% | <40% | <15% | <10% | Subscale / restructuring |
+| **AMD** | **AMD** | **34% (FY2025)** | **52% (GAAP) / 57% (non-GAAP)** | **~28% (GAAP)** | **~15% [ESTIMATED]** | **Median tier, trending to top** |
 
-### 7.2 Capital Intensity and Returns
+**Key observation:** AMD sits in the **median tier** on margins and ROIC, but its 34% revenue growth rate is top-quartile. The margin trajectory is upward as the revenue mix shifts toward higher-margin Data Center (57%+ non-GAAP GM) and away from lower-margin Gaming/Embedded. Management targets 35% operating margin long-term (from ~24% currently). If achieved, AMD would move to the top quartile on profitability.
 
-| Metric | Sector Median | MSFT | Gap | Comment |
-|--------|:------------:|:----:|:---:|---------|
-| CapEx / Revenue | 15-18% | **31%** (FY2026E) | +13-16pp | Massive AI-driven CapEx cycle; concern |
-| R&D / Revenue | 12-15% | **11.5%** | -0.5-3.5pp | Efficient R&D relative to revenue scale |
-| Working Capital / Revenue | 5-8% | ~6% `[EST]` | At median | Efficient |
-| Asset Turnover | 0.5-0.7x | **0.49x** (FY2025) | Slightly below | Declining due to asset base growth |
-| ROIC | 15-20% | **~30% `[EST]`** | +10-15pp | Best-in-class; declining from CapEx surge |
-| WACC | 8-10% | **~9% `[EST]`** | At median | AAA-rated debt lowers blended cost |
-| ROIC - WACC Spread | 5-10pp | **~21pp** | +11-16pp | **Strongly value creating** |
+### Capital Intensity and Returns
 
-`[ESTIMATED: ROIC calculated as NOPAT / Invested Capital. FY2025 operating income $128,528M * (1-0.21 tax) / ($268,477M equity + $43,151M LT debt - $30,242M cash) = ~36%. Expected to decline to ~25-30% as CapEx ramp increases invested capital base. Tier 1 for financials, Tier 3 for estimates.]`
+| Metric | Sector Median | AMD | Gap | Notes |
+|:-------|:-------------|:----|:----|:------|
+| CapEx / Revenue | 8-12% (IDMs), 3-5% (fabless) | ~3.5% | At sector median for fabless | Fabless model = low capex |
+| R&D / Revenue | 15-20% | ~18% | At median | Appropriate for product breadth |
+| Working Capital / Revenue | 15-25% | ~20% [ESTIMATED] | At median | |
+| Asset Turnover | 0.4-0.8x | ~0.5x [ESTIMATED] | At median | Xilinx goodwill inflates asset base |
+| ROIC | 15-25% (fabless) | ~15% [ESTIMATED] | Below median | Depressed by Xilinx acquisition amortization |
+| WACC | 10-12% | ~11% [ESTIMATED] | At median | Beta 2.02 raises equity cost |
+| ROIC - WACC Spread | 5-15pp | ~4pp [ESTIMATED] | Below median | Marginal value creator currently |
 
-**Critical observation on capital intensity:** MSFT's CapEx/Revenue ratio has surged from 13.3% (FY2023) to 22.9% (FY2025) to an estimated 31% (FY2026). This is well above the sector median and represents the most aggressive CapEx cycle in MSFT's history. The ROIC-WACC spread remains strongly positive today, but the denominator (invested capital) is growing faster than the numerator (NOPAT). If AI revenue fails to materialize proportionally to CapEx, ROIC will compress toward the sector median within 3-4 years.
+`[ESTIMATED: ROIC and WACC based on public financial data and beta. Xilinx acquisition (2022) created ~$25B in goodwill that depresses ROIC on an invested capital basis. Excluding goodwill, organic ROIC would be significantly higher.]`
 
-| Fiscal Year | CapEx ($M) | CapEx/Revenue | Revenue Growth | CapEx CAGR |
-|-------------|:----------:|:-------------:|:--------------:|:----------:|
-| FY2023 | $28,107M | 13.3% | N/A | -- |
-| FY2024 | $44,477M | 18.1% | +15.7% | +58.2% |
-| FY2025 | $64,551M | 22.9% | +14.9% | +45.1% |
-| FY2026E | ~$100,000M | ~31% | +15-17% | +55% |
-
-CapEx is growing at 2-3x the rate of revenue. This is the central tension in the MSFT thesis.
+**Implication:** AMD is currently a marginal value creator (ROIC barely exceeds WACC) due to the Xilinx acquisition's goodwill drag. As the AI GPU and EPYC businesses scale, ROIC should expand. The key question: Can AMD scale AI GPU revenue without proportional R&D and marketing investment? The OpenAI/Meta mega-deals suggest yes — committed volume reduces customer acquisition cost.
 
 ---
 
-## 8. Supply/Demand Analysis (Cloud Infrastructure Capacity)
+## 8. Supply/Demand Analysis — Advanced Semiconductor Capacity
 
-This section is applicable because cloud infrastructure is capacity-constrained, particularly for AI/GPU compute.
+This section is **critical** for AMD. As a fabless company dependent on TSMC, supply constraints directly limit AMD's revenue growth potential.
 
-| Metric | Current (2025) | +1Y (2026) | +3Y (2028) | +5Y (2030) |
-|--------|:--------------:|:----------:|:----------:|:----------:|
-| AI Compute Demand (EF-FLOPS) | ~20 `[EST]` | ~35 | ~80 | ~150 |
-| AI Compute Supply (EF-FLOPS) | ~18 `[EST]` | ~40 | ~100 | ~200 |
-| Utilization Rate | >95% | ~85% | ~80% | ~75% |
-| New capacity announced | $690B CapEx by hyperscalers | In buildout | Coming online | Sufficient |
-| Capacity retirement | Minimal (assets too new) | Minimal | Some early GPUs | Moderate |
-| **Balance** | **Very Tight** | **Transitioning** | **Balanced** | **Potentially Oversupplied** |
+### TSMC CoWoS Advanced Packaging (Binding Constraint)
 
-`[ESTIMATED: Compute capacity estimates derived from hyperscaler CapEx plans ($690B in 2026), NVIDIA datacenter GPU shipment forecasts, and analyst estimates. EF-FLOPS = Exo-FLOPS. These are directional estimates, not precise measurements. HIGH UNCERTAINTY.]`
+| Metric | Current (Q1 2026) | +1Y (2027) | +3Y (2029) | +5Y (2031) |
+|:-------|:------------------:|:----------:|:----------:|:----------:|
+| CoWoS Capacity (wafers/month) | ~80,000 | 130,000 (target) | ~200,000 [EST] | ~300,000 [EST] |
+| Demand (wafers/month) | >85,000 [EST] | >140,000 [EST] | >220,000 [EST] | Unknown |
+| Utilization Rate | >100% (oversubscribed) | ~100% | ~100% | Easing |
+| NVIDIA allocation | ~60% | ~55% | ~50% | Declining share |
+| AMD allocation | ~8-10% | ~12-15% | ~15-18% | Growing |
+| Broadcom allocation | ~15% | ~15% | ~15% | Stable |
+| **Balance** | **Extremely tight** | **Tight** | **Tight** | **Easing** |
 
-**Pricing power implication:** Current supply tightness (utilization >95%) supports premium pricing for AI compute on Azure. As $690B in hyperscaler CapEx comes online in 2026-2027, utilization will normalize to 80-85%, reducing pricing power. By 2028-2030, there is a real risk of oversupply in GPU compute if AI demand growth decelerates. This would compress Azure AI margins and validate the bear case concern about CapEx ROI.
+`[Source: TrendForce, Digitimes, TSMC earnings — Tier 3. TSMC targeting 130,000 CoWoS wafers/month by late 2026, quadrupling from late 2024.]`
 
-MSFT CFO Hood acknowledged this transition: "CapEx expected to decrease sequentially" in Q3 FY2026 guidance `[Source: Q2 FY2026 earnings call, Tier 1]`, suggesting the peak of the supply crunch is approaching.
+### TSMC Leading-Edge Logic (3nm / 2nm)
 
----
+| Metric | Current | +1Y | +3Y |
+|:-------|:-------:|:---:|:---:|
+| 3nm utilization | >90% | >90% | Easing (2nm ramp) |
+| Key AMD products on 3nm | MI450 (H2 2026) | MI500 series | Next-gen |
+| 2nm timeline | — | Risk production 2027 | Volume 2028 |
 
-## 9. MSFT Segment Revenue Forecast
+### HBM Memory Supply
 
-The sector growth model projects MSFT revenue across segments under three scenarios.
+| Metric | 2025 | 2026 | 2027 |
+|:-------|:----:|:----:|:----:|
+| HBM market size | $30B | $50B+ [EST] | $70B+ [EST] |
+| Supply leaders | SK Hynix (~50%), Samsung (~40%), Micron (~10%) | Same | Same |
+| AMD HBM needs | HBM3E (MI350) | HBM4 (MI450) | HBM4E |
+| **Balance** | Tight | Tight | Easing |
 
-### Base Case
-
-| Segment | FY2026E ($M) | FY2031E ($M) | Blended Growth | 5Y CAGR |
-|---------|:------------:|:------------:|:--------------:|:-------:|
-| Intelligent Cloud | $134,000 | $282,575 | 18.9% | 16.1% |
-| Productivity & Business Processes | $138,000 | $234,819 | 13.2% | 11.2% |
-| More Personal Computing | $55,000 | $62,399 | 3.0% | 2.6% |
-| **Total MSFT** | **$327,000** | **$579,793** | -- | **12.1%** |
-
-### Bull Case: Total FY2031E = $697,886M (5Y CAGR: 16.4%)
-### Bear Case: Total FY2031E = $443,609M (5Y CAGR: 6.3%)
-
-`[Source: Sector growth model (output/pass1/sector-growth-model.py). Growth rates derived from sector TAM forecasts, share evolution assumptions, and sub-segment decomposition. Key drivers: Azure AI growth rate (38% base declining), M365 Copilot adoption (80% base), and personal computing recovery.]`
-
-### Sensitivity: Intelligent Cloud FY2031E Revenue
-
-| Azure Growth Rate | AI=20% | AI=30% | AI=40% | AI=50% | AI=60% |
-|:-----------------:|:------:|:------:|:------:|:------:|:------:|
-| 15% | $277B | $293B | $310B | $327B | $345B |
-| 20% | $333B | $352B | $371B | $391B | $412B |
-| 25% | $398B | $419B | $441B | $464B | $489B |
-| 30% | $472B | $497B | $522B | $549B | $576B |
-| 35% | $558B | $585B | $614B | $644B | $676B |
-
-The Intelligent Cloud segment is highly sensitive to both Azure growth rate and AI contribution. A 5pp change in Azure growth rate translates to ~$60-80B difference in FY2031 revenue.
+**Pricing power implication:** CoWoS oversubscription through 2026-2027 means TSMC holds pricing power over AMD. AMD cannot ramp AI GPU production faster than TSMC allocates CoWoS capacity. This is the **single most important supply-side constraint** on AMD's near-term revenue growth. NVIDIA's 60% CoWoS allocation provides it with a structural supply advantage. AMD's 12 GW mega-deal commitments may exceed its current TSMC allocation — forcing either: (a) expanded allocation at higher cost, (b) delayed delivery timelines, or (c) outsourcing packaging to OSATs (ASE's CoWoP alternative).
 
 ---
 
-## 10. Cross-Stock Intelligence
+## 9. Sector Summary
 
-Three cross-stock notes filed based on sector analysis. See `output/notes/`:
+The semiconductor sector structure is **favorable for AMD but with critical constraints.** AMD is positioned in the right markets (AI accelerators and server CPUs are the two fastest-growing sub-sectors), gaining share in concentrated markets where it is the #2 player, and operating in the highest-margin portion of the value chain (fabless chip design at 57% gross margin).
 
-1. **MSFT-to-AMZN-2026-03-08.md** (Priority: High) -- Azure closing market share gap on AWS; AWS margin compression; capital efficiency concerns.
-2. **MSFT-to-GOOGL-2026-03-08.md** (Priority: Medium) -- GCP growth acceleration in Q4 2025; enterprise distribution disadvantage; CapEx efficiency gap.
-3. **MSFT-to-ORCL-2026-03-08.md** (Priority: Medium) -- Oracle gaining share from capacity constraints; window may narrow as Big Three CapEx comes online.
+**The single most important sector dynamic for the investment thesis** is TSMC CoWoS capacity allocation. AMD's ability to fulfill its 12 GW mega-deal commitments (OpenAI + Meta) is supply-constrained, not demand-constrained. If TSMC allocates AMD sufficient CoWoS capacity in 2026-2027, AMD's revenue trajectory accelerates dramatically. If CoWoS remains NVIDIA-dominated at 60% allocation, AMD's AI GPU share gains will be slower than the market expects.
 
----
+**Structural advantages:** AMD is a share gainer in three concentrated markets simultaneously — a rare position that produces above-market revenue growth even without TAM expansion. The fabless model provides capital efficiency (3.5% capex/revenue vs 25%+ for IDMs) but creates single-source dependency on TSMC. The regulatory environment is net negative (export controls cost more than CHIPS Act subsidies for fabless companies), but manageable.
 
-## 11. Sector Summary
+**Structural risks:** (1) CUDA software moat limits AMD's AI GPU ceiling to ~20-25% without a step-function improvement in ROCm. (2) Custom ASIC growth (44.6% in 2026) could erode the GPU TAM over time, though AMD's mega-deals suggest GPUs and ASICs coexist. (3) TSMC concentration risk — any Taiwan disruption halts AMD's entire product line. (4) The company is attempting to execute at a scale it has never achieved (12 GW deployment), creating meaningful execution risk.
 
-The sector structure is **favorable for MSFT**, but with an important caveat: the favorability is contingent on AI delivering tangible enterprise ROI within the next 2-3 years.
-
-**Favorable factors:**
-- MSFT holds dominant or leading positions across 5 of 5 markets in which it competes (cloud #2 gaining, enterprise software #1, developer tools #1, professional networking #1, gaming #3 stable)
-- The most important sector dynamic -- enterprise AI adoption at the inflection point of the S-curve -- plays directly to MSFT's multi-vector AI monetization strategy (Azure AI + M365 Copilot + GitHub Copilot)
-- The value chain position is optimal: MSFT captures the majority of its revenue from the application layer (highest margin, deepest moat) while also competing effectively in infrastructure and platform layers
-- Rising regulatory complexity (EU AI Act, data sovereignty) favors incumbents with compliance resources
-- No single-sector risk can impair more than 35-40% of MSFT's revenue base due to diversification across cloud, productivity, developer tools, LinkedIn, and gaming
-
-**Unfavorable factors:**
-- The CapEx-to-revenue ratio (31% in FY2026E) is unprecedented and unsustainable -- the gap between capital deployment and revenue generation is the single biggest thesis risk
-- Open-source AI model commoditization (DeepSeek matching GPT-5 at 10x lower cost) threatens Azure AI premium pricing
-- Multi-jurisdictional antitrust pressure (FTC + EU + UK + Japan) could force behavioral remedies that partially erode the bundling moat
-- Cloud infrastructure capacity is transitioning from scarcity to balance (and potentially oversupply by 2028-2030), which will compress pricing power
-- The OpenAI concentration risk ($280B of $625B RPO from a single unprofitable counterparty) inflates headline demand metrics
-
-**The single most important sector dynamic for the investment thesis:** Enterprise AI adoption at 22% penetration -- the steepest part of the S-curve. If this adoption curve continues on its base-case trajectory (reaching 42% by 2030), MSFT's three AI monetization vectors (Azure AI, M365 Copilot, GitHub Copilot) should generate $50,000-100,000M in incremental annual revenue by 2030. If AI adoption stalls (bear case: only reaching 28% by 2030), the massive CapEx investment becomes a drag on returns, ROIC compresses, and the stock faces a sustained de-rating.
-
-MSFT is positioned in the right tier (top quartile profitability) and the right part of the value chain (application layer dominance with infrastructure scale) to benefit from secular trends. The question is not whether the sector is attractive -- it is -- but whether MSFT's $100B+ annual CapEx bet on AI infrastructure will generate adequate returns before investors lose patience.
+**Is the company in the right tier and right part of the value chain?** Yes. AMD sits in the median profitability tier but is trending toward top-quartile as Data Center mix increases. It occupies the highest-margin value chain position (fabless design). The key question is whether AMD can convert its hardware competitiveness into durable share gains despite NVIDIA's software moat and TSMC's capacity constraints.
 
 ---
 
-## Appendix
+## Cross-Stock Intelligence Notes Filed
 
-### Python Models
+1. `output/notes/AMD-to-NVDA-2026-03-09.md` — AI GPU share shift and inference competitive dynamics
+2. `output/notes/AMD-to-INTC-2026-03-09.md` — Server CPU share erosion and two-front competitive squeeze
+3. `output/notes/AMD-to-AVGO-2026-03-09.md` — Custom ASIC growth and GPU/ASIC coexistence thesis
 
-- **Sector Growth Model:** `output/pass1/sector-growth-model.py` -- Cloud infrastructure and enterprise AI market forecasts, growth driver decomposition, Monte Carlo simulation, MSFT segment revenue projections, sensitivity analysis
-- **Market Share Shift Model:** `output/pass1/sector-share-model.py` -- Cloud infrastructure share evolution by provider, enterprise productivity share, developer tools share, LinkedIn market position, consolidated MSFT competitive position
+---
 
-### Data Sources
+## Python Models Generated
 
-| Source | Type | Tier | Retrieved |
-|--------|------|:----:|:---------:|
-| Synergy Research Group -- Cloud market share | Industry research | 3 | 2026-03-08 |
-| Mordor Intelligence -- Enterprise AI market | Industry research | 3 | 2026-03-08 |
-| Fortune Business Insights -- SaaS market | Industry research | 3 | 2026-03-08 |
-| Grand View Research -- Cloud/AI market | Industry research | 3 | 2026-03-08 |
-| Precedence Research -- SaaS market | Industry research | 3 | 2026-03-08 |
-| Futurum Group -- AI CapEx 2026 | Industry research | 3 | 2026-03-08 |
-| MSFT 10-K FY2025 | SEC filing | 1 | 2026-03-08 |
-| MSFT 10-Q Q2 FY2026 | SEC filing | 1 | 2026-03-08 |
-| MSFT Q2 FY2026 Earnings Call | Transcript | 1 | 2026-03-08 |
-| AWS Q4 2025 SEC filing | SEC filing | 1 | 2026-03-08 |
-| Alphabet Q4 2025 SEC filing | SEC filing | 1 | 2026-03-08 |
-| EU AI Act official text | Regulatory | 1 | 2026-03-08 |
-| FTC press releases / SAMexpert / PYMNTS | Regulatory analysis | 2 | 2026-03-08 |
-| 6sense -- Market share data | Industry data | 3 | 2026-03-08 |
-| CNBC -- Hyperscaler earnings analysis | News | 2 | 2026-03-08 |
-| Introl Blog -- DeepSeek pricing analysis | Industry analysis | 3 | 2026-03-08 |
-| Legalnodes -- EU AI Act compliance | Legal analysis | 3 | 2026-03-08 |
+1. `output/models/amd-sector-growth-model.py` — 5-year TAM forecast for 9 semiconductor sub-sectors, growth driver decomposition, adoption curve analysis, sensitivity tables
+2. `output/models/amd-sector-share-model.py` — Market share shift projections for AI GPU, server CPU, and client PC markets; HHI concentration tracking; AMD combined revenue projection
+
+---
+
+## Data Sources
+
+- WSTS Semiconductor Forecast Autumn 2025 [Tier 5]: Global semi market $772B (2025), approaching $975B (2026)
+- Bloomberg Intelligence AI Accelerator Market [Tier 6]: $116B (2024), CAGR 16% to $604B by 2033
+- TrendForce / Digitimes [Tier 3]: TSMC CoWoS capacity, NVIDIA 60% allocation, fully booked through 2026
+- Mercury Research Q4 2025 [Tier 3]: AMD server CPU unit share 28.8%, +3.1pp YoY
+- Fusion Worldwide [Tier 3]: AMD server revenue share 41% in Q2 2025
+- AMD Q4 FY2025 Press Release [Tier 1]: Revenue $10.3B (+34%), Data Center $5.4B (+39%)
+- AMD Q4 FY2025 Transcript [Tier 2]: Lisa Su targets >60% annual DC growth, >35% revenue CAGR
+- Grand View Research [Tier 6]: Edge AI market $24.9B (2025), 21.7% CAGR to $118.7B by 2033
+- SEMI Europe Chips Act Report [Tier 5]: EU €86B semiconductor investment target by 2030
+- BIS Final Rule Jan 2026 [Tier 1]: Case-by-case licensing for AI chips to China replaces presumption of denial
+- Tom's Hardware [Tier 3]: AMD MI355X 20% faster than B200, 40% better $/token in inference
+- Omdia [Tier 6]: AI data center chip market to hit $286B, custom ASICs gaining ground

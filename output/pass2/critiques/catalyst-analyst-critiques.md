@@ -1,7 +1,7 @@
-# Pass 2 Cross-Critiques -- Catalyst Analyst
-**Date:** 2026-03-08
+# Pass 2 Cross-Critiques — Catalyst Analyst
+**Date:** 2026-03-09
 **Reviewing Analyst:** Catalyst Analyst
-**Subject:** Microsoft Corporation (MSFT)
+**Subject:** Advanced Micro Devices, Inc. (AMD)
 
 ---
 
@@ -9,43 +9,43 @@
 
 ### 1. Weakest Assumption
 
-**Assumption identified:** "CapEx as % of revenue peaks at 29% in FY26 and declines to 18% by FY30 as initial buildout completes" (DCF Section 3, CapEx Breakdown).
+**Assumption identified:** "MI450 production H2 2026 with ~1 quarter delay" used as the base case timing assumption.
 
-**Why it's weak:** The DCF model's entire FCF bridge -- and therefore the majority of its terminal value -- depends on CapEx peaking in FY26. From a catalyst perspective, this is a forward-looking assumption with zero confirming data points yet. Management's only guidance is that Q3 FY2026 CapEx will "decrease sequentially" from Q2's ~$37.5B -- that is a single-quarter statement, not a multi-year CapEx peak signal. Goldman Sachs projects FY2027 CapEx at $144B (vs. the DCF's implied ~$103B), and Microsoft's $108.4B in uncommenced finance leases suggest significant infrastructure buildout still ahead. The catalyst calendar identifies FY2027 CapEx guidance (~July 22, 2026) as the single highest-impact catalyst precisely because the market has no visibility on this assumption. The DCF treats the CapEx peak as a base case when it should be treated as one of three scenarios.
+**Why it's weak:** The DCF base case bakes in a one-quarter delay as the central scenario, but the catalyst evidence is more nuanced. AMD management has repeatedly confirmed on-track for H2 2026, Oracle's 50,000-GPU supercluster deployment is scheduled for Q3 2026, and three separate mega-deal customers have committed to H2 2026 timelines. The SemiAnalysis delay report (mass production Q2 2027) was explicitly denied by AMD as "BS." A one-quarter delay is neither the most probable outcome (on-time is more likely at ~45%) nor the bear case (full delay to 2027 at ~25%). It sits in an awkward middle ground that may systematically undervalue the base case.
 
-**Quantified impact if wrong:** If CapEx remains at 28-30% of revenue through FY30 instead of declining to 20%, terminal FCF drops from ~$148B to ~$65-75B. Using the DCF's own perpetuity growth methodology (2.5% TGR, 9.65% WACC), terminal value falls from $2.1T to ~$0.9-1.1T, reducing the base case implied price from $377 to approximately $220-250. That is a 35-40% reduction in fair value.
-
-**Severity: High**
-
----
-
-### 2. Most Likely Source of Error
-
-**Error source identified:** The 25/50/25 probability weighting assumes symmetry between bull and bear outcomes, but the catalyst analysis reveals asymmetric information arrival. 60%+ of the expected return is concentrated in one catalyst (FY2027 CapEx guidance), and the negative catalyst watchlist shows 5 of 7 items in "Yellow" or "Red" status.
-
-**Why this is the most likely error:** The DCF assigns equal 25% probability to bull and bear. But the current information environment is skewed bearish: Azure is decelerating (40% -> 39% -> 37-38% guided), insiders have zero open-market purchases in 18 months, Microsoft itself is canceling data center leases, and CapEx momentum is upward not downward. The catalyst analysis shows the FY2027 CapEx guidance has a net expected value of -1.5%, not positive. A more realistic probability weighting might be 20/50/30 (bull/base/bear), which would reduce the probability-weighted price from $363.84 to approximately $345-350.
-
-**Suggested correction:** Incorporate the asymmetry visible in the catalyst calendar and negative catalyst watchlist. Weight the bear case at 30% (not 25%) and the bull case at 20% (not 25%), or at minimum sensitivity-test these alternative probability weights. The DCF model should explicitly acknowledge that the probability weights are assumption-dependent and that the current information flow favors the bear case.
+**Quantified impact if wrong:** If MI450 ships on-time in Q3 2026 (no delay), FY2026 data center revenue would be $2-3B higher than the delayed scenario, adding approximately $15-20/share to the base case DCF value, moving it from $154.58 to ~$170-175.
 
 **Severity: Medium**
 
 ---
 
-### 3. Recommended Change
+### 2. Most Likely Source of Error
 
-**What I'd change:** Add a fourth "CapEx Trap" scenario between base and bear, reflecting the specific risk that CapEx remains permanently elevated (25-28% of revenue) while revenue growth moderates to 8-10%. This is distinct from the current bear case, which bundles AI monetization failure, Azure deceleration, AND CapEx persistence together. The CapEx trap scenario is more probable (30-35%) than the full bear case because it requires only one thing to go wrong -- the CapEx cycle does not normalize -- rather than multiple simultaneous failures.
+**Error source identified:** WACC of 16.0% using beta of 2.02 as a static input.
 
-**Why:** The binary bear case at $182 bundles too many risks into one scenario, which makes it easy to dismiss as "everything goes wrong." But the most likely path to significant value destruction is the grey rhino scenario where MSFT's competitive position remains strong (Azure grows 20-25%, Copilot expands steadily) but CapEx remains structurally higher than the DCF assumes. This scenario produces a fair value of $280-320, which is 30% below current price but far above the $182 bear case. The catalyst timeline shows this is the most probable negative outcome: FY2027 CapEx guidance of $130B+ has a 30% probability per the catalyst model.
+**Why this is the most likely error:** Beta is a backward-looking measure that includes AMD's pre-AI-pivot volatility. As AMD's revenue mix shifts toward recurring enterprise data center contracts (OpenAI, Meta, Oracle deployments with multi-year horizons), the business model stabilizes. By H2 2026 — when key catalysts resolve — AMD's beta should compress toward 1.5-1.7x as revenue visibility improves with confirmed hyperscaler deployments. Using a trailing beta of 2.02 to discount cash flows that increasingly depend on contracted revenue overstates the discount rate by 150-250bps.
 
-**Impact on conclusion:** Adding this scenario at 30% probability (and reducing base/bear accordingly to 40%/15%) would lower the probability-weighted price from $363.84 to approximately $335-345, widening the gap between fair value and current price and strengthening the overvaluation signal.
+**Suggested correction:** Model WACC as declining over the projection period: 16% in FY2026, 14.5% in FY2027-28, 13% in FY2029-30 as business mix matures. Or use a blended WACC of ~14% that reflects the forward-looking revenue composition. At 14% WACC, the base case fair value rises from $154.58 to approximately $190-200.
 
 **Severity: High**
 
 ---
 
-### 4. What's Strong (Optional but encouraged)
+### 3. Recommended Change
 
-The DCF model's CapEx cycle analysis (Section 11) is the strongest section -- it correctly identifies the CapEx inflection point as the critical variable and provides a clear table showing when FCF exceeds CapEx in each scenario. The reverse DCF analysis (what price implies) is also well-executed. The terminal value warning flag (57-59% of EV) is exactly the kind of transparent disclosure that builds analytical credibility.
+**What I'd change:** The 25/50/25 probability weighting across bull/base/bear scenarios.
+
+**Why:** The catalyst calendar shows an overwhelmingly positive setup for H2 2026 — MI450 ramp, three confirmed mega-deal deployments, EPYC Venice launch — with management on record confirming timelines. The bear case requires multiple simultaneous failures (MI450 delay + NVIDIA outperformance + ASIC cannibalization). I would assign 30/45/25 or even 30/50/20, reflecting that the near-term catalyst pipeline is more favorable than a symmetric distribution implies. The Q4 2025 beat-and-raise cadence, combined with the breadth of confirmed customer commitments, reduces the probability of the full bear case.
+
+**Impact on conclusion:** Shifting to 30/45/25 would raise the probability-weighted fair value from $154.07 to approximately $167-172, narrowing the overvaluation gap from -19.1% to roughly -10 to -12%.
+
+**Severity: Medium**
+
+---
+
+### 4. What's Strong
+
+The terminal value sensitivity analysis and the warrant dilution modeling are excellent — the "tax on success" framework correctly identifies that bull case appreciation is partially offset by dilution, which most sell-side models miss.
 
 ---
 
@@ -53,11 +53,11 @@ The DCF model's CapEx cycle analysis (Section 11) is the strongest section -- it
 
 ### 1. Weakest Assumption
 
-**Assumption identified:** "MSFT offers the best growth-adjusted earnings valuation among mega-cap tech and enterprise software peers" based on PEG ratio of 1.42x (lowest in comp set) and forward P/E of 24.2x (12.9% discount to median).
+**Assumption identified:** "Comp set of 6 companies is adequate despite AMD's rapid business mix evolution."
 
-**Why it's weak:** The PEG ratio uses current NTM revenue growth of 17%, but the catalyst analysis shows this growth rate is under significant threat. Azure growth is decelerating (40% -> 39% -> 37-38%), and the Q3 FY2026 earnings event has a 25% probability of showing Azure below 37%. If revenue growth decelerates to 12-13% by FY2027 (a reasonable scenario given base-effect math), the PEG ratio rises from 1.42x to approximately 1.86-2.03x -- which is no longer the lowest in the comp set but rather in line with or above the 1.80x median. The comps analysis treats the 17% growth rate as durable when the catalyst map shows it is likely to decelerate within the analysis horizon.
+**Why it's weak:** AMD's business is undergoing a structural transformation — data center revenue grew 94% in FY2025 and now represents 50%+ of total revenue. By H2 2026, when MI450 ramps, data center could be 60-65% of revenue. A static comp set drawn from today's semi universe fails to capture that AMD is becoming a different company with each passing quarter. The relevant comps for the AI GPU business are not traditional semi companies but potentially cloud infrastructure providers or specialized AI hardware companies. Using today's comps to value a company whose business mix will look materially different in 12 months creates a structural mismatch.
 
-**Quantified impact if wrong:** If the PEG ratio normalizes from 1.42x to 1.85x (using 13% growth), the "cheapest in the comp set" conclusion reverses. The comps-derived probability-weighted price of $455 would need to be revised downward by 10-15% to approximately $390-410, which is within noise of the current $408.96 price -- eliminating the +11.2% expected return.
+**Quantified impact if wrong:** If AMD's forward revenue mix justifies comparison to higher-growth AI infrastructure peers rather than broad-based semis, the appropriate P/E could be 32-35x rather than 27.8x, implying fair value of $213-$233 versus the $205 central estimate — a 4-14% undervaluation.
 
 **Severity: Medium**
 
@@ -65,11 +65,11 @@ The DCF model's CapEx cycle analysis (Section 11) is the strongest section -- it
 
 ### 2. Most Likely Source of Error
 
-**Error source identified:** The comps bear case at $330 uses 25th percentile multiples, but the catalyst analysis shows the probability of multiple compression is concentrated in specific events (Azure deceleration, CapEx overshoot, FTC action) rather than being a generic risk. The bear scenario should be event-calibrated, not percentile-calibrated.
+**Error source identified:** Quality score of 29.0/100 based on current ROIC (6.6%) and EBITDA margin (27.2%).
 
-**Why this is the most likely error:** If FY2027 CapEx guidance comes in at $130B+ (30% probability per catalyst model), the market reaction is likely to be a sharp de-rating rather than a gradual drift to 25th percentile multiples. Event-driven de-ratings typically overshoot -- MSFT fell 10.5% in a single day on the Q2 earnings report despite beating revenue estimates. The comps model assumes a smooth distribution of outcomes when the catalyst timeline shows discrete, binary events that could trigger step-function repricing.
+**Why this is the most likely error:** These metrics are backward-looking and reflect Xilinx acquisition goodwill drag on ROIC and the pre-MI450 margin profile. The catalyst timeline shows that H2 2026 brings higher-margin AI GPU revenue at scale (MI450 ASPs likely $20,000-40,000+). EBITDA margins should expand toward 35%+ as GPU mix increases. Scoring AMD's quality on trailing metrics when the single most important catalyst (MI450 ramp) is 6 months away systematically penalizes a company at an inflection point.
 
-**Suggested correction:** Map the comps-derived bear case to specific catalyst outcomes rather than generic percentile analysis. For example: "If Azure decelerates below 35% AND CapEx guidance exceeds $130B, MSFT would likely trade at 18-20x forward earnings (below 25th percentile), implying $300-$340" -- this is more analytically useful than "25th percentile implies $330."
+**Suggested correction:** Run a forward quality score using consensus FY2027 estimates (post-MI450 ramp) alongside the trailing score. Present both to show the trajectory, not just the snapshot.
 
 **Severity: Medium**
 
@@ -77,69 +77,31 @@ The DCF model's CapEx cycle analysis (Section 11) is the strongest section -- it
 
 ### 3. Recommended Change
 
-**What I'd change:** Incorporate the FCF yield divergence more prominently into the primary conclusion. The comps analysis notes that MSFT's EV/FCF of 86.4x is 161.8% above the comp median of 33.0x, but then dismisses it as "temporary CapEx-cycle effect." From a catalyst perspective, this is not a temporary effect -- the CapEx cycle resolution is the most important catalyst for the stock, and it will not resolve for 12-18 months. Any comps-based valuation that ignores FCF-based metrics is inherently optimistic because it assumes the market will look through the CapEx cycle. The fact that the stock has fallen 26% suggests the market is NOT looking through it.
+**What I'd change:** Include a time-adjusted valuation framework that accounts for catalyst timing.
 
-**Why:** The primary conclusion of "modestly undervalued relative to comps" is derived entirely from P/E and EV/EBITDA, which are pre-CapEx metrics. An investor buying at $409 receives 1.2% FCF yield vs. the comp median of 3.0% -- that is a material cost of ownership that should reduce the comps-derived fair value by 5-10%.
+**Why:** The comps analysis is static — it values AMD today. But the catalyst calendar shows that 70%+ of AMD's value creation is concentrated in Q3-Q4 2026. A 6-month forward comp analysis (valuing AMD at expected H2 2026 run rates) would provide a more relevant anchor. The current analysis correctly identifies AMD as fairly valued today but does not account for the impending catalyst density.
 
-**Impact on conclusion:** Adjusting the comps-derived central estimate to reflect the FCF yield penalty would lower it from $474 to approximately $430-450, narrowing the implied upside from +15.9% to +5-10%.
+**Impact on conclusion:** A forward-looking comp analysis using H2 2026 run-rate metrics could shift the central estimate from $205 to $220-240, changing the conclusion from "modestly undervalued" to "meaningfully undervalued on a 6-12 month basis."
 
 **Severity: Medium**
 
 ---
 
-## Critique of Risk Analyst's Work Product
+### 4. What's Strong
+
+The PEG ratio analysis (0.51x vs. 1.16x median) is the most compelling quantitative signal in the entire comp framework — it correctly identifies that AMD's growth rate is dramatically underpriced relative to peers.
+
+---
+
+## Critique of Competitive Analyst's Work Product
 
 ### 1. Weakest Assumption
 
-**Assumption identified:** "The risk-reward at $408.96 is modestly favorable for a 12-24 month horizon (upside skew exceeds downside in probability-weighted terms)" (Executive Risk Summary).
+**Assumption identified:** "NVIDIA's CUDA moat (6M developers, 300+ libraries, 18 years) can be narrowed by ROCm + Triton/MLIR abstraction" rated at [confidence: low].
 
-**Why it's weak:** The "modestly favorable" conclusion uses a probability-weighted expected return of +14.2% (based on a $467 target), but this ignores the catalyst timeline showing that 60%+ of the expected return depends on a single event (FY2027 CapEx guidance in July 2026). The risk analysis does not discount for the concentration of return in a single catalyst. If you remove the CapEx peak catalyst, the expected 12-month return compresses to +3-8% -- which, against 27% annualized volatility, produces a Sharpe ratio of approximately 0.11-0.30. That is not "modestly favorable" -- it is risk-adjusted unfavorable.
+**Why it's weak:** The competitive analysis treats the CUDA gap as a monolithic barrier, but the catalyst timeline reveals that the nature of GPU competition is shifting. The mega-deals with OpenAI, Meta, and Oracle are infrastructure-scale deployments where the software stack is controlled by the customer, not the GPU vendor. OpenAI and Meta have the engineering resources to optimize ROCm or build abstraction layers. At the hyperscale infrastructure layer, CUDA's developer ecosystem advantage matters far less than it does for enterprise adoption. The CUDA moat is real for the bottom 80% of the market but largely irrelevant for the top 20% of spend — which is where AMD's mega-deals are concentrated.
 
-**Quantified impact if wrong:** If the CapEx peak does not materialize (40% probability per catalyst negative watchlist), the expected return becomes negative, and the Sharpe ratio falls below 0.20. The Risk Analyst's own Kelly fraction of 8-12% should be closer to 4-6% when adjusted for catalyst concentration risk.
-
-**Severity: Medium**
-
----
-
-### 2. Most Likely Source of Error
-
-**Error source identified:** The catastrophic scenario analysis assigns 5-8% probability to the "Full AI Winter + Recession" scenario ($178.50 target, -56% drawdown). The probability should be higher because the scenarios are positively correlated -- an AI winter would likely accelerate a recession (tech layoffs, reduced investment, sentiment cascade), and a recession would accelerate the "show me the money" pressure on AI CapEx.
-
-**Why this is the most likely error:** The Risk Analyst correctly notes that "independence assumed between recession and AI winter; in reality, correlation is moderate, so effective probability is higher, ~8-10%" but then uses the lower 5-8% range in the main analysis. The catalyst analysis identifies macro recession indicators already flashing yellow (March jobs: -92K, retail sales declining), and the negative catalyst watchlist shows 6 of 7 items in Yellow or Red status. These are correlated risks, not independent ones. The joint probability should be anchored at the 8-10% range, which meaningfully changes the expected loss calculation.
-
-**Suggested correction:** Use 10-12% for the joint AI winter + recession scenario, reflecting the positive correlation between economic weakness and AI CapEx skepticism. This would increase the expected loss from tail events by $3-5/share in the probability-weighted price target.
-
-**Severity: Low-Medium**
-
----
-
-### 3. Recommended Change
-
-**What I'd change:** Add a "catalyst-adjusted VaR" that accounts for the discrete event risk around the Q3 earnings (April 29) and Q4 earnings/CapEx guidance (July 22). The current parametric VaR assumes a normal distribution of returns, which the Risk Analyst acknowledges is a limitation. But the fix is straightforward: estimate a "catalyst-event VaR" that models the binary outcomes around these two events and add it to the baseline VaR.
-
-**Why:** The Q2 FY2026 earnings produced a 10.5% single-day decline -- a >4 standard deviation event under normal distribution assumptions. The parametric VaR framework systematically underestimates the risk from catalyst events. An event-adjusted VaR would show that the 95% 1-month VaR around earnings periods is approximately 12-15% (not 8.1%), and the 1-quarter VaR that spans both catalyst events is approximately 18-22% (not 13.9%).
-
-**Impact on conclusion:** Higher VaR estimates would reduce the Kelly fraction recommendation from 8-12% to 5-8%, consistent with the Risk Analyst's own qualitative recommendation of "quarter-Kelly (2-3%) is prudent." The quantitative metrics should match the qualitative judgment.
-
-**Severity: Medium**
-
----
-
-### 4. What's Strong (Optional but encouraged)
-
-The insider activity analysis is the strongest component of the Risk Analyst's work. The observation that zero open-market purchases by any insider in 18 months -- including during a 26% drawdown -- is a high-quality signal that is often overlooked by quantitative risk models. The stress test framework (Section 2) is also well-structured, with clear scenario definitions and quantified financial impacts.
-
----
-
-## Critique of Credit Analyst's Work Product
-
-### 1. Weakest Assumption
-
-**Assumption identified:** "OCF Coverage of Total Cash Needs: $162,000M / $158,400M = 1.02x" (Liquidity Assessment, Section 4). The Credit Analyst correctly identifies this as razor-thin coverage, but then concludes that "dividends are safe" and "buybacks are the relief valve."
-
-**Why it's weak:** The 1.02x coverage ratio assumes FY2026 OCF of ~$162B. But the catalyst analysis shows meaningful downside risk to OCF: if Azure decelerates to 35% (Q3 worst case) and CapEx runs above guidance, OCF could come in at $150-155B. At that level, the coverage ratio falls below 1.0x, meaning Microsoft would need to either borrow or cut shareholder returns. The Credit Analyst treats the OCF estimate as a given rather than sensitivity-testing it against the catalyst outcomes. The fact that the coverage ratio is already at 1.02x -- essentially breakeven -- means ANY negative catalyst moves it below 1.0x.
-
-**Quantified impact if wrong:** If OCF undershoots by $10B (from $162B to $152B), the coverage ratio drops to 0.96x. Microsoft would need to reduce buybacks by $10B or issue new debt. While not a credit crisis, it would be the first time in over a decade that Microsoft's cash generation fell short of its combined obligations, which could trigger a sentiment shift among fixed-income investors and (more importantly) equity investors who view the buyback as a price support mechanism.
+**Quantified impact if wrong:** If CUDA's relevance is diminished for hyperscale customers (representing 60%+ of AMD's AI GPU TAM by 2027), the competitive score should be 7/10, not 6/10, and the AI GPU share ceiling rises from 15-20% to 20-25%, adding $15-25/share to the bull case.
 
 **Severity: Medium**
 
@@ -147,25 +109,31 @@ The insider activity analysis is the strongest component of the Risk Analyst's w
 
 ### 2. Most Likely Source of Error
 
-**Error source identified:** The uncommenced finance leases of $108.4B are treated as a future event, but several of these leases may commence within the catalyst horizon (12-18 months). The Credit Analyst estimates they will "flow onto the balance sheet over the next 2-5 years" without mapping which leases commence when.
+**Error source identified:** Custom ASIC cannibalization threat rated at "60% probability in 3 years."
 
-**Why this is the most likely error:** Data center lease commencement is driven by construction completion timelines, which are typically 18-36 months from signing. Some of the $108.4B was contracted in FY2023-2024 and could commence in FY2026-2027, adding $20-40B to on-balance-sheet debt within the catalyst horizon. This would push total debt from ~$97.6B toward $120-140B, increasing Total Debt/EBITDA from 0.60x to 0.70-0.85x. While still well below AAA thresholds, the pace of debt accumulation -- if it coincides with the negative catalysts identified in the watchlist -- could create a narrative problem even if it does not create a credit problem.
+**Why this is the most likely error:** The 60% probability does not account for timing. Custom ASICs take 3-5 years from design to production deployment. OpenAI's Broadcom ASIC deal was announced but first production is unlikely before 2028-2029. AMD's mega-deals are structured with 5-6 year horizons that overlap with ASIC maturation timelines, but the GPU volumes come first. The more likely dynamic is sequential (GPUs now, ASICs later for specific workloads) rather than simultaneous substitution. A 60% probability of material cannibalization within 3 years is too aggressive given ASIC development cycles.
 
-**Suggested correction:** Request the lease commencement schedule from the 10-K footnotes and model the expected on-balance-sheet debt trajectory over the next 4 quarters, tying it to the catalyst calendar.
+**Suggested correction:** Separate the ASIC threat into time horizons: 20% probability of meaningful cannibalization by 2028, 45% by 2029, 60% by 2030. This changes the investment calculus because AMD's mega-deal revenue peaks in 2027-2028, potentially before ASICs are ready at scale.
 
-**Severity: Low-Medium**
+**Severity: Medium**
 
 ---
 
 ### 3. Recommended Change
 
-**What I'd change:** Add a "catalyst-conditional credit scenario" that models what happens to the balance sheet if the worst-case catalyst outcomes materialize simultaneously: Azure deceleration below 35%, CapEx guidance above $130B, and OpenAI contract restructuring. This would show the credit trajectory under the same stress scenarios the other analysts are modeling, rather than the Credit Analyst's standalone stress test (which assumes a generic "revenue growth slows to 5%").
+**What I'd change:** Add a catalyst-driven competitive timeline rather than a static moat assessment.
 
-**Why:** The Credit Analyst's stress test (Section 11) uses "revenue growth slows to 5%" as its primary stress case, but it does not link to specific catalysts. If the FTC imposes structural remedies AND OpenAI consumption falls short AND Azure decelerates, the impact on credit metrics is more severe than a generic 5% growth assumption because it would also affect the market's willingness to lend to Microsoft at current spreads. The narrative risk matters for credit markets even when the quantitative metrics remain investment-grade.
+**Why:** Competition is dynamic, not static. AMD's competitive position in Q3 2026 (when MI450 launches before Vera Rubin reaches scale) is materially different from its position in Q1 2027 (when Vera Rubin is fully deployed). The moat analysis should map competitive advantage windows to specific catalyst dates. Right now, the analysis concludes "6/10" as if competitive position is fixed, when in reality AMD has a 3-6 month window of potential hardware advantage in H2 2026.
 
-**Impact on conclusion:** No change to the "AAA is safe" conclusion, but the "Balance sheet strength 4/5" score should be sensitivity-tested. Under a catalyst-adverse scenario (30% of the CapEx guidance outcome + 35% of Azure deceleration outcome), the balance sheet strength score might warrant a 3.5/5, which better reflects the thinning financial flexibility.
+**Impact on conclusion:** A time-varying competitive score (7-8/10 in Q3-Q4 2026, declining to 5-6/10 by mid-2027 as Vera Rubin scales) would more accurately reflect the investment opportunity and align with the phased entry strategy I recommended.
 
-**Severity: Low**
+**Severity: Medium**
+
+---
+
+### 4. What's Strong
+
+The identification of the "dual squeeze" (NVIDIA CUDA from above, custom ASICs from below) is the most important competitive insight — it correctly frames AMD's AI GPU position as structurally time-limited.
 
 ---
 
@@ -173,23 +141,23 @@ The insider activity analysis is the strongest component of the Risk Analyst's w
 
 ### 1. Weakest Assumption
 
-**Assumption identified:** "Every 50bps move in the 10Y translates to roughly 1-2 multiple points on the P/E, or $55-$110B in market cap" (Section 2.1, Rate Sensitivity Analysis).
+**Assumption identified:** "AI capex-to-revenue ratio: 25-28:1 ($660B+ capex vs. ~$25B AI revenue) — 6-7x more speculative than telecom bubble."
 
-**Why it's weak:** This rate sensitivity analysis assumes a static EPS ($16.92 consensus) and varies only the multiple. But from a catalyst perspective, rate movements and EPS are correlated, not independent. If the 10Y rises because of inflation re-acceleration, CapEx costs (particularly GPU procurement under tariff risk) also rise, compressing margins and EPS. Conversely, if the 10Y falls because of recession, EPS also falls as Azure consumption declines and LinkedIn hiring revenue contracts. The Macro Analyst's own P&L mapping (Section 3) shows these transmission channels clearly, but they are not incorporated into the rate sensitivity table.
+**Why it's weak:** The telecom bubble comparison is misleading because the revenue denominator is measured differently. The $25B "AI revenue" figure appears to capture only direct AI-specific SaaS revenue, excluding the productivity gains, cost savings, and revenue enablement that AI capex supports. If you include AI-enabled cloud revenue, enterprise automation savings, and AI-enhanced product revenues, the effective return on AI capex is considerably higher. The telecom bubble comparison also ignores that telecom capex was building physical infrastructure with 20-year depreciation cycles, while AI GPU capex depreciates in 3-5 years — the payback window is structurally different.
 
-**Quantified impact if wrong:** In a scenario where 10Y rises to 5.00% AND EPS falls to $15.50 (the Macro Analyst's own "tighter" EPS estimate for that rate level), the implied price is $310-$340 -- versus the sensitivity table's $320-$352 which uses $16.92 EPS at that rate level. The difference is modest ($10-$40), but the conceptual error of treating rate and earnings as independent understates the downside in stagflationary scenarios.
+**Quantified impact if wrong:** If the relevant capex-to-revenue ratio is 8-12:1 (including AI-enabled revenues) rather than 25-28:1, the AI spending cycle sustainability extends 2-3 years beyond the macro analyst's timeline, pushing peak risk from 2027-2028 to 2029-2030. This gives AMD's mega-deals time to fully ramp, adding 20-30% to the bull case probability.
 
-**Severity: Low-Medium**
+**Severity: High**
 
 ---
 
 ### 2. Most Likely Source of Error
 
-**Error source identified:** The recession scenario probability is estimated at 15-20%, but current macro catalysts suggest the probability is higher. March payrolls showed -92K jobs, retail sales declined 0.2%, and recession probability estimates range from 20% (Goldman) to 42% (Moody's). The Macro Analyst's own Section 1 describes "early recessionary signals emerging" but then uses a lower probability than the range of external estimates would justify.
+**Error source identified:** Hormuz crisis impact on AMD specifically.
 
-**Why this is the most likely error:** The Macro Analyst takes the lower end of the recession probability range (15-20%) rather than the midpoint (25-30%). Given that the recession scenario produces a $262.50 target (-35.8% downside), even a 5% increase in recession probability (from 17.5% to 22.5%) would reduce the probability-weighted expected price by approximately $7-$9. This matters because the conclusion of "net macro headwind (moderate conviction)" is borderline -- a higher recession probability would push the conviction to "strong."
+**Why this is the most likely error:** The macro analysis models Hormuz crisis through oil prices and rate cut delays, but AMD's direct exposure is minimal — AMD is fabless (TSMC fabricates in Taiwan, not the Middle East), AMD's customers are US hyperscalers with fixed procurement budgets, and AI capex is not discretionary (it's strategic competitive spending). The primary transmission mechanism (higher rates = lower growth multiples) is real but second-order. The macro analyst correctly identifies beta of 2.02 but does not distinguish between AMD-specific risk and systematic market risk. A Hormuz crisis hurts AMD only through broad market contagion, not through any business fundamental.
 
-**Suggested correction:** Use the midpoint of external recession estimates (25-30%) rather than the lower bound. Alternatively, present the conclusion at both 20% and 35% recession probability to show how sensitive the macro overlay is to this single variable.
+**Suggested correction:** Separate the Hormuz impact into direct (near zero for AMD) and indirect (beta-driven market contagion), and weight accordingly. The net AMD-specific Hormuz impact is probably -2-4%, not the implied -8-15%.
 
 **Severity: Medium**
 
@@ -197,19 +165,195 @@ The insider activity analysis is the strongest component of the Risk Analyst's w
 
 ### 3. Recommended Change
 
-**What I'd change:** Link the AI CapEx cycle maturation discussion (Section 2.5) directly to the catalyst calendar. The Macro Analyst correctly notes that "MSFT's own data center lease cancellations signal that even the company most committed to AI infrastructure is questioning marginal deployment pace" -- but does not map this to a specific catalyst date. The FY2027 CapEx guidance (~July 22, 2026) is the moment when the macro cycle thesis gets confirmed or refuted. The Macro analysis should provide a conditional assessment: "If CapEx guidance exceeds $130B, the macro assessment shifts from moderate headwind to strong headwind. If CapEx guidance is flat or declining, the macro assessment shifts to neutral."
+**What I'd change:** The catastrophic scenario probability of 10-12%.
 
-**Why:** The Macro Analyst's assessment of "net headwind (moderate conviction)" is a snapshot, not a dynamic view. The catalyst calendar shows that the macro-relevant data points (Q3 earnings, rate decisions, FY2027 CapEx guidance) all arrive within the next 4-7 months. A conditional framework would be more useful for the Director's final synthesis than a static assessment.
+**Why:** The "AI Winter + Stagflation" catastrophic scenario requires simultaneous occurrence of: (1) hyperscaler capex reversal despite committed multi-year contracts, (2) macroeconomic recession, and (3) geopolitical escalation. The probability of all three happening in the same 12-month window is the product of their individual probabilities, not their sum. Using joint probability analysis: if each has 20-25% individual probability, the joint probability is 1-3%, not 10-12%. The macro analyst is conflating individual risk probabilities with joint scenario probability.
 
-**Impact on conclusion:** No change to the current assessment, but providing conditional triggers would strengthen the analytical utility of the macro overlay for the Director's final review and position sizing decisions.
+**Impact on conclusion:** Reducing catastrophic scenario from 10% to 3% would raise the macro-adjusted fair value from ~$190 to ~$200-205, shifting the conclusion from "flat to current" to "modestly undervalued."
+
+**Severity: Medium**
+
+---
+
+### 4. What's Strong
+
+The quantified macro sensitivity framework — mapping each macro factor to specific EPS and multiple impact — is rigorous and actionable. The rate sensitivity analysis (each delayed Fed cut = 0.5-1.0x P/E compression) is directly useful for trade timing.
+
+---
+
+## Critique of Risk Analyst's Work Product
+
+### 1. Weakest Assumption
+
+**Assumption identified:** "MI450 material delay probability: 20-25% based on industry precedent for new node ramps."
+
+**Why it's weak:** The "industry precedent" baseline treats AMD's MI450 ramp as a generic semiconductor product launch. But MI450 has three specific de-risking factors that generic precedent does not capture: (1) TSMC's N3 process is already in volume production for other customers (Apple, etc.), so this is not a bleeding-edge node bring-up; (2) AMD has pre-committed customers with contracted volumes, reducing demand uncertainty; (3) AMD's Helios rack-scale architecture was publicly demonstrated and confirmed on-track at CES 2026 and the Morgan Stanley conference (March 3, 2026). A 20-25% delay probability should be adjusted down to 15-20% given these AMD-specific factors.
+
+**Quantified impact if wrong:** Reducing delay probability from 25% to 15% shifts $10B in expected risk-adjusted revenue back to base/bull cases, increasing the expected value from $210 to approximately $220-225.
+
+**Severity: Medium**
+
+---
+
+### 2. Most Likely Source of Error
+
+**Error source identified:** "Correlation to SPX rises to 0.85+ in selloffs (asymmetric beta — realized beta 2.4x in 2022)."
+
+**Why this is the most likely error:** The 2022 correlation spike reflected a pure macro event (rate shock) hitting all growth stocks. AMD's current business profile is materially different from 2022 — data center revenue was $6.0B in FY2022 vs. $16.6B in FY2025, and AMD now has $200B+ in contracted mega-deal pipeline. In a selloff driven by macro factors unrelated to AI (e.g., recession fears), AMD's contracted revenue base would provide a fundamental floor that did not exist in 2022. Using 2022 as the analog overstates drawdown risk in scenarios where AI spending remains robust.
+
+**Suggested correction:** Model two drawdown scenarios: macro-driven (where contracted revenue provides a floor, limiting drawdown to -25-35%) and AI-specific (where the contracted revenue itself is at risk, allowing -45-55% drawdown). The blended expected max drawdown would be lower than the current -45 to -55% estimate.
+
+**Severity: Medium**
+
+---
+
+### 3. Recommended Change
+
+**What I'd change:** The Sharpe ratio of 0.19 used to characterize risk-adjusted return.
+
+**Why:** A static Sharpe ratio does not capture the time-varying nature of AMD's risk/reward profile. Pre-catalyst (now through Q2 2026), the Sharpe ratio is indeed poor because the stock has downside exposure without near-term positive catalysts. Post-catalyst (Q3 2026 onward), if MI450 ramp confirms, the Sharpe ratio improves dramatically as uncertainty resolves and the denominator (volatility) compresses. A phased entry strategy can capture a much higher realized Sharpe than the static 0.19 implies. The risk analysis should present time-conditional Sharpe ratios to guide entry timing.
+
+**Impact on conclusion:** A time-varying Sharpe analysis would support the conclusion that timing (entering post-MI450 confirmation in Q3 2026) is more important than sizing, which changes the risk management recommendation from "cap position size" to "phase position entry around catalysts."
+
+**Severity: Medium**
+
+---
+
+### 4. What's Strong
+
+The breakeven bear probability analysis (41% current vs. 25% assessed) is the single most useful risk metric — it quantifies exactly how much bear case probability the market can absorb before the position becomes negative expected value.
+
+---
+
+## Critique of Credit Analyst's Work Product
+
+### 1. Weakest Assumption
+
+**Assumption identified:** "$875M Sep 2026 maturity will likely be repaid from cash (refinancing unnecessary)."
+
+**Why it's weak:** The assumption is correct in isolation, but it ignores the catalyst-driven capital deployment question. If MI450 ramp succeeds in Q3 2026, AMD may choose to refinance (not repay) to preserve cash for accelerated capacity investments, potential M&A to fill software gaps (ROCm ecosystem acquisitions), or expanded CoWoS packaging commitments with TSMC. The credit analyst treats the $875M maturity as a debt management question when it is actually a capital allocation question driven by catalyst outcomes.
+
+**Quantified impact if wrong:** This is a low-impact critique — whether AMD repays or refinances $875M is immaterial to the equity thesis given $13.6B liquidity.
 
 **Severity: Low**
 
 ---
 
-### 4. What's Strong (Optional but encouraged)
+### 2. Most Likely Source of Error
 
-The contrarian observation that "MSFT's own data center lease cancellations signal that even the company most committed to AI infrastructure is questioning marginal deployment pace" is the single most valuable insight in the macro analysis. It is evidence-based, sourced (TD Cowen via Bloomberg, CFO Dive), and directly actionable. The regulatory pipeline table (Section 6) is also well-structured and correctly identifies multi-jurisdictional antitrust risk as "the most underpriced risk in MSFT."
+**Error source identified:** The $8.5B FY2026 TSMC purchase commitment characterized as a "hidden liquidity risk."
+
+**Why this is the most likely error:** The purchase commitment is not "hidden" — it is the cost of doing business as the #2 AI GPU supplier. More importantly, the risk is asymmetric: if AMD needs to honor the full $8.5B, it means demand is strong enough to sell the output, which is the bull case. If demand collapses and AMD is stuck with take-or-pay obligations, the real problem is not the $2-4B cash consumption (manageable from $13.6B liquidity) but the 40-60% stock price decline from revenue implosion. The credit analysis overweights the balance sheet risk relative to the income statement risk.
+
+**Suggested correction:** Frame the TSMC commitment as a call option on demand rather than a liquidity risk. AMD pays $8.5B for the right to produce GPUs that generate $15-25B in revenue. The breakeven utilization rate is approximately 50-60%.
+
+**Severity: Low**
+
+---
+
+### 3. Recommended Change
+
+**What I'd change:** Add a catalyst-conditional capital allocation analysis.
+
+**Why:** The credit analysis is a static snapshot of a strong balance sheet. But AMD's capital allocation will change dramatically based on catalyst outcomes. If MI450 succeeds: AMD likely deploys $5-10B into capacity expansion, M&A, or aggressive buybacks. If MI450 struggles: AMD conserves cash and the fortress balance sheet becomes a survival tool. The credit analysis should present two capital allocation paths aligned with the catalyst timeline.
+
+**Impact on conclusion:** Would not change the "credit is a strength" conclusion but would make it more useful for the investment thesis by showing how balance sheet strength enables catalyst exploitation.
+
+**Severity: Low**
+
+---
+
+### 4. What's Strong
+
+The credit analysis correctly identifies that credit risk is not the binding constraint for AMD — any AMD investment failure will be an execution or competitive failure, not a credit event. This is an important baseline for position sizing.
+
+---
+
+## Critique of Devil's Advocate's Work Product
+
+### 1. Weakest Assumption
+
+**Assumption identified:** "Mega-deals are bridge contracts, not durable demand — OpenAI's Broadcom deal is 67% larger."
+
+**Why it's weak:** The "bridge contract" thesis assumes OpenAI and Meta are using AMD GPUs temporarily while custom ASICs mature. But the catalyst evidence contradicts this: (1) the warrant structure with 5-6 year vesting horizons and $600 stock price milestones implies long-term partnership, not bridge purchasing — you do not give 160M warrants each to a temporary supplier; (2) OpenAI's Broadcom ASIC deal is for different workloads (inference optimization) than the AMD GPU deal (training and flexible compute); (3) Meta's custom MI450 variant implies deep co-engineering, not arms-length bridge procurement. The DA correctly identifies ASIC competition as a risk but overstates the "bridge contract" probability.
+
+**Quantified impact if wrong:** If mega-deals are durable (5+ year partnerships with 70%+ realization) rather than bridge contracts (3-year transition with 40% realization), the revenue difference is $30-50B cumulative over 5 years. This changes the DA bear case from $80 to $120-140, and shifts the DA-adjusted EV from $178 (-6.5%) to $195-205 (+2.5 to +7.7%).
+
+**Severity: High**
+
+---
+
+### 2. Most Likely Source of Error
+
+**Error source identified:** DA-adjusted bear probability of 30-35% vs. consensus 15-20%.
+
+**Why this is the most likely error:** The DA assigns 30-35% bear probability but does not adequately weight the near-term catalyst de-risking events. Each confirmed deployment (Oracle Q3 2026, OpenAI initial deployment H2 2026, Meta initial deployment H2 2026) reduces the bear probability by 5-8pp. By Q4 2026, after 2-3 deployment confirmations, the bear probability should decline to 15-20% — the DA's current estimate may be appropriate for today but is too static to project forward. A time-varying bear probability would show the thesis strengthening as catalysts confirm.
+
+**Suggested correction:** Model bear probability as declining from 30% today to 20% by Q4 2026 (if deployments confirm) or rising to 40%+ (if deployments fail). The expected value shifts materially depending on which path materializes in the next 6 months.
+
+**Severity: Medium**
+
+---
+
+### 3. Recommended Change
+
+**What I'd change:** The pre-mortem price of $80 by March 2028.
+
+**Why:** The $80 pre-mortem requires mega-deal failure + AI capex correction + multiple compression. But even in a scenario where mega-deals partially fail (50% realization), AMD still has a $16.6B data center business growing 20%+ organically, EPYC server CPU share approaching 50%, and $10.5B in cash. At $80, AMD would trade at approximately 12x trailing earnings on a business generating $6B+ FCF — a valuation that implies permanent impairment, not cyclical disappointment. The more realistic bear floor is $120-140 (18-22x trailing earnings), which is still a devastating outcome but more consistent with AMD's non-AI business fundamentals.
+
+**Impact on conclusion:** A bear case of $120-140 instead of $80 raises the DA-adjusted expected value from $178 to $192-200, flipping the conclusion from negative EV to roughly neutral.
+
+**Severity: High**
+
+---
+
+### 4. What's Strong
+
+The fragility score framework (4.2/5) is a genuinely useful construct — it correctly identifies that the AMD thesis depends on multiple assumptions holding simultaneously, which is a legitimate structural vulnerability even if individual probabilities are favorable.
+
+---
+
+## Critique of ESG & Governance Analyst's Work Product
+
+### 1. Weakest Assumption
+
+**Assumption identified:** "320M warrant shares issued to OpenAI and Meta at $0.01/share without shareholder approval" — the framing implies this is a governance failure.
+
+**Why it's weak:** The warrant issuance is not a governance failure in isolation — it is a commercially rational decision to secure $200B+ in potential lifetime revenue from the two most important AI customers. The cost (potential 20% dilution at $600/share) is acceptable if the mega-deals realize even 30-40% of their potential value. From a catalyst perspective, the warrant structure actually aligns incentives: customers vest warrants only on deployment milestones and stock price targets, meaning dilution only occurs when AMD is winning. This is a feature, not a bug, of the deal structure.
+
+**Quantified impact if wrong:** If the warrant structure is value-accretive net of dilution (mega-deal NPV exceeds dilution cost), then the 9.3% expected dilution should be treated as a cost of revenue, not a governance penalty. The ESG WACC adjustment of +10-15bps would be unnecessary, saving approximately $3-5/share in DCF valuation.
+
+**Severity: Medium**
+
+---
+
+### 2. Most Likely Source of Error
+
+**Error source identified:** Expected dilution of 9.3% uses probabilities (30% no vest / 45% half vest / 25% full vest) that do not account for catalyst timing.
+
+**Why this is the most likely error:** The vesting probabilities are static, but the catalyst calendar creates a clear sequencing: deployment milestones must be achieved before stock price milestones. If MI450 ships on-time and initial deployments confirm in H2 2026, partial vesting probability rises from 45% to 60-70%. If MI450 is delayed, partial vesting drops to 20-30%. The ESG analyst should condition vesting probabilities on catalyst outcomes rather than using unconditional probabilities.
+
+**Suggested correction:** Present two dilution scenarios: (1) MI450 succeeds, expected dilution 12-14%; (2) MI450 fails, expected dilution 3-5%. The unconditional 9.3% obscures the decision-relevant analysis.
+
+**Severity: Low**
+
+---
+
+### 3. Recommended Change
+
+**What I'd change:** Contextualize the warrant issuance against industry precedent for large customer acquisition costs.
+
+**Why:** Cloud and enterprise companies routinely spend 20-40% of contract value on customer acquisition. AMD is effectively spending ~$60B in equity (at full vesting, 320M shares x ~$190) to secure ~$200B in potential revenue — a 30% customer acquisition cost. This is expensive but not unprecedented. Without this context, the analysis reads as pure governance criticism rather than business strategy evaluation.
+
+**Impact on conclusion:** Would soften the governance concern from "critical issue" to "expensive but commercially justified" and potentially raise the governance score from 7/10 to 7.5/10.
+
+**Severity: Low**
+
+---
+
+### 4. What's Strong
+
+The probability-weighted dilution calculation (9.3% expected) is a genuinely useful framework that other analysts should adopt rather than using binary "fully diluted" or "undiluted" share counts.
 
 ---
 
@@ -217,11 +361,99 @@ The contrarian observation that "MSFT's own data center lease cancellations sign
 
 ### 1. Weakest Assumption
 
-**Assumption identified:** Accounting quality rated 4/5 despite identifying that AR is growing faster than revenue (22.8% vs. 14.9%) and DSO has risen to 90.6 days.
+**Assumption identified:** "$306M Q4 inventory reserve release inflated Q4 GM by ~300bps (57% headline vs. ~54% underlying)."
 
-**Why it's weak:** From a catalyst perspective, rising DSO and AR/revenue divergence are leading indicators of potential revenue quality deterioration. The forensic analysis identifies these signals but does not connect them to upcoming catalysts. If Q3 FY2026 earnings show further DSO expansion above 90 days, it would signal that either (a) customers are taking longer to pay (credit quality deterioration), (b) Microsoft is recognizing revenue more aggressively, or (c) the RPO backlog is being booked differently. Any of these would amplify the negative impact of the Q3 earnings catalyst, which already carries ±5-10% price impact. A 4/5 accounting quality score does not adequately discount for these trends.
+**Why it's weak:** The forensic analysis flags this as a concern, but the catalyst context explains the reserve release: AMD took the original charge in Q2 2025 related to China export control inventory write-downs. The Q4 2025 release occurred after MI308 received export approval with a 15% licensing fee. This is a legitimate reversal of a legitimate charge, not earnings manipulation. Management guided Q1 2026 gross margin at 55%, which is between the "inflated" 57% and the "underlying" 54%, suggesting the true run rate is normalizing toward 55% — consistent with mix shift toward higher-margin data center revenue.
 
-**Quantified impact if wrong:** If the AR/revenue divergence indicates aggressive revenue recognition (rather than benign billing timing), FY2026 revenue could be overstated by 1-2% (~$3-6B). At 24x P/E, that translates to $10-16 per share, or 2.5-4% of current price.
+**Quantified impact if wrong:** If the 55% GM guidance is the real run-rate (not 54% "underlying"), then the forensic analyst is understating normalized margins by ~100bps, which at $40B+ revenue equals ~$400M in EBITDA, or approximately $2-3/share in DCF value.
+
+**Severity: Low**
+
+---
+
+### 2. Most Likely Source of Error
+
+**Error source identified:** "Segment restructuring (Client + Gaming combined) reduces visibility into declining gaming business."
+
+**Why this is the most likely error:** The forensic analyst flags the Client + Gaming combination as reducing visibility, but the catalyst-relevant question is whether this matters for the investment thesis. Gaming is now <5% of revenue and declining. The segment combination is cosmetic — it does not hide anything material to the thesis, which is entirely about Data Center (50%+ of revenue) and Embedded (recovery trajectory). Flagging this as a forensic concern overstates its significance relative to the real forensic question: why does AMD not break out Instinct GPU revenue from the Data Center segment?
+
+**Suggested correction:** De-emphasize the Client + Gaming segment restructuring and elevate the Instinct GPU revenue opacity as the primary forensic concern. The GPU revenue question directly affects whether the mega-deal thesis is working.
+
+**Severity: Low**
+
+---
+
+### 3. Recommended Change
+
+**What I'd change:** Add forward-looking forensic risk assessment tied to mega-deal revenue recognition.
+
+**Why:** The forensic analysis scores accounting quality based on historical metrics (Beneish M-Score, Altman Z-Score, CFO/NI ratio). But the primary forensic risk for AMD going forward is how it will recognize revenue from multi-year, multi-billion-dollar mega-deals with complex warrant structures. Will GPU shipments be recognized on delivery or on deployment? How will warrant fair value adjustments flow through the income statement? These are H2 2026+ forensic risks that the current backward-looking scoring does not capture.
+
+**Impact on conclusion:** Would not change the 4/5 accounting quality score for historical periods but would add a "forward forensic risk" flag at 3/5, signaling that accounting complexity will increase materially as mega-deals begin.
+
+**Severity: Medium**
+
+---
+
+### 4. What's Strong
+
+The Beneish M-Score (-2.71) and Altman Z-Score (14.38) calculations provide solid quantitative foundations, and the CFO/NI ratio trend (consistently >1.0x across three years) is the strongest evidence of earnings quality.
+
+---
+
+## Critique of Sentiment Analyst's Work Product
+
+### 1. Weakest Assumption
+
+**Assumption identified:** "Lisa Su's shift from conservative to ambitious public targets (>60% DC CAGR, >$20 EPS) trades her historical under-promise/over-deliver credibility for elevated expectations."
+
+**Why it's weak:** The sentiment analyst interprets the shift to ambitious targets as negative (reducing margin of safety). But from a catalyst perspective, the shift reflects changed circumstances, not changed strategy. Lisa Su now has $200B+ in contracted pipeline that she did not have 12 months ago. The >60% DC CAGR target is backed by specific customer commitments (OpenAI, Meta, Oracle), not aspirational marketing. The >$20 EPS target, while aggressive, is consistent with the math: if data center reaches $50B+ revenue at 35%+ operating margins with 1.6B diluted shares, EPS exceeds $20. The ambition reflects deal visibility, not overconfidence.
+
+**Quantified impact if wrong:** If the targets are achievable (backed by contracted demand rather than aspirational), then the elevated expectations are correctly calibrated, not a credibility risk. This removes a ~$5-10/share discount the sentiment analysis implicitly applies through its tone-shift concern.
+
+**Severity: Low**
+
+---
+
+### 2. Most Likely Source of Error
+
+**Error source identified:** "Refusal to disclose Instinct GPU revenue (MEDIUM-HIGH severity) — core thesis driver has no disclosed revenue."
+
+**Why this is the most likely error:** The sentiment analyst interprets non-disclosure as a red flag ("if the story were as strong, they'd disclose"). But there is a compelling competitive reason for non-disclosure: revealing exact GPU revenue would give NVIDIA, Broadcom, and custom ASIC competitors precise intelligence on AMD's market position, customer concentration, and pricing power. Intel withheld DCAI GPU revenue for similar competitive reasons. The refusal to disclose is likely competitive strategy, not obfuscation. The catalyst that would resolve this is if AMD reaches sufficient GPU scale (>$10B annual) that non-disclosure becomes untenable — likely by FY2027 earnings.
+
+**Suggested correction:** Rate the non-disclosure as MEDIUM severity (competitive strategy) rather than MEDIUM-HIGH (red flag). Note that many growth businesses withhold segment detail until the segment reaches critical mass.
+
+**Severity: Low**
+
+---
+
+### 3. Recommended Change
+
+**What I'd change:** Add catalyst-conditional sentiment tracking.
+
+**Why:** The current tone score (82/100) is a snapshot from Q4 FY2025 earnings. The key question is: how will management tone shift in Q1 2026 earnings (~May 5) based on MI450 progress? If management tone drops below 75 or hedging density increases materially, it would be a leading indicator of MI450 delays before formal announcement. The sentiment analysis should establish a "tone trip-wire" framework for the next 2-3 earnings calls.
+
+**Impact on conclusion:** Would make the sentiment analysis actionable for trade timing — a Q1 2026 tone drop from 82 to below 72 could signal MI450 issues 3-6 months before they appear in revenue, creating an early exit signal.
+
+**Severity: Medium**
+
+---
+
+### 4. What's Strong
+
+The Q&A hedging density analysis (+76% increase vs. prepared remarks) is a genuinely useful signal — management is more cautious when answering unscripted questions, which is a normal but informative pattern for assessing true confidence levels.
+
+---
+
+## Critique of Technical Analyst's Work Product
+
+### 1. Weakest Assumption
+
+**Assumption identified:** "Death cross (50-day below 200-day) is a realistic risk within 4-8 weeks if trajectory continues."
+
+**Why it's weak:** The death cross projection assumes the current downtrend continues unabated, but the catalyst calendar shows multiple potential inflection points within the 4-8 week window: (1) sell-side PT revisions post-Q4 beat are still filtering through (March-April), (2) MI455X delay resolution could come any time, and (3) Q1 2026 earnings (~May 5) are within the window. Technical projections that assume trend continuation through known catalyst events are systematically unreliable. AMD's stock moves +-8-12% on earnings — a single positive catalyst can invalidate the death cross projection.
+
+**Quantified impact if wrong:** If AMD rallies 5-10% on positive MI455X news or pre-earnings positioning (both probable in April), the death cross does not materialize, and the technical picture shifts from "confirmed downtrend" to "consolidation with improving momentum" — a fundamentally different conclusion.
 
 **Severity: Medium**
 
@@ -229,11 +461,11 @@ The contrarian observation that "MSFT's own data center lease cancellations sign
 
 ### 2. Most Likely Source of Error
 
-**Error source identified:** The $7.6B OpenAI gain that inflated GAAP EPS by 60% is flagged but not fully explored for its implications on forward earnings quality. The forensic analysis notes the gain but does not analyze whether the market is using GAAP or non-GAAP earnings for valuation, and whether the OpenAI stake's ongoing fair value changes will create ongoing earnings volatility.
+**Error source identified:** "Measured move from $200-$267 range breakdown projects to ~$133 (maximum) or ~$165 (conservative)."
 
-**Why this is the most likely error:** If OpenAI's next fundraise occurs at a different valuation (either higher or lower), Microsoft will book another fair value adjustment. The catalyst analysis identifies the OpenAI IPO filing as a medium-term catalyst with ±5-8% price impact. The forensic analysis should have flagged that ongoing OpenAI mark-to-market gains/losses will create non-operating earnings volatility that distorts the P/E-based valuation used by the Quant Analyst and DCF Analyst.
+**Why this is the most likely error:** Measured move projections assume no fundamental floor. But AMD at $133-165 implies 20-25x trailing P/E on a business growing 30%+ with $200B in contracted pipeline. There is a fundamental floor where long-term value investors and the company's own $9.4B buyback authorization create demand. AMD repurchased $1.3B in FY2025; at $133-165, the buyback would accelerate materially, creating a fundamental bid that technical analysis cannot capture. The measured move target is theoretically valid but practically unreachable unless fundamental assumptions simultaneously collapse.
 
-**Suggested correction:** Calculate the sensitivity of GAAP EPS to OpenAI valuation changes. At 27% ownership of a $135B-$750B entity, every 10% move in OpenAI's valuation creates a $3.6B-$20.3B gain/loss, equivalent to $0.49-$2.73 per share. This volatility should be stripped from earnings used for valuation.
+**Suggested correction:** Overlay fundamental support levels on the technical analysis. The $165-185 zone identified as technical support aligns with fundamental value floors from the DCF bear case ($154) and comp-implied bear case ($140), making it a reinforced support zone rather than a technical target to trade through.
 
 **Severity: Medium**
 
@@ -241,14 +473,108 @@ The contrarian observation that "MSFT's own data center lease cancellations sign
 
 ### 3. Recommended Change
 
-**What I'd change:** Downgrade accounting quality from 4/5 to 3.5/5 to reflect the combination of (a) AR/revenue divergence, (b) non-recurring OpenAI gain distortion, and (c) the RPO concentration risk that makes the $625B backlog figure less reliable than headline suggests (45% from a single unprofitable counterparty).
+**What I'd change:** Integrate the catalyst calendar into the technical timing recommendation.
 
-**Why:** A 4/5 score suggests near-pristine accounting quality. The forensic analyst's own findings -- DSO rising 11 days, AR growing 8pp faster than revenue, and a $7.6B one-time gain inflating EPS by 60% -- are individually concerning and collectively suggestive of declining earnings quality. The catalyst calendar shows these quality issues will be tested at the Q3 earnings event; a 3.5/5 score better prepares the Director for the possibility that earnings quality deteriorates further.
+**Why:** The technical analysis recommends $165-185 as the preferred entry zone, but the catalyst calendar may not provide that entry. If MI450 confirmation or positive Q1 earnings guidance arrests the decline in the $185-195 range, waiting for $165 means missing the position entirely. The technical recommendation should present two entry frameworks: (1) if the stock reaches $165-185, enter aggressively (technical + fundamental alignment); (2) if the stock holds $185-195 and Q1 earnings are positive, enter at current levels with a stop at $175 (catalyst-driven entry).
 
-**Impact on conclusion:** Per CLAUDE.md quality gates, forensic quality score <= 2/5 caps conviction at 2. A downgrade from 4/5 to 3.5/5 would not trigger this cap, but it would appropriately lower the Director's conviction rating by 0.5 points, from (likely) 3 to 2.5, reflecting the higher uncertainty in earnings quality.
+**Impact on conclusion:** Changes the recommendation from "wait for $165-185" (which may never come) to a conditional framework that captures both the technical and catalyst scenarios, making it actionable for the actual investment decision.
 
 **Severity: Medium**
 
 ---
 
-*Critique by Catalyst Analyst, Equity Research Swarm. Pass 2 adversarial review.*
+### 4. What's Strong
+
+The observation that AMD has experienced 30%+ drawdowns ~1.5 times per year over 5 years is the most valuable statistical insight — it normalizes the current -28% decline as routine rather than alarming, which is essential context for position sizing.
+
+---
+
+## Critique of Sector Analyst's Work Product
+
+### 1. Weakest Assumption
+
+**Assumption identified:** "TAM estimates have historical tendency to overstate by 20-40% in growth sectors."
+
+**Why it's weak:** The blanket 20-40% overstatement haircut ignores that AI GPU TAM estimates have been consistently UNDERSTATED, not overstated. In 2023, the AI accelerator TAM was estimated at $30-50B by 2027. By 2025, NVIDIA alone generated $130.5B in data center revenue. The historical pattern of TAM overstatement applies to markets like 3D printing, VR, and autonomous vehicles — not markets with immediate, measurable enterprise ROI and $300B+ in committed hyperscaler capex. Applying a generic haircut to AI GPU TAM without adjusting for the unprecedented demand signals is a systematic error.
+
+**Quantified impact if wrong:** If the AI GPU TAM of $378B by 2030 is correctly estimated (or understated), AMD's 18.8% market share implies $71B in AI GPU revenue, not the haircut-adjusted $53-60B. This adds $40-60/share to the bull case scenario.
+
+**Severity: Medium**
+
+---
+
+### 2. Most Likely Source of Error
+
+**Error source identified:** "TSMC CoWoS: ~80,000 wafers/month, >100% utilization; NVIDIA ~60% allocation, AMD ~8-10%."
+
+**Why this is the most likely error:** The CoWoS allocation percentages are from mid-2025 data. The catalyst timeline shows TSMC expanding CoWoS to 130,000 wafers/month by late 2026 (the sector analyst cites this). The incremental 50,000 wafers/month are not pre-allocated — AMD's mega-deals (OpenAI, Meta, Oracle) give it the contractual basis to claim a disproportionate share of new capacity. If AMD captures 15-20% of the expanded capacity (vs. 8-10% of current), the supply constraint is substantially relaxed. The sector analysis understates AMD's ability to increase its CoWoS allocation as total capacity expands.
+
+**Suggested correction:** Model CoWoS allocation dynamically: 8-10% of 80K wafers today, 12-15% of 130K wafers by late 2026, 15-20% of 160K+ wafers by 2027. AMD's absolute wafer allocation could triple even without dramatically increasing share.
+
+**Severity: Medium**
+
+---
+
+### 3. Recommended Change
+
+**What I'd change:** Add a catalyst-based market share trajectory model rather than a linear share gain assumption.
+
+**Why:** The sector analysis projects AMD AI GPU share rising linearly from 10% to 18.8% by 2030. But share gains in semiconductors are lumpy and catalyst-driven. The MI450 launch in Q3 2026 is a step-function event: if it succeeds, AMD could jump from 12% to 16-18% share in 2-3 quarters as mega-deal volumes ramp. If it fails, share could stagnate at 10-12%. A catalyst-conditional share model would be more accurate than a linear projection.
+
+**Impact on conclusion:** A step-function share model aligned with MI450 ramp would show either faster-than-expected share gains (bull: 20%+ by 2028) or stagnation (bear: 10-12% through 2028), with the current linear 18.8% by 2030 as the blended average. This would better capture the binary risk profile I identified in my own catalyst analysis.
+
+**Severity: Medium**
+
+---
+
+### 4. What's Strong
+
+The identification of TSMC CoWoS allocation as the binding supply constraint (not demand) is the most important sector insight. It correctly reframes the investment question from "can AMD sell GPUs?" to "can AMD get enough GPUs manufactured?"
+
+---
+
+## Critique of Research Analyst's Work Product
+
+### 1. Weakest Assumption
+
+**Assumption identified:** "MI450 ships H2 2026 with competitive performance vs. NVIDIA Vera Rubin [confidence: medium]."
+
+**Why it's weak:** The confidence level of "medium" is too conservative. Multiple independent sources confirm the H2 2026 timeline: AMD management (earnings call, CES 2026, Morgan Stanley conference March 3), Oracle partnership announcement (Q3 2026 deployment), and TSMC capacity planning. AMD's CEO publicly called the SemiAnalysis delay report "BS." While healthy skepticism is warranted, the convergence of multiple Tier 1-3 sources confirming the timeline warrants at least "medium-high" confidence.
+
+**Quantified impact if wrong:** If confidence is medium-high (implying 75-80% on-time probability vs. the implied 55-65% at medium confidence), the expected value of the MI450 catalyst increases by ~$5-8/share.
+
+**Severity: Low**
+
+---
+
+### 2. Most Likely Source of Error
+
+**Error source identified:** Multiple critical data gaps — "Historical price data, options chain data, and competitor financials (NVDA, INTC) were NOT retrieved due to tool errors."
+
+**Why this is the most likely error:** The data gaps are not errors of analysis but errors of data collection. Without historical price data, the risk, technical, and quant analysts were forced to estimate parameters that should have been calculated. Without options chain data, my own catalyst analysis had to estimate implied moves rather than measuring them. Without competitor financials, the comp table relies on aggregator data rather than primary sources. These cascading data gaps reduce confidence across multiple work products.
+
+**Suggested correction:** Prioritize re-running the data collection tools for: (1) 3-year AMD daily price history, (2) current options chain with IV surface, (3) NVDA and INTC 10-K financial extracts. These three data sets would materially improve at least 5 other analysts' work products.
+
+**Severity: High**
+
+---
+
+### 3. Recommended Change
+
+**What I'd change:** Add a catalyst monitoring framework to the data intelligence memo.
+
+**Why:** The research analyst's memo is a snapshot of data as of 2026-03-09. But the investment thesis depends on catalyst outcomes over the next 6-12 months. The data intelligence memo should include a "monitoring checklist" with specific data points to track: MI450 production announcements, Oracle deployment confirmation, CoWoS allocation updates, quarterly GPU revenue disclosure changes, and NVIDIA Vera Rubin benchmarks. This would make the research function ongoing rather than point-in-time.
+
+**Impact on conclusion:** Would not change any current conclusions but would create a framework for updating the thesis as catalysts resolve, which is essential for a position with 70%+ of value concentrated in a 6-month window.
+
+**Severity: Low**
+
+---
+
+### 4. What's Strong
+
+The data source tiering system (Tier 1-6 with explicit reliability rankings) is the strongest methodological contribution — it gives every downstream analyst a consistent framework for weighting evidence quality.
+
+---
+
+*Critiques by Catalyst Analyst, Equity Research Swarm. Pass 2 adversarial review.*

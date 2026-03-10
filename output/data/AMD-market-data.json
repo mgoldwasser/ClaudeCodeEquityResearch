@@ -1,0 +1,63 @@
+{
+  "ticker": "AMD",
+  "retrieval_date": "2026-03-09",
+  "price": 190.40,
+  "price_date": "2026-03-04",
+  "market_cap_B": 310.43,
+  "enterprise_value_B": 307.19,
+  "shares_outstanding_M": 1630,
+  "valuation": {
+    "pe_trailing": 71.70,
+    "pe_forward": 28.59,
+    "peg_ratio": 0.68,
+    "ps_ratio": 9.06,
+    "pb_ratio": 4.98,
+    "ev_ebitda": 45.54,
+    "ev_revenue": 8.87
+  },
+  "profitability": {
+    "gross_margin_pct": 52.49,
+    "operating_margin_pct": 10.80,
+    "profit_margin_pct": 12.51,
+    "roe_pct": 7.08,
+    "roa_pct": 3.20
+  },
+  "balance_sheet": {
+    "cash_equivalents_B": 10.55,
+    "total_debt_B": 4.01,
+    "net_cash_B": 6.55,
+    "debt_equity": 0.06,
+    "current_ratio": 2.85
+  },
+  "cash_flow": {
+    "free_cash_flow_B": 6.74
+  },
+  "market_metrics": {
+    "beta_5y": 2.02,
+    "52wk_change_pct": 91.16,
+    "short_interest_pct": 1.88,
+    "insider_ownership_pct": 0.45,
+    "institutional_ownership_pct": 68.68
+  },
+  "analyst_consensus": {
+    "rating": "Buy",
+    "analysts_count": 34,
+    "strong_buy": 14,
+    "buy": 12,
+    "hold": 8,
+    "sell": 0,
+    "strong_sell": 0,
+    "avg_price_target": 261.21,
+    "median_price_target": 280.00,
+    "low_price_target": 120.00,
+    "high_price_target": 358.00,
+    "implied_upside_pct": 37.19
+  },
+  "macro_rates": {
+    "fed_funds_rate_pct": "3.50-3.75",
+    "treasury_10y_pct": 4.15,
+    "treasury_2y_pct": 3.56,
+    "treasury_30y_pct": 4.77,
+    "as_of": "2026-03-06"
+  }
+}

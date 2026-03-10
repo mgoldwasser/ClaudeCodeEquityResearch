@@ -1,0 +1,176 @@
+{
+  "ticker": "AMD",
+  "model": "Credit",
+  "date": "2026-03-09",
+  "capital_structure": {
+    "total_debt_M": 4010,
+    "cash_M": 10550,
+    "net_debt_M": -6540,
+    "net_cash_position": true,
+    "weighted_avg_coupon_pct": 3.881,
+    "active_instruments": 3,
+    "all_fixed_rate": true,
+    "instruments": [
+      {
+        "name": "3.924% Senior Notes due 2032",
+        "amount_M": 1500,
+        "coupon_pct": 3.924,
+        "maturity": 2032,
+        "type": "fixed"
+      },
+      {
+        "name": "4.393% Senior Notes due 2052",
+        "amount_M": 1000,
+        "coupon_pct": 4.393,
+        "maturity": 2052,
+        "type": "fixed"
+      },
+      {
+        "name": "Other Senior Notes / Term Loans",
+        "amount_M": 1510,
+        "coupon_pct": 3.5,
+        "maturity": 2029,
+        "type": "fixed"
+      }
+    ]
+  },
+  "maturity_profile": {
+    "by_year": {
+      "2029": 1510,
+      "2032": 1500,
+      "2052": 1000
+    },
+    "weighted_avg_maturity_years": 9.9,
+    "near_term_M": 0,
+    "medium_term_M": 1510,
+    "long_term_M": 2500
+  },
+  "leverage_ratios": {
+    "gross_debt_to_ebitda": 0.59,
+    "net_debt_to_ebitda": -0.97,
+    "debt_to_equity": 0.064,
+    "debt_to_assets": 0.053,
+    "net_debt_M": -6540,
+    "net_cash_position": true
+  },
+  "coverage_ratios": {
+    "ebitda_to_interest": 45.0,
+    "ebit_to_interest": 51.8,
+    "fcf_to_debt": 1.68,
+    "fcf_to_interest": 44.9,
+    "debt_paydown_years": 0.6
+  },
+  "covenant_headroom": {
+    "leverage_covenant": {
+      "threshold": 3.5,
+      "actual": -0.97,
+      "headroom": 4.47,
+      "compliant": true,
+      "pct_headroom": 127.7
+    },
+    "coverage_covenant": {
+      "threshold": 3.0,
+      "actual": 45.0,
+      "headroom": 42.0,
+      "compliant": true
+    },
+    "current_ratio_covenant": {
+      "threshold": 1.0,
+      "actual": 2.85,
+      "headroom": 1.85,
+      "compliant": true
+    }
+  },
+  "stress_test": [
+    {
+      "ebitda_decline_pct": 0.0,
+      "stressed_ebitda_M": 6750.0,
+      "net_leverage": -0.97,
+      "interest_coverage": 45.0,
+      "leverage_breach": false,
+      "coverage_breach": false,
+      "any_breach": false
+    },
+    {
+      "ebitda_decline_pct": -10.0,
+      "stressed_ebitda_M": 6075.0,
+      "net_leverage": -1.08,
+      "interest_coverage": 40.5,
+      "leverage_breach": false,
+      "coverage_breach": false,
+      "any_breach": false
+    },
+    {
+      "ebitda_decline_pct": -20.0,
+      "stressed_ebitda_M": 5400.0,
+      "net_leverage": -1.21,
+      "interest_coverage": 36.0,
+      "leverage_breach": false,
+      "coverage_breach": false,
+      "any_breach": false
+    },
+    {
+      "ebitda_decline_pct": -30.0,
+      "stressed_ebitda_M": 4725.0,
+      "net_leverage": -1.38,
+      "interest_coverage": 31.5,
+      "leverage_breach": false,
+      "coverage_breach": false,
+      "any_breach": false
+    },
+    {
+      "ebitda_decline_pct": -40.0,
+      "stressed_ebitda_M": 4050.0,
+      "net_leverage": -1.61,
+      "interest_coverage": 27.0,
+      "leverage_breach": false,
+      "coverage_breach": false,
+      "any_breach": false
+    },
+    {
+      "ebitda_decline_pct": -50.0,
+      "stressed_ebitda_M": 3375.0,
+      "net_leverage": -1.94,
+      "interest_coverage": 22.5,
+      "leverage_breach": false,
+      "coverage_breach": false,
+      "any_breach": false
+    }
+  ],
+  "altman_z": {
+    "z_score": 47.77,
+    "zone": "Safe Zone",
+    "risk_assessment": "Low bankruptcy risk",
+    "components": {
+      "X1_wc_to_assets": 0.1973,
+      "X2_re_to_assets": 0.2,
+      "X3_ebit_to_assets": 0.1036,
+      "X4_mktcap_to_debt": 77.41,
+      "X5_sales_to_assets": 0.4619
+    }
+  },
+  "debt_capacity": {
+    "current_net_debt_M": -6540,
+    "target_leverage_capacity_M": 16665.0,
+    "max_leverage_capacity_M": 23415.0,
+    "coverage_based_capacity_M": 29740.0,
+    "binding_constraint": "leverage",
+    "binding_capacity_M": 23415.0,
+    "note": "AMD is in net cash position; substantial debt capacity available"
+  },
+  "liquidity": {
+    "sources": {
+      "cash_M": 10550,
+      "revolver_available_M": 3000,
+      "annual_fcf_M": 6740,
+      "total_liquidity_M": 13550
+    },
+    "uses": {
+      "near_term_maturities_M": 0,
+      "annual_capex_M": 1400
+    },
+    "coverage_years": 9.7,
+    "fcf_coverage_ratio": 4.8,
+    "assessment": "Excellent \u2014 more than 5 years of liquidity coverage"
+  }
+}

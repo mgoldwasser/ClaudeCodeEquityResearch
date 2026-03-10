@@ -1,0 +1,82 @@
+{
+  "ticker": "AMD",
+  "model": "Comparables",
+  "date": "2026-03-09",
+  "current_price": 190.4,
+  "amd_multiples": {
+    "ticker": "AMD",
+    "ev_revenue": 8.87,
+    "ev_ebitda": 45.5,
+    "pe_trailing": 45.4,
+    "pe_forward": 28.6,
+    "peg": 0.68,
+    "ev_fcf": 45.6,
+    "gross_margin_pct": 52.0,
+    "revenue_growth_pct": 24.0
+  },
+  "z_scores": {
+    "ev_revenue": -0.41,
+    "ev_ebitda": 1.68,
+    "pe_forward": 0.03,
+    "peg": -0.28,
+    "ev_fcf": 0.4
+  },
+  "implied_range": {
+    "low": 139.49,
+    "mid": 198.09,
+    "high": 228.45
+  },
+  "comp_statistics": {
+    "ev_revenue": {
+      "mean": 12.45,
+      "median": 14.5,
+      "std_dev": 8.67,
+      "min": 2.28,
+      "max": 21.31,
+      "q25": 4.52,
+      "q75": 19.64,
+      "count": 5
+    },
+    "ev_ebitda": {
+      "mean": 28.32,
+      "median": 32.4,
+      "std_dev": 10.24,
+      "min": 12.7,
+      "max": 39.5,
+      "q25": 24.4,
+      "q75": 32.6,
+      "count": 5
+    },
+    "pe_forward": {
+      "mean": 28.32,
+      "median": 30.3,
+      "std_dev": 8.73,
+      "min": 14.8,
+      "max": 38.0,
+      "q25": 25.9,
+      "q75": 32.6,
+      "count": 5
+    },
+    "peg": {
+      "mean": 0.78,
+      "median": 0.94,
+      "std_dev": 0.36,
+      "min": 0.23,
+      "max": 0.99,
+      "q25": 0.76,
+      "q75": 0.96,
+      "count": 4
+    },
+    "ev_fcf": {
+      "mean": 39.55,
+      "median": 45.45,
+      "std_dev": 15.17,
+      "min": 17.3,
+      "max": 50.0,
+      "q25": 36.28,
+      "q75": 48.72,
+      "count": 4
+    }
+  },
+  "outliers": []
+}

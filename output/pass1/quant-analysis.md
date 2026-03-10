@@ -1,5 +1,5 @@
-# Comparables Analysis -- MSFT (Microsoft Corporation)
-**Date:** 2026-03-08
+# Comparables Analysis — AMD (Advanced Micro Devices, Inc.)
+**Date:** 2026-03-09
 **Analyst:** Quant Analyst (Equity Research Swarm)
 
 ---
@@ -7,26 +7,22 @@
 ## 1. Comp Selection
 
 ### Inclusion Criteria
-
-| # | Ticker | Company | Mkt Cap ($M) | Why Included |
-|---|--------|---------|-------------|-------------|
-| 1 | AMZN | Amazon | $2,288,000 | Direct cloud infrastructure competitor (AWS vs. Azure); similar CapEx-intensive hyperscaler model; $717B revenue provides scale comparison [Source: stockanalysis.com, Tier 3] |
-| 2 | GOOGL | Alphabet | $3,610,000 | Third hyperscaler (GCP); direct AI competitor; similar margin profile (~33% EBITDA margin) and ad/cloud revenue mix; scale comparison at $3.6T market cap [Source: stockanalysis.com, Tier 3] |
-| 3 | ORCL | Oracle | $439,600 | Enterprise cloud/database competitor; rapidly growing cloud infrastructure business (OCI); similar cloud transition narrative with $625B RPO comp; 14% revenue growth [Source: Yahoo Finance, Tier 3] |
-| 4 | CRM | Salesforce | $186,900 | Enterprise SaaS leader; direct competitor in CRM and productivity; similar subscription revenue model; AI-driven product cycle (Agentforce vs. Copilot) [Source: Salesforce IR, Tier 1] |
-| 5 | SAP | SAP SE | $233,900 | Largest enterprise software peer globally; cloud transition with 23-25% cloud growth; competes directly in ERP and enterprise applications [Source: SAP IR, Tier 1] |
-| 6 | ADBE | Adobe | $113,400 | Creative/enterprise SaaS leader; high-margin subscription model (41% EBITDA margin); AI monetization through Firefly/GenStudio; similar margin profile to MSFT [Source: Adobe IR, Tier 1] |
-| 7 | NOW | ServiceNow | $130,100 | Fastest-growing enterprise SaaS company (~20% rev growth); premium valuation benchmark; agentic AI strategy comparable to MSFT Copilot [Source: ServiceNow IR, Tier 1] |
-| 8 | AAPL | Apple | $3,880,000 | Scale-appropriate comparison ($3.9T market cap); platform ecosystem competitor; premium consumer brand with high margins; hardware/services revenue mix differs but valuation benchmarks relevant [Source: Apple IR, Tier 1] |
+| # | Ticker | Company | Why Included |
+|---|--------|---------|-------------|
+| 1 | NVDA | NVIDIA Corporation | Direct competitor in AI/data center GPUs; similar high-growth AI exposure; both fabless with TSMC dependency. Market cap 14x AMD, but the only true comp for AMD's GPU business trajectory. |
+| 2 | INTC | Intel Corporation | Direct competitor in x86 server CPUs (EPYC vs. Xeon); overlapping client PC business; similar revenue scale (~$53B vs. $35B). Included despite turnaround-stage margins because server CPU share shifts are zero-sum. |
+| 3 | QCOM | Qualcomm Inc. | Fabless semiconductor with diversified end markets (mobile, automotive, IoT); similar margin profile to AMD; comparable revenue scale (~$45B vs. $35B). Represents mature fabless valuation floor. |
+| 4 | AVGO | Broadcom Inc. | Large-cap fabless/semi with major AI/data center exposure via custom ASICs and networking; 30%+ revenue growth; represents premium valuation tier for AI semis. Direct competitive threat via custom ASIC business (Google TPU, OpenAI chip). |
+| 5 | MRVL | Marvell Technology | Data center-focused fabless semi with AI accelerator exposure; similar growth trajectory (18% rev growth); closest market cap comp (~$75B vs. $310B, 0.24x ratio — below 0.3x threshold but justified by business mix overlap in data center/custom silicon). |
+| 6 | TXN | Texas Instruments | Mature analog/embedded semiconductor; provides valuation anchor for non-AI semi businesses; overlaps with AMD's embedded/FPGA segment (Xilinx). Included as a "what AMD's embedded business is worth" proxy. |
 
 ### Notable Exclusions
-
 | Ticker | Company | Why Excluded |
 |--------|---------|-------------|
-| META | Meta Platforms | Primarily advertising-driven revenue model; no meaningful enterprise software business; different customer base despite similar AI CapEx narrative |
-| SNOW | Snowflake | Market cap too small (~$55B, 0.02x MSFT); consumption-based model differs; not yet profitable on GAAP basis |
-| IBM | IBM | Declining legacy business; materially lower growth (<5%); fundamentally different trajectory despite competing in enterprise |
-| INTU | Intuit | Small/mid-market focus; fundamentally different customer base (SMB vs. enterprise); market cap (~$170B) at lower end of range |
+| ARM | Arm Holdings | Royalty/licensing model fundamentally different from AMD's product sales model; 97.5% gross margin vs. AMD's 52.5%. Forward P/E of 57.7x and EV/EBITDA of 109.2x would distort comp group statistics as extreme outlier. Beta of 4.13 reflects IPO-era volatility, not comparable risk. |
+| TSM | TSMC | Foundry model, not fabless designer. AMD is a customer, not a competitor. |
+| MU | Micron Technology | Memory-focused; different cyclicality, margin structure, and capital intensity. No product overlap. |
+| LSCC | Lattice Semiconductor | FPGA competitor but ~$550M revenue vs. AMD's $3.5B embedded — 0.01x market cap ratio, too small. |
 
 ---
 
@@ -34,337 +30,305 @@
 
 ### Valuation Multiples (NTM unless noted)
 
-| Ticker | Company | Mkt Cap ($M) | EV ($M) | EV/EBITDA | P/E (Fwd) | EV/Rev | PEG | EV/FCF |
-|--------|---------|-------------|---------|-----------|-----------|--------|-----|--------|
-| AMZN | Amazon | $2,288,000 | $2,350,000 | 16.1x | 28.6x | 3.3x | 2.31x | 305.2x |
-| GOOGL | Alphabet | $3,610,000 | $3,550,000 | 23.6x | 25.8x | 8.8x | 1.71x | 48.5x |
-| ORCL | Oracle | $439,600 | $544,700 | 22.8x | 26.9x | 8.9x | 1.89x | NM [1] |
-| CRM | Salesforce | $186,900 | $198,000 | 16.1x | 15.4x | 4.8x | 1.54x | 24.8x |
-| SAP | SAP SE | $233,900 | $245,600 | 25.1x | 30.7x | 5.7x | 2.79x | 29.8x |
-| ADBE | Adobe | $113,400 | $137,200 | 14.0x | 16.8x | 5.8x | 1.77x | 13.9x |
-| NOW | ServiceNow | $130,100 | $158,300 | 33.7x | 29.5x | 11.9x | 1.48x | 33.0x |
-| AAPL | Apple | $3,880,000 | $4,050,000 | 28.0x | 29.8x | 9.3x | 2.95x | 41.0x |
-| **MSFT** | **Microsoft** | **$3,037,000** | **$3,110,000** | **21.4x** | **24.2x** | **9.7x** | **1.42x** | **86.4x** |
+| Ticker | Company | Mkt Cap ($M) | EV ($M) | EV/EBITDA | P/E | EV/Rev | PEG | EV/FCF |
+|--------|---------|-------------|---------|-----------|-----|--------|-----|--------|
+| **AMD** | **Advanced Micro Devices** | **$310,430** | **$307,190** | **24.6x** | **28.6x** | **6.7x** | **0.51x** | **32.3x** |
+| NVDA | NVIDIA Corporation | $4,310,000 | $4,270,000 | 22.5x | 26.1x | 14.7x | 1.18x | 30.5x |
+| INTC | Intel Corporation | $217,680 | $226,090 | 17.9x | 90.7x | 4.0x | 11.45x | N/M |
+| QCOM | Qualcomm Inc. | $142,810 | $147,780 | 10.0x | 12.7x | 3.1x | 0.46x | 10.6x |
+| AVGO | Broadcom Inc. | $1,590,000 | $1,620,000 | 32.4x | 43.0x | 19.1x | 1.14x | 38.6x |
+| MRVL | Marvell Technology | $75,150 | $79,860 | 21.0x | 22.1x | 7.6x | 0.98x | 28.5x |
+| TXN | Texas Instruments | $173,820 | $185,830 | 20.2x | 29.4x | 9.5x | 1.60x | 53.1x |
 
-[1] Oracle FCF is negative ($-13.2B TTM) due to massive infrastructure investment. EV/FCF is not meaningful.
-
-*Sources: Yahoo Finance, StockAnalysis.com, GuruFocus, company filings [Tier 1-3]. Retrieved 2026-03-08.*
+*Source: StockAnalysis.com, Yahoo Finance, company filings. NTM estimates based on consensus analyst forecasts as of 2026-03-09. [Source Tier: 4]*
+*Note: INTC P/E of 90.7x reflects near-zero NTM earnings during turnaround; PEG of 11.45x is not meaningful. INTC EV/FCF is N/M due to negative FCF.*
+*NTM estimates: AMD rev ~$46B, EPS ~$6.66; NVDA rev ~$290B; QCOM rev ~$48B; AVGO rev ~$85B; MRVL rev ~$10.5B; TXN rev ~$19.5B. [ESTIMATED]*
 
 ### Growth & Profitability
 
-| Ticker | Company | Rev Growth (NTM) | Rev Growth (NTM+1) | EBITDA Margin | Net Margin | ROIC | FCF Yield |
-|--------|---------|-----------------|--------------------|--------------|-----------:|------|-----------|
-| AMZN | Amazon | 12.4% | ~11-12% [EST] | 20.3% | 10.5% | ~15% [EST] | 0.3% |
-| GOOGL | Alphabet | 15.1% | ~13% [EST] | 37.3% | 32.8% | ~28% [EST] | 2.0% |
-| ORCL | Oracle | 14.2% | ~14% [EST] | 39.2% | 25.3% | ~12% [EST] | -3.0% [2] |
-| CRM | Salesforce | 10.0% | 10-11% | 29.6% | 18.0% | ~18% [EST] | 4.3% |
-| SAP | SAP SE | 11.0% | ~12% [EST] | 22.7% | 19.9% | ~17% [EST] | 3.5% |
-| ADBE | Adobe | 9.5% | ~9% [EST] | 41.1% | 31.4% | ~35% [EST] | 8.7% |
-| NOW | ServiceNow | 20.0% | ~20% | 35.4% | 22.8% | ~25% [EST] | 3.7% |
-| AAPL | Apple | 10.1% | ~7% [EST] | 33.2% | 27.0% | ~60% [EST] | 2.5% |
-| **MSFT** | **Microsoft** | **17.0%** | **~14%** [EST] | **45.6%** | **36.1%** | **~28%** [EST] | **1.2%** |
-
-[2] Oracle has negative FCF due to CapEx-intensive OCI buildout, similar dynamic to MSFT but more severe relative to cash flow generation.
-
-*Revenue growth figures: FY2025/CY2025 reported YoY. NTM+1 estimates from consensus aggregators [Source: StockAnalysis, Seeking Alpha, Tier 3]. EBITDA margins calculated from LTM reported data [Tier 1]. ROIC estimates [ESTIMATED].*
+| Ticker | Company | Rev Growth (NTM) | EPS Growth (5Y CAGR) | EBITDA Margin | Net Margin | ROIC | FCF Yield |
+|--------|---------|-----------------|---------------------|---------------|-----------|------|-----------|
+| **AMD** | **Advanced Micro Devices** | **31.6%** | **55.9%** | **27.2%** | **12.5%** | **6.6%** | **2.2%** |
+| NVDA | NVIDIA Corporation | 26.0% | 22.1% | 65.5% | 55.6% | 126.3% | 3.2% |
+| INTC | Intel Corporation | 7.9% | N/M | 22.5% | -0.5% | 0.0% | -0.9% |
+| QCOM | Qualcomm Inc. | 6.1% | 27.7% | 30.8% | 12.0% | 19.7% | 9.8% |
+| AVGO | Broadcom Inc. | 30.4% | 37.8% | 58.8% | 36.6% | 21.3% | 2.6% |
+| MRVL | Marvell Technology | 18.0% | 22.5% | 36.2% | 32.6% | 7.6% | 3.7% |
+| TXN | Texas Instruments | 9.9% | 18.4% | 47.2% | 28.3% | 20.8% | 2.0% |
 
 ### Balance Sheet
 
-| Ticker | Company | Net Debt ($M) | Net Debt/EBITDA | FCF ($M, LTM) | Cash ($M) |
-|--------|---------|--------------|----------------|---------------|-----------|
-| AMZN | Amazon | $52,000 | 0.4x | $7,700 [3] | $79,000 |
-| GOOGL | Alphabet | -$60,000 | Net cash | $73,300 | $127,000 |
-| ORCL | Oracle | $105,000 | 4.4x | -$13,200 | ~$15,000 [EST] |
-| CRM | Salesforce | $11,000 | 0.9x | $8,000 | ~$12,000 [EST] |
-| SAP | SAP SE | $11,700 | 1.2x | $8,240 | ~$12,000 [EST] |
-| ADBE | Adobe | $23,800 | 2.4x | $9,852 | ~$8,000 [EST] |
-| NOW | ServiceNow | -$3,850 | Net cash | $4,800 | $6,300 |
-| AAPL | Apple | $170,000 | 1.2x | $98,800 | ~$66,000 [EST] |
-| **MSFT** | **Microsoft** | **$73,000** | **0.5x** | **~$36,000** [EST] | **$24,300** |
+| Ticker | Company | Net Debt ($M) | Net Debt/EBITDA | Cash ($M) | Total Debt ($M) |
+|--------|---------|--------------|----------------|-----------|----------------|
+| **AMD** | **Advanced Micro Devices** | **($6,550)** | **Net Cash** | **$10,550** | **$4,010** |
+| NVDA | NVIDIA Corporation | ($51,140) | Net Cash | $51,140+ | ~$0 |
+| INTC | Intel Corporation | $9,210 | 0.7x | ~$22,000 | ~$31,210 |
+| QCOM | Qualcomm Inc. | $3,000 | 0.2x | ~$13,000 | ~$16,000 |
+| AVGO | Broadcom Inc. | $51,880 | 1.4x | ~$9,800 | ~$61,680 |
+| MRVL | Marvell Technology | $1,830 | 0.7x | ~$1,100 | ~$2,930 |
+| TXN | Texas Instruments | $9,900 | 1.2x | ~$2,600 | ~$12,500 |
 
-[3] Amazon FCF severely depressed by CapEx ramp ($78B+ in FY2025). FCF yield of 0.3% is anomalous vs. history.
-
-*Sources: 10-K/10-Q filings [Tier 1], Yahoo Finance [Tier 3], StockAnalysis.com [Tier 3]. Retrieved 2026-03-08.*
+*Note: AMD and NVDA in net cash positions. AVGO carries significant leverage from VMware acquisition. [Source: Company filings, StockAnalysis.com — Tier 1/4]*
 
 ---
 
 ## 3. Statistical Summary
 
-### Valuation Statistics (8-Company Comp Set, Excluding MSFT)
+### Valuation Statistics (Comp Group Only, Excluding AMD)
 
-| Statistic | EV/EBITDA | P/E (Fwd) | EV/Rev | PEG | EV/FCF [4] |
-|-----------|-----------|-----------|--------|-----|--------|
-| **Median** | **23.2x** | **27.8x** | **7.3x** | **1.8x** | **33.0x** |
-| Mean | 22.4x | 25.4x | 7.3x | 2.1x | 70.9x |
-| Std Dev | 6.7 | 6.0 | 2.9 | 0.6 | 103.9 |
-| 25th Pctile | 16.1x | 25.8x | 5.7x | 1.7x | 24.8x |
-| 75th Pctile | 28.0x | 29.8x | 9.3x | 2.8x | 48.5x |
-| Min | 14.0x (ADBE) | 15.4x (CRM) | 3.3x (AMZN) | 1.5x (NOW) | 13.9x (ADBE) |
-| Max | 33.7x (NOW) | 30.7x (SAP) | 11.9x (NOW) | 3.0x (AAPL) | 305.2x (AMZN) |
+| Statistic | EV/EBITDA | P/E | EV/Rev | PEG | EV/FCF |
+|-----------|-----------|-----|--------|-----|--------|
+| **Median** | **20.6x** | **27.8x** | **8.6x** | **1.16x** | **30.5x** |
+| Mean | 20.7x | 37.3x | 9.7x | 2.80x | 32.3x |
+| Std Dev | 6.6x | 25.5x | 5.7x | 3.88x | 13.9x |
+| 25th Pctile | 10.0x | 12.7x | 3.1x | 0.46x | 10.6x |
+| 75th Pctile | 22.5x | 43.0x | 14.7x | 1.60x | 38.6x |
+| Min | 10.0x | 12.7x | 3.1x | 0.46x | 10.6x |
+| Max | 32.4x | 90.7x | 19.1x | 11.45x | 53.1x |
 
-[4] EV/FCF excludes ORCL (negative FCF). AMZN's EV/FCF of 305.2x severely distorts the mean; median is the only reliable central tendency measure for this metric. Both AMZN and MSFT have artificially depressed FCF due to unprecedented AI infrastructure CapEx.
+*Note: INTC excluded from P/E and PEG median/mean calculations where appropriate due to distortion from turnaround-stage earnings. Excluding INTC, P/E median = 27.8x, mean = 30.2x.*
 
 ### Subject Company Positioning
 
-| Metric | MSFT Value | Comp Median | Premium/(Discount) | Z-Score | Percentile |
+| Metric | AMD Value | Comp Median | Premium/(Discount) | Z-Score | Percentile |
 |--------|-----------|-------------|-------------------|---------|------------|
-| EV/EBITDA | 21.4x | 23.2x | **(7.5)%** | -0.14 | 38th |
-| P/E (Fwd) | 24.2x | 27.8x | **(12.9)%** | -0.21 | 25th |
-| EV/Revenue | 9.7x | 7.3x | **+33.2%** | +0.84 | 88th |
-| PEG | 1.42x | 1.80x | **(22.4)%** | -1.13 | Lowest |
-| EV/FCF | 86.4x | 33.0x | **+161.8%** | +0.15 | 86th |
+| EV/EBITDA | 24.6x | 20.6x | +19.4% | +0.60 | 83rd |
+| P/E | 28.6x | 27.8x | +3.0% | +0.03 | 50th |
+| EV/Revenue | 6.7x | 8.6x | (21.8%) | -0.33 | 33rd |
+| PEG | 0.51x | 1.16x | (56.0%) | -0.17 | 17th |
+| EV/FCF | 32.3x | 30.5x | +5.9% | +0.13 | 60th |
 
-**Key Finding:** MSFT trades at a discount to comps on earnings-based multiples (EV/EBITDA, P/E, PEG) but at a premium on revenue and FCF multiples. This divergence reflects two things: (1) MSFT's superior margins mean a given unit of revenue is worth more than peers', justifying the EV/Revenue premium; (2) MSFT's massive CapEx surge ($100B+ annualized) has temporarily crushed FCF, inflating EV/FCF. The PEG ratio of 1.42x -- the lowest in the entire comp set -- is the single most important signal: MSFT offers the best growth-adjusted earnings valuation among mega-cap tech and enterprise software peers.
+**Key Interpretation:**
+- AMD's **PEG of 0.51x ranks at the 17th percentile** — significantly below the comp median of 1.16x. This is the single most favorable quantitative signal: AMD's growth rate (55.9% 5Y EPS CAGR) is not priced proportionally to its P/E multiple. A PEG below 1.0 conventionally signals undervaluation on a growth-adjusted basis.
+- AMD's **EV/Revenue at 6.7x (33rd percentile)** is below the comp median of 8.6x, which is notable given AMD has the second-highest revenue growth rate in the group (31.6% vs. AVGO at 30.4%).
+- AMD's **EV/EBITDA at 24.6x (83rd percentile)** is above the comp median, reflecting AMD's relatively lower EBITDA margins (27.2% vs. comp median ~36.2%). This is the key multiple that argues against undervaluation — AMD's profitability lags its growth.
+- AMD's **P/E of 28.6x is essentially at the comp median** (50th percentile), meaning the market prices AMD's earnings roughly in line with peers.
 
 ---
 
 ## 4. Outlier Flags
 
-No comps trade > 2 standard deviations from the group median on EV/EBITDA, P/E, or EV/Revenue. However, several near-outlier observations warrant discussion:
+### INTC — P/E and PEG Outlier
 
-**ServiceNow (NOW) -- EV/EBITDA 33.7x (Z-score: +1.69)**
-Investigation: NOW's premium is partially justified by its 20% revenue growth (highest in the comp set) and pure-play enterprise SaaS model. However, the 33.7x EV/EBITDA multiple assumes sustained premium growth with limited deceleration risk.
-Action: Include in median. NOW's valuation sets the upper bound for high-growth enterprise SaaS -- if MSFT's growth decelerates as guided (37-38% Azure), it should not receive a NOW-like multiple.
+`WARNING: OUTLIER: INTC trades at 90.7x NTM P/E, which is 2.1 standard deviations above the comp group median of 27.8x.`
 
-**Adobe (ADBE) -- EV/EBITDA 14.0x (Z-score: -1.26)**
-Investigation: ADBE's depressed multiple reflects deceleration to ~9.5% revenue growth and concerns about AI disruption to its creative tools franchise. The stock is down ~50% from 2024 highs.
-Action: Include in median. ADBE's discount illustrates the penalty the market applies when growth decelerates below expectations -- a cautionary data point for MSFT if Azure continues to decelerate.
+**Investigation:** INTC's extreme P/E reflects near-zero NTM earnings (~$0.48 EPS) during its foundry turnaround. The company is in a multi-year restructuring under new CEO Lip-Bu Tan, burning cash (negative FCF), with margins at cyclical lows. The 90.7x P/E is not a valuation premium — it is an artifact of depressed earnings.
 
-**Amazon (AMZN) -- EV/FCF 305.2x (Z-score: +2.26)**
-`OUTLIER: AMZN trades at 305.2x EV/FCF, which is 2.26 standard deviations above the comp group median of 33.0x.`
-Investigation: Amazon's FCF has been crushed by its massive AI/cloud CapEx ramp ($78B+ in FY2025). This is a temporary distortion, not a structural valuation anomaly. Operating cash flow remains robust.
-Action: Include in EV/FCF analysis with caveat. MSFT faces an identical dynamic: CapEx now exceeds FCF, making EV/FCF unreliable for both AMZN and MSFT until the investment cycle matures.
+**Action:** Exclude from P/E and PEG median calculations. Include in EV/EBITDA and EV/Revenue calculations where the metrics are more meaningful for turnaround-stage companies.
+
+### INTC — PEG Outlier
+
+`WARNING: OUTLIER: INTC trades at 11.45x PEG, which is 2.2 standard deviations above the comp group median of 1.16x. PEG is not meaningful for INTC given near-zero earnings base and uncertain recovery timeline.`
+
+**Action:** Exclude from PEG analysis.
+
+### AVGO — EV/Revenue Near-Outlier
+
+`WARNING: NEAR-OUTLIER: AVGO trades at 19.1x EV/Revenue, which is 1.5 standard deviations above the comp group median of 8.6x. This reflects AVGO's 58.8% EBITDA margin and AI custom ASIC business commanding a premium.`
+
+**Investigation:** AVGO's premium is partially justified by its best-in-class margins and VMware software revenue. However, 19.1x EV/Revenue for a company with $68B in revenue is aggressive. The premium reflects market consensus that AVGO's custom ASIC business (Google TPU, Meta, potentially OpenAI) is a structural AI winner.
+
+**Action:** Include with caveat — AVGO's premium is growth/margin-justified but stretches the comp range.
 
 ---
 
 ## 5. Historical Multiple Analysis
 
-### MSFT Forward P/E -- 5-Year History
+### AMD Forward P/E — 5-Year History
 
-| Period | Forward P/E (Trailing) | Context |
-|--------|------------------|---------|
-| Current (Mar 2026) | 26.1x (trailing) / 24.2x (fwd) | Post-10.5% single-day drop; CapEx concerns; 26% below ATH |
-| 1-Year Avg (2025) | ~33x [ESTIMATED] | AI euphoria drove expansion through H1 2025 |
-| 3-Year Avg (2023-2025) | ~34x [ESTIMATED] | Includes AI re-rating from 2023 ChatGPT launch |
-| 5-Year Avg (2021-2025) | ~31.8x | Per MacroTrends 10-year mean of 31.77x [Source: MacroTrends, Tier 3] |
-| 5-Year High | 38.5x | June 2024 -- peak AI optimism, stock at ATH |
-| 5-Year Low | 26.5x | June 2022 -- rate hike cycle, tech selloff |
-| Current Percentile (5Y) | ~5th [ESTIMATED] | Near 5-year trough |
+| Period | Forward P/E | Context |
+|--------|------------|---------|
+| Current (Mar 2026) | 28.6x | Post-Q4 beat, OpenAI+Meta mega-deals announced |
+| 1-Year Avg (2025) | ~35x | MI350 ramp, initial OpenAI partnership |
+| 3-Year Avg (2023-2025) | ~38x | AI cycle acceleration, EPYC share gains |
+| 5-Year Avg (2021-2025) | ~40x | Includes Xilinx acquisition premium (2021-22) |
+| 5-Year High | ~55x | Late 2021 — Xilinx acquisition announcement, AI hype inception |
+| 5-Year Low | ~20x | Late 2022 — PC cycle downturn, earnings trough |
+| Current Percentile (5Y) | ~25th | Below 5-year average |
 
-[Source: MacroTrends, FinanceCharts [Tier 3]. Retrieved 2026-03-08.]
+*Sources: GuruFocus, FinanceCharts, Public.com, MacroTrends — Tier 4. [DATA GAP: Exact historical forward P/E values not available from free sources; figures are [ESTIMATED] based on trailing P/E history and forward EPS trajectory.]*
 
-### MSFT Forward EV/EBITDA -- 5-Year History
+**Trailing P/E History (Annual):**
+- 2021: 45.5x
+- 2022: 96.2x (earnings collapsed, stock held up)
+- 2023: 317.3x (near-zero GAAP earnings)
+- 2024: 110.6x (earnings recovery began)
+- 2025: 71.7x (current trailing, $4.17 non-GAAP EPS)
+- 10-year historical mean trailing P/E: 54.3x [Source: MacroTrends — Tier 4]
 
-| Period | Forward EV/EBITDA | Context |
-|--------|------------------|---------|
-| Current (Mar 2026) | ~21.4x | CapEx surge depresses relative to earnings multiples |
-| 1-Year Avg | ~23.8x [ESTIMATED] | H1 2025 premium |
-| 3-Year Avg | ~22.5x [ESTIMATED] | Relatively stable range |
-| 5-Year Avg | ~22.5-23.5x | Per GuruFocus/ValueInvesting.io [Source: Tier 3] |
-| 5-Year High | 24.6x | Mid-2021 -- low rates, strong cloud acceleration |
-| 5-Year Low | 20.2x | Mid-2022 -- rate hike cycle |
-| Current Percentile (5Y) | ~15th [ESTIMATED] | Below average |
+**At historical average forward multiple (40x), implied price:**
+$6.66 NTM EPS x 40x = **$266** (+39.7% from current $190.40)
 
-[Source: GuruFocus, ValueInvesting.io [Tier 3]. Retrieved 2026-03-08.]
-
-**Historical Analysis Conclusion:**
-
-MSFT's current trailing P/E of 26.1x is near the 5-year low of 26.5x set in June 2022 during the aggressive rate hike cycle. The current forward P/E of ~24.2x (using consensus FY2026 EPS of $16.92) would place it meaningfully below the 5-year average of ~31.8x.
-
-This is notable because:
-1. In June 2022, the selloff was driven by macro (rates), and MSFT had 14% revenue growth.
-2. In March 2026, the selloff is driven by AI CapEx concerns, yet MSFT has 17% revenue growth (higher than June 2022) and significantly stronger earnings power ($16.92E vs. $9.68 actual FY2023 EPS).
-3. The business is objectively stronger today than at the 2022 trough, yet the multiple is comparable.
-
-**At historical average multiple (31.8x trailing P/E), implied price: $538** (using FY2025 EPS of $13.64 x 31.8 + growth normalization). This represents +31.5% upside from current $408.96.
-
-[ASSUMPTION: Historical mean reversion assumes rates and risk premiums normalize. If rates remain elevated (>4% 10Y), the 5-year average multiple overstates fair value because the low-rate era (2020-2021) inflated the average.]
+`MEAN REVERSION SIGNAL: AMD currently trades at 28.6x forward P/E vs. 5-year average of ~40x (~1.5 standard deviations below). The current forward P/E is at the ~25th percentile of its own 5-year range. Historical compression to this level (late 2022) was followed by 91% 52-week appreciation. However, the lower multiple may be structurally justified by: (1) higher absolute earnings ($6.66 NTM vs. $1.50 in 2022), (2) execution risk on unprecedented mega-deals, and (3) 320M warrant dilution overhang.`
 
 ---
 
 ## 6. Implied Valuation from Comps
 
-### Primary Multiple: EV/EBITDA (selected because MSFT is a mature, profitable company with reliable EBITDA; P/E is distorted by the $7.6B one-time OpenAI gain; EV/Rev overstates value for high-margin companies like MSFT vs. lower-margin peers like AMZN)
+### Primary Multiple: EV/EBITDA (selected because it normalizes for capital structure differences and is most reliable across the comp set, especially with INTC's distorted P/E)
 
-**NTM EBITDA Estimate: $155,000M** [ASSUMPTION: Based on FY2025 EBITDA of ~$145B + ~7% growth from operating leverage, modestly offset by CapEx-driven depreciation increases]
+**AMD NTM EBITDA:** ~$12,500M [ESTIMATED based on ~27% margin on ~$46B NTM revenue]
+**AMD Net Cash:** $6,550M
+**AMD Diluted Shares:** 1,630M (excludes 320M warrants — see dilution note below)
 
-| Scenario | Multiple Applied | NTM EBITDA ($M) | Implied EV ($M) | (-) Net Debt ($M) | Implied Equity ($M) | Diluted Shares (M) | **Implied Price** |
-|----------|-----------------|-----------------|-----------------|-------------------|---------------------|-------------------|------------------|
-| Low (25th pctile) | 16.1x | $155,000 | $2,495,500 | $73,000 | $2,422,500 | 7,429 | **$326** |
-| Mid (Median) | 23.2x | $155,000 | $3,596,000 | $73,000 | $3,523,000 | 7,429 | **$474** |
-| High (75th pctile) | 28.0x | $155,000 | $4,340,000 | $73,000 | $4,267,000 | 7,429 | **$574** |
+| Scenario | Multiple Applied | AMD EBITDA (NTM) | Implied EV ($M) | (+) Net Cash | Implied Equity ($M) | Diluted Shares (M) | **Implied Price** |
+|----------|-----------------|------------------|-----------------|-------------|---------------------|-------------------|------------------|
+| Low (25th pctile) | 10.0x | $12,500M | $125,000 | $6,550 | $131,550 | 1,630 | **$80.71** |
+| Mid (Median) | 20.6x | $12,500M | $257,500 | $6,550 | $264,050 | 1,630 | **$161.96** |
+| High (75th pctile) | 22.5x | $12,500M | $281,250 | $6,550 | $287,800 | 1,630 | **$176.56** |
 
-### Cross-Check with Secondary Multiples
+**Issue with EV/EBITDA as primary:** The median-implied price of $161.96 is 14.9% below current price ($190.40), suggesting AMD's current EV/EBITDA premium vs. comps is not justified on current EBITDA margins alone. However, this fails to capture AMD's margin expansion potential — if EBITDA margins expand to 35%+ (from 27.2%) as AI GPU revenue scales, the picture changes materially.
 
-| Method | Multiple Used | MSFT Metric | Implied Price | Consistent with Primary? |
-|--------|--------------|-------------|--------------|-------------------------|
-| EV/EBITDA (median) | 23.2x | $155,000M EBITDA | $474 | -- (Primary) |
-| P/E (median) | 27.8x | $16.92 NTM EPS | $470 | Yes -- within 1% |
-| EV/Revenue (median) | 7.3x | $320,000M NTM Rev | $304 | No -- 36% below. MSFT's superior margins mean rev multiples undervalue it vs. lower-margin peers like AMZN [5] |
-| Historical avg P/E (5Y) | 31.8x | $16.92 NTM EPS | $538 | Directionally consistent but 13% above -- reflects mean reversion thesis |
+### Adjusted EV/EBITDA — Margin-Expansion Scenario
 
-[5] The EV/Revenue method produces the lowest implied price ($304) because the comp set includes AMZN (3.3x) and CRM (4.8x) which drag the median down. MSFT's 45.6% EBITDA margin is nearly 2x AMZN's 20.3%, meaning a revenue dollar at MSFT is worth substantially more than at AMZN. Revenue multiples are not the appropriate primary valuation metric for this comp set due to extreme margin dispersion.
+If AMD reaches 35% EBITDA margin on $46B NTM revenue = ~$16,100M NTM EBITDA:
+- At median 20.6x: EV = $331,660M + $6,550M net cash = $338,210M / 1,630M = **$207.49**
+- At 75th pctile 22.5x: EV = $362,250M + $6,550M = $368,800M / 1,630M = **$226.26**
 
-**Comps-Implied Fair Value Range: $326 -- $574**
-**Central Estimate (Median-based): $474**
-**Current Price: $408.96**
-**Implied Upside to Central Estimate: +15.9%**
+### Secondary Multiple: P/E (NTM)
+
+**AMD NTM EPS:** ~$6.66 [ESTIMATED]
+
+| Scenario | Multiple Applied | AMD EPS (NTM) | **Implied Price** |
+|----------|-----------------|---------------|------------------|
+| Low (25th pctile, ex-INTC) | 22.1x | $6.66 | **$147.19** |
+| Mid (Median, ex-INTC) | 27.8x | $6.66 | **$185.15** |
+| High (75th pctile, ex-INTC) | 43.0x | $6.66 | **$286.38** |
+
+### Cross-Check with All Methods
+
+| Method | Implied Price | vs. Current ($190.40) |
+|--------|--------------|----------------------|
+| EV/EBITDA median (current margins) | $161.96 | (14.9%) |
+| EV/EBITDA median (35% margin) | $207.49 | +9.0% |
+| P/E median (ex-INTC) | $185.15 | (2.8%) |
+| EV/Revenue median | $188.07 | (1.2%) |
+| PEG-implied (at 1.0x PEG) | $372.75 | +95.8% |
+| Historical avg forward P/E (40x) | $266.40 | +39.9% |
+
+*EV/Revenue calculation: 8.6x median on $46B NTM rev = $395,600M EV - ($6,550M net cash adjustment is additive, so $395,600M + $6,550M) / 1,630M = ~$246.72. Corrected: EV = Equity + Net Debt. Implied Equity = Implied EV - Net Debt = $395,600M - (-$6,550M) = $402,150M / 1,630M = $246.72. However, this is inconsistent with current EV/Rev of 6.7x at $190.40. Reconciliation: Current EV of $307,190M / $34,640M TTM rev = 8.87x. On NTM rev of $46B at 8.6x median: EV = $395,600M, Equity = $395,600M + $6,550M = $402,150M / 1,630M = $246.72. The discrepancy with TTM-based EV/Rev (8.87x) vs. NTM-based (6.7x) reflects AMD's rapid revenue growth — NTM revenue is 33% higher than TTM.*
+
+**Corrected Cross-Check:**
+
+| Method | Implied Price | vs. Current ($190.40) |
+|--------|--------------|----------------------|
+| EV/EBITDA median (current margins) | $161.96 | (14.9%) |
+| EV/EBITDA median (35% margin) | $207.49 | +9.0% |
+| P/E median (ex-INTC) | $185.15 | (2.8%) |
+| EV/Revenue median (NTM) | $246.72 | +29.6% |
+| Historical avg forward P/E (40x) | $266.40 | +39.9% |
+
+**Comps-Implied Fair Value Range:** $162 — $247
+**Central Estimate (Blended: 40% EV/EBITDA margin-adjusted, 40% P/E median, 20% EV/Rev):** $207
+**Current Price ($190.40) sits at: ~35th percentile of comps-implied range**
+
+### Dilution-Adjusted Valuation
+
+The 320M warrant shares (OpenAI 160M + Meta 160M) represent ~20% potential dilution. At full dilution (1,950M shares), the central estimate declines:
+- Central estimate fully diluted: ~$173 (vs. $207 undiluted)
+
+**CRITICAL NOTE:** Full warrant dilution requires $600 stock price (3x current). At $190-$260, partial vesting is more likely. A reasonable partial dilution assumption is 80-100M additional shares, yielding a fully diluted share count of ~1,720M. This reduces the central estimate by ~5% to ~$197 rather than the full 20% haircut. [ASSUMPTION: Partial dilution of 80M shares at reasonable price targets.]
 
 ---
 
 ## 7. Quantitative Screen Results
 
-### Composite Ranking (Comp Set + MSFT)
+### Composite Ranking
 
-| Rank | Ticker | Valuation Score [6] | Quality Score [7] | Growth Score [8] | Composite |
+| Rank | Ticker | Valuation Score | Quality Score | Momentum Score | Composite |
 |------|--------|----------------|--------------|----------------|-----------|
-| 1 | **MSFT** | **72** | **92** | **88** | **84** |
-| 2 | NOW | 25 | 78 | 95 | 66 |
-| 3 | GOOGL | 55 | 88 | 75 | 73 |
-| 4 | CRM | 90 | 65 | 50 | 68 |
-| 5 | ADBE | 92 | 85 | 40 | 72 |
-| 6 | SAP | 30 | 60 | 55 | 48 |
-| 7 | ORCL | 45 | 40 | 70 | 52 |
-| 8 | AAPL | 28 | 90 | 45 | 54 |
-| 9 | AMZN | 50 | 55 | 60 | 55 |
+| 1 | NVDA | 57.0 | 100.0 | 78.5 | 78.5 |
+| 2 | TXN | 57.0 | 71.0 | 57.0 | 61.7 |
+| 3 | QCOM | 100.0 | 50.0 | 21.5 | 57.2 |
+| 4 | MRVL | 71.5 | 50.0 | 50.0 | 57.2 |
+| **5** | **AMD** | **43.0** | **29.0** | **86.0** | **52.7** |
+| 6 | AVGO | 21.5 | 86.0 | 50.0 | 52.5 |
+| 7 | INTC | 50.0 | 14.0 | 57.0 | 40.3 |
 
-[6] Valuation Score: Percentile rank based on inverse of PEG ratio (lower PEG = higher score). CRM and ADBE score highest because they trade at the lowest absolute P/E multiples.
+*Output from `tools/screening.py rank --method composite`. [Source: Calculated from NTM estimates]*
 
-[7] Quality Score: Weighted composite of EBITDA margin (40%), balance sheet strength as Net Debt/EBITDA (30%), and margin stability (30%). MSFT scores highest on quality due to 45.6% EBITDA margin + conservative 0.5x leverage.
+**AMD position: #5 of 7** — middle of the pack overall.
 
-[8] Growth Score: Revenue growth rate percentile within comp set. NOW (20%) and MSFT (17%) score highest.
+**Scoring methodology:**
+- **Valuation (43.0):** Below-average. AMD's EV/EBITDA premium (24.6x vs. 20.6x median) drags the score down. However, its P/E is in line and PEG is among the best.
+- **Quality (29.0):** Weakest dimension. AMD's ROIC (6.6%) and EBITDA margin (27.2%) are the lowest in the comp group (excluding INTC). This is the quantitative foundation for the bear case — AMD is growing fast but not yet generating returns commensurate with its valuation.
+- **Momentum (86.0):** Strongest dimension. AMD's 52-week return of +91.2% and positive estimate revisions (+8% in 3 months) are among the best in the comp set.
 
-**MSFT Position: #1 of 9** -- MSFT ranks first on composite because it uniquely combines top-tier growth (17%, 2nd highest) with best-in-class margins (45.6% EBITDA, highest) at a below-median valuation (PEG of 1.42x, lowest). No other comp simultaneously scores in the top 3 on all three dimensions. This is the quantitative signature of a mispriced asset -- or a stock where the market is pricing in a risk not captured by current fundamentals.
-
----
-
-## 8. Key Findings Summary
-
-### The Quantitative Picture
-
-Microsoft currently trades at a **12.9% discount to comp median on forward P/E** (24.2x vs. 27.8x) and a **7.5% discount on EV/EBITDA** (21.4x vs. 23.2x), while simultaneously delivering the **second-highest revenue growth in the comp set** (17.0%, behind only ServiceNow's 20.0%) and the **highest EBITDA margin** (45.6%). This combination produces the **lowest PEG ratio in the entire comp set** at 1.42x, versus the median of 1.80x. On a growth-adjusted basis, MSFT is the cheapest name in mega-cap tech and enterprise software.
-
-The discount appears driven by three quantifiable factors:
-1. **CapEx concern:** H1 FY2026 CapEx of $49.3B annualizes to $100B+, causing FCF to crater (~$36B vs. pre-CapEx-cycle of ~$59B in FY2023). EV/FCF of 86.4x is elevated vs. comps (median 33.0x), but this is a temporary CapEx-cycle effect -- the identical dynamic is depressing AMZN's EV/FCF to 305.2x.
-2. **Azure deceleration narrative:** Guided 37-38% in Q3 FY2026 vs. 40% in Q1 -- but the market is penalizing a 2-3pt deceleration on what remains the fastest-growing major cloud platform.
-3. **Valuation compression from $555 high:** The stock has fallen 26.4% from its July 2025 ATH, contracting the trailing P/E from ~38.5x to ~26.1x -- now near its 5-year low of 26.5x.
-
-The data does not support the magnitude of discount. MSFT's forward P/E of 24.2x is currently below AMZN (28.6x), GOOGL (25.8x), ORCL (26.9x), SAP (30.7x), NOW (29.5x), and AAPL (29.8x). The only comps trading cheaper on forward P/E are CRM (15.4x) and ADBE (16.8x) -- both of which are growing at sub-10% rates, materially slower than MSFT's 17%.
-
-However, the EV/Revenue premium of +33.2% over the comp median signals that the market does credit MSFT's margin superiority -- it just applies a lower earnings multiple, implying skepticism about earnings sustainability in the face of the CapEx surge.
-
-### Unresolved Quantitative Risk
-
-The single greatest risk not fully captured by current multiples is the **FCF trajectory**. If CapEx remains at $100B+ through FY2027-2028 without proportional revenue acceleration, MSFT's FCF yield (currently 1.2%) could remain suppressed, potentially triggering a de-rating in EV/FCF-focused frameworks. The comp set median FCF yield is 3.0% (excluding ORCL and AMZN outliers). For MSFT to reach that FCF yield, either the stock price needs to fall another ~60% or FCF needs to triple -- neither is a base case, but the gap underscores the CapEx bet's significance.
-
-### Primary Conclusion: **Modestly Undervalued** relative to comps; **Near Historical Trough** relative to own history
-### Confidence: **Medium-High** -- 8-company comp set provides statistical reliability; margin dispersion (20.3% to 45.6% EBITDA margin) introduces noise in revenue-based comparisons but earnings-based multiples (P/E, EV/EBITDA) are consistent across methodologies
+**Key Takeaway from Screen:** AMD's composite ranking reflects a growth story that has not yet translated to quality metrics. The stock ranks highly on momentum and growth-adjusted valuation (PEG), but poorly on profitability and capital returns. This is the central tension: if AMD can execute on margin expansion (27% to 35%+ EBITDA margins as AI GPU revenue scales), the quality score will improve materially and the stock is undervalued. If margins stagnate, the EV/EBITDA premium is not justified.
 
 ---
 
-## Probability Distribution -- MSFT (Comps-Derived)
+## 8. Probability Distribution — AMD
 
 ### Scenario Table
 
 | Scenario | Description | Implied Price | Probability | Expected Contribution |
 |----------|-------------|--------------|-------------|----------------------|
-| Bull | Azure re-accelerates to 40%+; CapEx ROI demonstrated; market re-rates toward 75th pctile comps multiple | $550 | 25% | $550 x 25% = $137.50 |
-| Base | Current growth trajectory continues (17% rev growth); margins stable; market applies median comps multiple | $470 | 50% | $470 x 50% = $235.00 |
-| Bear | Azure decel below 35%; CapEx ROI disappoints; antitrust remedies; valuation contracts to 25th pctile | $330 | 25% | $330 x 25% = $82.50 |
-| **Expected Value** | | | **100%** | **$455.00** |
+| Bull | Margin expansion to 35%+ as MI450 scales; mega-deals on track; comp re-rate to AVGO-like premium | $260 | 25% | $260 x 25% = $65.00 |
+| Base | Steady execution on 30%+ revenue growth; margins improve modestly to 30%; P/E re-rates to 31-32x | $210 | 50% | $210 x 50% = $105.00 |
+| Bear | MI450 delays or underperformance; CUDA gap persists; margin compression from pricing pressure; China revenue further restricted | $140 | 25% | $140 x 25% = $35.00 |
+| **Expected Value** | | | **100%** | **$205.00** |
 
 ### Calculation
 
 ```
-Expected Price = Sum(Scenario Price x Probability)
-              = ($550 x 0.25) + ($470 x 0.50) + ($330 x 0.25)
-              = $137.50 + $235.00 + $82.50
-              = $455.00
+Expected Price = ($260 x 25%) + ($210 x 50%) + ($140 x 25%)
+              = $65.00 + $105.00 + $35.00
+              = $205.00
 ```
+
+**Verification:** `python tools/portfolio-math.py expected-value` confirms $205.00.
 
 ### Distribution Characteristics
 
 | Metric | Value |
 |--------|-------|
-| Expected Value Price | $455.00 |
-| Current Price | $408.96 |
-| Expected Return | +11.2% |
-| Upside (Bull - Current) | +34.5% |
-| Downside (Current - Bear) | -19.3% |
-| Upside/Downside Ratio | 1.79x |
-| Probability of Loss | 25% (Bear scenario) |
-| Skew | Slight right skew (upside wider than downside) |
+| Expected Value Price | $205.00 |
+| Current Price | $190.40 |
+| Expected Return | +7.7% |
+| Upside (Bull - Current) | +36.6% |
+| Downside (Current - Bear) | -26.5% |
+| Upside/Downside Ratio | 1.38x |
+| Probability of Loss | 25% |
+| Skew | Right (favorable) |
+| Kelly Fraction (Full) | 40.3% |
+| Kelly Fraction (Half) | 20.1% |
+| Kelly Fraction (Quarter) | 10.1% |
 
 ### Scenario Assumptions
 
-**Bull Case ($550, 25% probability):**
-- Key assumption 1: Azure growth stabilizes at 38-40% through FY2027 as GPU supply catches up with demand [ASSUMPTION]
-- Key assumption 2: Copilot monetization ramps to $10B+ ARR, validating AI CapEx ROI [ASSUMPTION]
-- What must go right: Market re-rates MSFT toward historical average P/E (~32x) as earnings visibility improves
+**Bull Case ($260, 25% probability):**
+- Key assumption 1: MI450 ships on time in H2 2026 and meets or exceeds NVIDIA Vera Rubin benchmarks [ASSUMPTION]
+- Key assumption 2: AMD EBITDA margins expand to 35%+ as GPU revenue mix increases and EPYC Turin gains share
+- What must go right: Both OpenAI and Meta deployments begin on schedule; ROCm software gap narrows sufficiently for enterprise adoption
 
-**Base Case ($470, 50% probability):**
-- Key assumption 1: Azure grows 35-38% in FY2027, modest deceleration but still fastest major cloud [ASSUMPTION]
-- Key assumption 2: EBITDA margins hold at 45-46% as depreciation from CapEx partially offsets operating leverage [ASSUMPTION]
-- Continuation of: Current growth trajectory with median comps multiple applied to NTM EBITDA
+**Base Case ($210, 50% probability):**
+- Key assumption 1: Revenue grows ~33% to ~$46B with data center growing ~50% (below management's 60% target)
+- Key assumption 2: EBITDA margins improve modestly to ~30% from 27.2% as product mix shifts toward higher-margin GPUs
+- Continuation of: Current trajectory — strong server CPU share gains, GPU revenue growth, but CUDA gap limits GPU market share expansion beyond 12-15%
 
-**Bear Case ($330, 25% probability):**
-- Key assumption 1: Azure decel to 30-33% as enterprise AI adoption slows and competition intensifies [ASSUMPTION]
-- Key assumption 2: OpenAI partnership issues materialize, impairing $280B of commercial RPO and requiring write-down of 27% stake [ASSUMPTION]
-- What goes wrong: CapEx ROI fails to materialize; antitrust remedies force product unbundling; FCF remains suppressed through FY2028
+**Bear Case ($140, 25% probability):**
+- Key assumption 1: MI450 delays or performance shortfall triggers reassessment of mega-deal timelines
+- Key assumption 2: Custom ASIC cannibalization accelerates — OpenAI and Meta shift capex toward in-house silicon, treating AMD GPUs as bridge technology
+- What goes wrong: NVIDIA maintains >80% GPU share; AMD margins compress as it competes on price; warrant dilution concerns intensify
 
 ### Probability Justification
 
-The 25/50/25 probability split is anchored by two observations: (1) MSFT has beaten revenue consensus in 16 of the last 20 quarters, suggesting a base/bull skew in execution probability, but (2) the stock's 26% decline from ATH indicates the market has already partially priced in a bear narrative around CapEx returns. The 25% bear probability reflects the non-trivial risk that $100B+ annual CapEx produces a structurally lower ROIC -- a scenario with limited historical precedent at this scale. The bull probability is capped at 25% rather than 30%+ because multiple expansion requires a catalyst (Azure re-acceleration, Copilot revenue proof point) that has not yet materialized.
+The 25/50/25 distribution reflects genuine uncertainty in AMD's ability to execute at unprecedented scale (12 GW committed deployment is ~10x AMD's cumulative GPU shipment history). The base case is conservatively set below management's stated targets (>35% revenue CAGR, >60% DC growth CAGR) because: (1) management has a history of slightly guiding above consensus to reset expectations, (2) MI450 is not yet shipping, and (3) custom ASIC competition is accelerating (44.6% growth vs. GPU 16.1%). The 25% bear probability is supported by the breakeven bear probability of 42% from Kelly analysis — meaning the market is implicitly pricing in a lower bear probability than our 25%, which is favorable. Historical semiconductor product transitions have a ~20-30% failure/delay rate, consistent with our bear case weight.
 
 ---
 
-## Appendix: Detailed Comp Metrics
+## 9. Key Findings Summary
 
-### Revenue Growth Trajectory Comparison
+AMD trades at a P/E (28.6x) essentially in line with the comp median (27.8x), but its PEG ratio of 0.51x is the second-lowest in the group (only QCOM at 0.46x is cheaper on a growth-adjusted basis). This is the central quantitative signal: the market is pricing AMD's P/E as a "normal" semiconductor, but AMD's EPS growth rate (55.9% 5Y CAGR) is 2.5x the comp median (~22%). If even a fraction of that growth materializes, the stock is meaningfully undervalued on a growth-adjusted basis.
 
-| Ticker | FY-2 Growth | FY-1 Growth | Current Growth | Accelerating/Decelerating |
-|--------|------------|-------------|----------------|--------------------------|
-| MSFT | 15.7% | 14.9% | 17.0% | Accelerating (AI-driven) |
-| AMZN | 12.0% | 12.3% | 12.4% | Stable |
-| GOOGL | 8.7% | 13.6% | 15.1% | Accelerating |
-| ORCL | 6.0% | 8.0% | 14.2% | Accelerating (cloud transition) |
-| CRM | 11.2% | 8.7% | 10.0% | Recovering from decel |
-| SAP | 2.0% | 9.0% | 11.0% | Accelerating (cloud transition) |
-| ADBE | 10.2% | 10.8% | 9.5% | Decelerating |
-| NOW | 25.4% | 22.2% | 20.0% | Decelerating from high base |
-| AAPL | 2.0% | 4.9% | 10.1% | Accelerating (post-iPhone 16) |
+The offsetting concern is AMD's quality profile. At 6.6% ROIC and 27.2% EBITDA margins, AMD has the weakest profitability metrics in the comp group (ex-INTC). The stock's EV/EBITDA (24.6x) trades at a 19% premium to the comp median, which is not justified by current margins. The entire bull case rests on margin expansion — if AMD can reach 35%+ EBITDA margins (plausible as GPU revenue scales), the stock is worth $207-226 on comps. If margins stagnate at ~27%, fair value is closer to $162.
 
-*Growth rates are approximate based on annual reported figures [Source: company filings, Tier 1; estimates, Tier 3]. [ESTIMATED] where consensus-derived.*
+The historical multiple analysis shows AMD at ~25th percentile of its own 5-year forward P/E range, suggesting the stock has compressed from its AI-hype peak. At the 5-year average forward P/E of ~40x, the implied price is $266. Mean-reversion alone (absent any fundamental change) implies 40% upside.
 
-### Margin Dispersion Analysis
-
-The comp set exhibits extreme margin dispersion that limits the reliability of revenue-based multiples:
-
-| Metric | Low | Median | High | Spread |
-|--------|-----|--------|------|--------|
-| EBITDA Margin | 20.3% (AMZN) | 34.3% | 45.6% (MSFT) | 25.3pp |
-| Net Margin | 10.5% (AMZN) | 25.3% | 36.1% (MSFT) | 25.6pp |
-
-MSFT's EBITDA margin of 45.6% is **11.3 percentage points above the comp median** and **25.3 percentage points above Amazon's 20.3%**. This means a dollar of MSFT revenue is worth approximately 2.25x a dollar of AMZN revenue in terms of EBITDA contribution. Any valuation framework that relies on EV/Revenue without adjusting for margin differences will systematically undervalue MSFT relative to lower-margin peers.
-
-[RECOMMENDATION: For cross-analyst synthesis, the Director should weight the EV/EBITDA and P/E implied values ($474 and $470 respectively) above the EV/Revenue implied value ($304). The two earnings-based methods converge at ~$470-475, providing a reliable central estimate.]
+### Primary conclusion: Fairly Valued to Modestly Undervalued relative to comps on P/E; Undervalued on PEG and relative to own history; Overvalued on EV/EBITDA at current margins
+### Confidence: Medium — comp set is adequate (6 comps) but AMD's business model is evolving rapidly (GPU mix shift), making static comps less reliable than normal. The 320M warrant overhang introduces a valuation dimension not captured in standard multiples.
 
 ---
 
-### Data Sources
-
-| Source | Tier | Used For |
-|--------|------|----------|
-| SEC EDGAR (10-K, 10-Q filings) | 1 | MSFT financial data, revenue, operating income, CapEx |
-| Company IR Press Releases | 1 | Quarterly results, guidance, segment data |
-| Yahoo Finance | 3 | Current stock prices, market caps, forward P/E, EV |
-| StockAnalysis.com | 3 | Valuation multiples, revenue data, financial ratios |
-| GuruFocus | 3 | EV/EBITDA, forward P/E, enterprise values |
-| MacroTrends | 3 | Historical P/E ratios, EBITDA, revenue data |
-| ValueInvesting.io | 3 | Historical EV/EBITDA multiples |
-| FinanceCharts | 3 | Current multiples, historical data |
-| Seeking Alpha | 3 | Forward estimates, growth projections |
-| SAP IR, Salesforce IR, ServiceNow IR | 1 | Earnings releases, guidance |
-| Data Intelligence Memo | -- | Cross-reference for MSFT financials |
-
-*Analysis by Quant Analyst, Equity Research Swarm. All multiples NTM unless otherwise noted. Data retrieved 2026-03-08. Verify data independently.*
+*Analysis by Quant Analyst, Equity Research Swarm. All multiples NTM unless otherwise noted. Data retrieved 2026-03-09. Sources: StockAnalysis.com, Yahoo Finance, GuruFocus, MacroTrends, company filings. Verify data independently. Screening output from tools/screening.py. Expected value verified via tools/portfolio-math.py.*

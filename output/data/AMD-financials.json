@@ -1,0 +1,69 @@
+{
+  "ticker": "AMD",
+  "retrieval_date": "2026-03-09",
+  "fiscal_year_end": "December",
+  "fy2025": {
+    "revenue_M": 34639,
+    "gross_margin_gaap_pct": 50.0,
+    "gross_margin_nongaap_pct": 52.0,
+    "operating_income_gaap_M": 3694,
+    "operating_income_nongaap_M": 7768,
+    "net_income_gaap_M": 4335,
+    "net_income_nongaap_M": 6831,
+    "diluted_eps_gaap": 2.65,
+    "diluted_eps_nongaap": 4.17,
+    "ebitda_M": 6750,
+    "free_cash_flow_M": 6740,
+    "segments": {
+      "data_center_M": 16635,
+      "client_M": 10640,
+      "gaming_M": 3910,
+      "embedded_M": 3454
+    },
+    "notes": "Client and Gaming segments were combined in FY2025 reporting. FY2025 included ~$800M inventory charge related to MI308 China export restrictions. China was ~24% of FY2024 revenue."
+  },
+  "q4_2025": {
+    "revenue_M": 10270,
+    "revenue_yoy_growth_pct": 34.0,
+    "gross_margin_gaap_pct": 54.0,
+    "gross_margin_nongaap_pct": 57.0,
+    "operating_income_gaap_M": 1752,
+    "operating_income_nongaap_M": 2854,
+    "net_income_gaap_M": 1511,
+    "net_income_nongaap_M": 2519,
+    "diluted_eps_gaap": 0.92,
+    "diluted_eps_nongaap": 1.53,
+    "segments": {
+      "data_center_M": 5400,
+      "data_center_yoy_pct": 39.0,
+      "client_M": 3100,
+      "client_yoy_pct": 34.0,
+      "gaming_M": 843,
+      "gaming_yoy_pct": 50.0,
+      "embedded_M": 950,
+      "embedded_yoy_pct": 2.9
+    }
+  },
+  "q1_2026_guidance": {
+    "revenue_M_midpoint": 9800,
+    "revenue_M_range_low": 9500,
+    "revenue_M_range_high": 10100,
+    "revenue_yoy_growth_pct": 32.0,
+    "revenue_qoq_change_pct": -5.0,
+    "gross_margin_nongaap_pct": 55.0,
+    "china_mi308_revenue_M": 100,
+    "notes": "No additional China revenue assumed beyond Q1 2026"
+  },
+  "long_term_targets": {
+    "data_center_revenue_cagr_pct": ">60% annually over 3-5 years",
+    "total_revenue_cagr_pct": ">35% over 3-5 years",
+    "ai_revenue_2027_target": "tens of billions",
+    "eps_strategic_target": ">$20 annual EPS"
+  },
+  "balance_sheet_snapshot": {
+    "cash_and_investments_B": 10.55,
+    "total_debt_B": 4.01,
+    "net_cash_B": 6.55,
+    "shares_outstanding_M": 1630
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "ticker": "MSFT",
+  "current_price": 408.96,
+  "scenarios": [
+    {
+      "name": "Bull",
+      "price": 519.0,
+      "probability": 0.23,
+      "description": "AI monetization accelerates; Azure 40%+; CapEx peaks FY26"
+    },
+    {
+      "name": "Base",
+      "price": 315.0,
+      "probability": 0.5,
+      "description": "Growth normalizes; CapEx extends through FY28; FCF compressed"
+    },
+    {
+      "name": "Bear",
+      "price": 245.0,
+      "probability": 0.27,
+      "description": "AI ROI fails; antitrust; OpenAI disruption; deceleration"
+    }
+  ],
+  "expected_value": 343.02
+}

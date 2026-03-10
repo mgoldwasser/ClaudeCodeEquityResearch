@@ -1,0 +1,80 @@
+{
+  "ticker": "AMD",
+  "retrieval_date": "2026-03-09",
+  "server_cpu_market_share": {
+    "amd_share_2025_pct": "36-40",
+    "amd_revenue_share_q2_2025_pct": 41,
+    "intel_share_2025_pct": "60-64",
+    "trend": "AMD gaining ~6-8pp per year; parity possible by 2026",
+    "amd_share_2017_pct": 2,
+    "notes": "Fifth-gen EPYC Turin >50% of AMD server revenue in Q4 2025"
+  },
+  "ai_gpu_market": {
+    "nvidia_share_pct": ">80",
+    "amd_share_pct": "~8-12",
+    "amd_gpu_share_trend": "Gained 2.6pp in Q4 2025",
+    "nvidia_share_trend": "Lost 1.4pp in Q4 2025",
+    "custom_asic_growth_2026_pct": 44.6,
+    "gpu_growth_2026_pct": 16.1,
+    "notes": "Custom ASICs (Google TPU, Amazon Trainium, Microsoft Maia) growing faster than GPUs"
+  },
+  "key_products": {
+    "mi350_series": {
+      "status": "Fastest ramping product in company history",
+      "deployed_at": "8 of 10 top AI companies",
+      "architecture": "CDNA4, 3nm, 288GB HBM3E",
+      "memory_bandwidth_TBs": 8.0,
+      "vs_nvidia": "MI355X 20% faster than B200 in DeepSeek R1 FP4; 30% faster in Llama 3.1 405B; 40% more tokens per dollar"
+    },
+    "mi450_series": {
+      "codename": "Helios systems",
+      "launch": "H2 2026",
+      "performance": "Doubles MI350 FP8/FP4 throughput, doubles scale-up bandwidth, 1.5x memory",
+      "rack_scale": "72 GPUs = 1.4 exaFLOPS FP8, 31TB HBM4, 260 TB/s scale-up",
+      "vs_nvidia": "50% more memory capacity than NVIDIA Vera Rubin; 36x previous gen",
+      "networking": "Ethernet-based (vs NVIDIA NVLink)"
+    },
+    "epyc_turin": {
+      "status": ">50% of server revenue in Q4 2025",
+      "cloud_instances": "~1,600 total, +50% YoY",
+      "vs_intel": "Up to 40% better performance vs Intel Xeon in 2P configs"
+    }
+  },
+  "strategic_partnerships": {
+    "openai": {
+      "announced": "2025-10-06",
+      "scope": "6 GW of AMD Instinct GPUs",
+      "initial_deployment": "1 GW MI450 in H2 2026",
+      "warrants": "160M shares at $0.01, vesting on deployment + $600 stock price milestones",
+      "potential_revenue_B": "~100 over multi-year"
+    },
+    "meta": {
+      "announced": "2026-02-24",
+      "scope": "6 GW of AMD Instinct GPUs",
+      "initial_deployment": "1 GW custom MI450 in H2 2026",
+      "warrants": "160M shares at $0.01, vesting on shipment + stock price milestones",
+      "potential_revenue_B": "~100 over multi-year",
+      "focus": "Inference workloads"
+    },
+    "total_warrant_dilution_shares_M": 320,
+    "dilution_pct_of_outstanding": "~20%",
+    "dilution_notes": "Full vesting requires ~$600 stock price (~3x current). Combined deal revenue potential >$200B over 5+ years."
+  },
+  "software_ecosystem": {
+    "rocm_status": "Maturing rapidly; ROCm 6.0+ with FP8, multi-GPU, PyTorch/TF integration",
+    "cuda_gap": "CUDA has 6M developers, 300+ libraries, 600+ AI models vs ROCm smaller base",
+    "hipify": "Converts 90% of CUDA code",
+    "zluda": "Open-sourced; unmodified CUDA binaries at 80-95% performance on ROCm",
+    "cuda_gap_score": "28.7-99.1 across benchmarks (NVIDIA software advantage = 30-99% effective perf boost)"
+  },
+  "semiconductor_industry_2026": {
+    "global_market_B": 975,
+    "growth_2026_pct": 25,
+    "logic_growth_pct": 37,
+    "memory_growth_pct": 28,
+    "memory_market_B": 200,
+    "hbm_market_2025_B": 30,
+    "approaching_1T": true,
+    "key_driver": "AI-related applications and computing/data center infrastructure"
+  }
+}

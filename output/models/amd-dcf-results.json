@@ -1,0 +1,38 @@
+{
+  "ticker": "AMD",
+  "model": "DCF",
+  "date": "2026-03-09",
+  "current_price": 190.4,
+  "wacc": 0.1559,
+  "scenarios": {
+    "bull": {
+      "probability": 0.25,
+      "implied_price": 238.42,
+      "fy2030_revenue_M": 135819.0,
+      "fy2030_ebitda_M": 59760.3,
+      "fy2030_fcf_M": 45266.6,
+      "ev_M": 458368.0,
+      "tv_pct_of_ev": 0.8274
+    },
+    "base": {
+      "probability": 0.5,
+      "implied_price": 140.33,
+      "fy2030_revenue_M": 89157.3,
+      "fy2030_ebitda_M": 31205.0,
+      "fy2030_fcf_M": 23011.7,
+      "ev_M": 244632.0,
+      "tv_pct_of_ev": 0.8044
+    },
+    "bear": {
+      "probability": 0.25,
+      "implied_price": 55.74,
+      "fy2030_revenue_M": 47846.7,
+      "fy2030_ebitda_M": 10526.2,
+      "fy2030_fcf_M": 6668.2,
+      "ev_M": 84305.0,
+      "tv_pct_of_ev": 0.7617
+    }
+  },
+  "probability_weighted_price": 143.71,
+  "implied_upside_pct": -24.5
+}

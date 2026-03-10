@@ -1,0 +1,113 @@
+{
+  "model": "sector-share-model",
+  "ticker": "AMD",
+  "date": "2026-03-09",
+  "ai_gpu_shares": {
+    "2025": {
+      "NVIDIA": 0.82,
+      "AMD": 0.1,
+      "Custom_ASICs": 0.06,
+      "Others": 0.02
+    },
+    "2026": {
+      "NVIDIA": 0.7692,
+      "AMD": 0.1202,
+      "Custom_ASICs": 0.0865,
+      "Others": 0.024
+    },
+    "2027": {
+      "NVIDIA": 0.7222,
+      "AMD": 0.1389,
+      "Custom_ASICs": 0.1111,
+      "Others": 0.0278
+    },
+    "2028": {
+      "NVIDIA": 0.6786,
+      "AMD": 0.1563,
+      "Custom_ASICs": 0.1339,
+      "Others": 0.0313
+    },
+    "2029": {
+      "NVIDIA": 0.6379,
+      "AMD": 0.1724,
+      "Custom_ASICs": 0.1552,
+      "Others": 0.0345
+    },
+    "2030": {
+      "NVIDIA": 0.6,
+      "AMD": 0.1875,
+      "Custom_ASICs": 0.175,
+      "Others": 0.0375
+    }
+  },
+  "server_cpu_shares": {
+    "2025": {
+      "Intel_Xeon": 0.5794,
+      "AMD_EPYC": 0.3458,
+      "Arm_Server": 0.0748
+    },
+    "2026": {
+      "Intel_Xeon": 0.5205,
+      "AMD_EPYC": 0.3836,
+      "Arm_Server": 0.0959
+    },
+    "2027": {
+      "Intel_Xeon": 0.4643,
+      "AMD_EPYC": 0.4196,
+      "Arm_Server": 0.1161
+    },
+    "2028": {
+      "Intel_Xeon": 0.4105,
+      "AMD_EPYC": 0.4541,
+      "Arm_Server": 0.1354
+    },
+    "2029": {
+      "Intel_Xeon": 0.3652,
+      "AMD_EPYC": 0.4783,
+      "Arm_Server": 0.1565
+    },
+    "2030": {
+      "Intel_Xeon": 0.3289,
+      "AMD_EPYC": 0.4889,
+      "Arm_Server": 0.1822
+    }
+  },
+  "client_cpu_shares": {
+    "2025": {
+      "Intel": 0.68,
+      "AMD": 0.27,
+      "Arm_Qualcomm": 0.05
+    },
+    "2026": {
+      "Intel": 0.6404,
+      "AMD": 0.2906,
+      "Arm_Qualcomm": 0.069
+    },
+    "2027": {
+      "Intel": 0.6019,
+      "AMD": 0.3107,
+      "Arm_Qualcomm": 0.0874
+    },
+    "2028": {
+      "Intel": 0.5646,
+      "AMD": 0.3301,
+      "Arm_Qualcomm": 0.1053
+    },
+    "2029": {
+      "Intel": 0.5283,
+      "AMD": 0.3491,
+      "Arm_Qualcomm": 0.1226
+    },
+    "2030": {
+      "Intel": 0.493,
+      "AMD": 0.3674,
+      "Arm_Qualcomm": 0.1395
+    }
+  },
+  "notes": [
+    "Share projections based on historical trend extrapolation with ceiling/floor constraints",
+    "Revenue share differs from unit share \u2014 AMD commands premium ASPs in server",
+    "Custom ASIC share growth assumes hyperscaler internal deployment only",
+    "Arm server share assumes continued AWS Graviton + Ampere momentum"
+  ]
+}

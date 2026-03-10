@@ -1,0 +1,96 @@
+{
+  "model": "sector-growth-model",
+  "ticker": "AMD",
+  "date": "2026-03-09",
+  "forecasts": {
+    "total_semi": {
+      "description": "Total global semiconductor market",
+      "tam_2025_M": 772000,
+      "tam_2030_base_M": 1360528,
+      "cagr_bear": 0.08,
+      "cagr_base": 0.12,
+      "cagr_bull": 0.18
+    },
+    "ai_accelerator": {
+      "description": "AI accelerator chips (GPU + ASIC + FPGA for AI)",
+      "tam_2025_M": 116000,
+      "tam_2030_base_M": 398573,
+      "cagr_bear": 0.18,
+      "cagr_base": 0.28,
+      "cagr_bull": 0.38
+    },
+    "ai_gpu": {
+      "description": "AI GPU market (NVIDIA + AMD Instinct)",
+      "tam_2025_M": 140000,
+      "tam_2030_base_M": 378379,
+      "cagr_bear": 0.12,
+      "cagr_base": 0.22,
+      "cagr_bull": 0.32
+    },
+    "custom_asic": {
+      "description": "Custom AI ASICs (Google TPU, Amazon Trainium, etc.)",
+      "tam_2025_M": 28000,
+      "tam_2030_base_M": 150591,
+      "cagr_bear": 0.25,
+      "cagr_base": 0.4,
+      "cagr_bull": 0.55
+    },
+    "server_cpu": {
+      "description": "Server CPU market (x86 + Arm)",
+      "tam_2025_M": 42000,
+      "tam_2030_base_M": 61712,
+      "cagr_bear": 0.04,
+      "cagr_base": 0.08,
+      "cagr_bull": 0.12
+    },
+    "client_pc": {
+      "description": "Client PC processor market (desktop + laptop)",
+      "tam_2025_M": 85000,
+      "tam_2030_base_M": 108484,
+      "cagr_bear": 0.02,
+      "cagr_base": 0.05,
+      "cagr_bull": 0.08
+    },
+    "fpga_embedded": {
+      "description": "FPGA and embedded/adaptive computing",
+      "tam_2025_M": 12000,
+      "tam_2030_base_M": 16831,
+      "cagr_bear": 0.03,
+      "cagr_base": 0.07,
+      "cagr_bull": 0.12
+    },
+    "gaming_semi": {
+      "description": "Gaming semiconductor market",
+      "tam_2025_M": 18000,
+      "tam_2030_base_M": 21900,
+      "cagr_bear": -0.02,
+      "cagr_base": 0.04,
+      "cagr_bull": 0.08
+    },
+    "edge_ai": {
+      "description": "Edge AI semiconductor market",
+      "tam_2025_M": 3670,
+      "tam_2030_base_M": 9519,
+      "cagr_bear": 0.14,
+      "cagr_base": 0.21,
+      "cagr_bull": 0.3
+    }
+  },
+  "amd_revenue_scenarios_2030": {
+    "ai_gpu": {
+      "bear_M": 19738,
+      "base_M": 60541,
+      "bull_M": 140261
+    },
+    "server_cpu": {
+      "bear_M": 17885,
+      "base_M": 30856,
+      "bull_M": 40710
+    },
+    "client_pc": {
+      "bear_M": 20646,
+      "base_M": 27121,
+      "bull_M": 37468
+    }
+  }
+}

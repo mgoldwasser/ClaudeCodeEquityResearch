@@ -1,369 +1,271 @@
-# Data Intelligence Memo -- MSFT (Microsoft Corporation)
-Date: 2026-03-08
-
----
+# Data Intelligence Memo — AMD (Advanced Micro Devices, Inc.)
+Date: 2026-03-09
 
 ## Data Inventory
 
-| Data Type | Status | Source | Tier | File/Location |
-|-----------|--------|--------|------|---------------|
-| 10-K (FY2025, filed 2025-07-30) | Retrieved (URL) | SEC EDGAR | 1 | input/MSFT-filing-urls.md |
-| 10-Q (Q2 FY2026, filed 2026-01-28) | Retrieved (URL) | SEC EDGAR | 1 | input/MSFT-filing-urls.md |
-| Proxy Statement (DEF 14A, 2025-11-05) | Retrieved (URL) | SEC EDGAR | 1 | input/MSFT-filing-urls.md |
-| Latest Earnings Transcript (Q2 FY2026) | Retrieved (key quotes) | Motley Fool | 1 | input/MSFT-Q2-FY2026-earnings-summary.md |
-| Current Market Data | Retrieved | Yahoo Finance | 1 | output/data/MSFT-company-summary.json |
-| 3-Year Historical Prices | Retrieved | Yahoo Finance | 1 | output/data/MSFT-prices.csv |
-| XBRL Structured Financials (5-yr) | Retrieved | SEC EDGAR XBRL API | 1 | output/data/MSFT-xbrl-financials.json |
-| Insider Trades (12M) | Retrieved (web search) | SEC Form 4 / Web | 2 | See Alternative Data Signals below |
-| Institutional Holdings | Retrieved (web search) | Multiple | 2 | See Alternative Data Signals below |
-| Short Interest | Partial | Web search | 2 | See Alternative Data Signals below |
-| Analyst Consensus | Retrieved | Multiple | 3 | See Analyst Consensus below |
-| Competitive Intelligence | Retrieved | Web research | 3 | See Competitive Intelligence below |
-| Macro Data (Rates, Yields) | Retrieved | Federal Reserve, Web | 2 | See Macro Environment below |
-| Management Interviews/Podcasts | Retrieved | Web research | 3 | See Management Commentary below |
-| Bear Case Evidence | Retrieved | Web research | 3 | See Bear Case Evidence below |
-| Q1 FY2026 Earnings Data | Retrieved | Web research | 1 | See Recent Developments below |
-| FTC Antitrust Investigation Details | Retrieved | Web research | 2 | See Risk Factors below |
-| Cloud Market Share Data | Retrieved | Web research | 3 | See Competitive Intelligence below |
-| OpenAI Partnership Terms | Retrieved | Web research | 2 | See Key Findings below |
-| Dividend/Buyback Data | Retrieved | Web research | 1 | See Shareholder Returns below |
-| Industry/Sector TAM | Retrieved | Web research | 3 | See Sector Data below |
-
----
+| Data Type | Status | Source | File/Location | Source Tier |
+|-----------|--------|--------|---------------|-------------|
+| 10-K (FY2025, filed 2026-02-04) | ✅ Retrieved (URLs + summary) | SEC EDGAR / AMD IR | `input/AMD-filing-urls.md` | Tier 1 |
+| 10-K/A (FY2025 Amended) | ✅ URL identified | SEC EDGAR / AMD IR | `input/AMD-filing-urls.md` | Tier 1 |
+| 10-Q (Q3 FY2025, latest quarterly) | ✅ URL identified | SEC EDGAR / AMD IR | `input/AMD-filing-urls.md` | Tier 1 |
+| Q4 FY2025 earnings press release | ✅ Full text retrieved | AMD IR | `input/AMD-Q4-FY2025-earnings-summary.md` | Tier 1 |
+| Q4 FY2025 earnings transcript | ✅ Summary retrieved | Motley Fool | `input/AMD-Q4-FY2025-earnings-summary.md` | Tier 2 |
+| DEF 14A proxy statement | ⚠️ URL not retrieved (EDGAR CIK issue) | — | [DATA GAP] | — |
+| Current market data & valuation | ✅ Retrieved | StockAnalysis.com, WebSearch | `output/data/AMD-market-data.json` | Tier 4 |
+| 3-year historical price data | ❌ Not retrieved (market-data.sh bash version error) | — | [DATA GAP — tool error] | — |
+| Options chain data | ❌ Not retrieved (market-data.sh bash version error) | — | [DATA GAP — tool error] | — |
+| Insider trades (12M) | ✅ Key transactions found | WebSearch (StockTitan, MarketDaily) | See memo below | Tier 2 |
+| Institutional ownership | ✅ Summary data | StockAnalysis.com | `output/data/AMD-market-data.json` | Tier 4 |
+| Short interest | ✅ Retrieved | StockAnalysis.com | `output/data/AMD-market-data.json` | Tier 4 |
+| Analyst consensus & targets | ✅ Retrieved | StockAnalysis.com, WebSearch | `output/data/AMD-market-data.json` | Tier 4 |
+| Macro rates data | ✅ Retrieved | Fed H.15, WebSearch | `output/data/AMD-market-data.json` | Tier 5 |
+| Semiconductor industry data | ✅ Retrieved | WSTS, Deloitte, StartUs | See memo below | Tier 6 |
+| Competitive intelligence | ✅ Comprehensive | Multiple sources | `output/data/AMD-competitive.json` | Tier 2-6 |
+| Peer comparison data | ✅ Qualitative | WebSearch | `output/data/AMD-competitive.json` | Tier 6 |
+| Bear case evidence | ✅ Specifically searched | Seeking Alpha, WebSearch | See memo below | Tier 6 |
+| Management interviews/podcasts | ✅ Key appearances identified | CES 2026, CNBC, Stanford | See memo below | Tier 2-3 |
 
 ## Key Findings from External Research
 
 ### Recent Developments (Last 90 Days)
 
-**Q2 FY2026 Results (January 28, 2026) -- [Source: Microsoft IR, Tier 1]**
-- Revenue of $81.3B beat consensus of $80.27B (+17% YoY). Operating income $38.3B (+21% YoY).
-- GAAP EPS of $5.16 (+60%) inflated by $7.6B one-time gain from OpenAI recapitalization. Non-GAAP EPS of $4.14 (+24%).
-- Microsoft Cloud surpassed $50B quarterly for the first time ($51.5B, +26% YoY).
-- Azure grew 39% (vs. 40% in Q1), with guidance for 37-38% in Q3 -- signaling deceleration.
-- CapEx surged to ~$37.5B in Q2 (H1 total: $49.3B), tracking toward $100B+ annualized.
-- Commercial RPO doubled to $625B, but ~45% ($280B) is from OpenAI commitments.
-- Stock fell ~5% after-hours, then dropped 10.5% on January 29 -- erasing ~$375B in market cap.
-- [Source: CNBC, Microsoft IR Press Release, Fortune -- retrieved 2026-03-08]
+**1. Meta Partnership (2026-02-24) — Potentially Transformational**
+AMD and Meta announced a 6 GW, multi-year, multi-generational GPU deployment deal for AI infrastructure. Initial 1 GW deployment of custom MI450-based GPUs begins H2 2026. Meta received warrants for 160M AMD shares (~10% of outstanding) at $0.01/share, vesting on deployment milestones and AMD stock price thresholds. Estimated deal revenue: ~$100B over multi-year period. [Source: AMD IR, CNBC, Tom's Hardware — Tier 1-3, retrieved 2026-03-09]
 
-**Q1 FY2026 Results (October 2025) -- [Source: Futurum Group, Tier 3]**
-- Revenue $77.7B (+18% YoY, beat consensus of $75.6B). Operating income $38.0B (+24%).
-- Azure grew 40%. Microsoft Cloud $49.1B (+26%).
-- Operating margin expanded to 48.9% (from 46.6%).
-- CapEx: $34.9B (~50% for GPU/CPU assets). 2-gigawatt Wisconsin data center announced.
-- 90%+ Fortune 500 adoption of M365 Copilot. GitHub Copilot: 26M users. Copilot monthly active users: 150M (first-party).
-- [Source: Futurum Group analysis -- retrieved 2026-03-08]
+**2. Q4 FY2025 Record Results (2026-02-03)**
+Revenue: $10.3B (+34% YoY), beating consensus of $9.7B. Non-GAAP EPS: $1.53 (record). Data Center segment: $5.4B (+39% YoY). Q1 2026 guidance: ~$9.8B (+32% YoY) above consensus of $9.4B. Management reiterated long-term targets including >60% annual DC growth and >$20 EPS. [Source: AMD IR Press Release — Tier 1, retrieved 2026-03-09]
 
-**OpenAI Partnership Restructuring (October 2025 / January 2026) -- [Source: TechCrunch, TechBuzz, Tier 2]**
-- OpenAI restructured as public benefit corporation at $135B valuation; Microsoft holds 27% stake.
-- OpenAI committed additional $250B to Azure cloud services.
-- Microsoft exclusive cloud provider for OpenAI API models until at least 2030.
-- $7.6B one-time accounting gain recorded in Q2 FY2026 from recapitalization.
-- Microsoft can now independently pursue AGI. OpenAI can release open-weight models under specific criteria.
-- OpenAI reportedly raising at $750B-$830B valuation as of early 2026 (Bloomberg).
-- [Source: TechCrunch, TechBuzz.ai, OpenAI blog -- retrieved 2026-03-08]
+**3. OpenAI Partnership Reaffirmed (Originally announced 2025-10-06)**
+6 GW agreement, 1 GW initial MI450 deployment beginning H2 2026. 160M share warrants (separate from Meta warrants). Lisa Su confirmed "on track" on Q4 call. Combined OpenAI + Meta = 12 GW committed, ~$200B+ potential revenue, 320M warrant shares (~20% dilution at full vesting). [Source: AMD IR, OpenAI — Tier 1, retrieved 2026-03-09]
 
-**Stock Price Action -- [Source: Yahoo Finance, Tier 1]**
-- Current price: $408.96 (as of 2026-03-06).
-- 52-week range: $344.79 - $555.45. Currently 26.4% below 52-week high.
-- 3-year high: $533.50 (July 2025). Down 23.3% from peak.
-- Significant correction from July 2025 peak driven by broader tech selloff + AI spending concerns.
+**4. CES 2026 Keynote (2026-01-05)**
+Lisa Su outlined MI400 series (MI430X, MI440X, MI455X) and Helios rack-scale architecture. HPE announced as first major Helios partner. TCS partnership for 200MW India deployment. [Source: Engadget, Tom's Hardware — Tier 3, retrieved 2026-03-09]
+
+**5. China Export Controls — Ongoing Risk**
+$800M inventory charge taken in 2025 for MI308 products. $1.5-1.8B total 2025 revenue impact. MI308 now approved for export with 15% revenue fee to U.S. Treasury. Q1 2026 guidance includes only $100M China MI308 revenue; no further China revenue assumed. China was ~24% of FY2024 revenue. [Source: AMD 8-K, TechCrunch, The Register — Tier 1-3, retrieved 2026-03-09]
+
+**6. Segment Restructuring (FY2025)**
+Client and Gaming segments combined into one reportable segment. Semi-custom gaming revenue declining significantly as current console cycle matures (7th year). Next-gen Xbox AMD SoC expected 2027. [Source: AMD 10-K — Tier 1, retrieved 2026-03-09]
 
 ### Analyst Consensus
 
-**Price Targets -- [Source: Multiple aggregators, Tier 3]**
-- Consensus: Strong Buy (55 Buy / 2 Hold / 0 Sell per one source; 21 Buy / 2 Hold per another)
-- Average price target: $591.65 - $603.27 (range across sources)
-- Target range: $392 (low, Stifel) to $675 (high)
-- Implied upside: 45-48% from current $408.96
+- **Consensus Rating:** Buy (34 analysts)
+- **Rating Breakdown:** Strong Buy: 14 | Buy: 12 | Hold: 8 | Sell: 0
+- **Average Price Target:** $261.21 (implied upside: +37.2% from $190.40)
+- **Median Price Target:** $280.00
+- **Range:** $120.00 — $358.00
+- **Recent Rating Changes (Feb 2026):**
+  - Evercore ISI (Mark Lipacis): Raised to $358, Buy — most bullish
+  - Benchmark (Cody Acree): Reiterated $325, Strong Buy
+  - Mizuho (Vijay Rakesh): Raised to $280, Buy
+  - Goldman Sachs (James Schneider): Raised to $240, Hold — cautious
+  - RBC Capital (Srini Pajjuri): Reiterated $230, Hold — cautious
+  - Stephen Guilfoyle: Reset to $274 (down from $320) post-Meta deal
+- **Key Observation:** Wide target range ($238 spread) reflects genuine disagreement about execution risk on mega-deals and AI GPU scaling. Hold-rated analysts cluster around $230-240, suggesting limited upside in base case.
 
-**Recent Rating Changes:**
-- 2026-02-05: Stifel **downgraded** price target from $540 to $392 (most bearish on Street)
-- 2025-10-27: Guggenheim raised target to $586
-- Note: Post-Q2 earnings, several analysts trimmed targets but maintained Buy ratings
-
-**Consensus Estimates:**
-- FY2026 EPS consensus: $16.92 (range: $15.94 - $17.70) [Source: aggregated, Tier 3]
-- FY2026 revenue: ~$320B implied from quarterly run-rate (Q1: $77.7B + Q2: $81.3B + guided Q3: ~$81.2B + est Q4: ~$82-84B)
-
-**Key Dissenting Voice:**
-- At least one financial analyst has a negative outlook due to "overly optimistic revenue and EPS expectations" and "anticipated slower adoption of enterprise AI could hinder revenue growth." [Source: web search, Tier 3]
+[Source: StockAnalysis.com — Tier 4, retrieved 2026-03-09]
 
 ### Management Commentary (Beyond Earnings Call)
 
-**Davos 2026 (January 2026) -- [Source: WEF, Tier 3]**
-- Satya Nadella spoke at the World Economic Forum on "scaling AI, tech leadership, and global innovation."
+**Lisa Su at CES 2026 (January 5-10, 2026):**
+- Discussed growing AI demand and applications across consumer electronics, healthcare, and space exploration
+- Outlined MI400 family and Helios architecture
+- "AI demand going through the roof as chip prices hit thousands"
+[Source: Fox News podcast, Engadget, Rev.com transcript — Tier 3, retrieved 2026-03-09]
 
-**All-In Podcast (January 21, 2026) -- [Source: Podcast, Tier 3]**
-- Nadella discussed "the future of AI copilots and agents and their impact on white collar work."
+**Lisa Su on CNBC (February 4, 2026):**
+- Post-earnings discussion covering CPU business, AI demand state, 2026 outlook
+- Addressed guidance concerns and OpenAI relationship status
+- Discussed competitive positioning
+[Source: CNBC — Tier 3, retrieved 2026-03-09]
 
-**London AI Tour (February 2026) -- [Source: The Register, Tier 3]**
-- Nadella discussed AI quality, warning against "AI slop" in content creation.
-
-**Dwarkesh Patel Interview (2026) -- [Source: Podcast, Tier 3]**
-- Nadella gave a first-look at Microsoft's Fairwater 2 datacenter. Discussed how Microsoft is "preparing for AGI."
-
-**The Register (January 2, 2026) -- [Source: News, Tier 3]**
-- Nadella called for consensus about AI governance and safety standards.
-
-**Q2 FY2026 Earnings Call Key Quotes -- [Source: Motley Fool Transcript, Tier 1]**
-- **On Azure growth cap:** "If I had taken the GPUs that just came online in Q1 and Q2...and allocated them all to Azure, the KPI would have been over 40."
-- **On portfolio approach:** "You should obviously think about Azure, but you should think about M365 Copilot, and you should think about GitHub Copilot."
-- **On efficiency:** "50% increase in throughput" on OpenAI inferencing. Maya 200: "over 30% improved TCO."
-- **On model diversity:** "Broadest selection of models of any hyperscaler" -- offering GPT-5.0.2, Claude 4.5, and regional models.
-- **CFO Hood on demand:** "Demand continues to exceed available supply."
-- **CFO Hood on margins:** FY2026 operating margins expected "up slightly" vs. FY2025.
+**Lisa Su at Stanford GSB:**
+- Discussed career trajectory and AMD transformation
+- Revenue grown from $5B to ~$35B under her leadership (since 2014)
+[Source: Stanford GSB "View From The Top" podcast — Tier 3, retrieved 2026-03-09]
 
 ### Competitive Intelligence
 
-**Cloud Infrastructure Market Share (Q4 2025 / Early 2026) -- [Source: Synergy Research, industry analysts, Tier 3]**
+**Server CPU Market (AMD EPYC vs. Intel Xeon):**
+- AMD server CPU share: 36-40% in 2025 (from 2% in 2017)
+- AMD revenue share in servers: 41% in Q2 2025
+- EPYC Turin (5th gen) now >50% of AMD server revenue
+- ~1,600 EPYC cloud instances (+50% YoY)
+- Intel Xeon "more than one generation behind" AMD EPYC
+- Analyst projection: AMD could reach 50% server share by 2026
+- Performance: Turin delivers up to 40% better than equivalent Intel Xeon in 2P configs
+[Source: Fusion Worldwide, TechNetBooks, various — Tier 3-6, retrieved 2026-03-09]
 
-| Provider | Market Share | YoY Growth | Revenue (Q4 2025) |
-|----------|-------------|------------|-------------------|
-| AWS | 30-32% | ~20% | $28.5B |
-| Microsoft Azure | 20-25% | 39% | ~$25B+ (est from Intelligent Cloud) |
-| Google Cloud | 11-13% | ~28% | ~$12B (est) |
+**AI GPU Market (AMD Instinct vs. NVIDIA):**
+- NVIDIA holds >80% AI GPU market share
+- AMD holds ~8-12%, gained 2.6pp in Q4 2025
+- MI350 Series: Fastest ramp in AMD history, deployed at 8/10 top AI companies
+- MI355X benchmarks: 20% faster than NVIDIA B200 (DeepSeek R1 FP4), 30% faster (Llama 3.1 405B), 40% more tokens per dollar
+- MI450/Helios (H2 2026): 72 GPUs = 1.4 exaFLOPS FP8, 31TB HBM4
+- Helios claims 50% more memory capacity than NVIDIA Vera Rubin
+- Key AMD weakness: ROCm software ecosystem significantly behind CUDA (6M developers, 300+ libraries vs. smaller ROCm base). CUDA gap score 28.7-99.1 across benchmarks.
+[Source: Multiple — Tier 3-6, retrieved 2026-03-09]
 
-- Azure growing at nearly 2x AWS's rate, closing the market share gap.
-- Google Cloud growing faster than AWS but slower than Azure.
-- Total cloud infrastructure market ~$119B/quarter (Q4 2025), growing ~30% YoY.
-- Cloud market projected at $917B-$1.2T in 2026, growing at 16.5% CAGR through 2033.
+**Custom ASIC Threat:**
+- Custom ASIC shipments growing 44.6% in 2026 vs. GPU shipments 16.1%
+- Google TPU, Amazon Trainium, Microsoft Maia (delayed to 2026), OpenAI custom chip (with Broadcom, mass production 2026)
+- Custom ASICs target 15-25% market share, primarily internal hyperscaler inference
+- Amazon Trainium: 30-40% better price-performance vs. other vendors
+- Mitigation: AMD's OpenAI and Meta deals suggest GPUs remain core infrastructure even for hyperscalers building custom silicon
+[Source: CNBC, multiple — Tier 3-6, retrieved 2026-03-09]
 
-**AI-Specific Positioning -- [Source: Industry analysis, Tier 3]**
-- Microsoft's AI engagement at 45% -- exceeding its 29% cloud market share.
-- In genAI specifically, Microsoft's engagement rate is double its overall market share.
-- 90%+ Fortune 500 adoption of M365 Copilot.
-- Enterprise software TAM: ~$420B in 2026.
-
-**Key Competitive Moves:**
-- AWS: Investing heavily in custom chips (Trainium/Inferentia). Largest absolute cloud revenue.
-- Google Cloud: Fastest percentage growth in Q4 2025. Strong Gemini model integration.
-- Anthropic: Microsoft now also providing Azure infrastructure for Anthropic (Nadella mentioned Claude 4.5 in model catalog).
-- Oracle, Salesforce: Competing in enterprise AI applications layer.
-
-### Sector Data
-
-**Cloud Computing Market -- [Source: Grand View Research, Precedence Research, Tier 3]**
-- Global market: $917B-$1.19T in 2026 (varies by methodology)
-- Growth: 16.5% CAGR through 2033
-- SaaS segment: ~54% of total cloud revenue
-- Public cloud: ~55% of deployment market
-- U.S. cloud market growing at 16.8% CAGR (2026-2033)
-
-**Enterprise AI Market -- [Source: Via News, Tier 3]**
-- Global enterprise AI market: $300B+ (Microsoft, AWS, Google battling for dominance)
-- AI infrastructure spending by hyperscalers: $690B total in 2026 (across all major players)
+**Embedded/FPGA Market:**
+- AMD targets >70% revenue market share in adaptive computing
+- Embedded segment recovering slowly: $950M Q4 2025 (+2.9% YoY)
+- Competition from Lattice Semiconductor (small/mid-range FPGAs) and Intel
+- AWS launched FPGA-accelerated instances on AMD EPYC + Xilinx Virtex
+[Source: Zacks, AMD IR — Tier 4-6, retrieved 2026-03-09]
 
 ### Alternative Data Signals
 
-**Insider Trading -- [Source: SEC Form 4 via EDGAR + web search, Tier 1-2]**
-- **Pattern: Net selling only. Zero insider purchases in last 18 months.**
-- Satya Nadella (CEO): Sold 149,205 shares on Sept 3, 2025 for ~$75.3M. 10 transactions in 5 years -- all sells.
-- Brad Smith (Vice Chair/President): Sales reported in November 2025.
-- Past 18 months: 579,569 shares sold vs. 3,842 shares bought = net sale of 575,727 shares.
-- Past 3 months: 54,100 shares sold, 0 shares bought.
-- 129 Form 4 filings since March 2025.
-- **Assessment:** Heavy insider selling is normal for a mega-cap with stock-based compensation, but the zero-buy signal for 18 months is notable. No insider has voluntarily purchased shares in the open market.
+**Insider Trading (Last 12 Months):**
+- Lisa Su (CEO): Net seller via 10b5-1 plans (pre-programmed, not discretionary)
+  - Feb 2026: Sold 125,000 shares at avg $214.36 ($26.8M)
+  - Dec 2025: Sold ~45,000 shares at avg $212-221
+  - Aug 2025: Exercised 224,727 options at $34.19, sold 225,000 shares at $162-166
+  - Retains 3,152,476 shares directly + indirect holdings via trusts
+- **Signal Assessment:** Consistent, programmatic selling via 10b5-1 plans — NEUTRAL. Not indicative of bearish view. CEO retains substantial position (~$600M+ at current prices).
+[Source: StockTitan, MarketDaily, SEC Form 4 — Tier 2, retrieved 2026-03-09]
 
-**Institutional Ownership -- [Source: Yahoo Finance, multiple aggregators, Tier 2]**
-- Institutional ownership: ~76% of outstanding shares.
-- Top holders: Vanguard (9.0%, ~702M shares), BlackRock (7.3%, ~591M shares), State Street (4.0%, ~300M shares).
-- Top 3 holders own 20%+ combined.
-- Other notable holders: Fidelity, Geode Capital, JPMorgan, T. Rowe Price, Morgan Stanley, Norges Bank (Norway sovereign wealth), Capital International.
+**Institutional Ownership:** 68.68%
+- Typical for mega-cap semi. Not crowded.
+[Source: StockAnalysis.com — Tier 4, retrieved 2026-03-09]
 
-**Short Interest -- [Source: NASDAQ, Benzinga, Tier 2]**
-- Days to cover: ~2.02 days (based on 23.99M avg daily volume).
-- Short interest appears relatively low for a mega-cap -- no squeeze or excessive bearish positioning.
-- [DATA GAP: Exact shares short and % of float not retrieved from paywalled sources.]
-
-**Shareholder Returns -- [Source: Microsoft IR, news, Tier 1]**
-- $60B share repurchase program approved (no expiration), replacing prior $60B program.
-- FY2025 buybacks: $18.42B. Q2 FY2026: $7.415B in buybacks.
-- Q2 FY2026 total return: $12.7B (dividends + buybacks), +32% YoY.
-- Quarterly dividend: $0.83/share ($3.32 annualized). Yield: ~0.81% at current price.
-- 16+ consecutive years of dividend increases (10% hike in September 2024).
-
-### Macro Environment
-
-**Current Rates -- [Source: Federal Reserve, Tier 1]**
-- Federal Funds Rate: 3.50%-3.75% (held steady).
-- 10-Year Treasury: ~4.12% (as of 2026-03-06, fell on weak jobs data).
-- CME FedWatch: 98% probability of rate hold at next meeting.
-- Market expects first cut in July 2026. Even probability of second cut vs. pause by December.
-
-**Macro Context for MSFT:**
-- Weak jobs data (-92K jobs) and declining retail sales (-0.2%) raise economic concerns.
-- Technology sector sensitive to economic slowdown affecting enterprise IT budgets.
-- However, AI spending appears structurally driven (not purely cyclical) -- enterprise commitments remain strong.
-- Lower rates would benefit growth/tech valuations; current 4.1% 10Y is moderately restrictive.
+**Short Interest:** 1.88% of shares outstanding
+- Low short interest. No significant bearish positioning.
+- Short interest at 39.2M shares, ~2.4% of float.
+- Days to cover: Not retrieved [DATA GAP]
+[Source: StockAnalysis.com, Fintel — Tier 4, retrieved 2026-03-09]
 
 ### Bear Case Evidence
 
-**1. AI CapEx ROI Uncertainty -- [Source: Fortune, Seeking Alpha, multiple, Tier 2-3]**
-- MSFT tracking toward $100B+ annual CapEx in 2026 (up from $28B in FY2023 -- a 3.6x increase in 3 years).
-- H1 FY2026 CapEx: $49.3B. Free cash flow: $31.5B -- CapEx now significantly exceeds FCF.
-- Stock suffered historic 10.5% single-day drop on Jan 29, 2026 (~$375B market cap erased) despite beating estimates.
-- Morgan Stanley analyst: "capex is growing faster than expected, and Azure growing slower than expected."
-- Greatest risk: $100B+ annual investment fails to yield proportional revenue -- potential "lost decade" of margin recovery.
-- Gross margin narrowing to ~68% (three-year low) due to infrastructure costs.
-- [Source: Fortune, analysts, Seeking Alpha -- retrieved 2026-03-08]
+**1. Valuation Concern (Strongest Bear Argument)**
+- Trailing P/E: 71.7x; Forward P/E: 28.6x; PEG: 0.68
+- EV/Revenue: 8.87x; EV/EBITDA: 45.5x
+- At $190, AMD is priced for near-flawless execution on multiple long-term targets
+- Seeking Alpha "You're About To Get Crushed" article argues overvaluation + overhyped OpenAI expectations [Source: Seeking Alpha — Tier 6, accessed 2026-03-09; article was paywalled]
 
-**2. Azure Growth Deceleration -- [Source: earnings data, Tier 1]**
-- Q1 FY26: 40% -> Q2 FY26: 39% -> Q3 FY26 guided: 37-38%.
-- Market had priced in acceleration, not deceleration.
-- Management explained deceleration partly reflects GPU allocation to first-party products (Copilot) rather than capacity constraint, but the optionality argument requires faith in Copilot monetization.
+**2. Warrant Dilution Risk**
+- 320M warrant shares (OpenAI 160M + Meta 160M) = ~20% potential dilution
+- Exercise at $0.01/share is effectively free equity given away
+- Full vesting requires $600 stock price (~3x current) but milestones could trigger partial vesting earlier
+- At current $190, 160M warrants = ~$30B dilution vs. projected deal revenue — "even swap in NPV terms" per analysts
+[Source: Tom's Hardware, The Decoder, multiple — Tier 3-6, retrieved 2026-03-09]
 
-**3. OpenAI Concentration Risk -- [Source: TechCrunch, Fortune, Tier 2]**
-- ~45% of $625B commercial RPO ($280B) tied to OpenAI -- an unprofitable startup.
-- OpenAI lost money in 2025 despite $20B+ revenue. Has $1.4T in energy/compute commitments.
-- If OpenAI fails to achieve profitability or if the partnership deteriorates, ~$280B in backlog is at risk.
-- Microsoft already took $3.1B impairment as "OpenAI partnership turns rivalry" [Source: TechBuzz].
-- OpenAI fundraising at $750B-$830B valuation -- if this bubble deflates, Microsoft's 27% stake exposure is material.
+**3. China/Export Control Risk**
+- $800M inventory charge already absorbed
+- $1.5-1.8B FY2025 revenue lost to export controls
+- China was 24% of FY2024 revenue — now guided at ~$100M/quarter
+- MI308 exports require 15% fee to U.S. Treasury
+- Regulatory environment "very dynamic" — further tightening possible
+- Risk of blanket China AI chip ban not priced in
+[Source: AMD 8-K, TechCrunch, Register — Tier 1-3, retrieved 2026-03-09]
 
-**4. FTC Antitrust Investigation -- [Source: PYMNTS, Computerworld, SAMexpert, Tier 2]**
-- FTC conducting broadest Microsoft antitrust probe since the 1990s. Continues into 2026.
-- Investigating: product bundling, cloud market dominance, AI partnership structures, data portability.
-- FTC interviewing Microsoft's competitors about business practices.
-- FTC Chair Ferguson: "big tech is one of the main priorities of the Trump-Vance FTC."
-- UK CMA: concluded "competition is not working well" in cloud, recommending Strategic Market Status investigation for MSFT and AWS.
-- EU: opened three Digital Markets Act investigations into cloud computing (November 2025).
-- Japan: opened investigation under Antimonopoly Act.
-- Class action lawsuit: consumers challenging Microsoft-OpenAI partnership as anticompetitive.
-- **Risk: Multi-jurisdictional regulatory pressure could force behavioral remedies (unbundling, data portability) that erode competitive moat.**
+**4. CUDA/ROCm Software Moat**
+- NVIDIA's 18-year CUDA investment creates performance gap of 30-99% across benchmarks
+- ROCm developer base fraction of CUDA's 6M developers
+- Enterprise customers resistant to switching software stacks
+- Risk: Even with superior hardware specs, AMD GPUs underperform NVIDIA in real-world deployments due to software optimization gap
+[Source: AIM Multiple, ThunderCompute — Tier 6, retrieved 2026-03-09]
 
-**5. Valuation Concerns -- [Source: Alpha Spread, analysts, Tier 3]**
-- DCF fair value estimates range from $293.61 to $335.64, suggesting 18-28% overvaluation even at current depressed price.
-- Forward P/E ~25x (below 5-year average but still premium to S&P 500).
-- Total debt increased 27.69% YoY to $97.6B, reflecting heavy CapEx financing.
-- Dividend yield only 0.81% -- limited downside protection from yield support.
+**5. Custom ASIC Cannibalization**
+- Custom ASIC growth (44.6%) outpacing GPU growth (16.1%) in 2026
+- OpenAI simultaneously building custom chips with Broadcom
+- Meta has proprietary chip development programs
+- Microsoft Maia already deployed; next-gen Braga in 2026
+- Risk: Hyperscalers use AMD GPU deals as bridge while building their own silicon
+[Source: CNBC, multiple — Tier 3-6, retrieved 2026-03-09]
 
-**6. Personal Computing Weakness -- [Source: Q2 FY2026 earnings, Tier 1]**
-- More Personal Computing segment: $14.3B (-3% YoY).
-- Gaming revenue declined 9% in constant currency.
-- Memory pricing volatility flagged by management as ongoing risk.
+**6. Execution Risk on Mega-Deals**
+- 12 GW committed deployment is unprecedented for AMD
+- MI450 not yet shipping — relies on H2 2026 production ramp
+- Supply chain execution (TSMC 3nm/advanced packaging) at scale untested
+- If MI450 delays or underperforms, both mega-deals at risk
+[ASSUMPTION based on deal structure analysis]
 
-### Risk Factors (Outside 10-K)
+**7. Gaming/Embedded Headwinds**
+- Semi-custom gaming declining significantly (console cycle maturity)
+- Embedded recovering but slowly (+2.9% YoY in Q4)
+- Combined, these segments offset ~25-30% of revenue growth momentum
+[Source: AMD earnings, TweakTown — Tier 1-3, retrieved 2026-03-09]
 
-1. **Enterprise AI adoption slower than expected** -- at least one analyst flags overly optimistic AI revenue assumptions.
-2. **OpenAI governance/financial instability** -- reported losses, massive capital commitments, potential rivalry with Microsoft.
-3. **Multi-jurisdictional antitrust enforcement** -- FTC, EU DMA, UK CMA, Japan simultaneously investigating.
-4. **DeepSeek and open-source AI disruption** -- cheaper, open-source models could undermine Azure AI premium pricing.
-5. **Macro slowdown impact on enterprise IT budgets** -- weak March 2026 jobs data (-92K) raises recession concerns.
-6. **Interest rate sensitivity** -- at $3T+ market cap, MSFT is highly sensitive to discount rate changes.
-
----
-
-## Financial Summary (XBRL Data)
-
-### Annual Income Statement (FY, ending June 30)
-
-| Metric | FY2023 | FY2024 | FY2025 | YoY Growth |
-|--------|--------|--------|--------|------------|
-| Revenue | $211,915M | $245,122M | $281,724M | +14.9% |
-| Gross Profit | $146,052M [EST] | $171,008M | $193,893M | +13.4% |
-| Operating Income | N/A | $109,433M | $128,528M | +17.4% |
-| Net Income | N/A | $88,136M | $101,832M | +15.5% |
-| EPS (Diluted) | N/A | $12.00 | $14.00 | +16.7% |
-| R&D Expense | N/A | $29,510M | $32,488M | +10.1% |
-| CapEx | $28,107M | $44,477M | $64,551M | +45.1% |
-
-### Latest Quarter (Q2 FY2026, Oct-Dec 2025)
-
-| Metric | Value | YoY Growth |
-|--------|-------|------------|
-| Revenue | $81,273M | +17% |
-| Gross Profit | $55,295M | N/A |
-| Operating Income | $38,275M | +21% |
-| Net Income | $38,458M | +60% (incl. OpenAI gain) |
-| EPS (GAAP) | $5.16 | +60% |
-| EPS (non-GAAP) | $4.14 | +24% |
-| CapEx (Q2 est) | ~$37,500M | N/A |
-
-### Balance Sheet (as of December 31, 2025)
-
-| Metric | Value |
-|--------|-------|
-| Total Assets | $665,302M |
-| Total Liabilities | $274,427M |
-| Stockholders' Equity | $390,875M |
-| Cash & Equivalents | $24,296M |
-| Long-Term Debt | $40,262M |
-| Total Debt (est) | ~$97,600M |
-| Goodwill | $119,622M |
-| Shares Outstanding | 7,429M |
-
-### Cash Flow (Annual)
-
-| Metric | FY2023 | FY2024 | FY2025 |
-|--------|--------|--------|--------|
-| CapEx | $28,107M | $44,477M | $64,551M |
-| Free Cash Flow (est) | ~$59,000M | ~$74,000M | ~$36,000M [ESTIMATED] |
-
-Note: FY2025 FCF decline reflects massive CapEx ramp. H1 FY2026 FCF: $31.5B vs $49.3B CapEx.
-
----
+**8. High Beta / Macro Sensitivity**
+- Beta of 2.02 — AMD falls ~2x harder than market in downturns
+- Fed funds rate at 3.50-3.75%; 10Y at 4.15% — elevated rates pressure growth multiples
+- Any macro slowdown compresses the 28.6x forward P/E aggressively
+[Source: StockAnalysis.com, Fed data — Tier 4-5, retrieved 2026-03-09]
 
 ## Data Gaps
 
-| Data Type | Reason | Impact | Mitigation |
-|-----------|--------|--------|------------|
-| Exact short interest (shares, % float) | Paywalled on NASDAQ/Fintel | Low -- MSFT is not a short squeeze candidate | Days to cover (2.02) suggests low short interest |
-| Segment-level operating margins (latest) | Not in XBRL; in 10-Q full text | Medium -- needed for margin analysis | Analysts should retrieve from 10-Q filing directly |
-| FY2025 Operating Cash Flow (XBRL) | XBRL data incomplete for OCF | Medium -- needed for FCF calc | H1 FY2026 OCF data available from press release |
-| Detailed insider trade amounts per person | Would require parsing individual Form 4s | Low -- aggregate pattern (net selling) is clear | Summary data sufficient |
-| Full sell-side research reports | Paywalled (Goldman, Morgan Stanley, JPM) | Medium -- lose detailed model assumptions | Consensus estimates and price targets retrieved |
-| Patent filing activity | Not searched | Low for investment thesis | N/A |
-| Employee sentiment (Glassdoor) | Not searched | Low | N/A |
-| Options chain detail (IV, skew) | market-data.sh tool had bash compatibility issue | Medium -- needed for Technical Analyst | Can be retrieved via separate curl call |
-| FRED macro data (full series) | FRED API requires key / SSL issue on local Python | Low -- key rates retrieved via web search | Web search provided current rates |
-| Q1 FY2026 earnings transcript (full text) | Only summary retrieved | Low -- Q2 is the most relevant | Q2 transcript key quotes retrieved |
-
----
+| Data Type | Reason | Impact | Priority |
+|-----------|--------|--------|----------|
+| DEF 14A (Proxy Statement) | EDGAR CIK resolution failed for AMD (tool bug) | Limits governance/comp analysis | Medium — ESG analyst should retrieve via `https://ir.amd.com/financial-information/sec-filings` |
+| 3-year historical price data | `market-data.sh` bash version incompatibility (`${1^^}` not supported) | Limits technical analysis, drawdown analysis | High — Technical Analyst should use WebFetch on Yahoo Finance |
+| Options chain data | Same bash tool error | Limits implied volatility analysis, put/call analysis | Medium — Trade Structurer should retrieve directly |
+| Full 10-K text | EDGAR CIK resolution failed | Analysts lack full filing text for risk factors, segment detail | High — Use direct URL: `https://ir.amd.com/financial-information/sec-filings/content/0000002488-26-000018/amd-20251227.htm` |
+| Days to cover (short interest) | MarketBeat blocked (403) | Minor — short interest is low at 1.88% | Low |
+| FRED macro time series | No FRED API key configured | Macro Analyst should use WebFetch on FRED CSV URLs | Medium |
+| Competitor financials (NVDA, INTC) | Not retrieved for this memo | Quant Analyst needs for comp table | High — use EDGAR or WebSearch |
+| Institutional holdings detail | Yahoo/WhaleWisdom not fetched | Limits ownership change analysis | Medium |
+| AMD patent activity | Not retrieved | Limits innovation assessment | Low |
+| Employee sentiment (Glassdoor) | Not retrieved | Limits qualitative assessment | Low |
 
 ## Source Bibliography
 
-### Tier 1 Sources (SEC Filings, Official Data)
-1. SEC EDGAR -- MSFT Company Filings (CIK 0000789019): https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=0000789019 [Retrieved 2026-03-08]
-2. SEC EDGAR XBRL API -- Structured Financials: https://data.sec.gov/api/xbrl/companyfacts/CIK0000789019.json [Retrieved 2026-03-08]
-3. Microsoft IR -- FY26 Q2 Press Release: https://www.microsoft.com/en-us/investor/earnings/fy-2026-q2/press-release-webcast [Retrieved 2026-03-08]
-4. Microsoft IR -- FY26 Q1 Press Release: https://www.microsoft.com/en-us/investor/earnings/fy-2026-q1/press-release-webcast [Retrieved 2026-03-08]
-5. Yahoo Finance -- MSFT Quote and Historical Prices: https://finance.yahoo.com/quote/MSFT/ [Retrieved 2026-03-08]
-6. Microsoft 10-K (FY2025): https://www.sec.gov/Archives/edgar/data/789019/000095017025100235/msft-20250630.htm [URL retrieved 2026-03-08]
-7. Microsoft 10-Q (Q2 FY2026): https://www.sec.gov/Archives/edgar/data/789019/000119312526027207/msft-20251231.htm [URL retrieved 2026-03-08]
-8. Microsoft DEF 14A (2025): https://www.sec.gov/Archives/edgar/data/789019/000119312525267270/d87183ddefa14a.htm [URL retrieved 2026-03-08]
+### Tier 1 — SEC Filings & Official Disclosures
+1. AMD 10-K FY2025 (filed 2026-02-04): https://ir.amd.com/financial-information/sec-filings/content/0000002488-26-000018/amd-20251227.htm [Retrieved 2026-03-09]
+2. AMD Q4 FY2025 Press Release: https://ir.amd.com/news-events/press-releases/detail/1276/amd-reports-fourth-quarter-and-full-year-2025-financial-results [Retrieved 2026-03-09]
+3. AMD-OpenAI Partnership Press Release (2025-10-06): https://ir.amd.com/news-events/press-releases/detail/1260/ [Retrieved 2026-03-09]
+4. AMD-Meta Partnership Press Release (2026-02-24): https://ir.amd.com/news-events/press-releases/detail/1279/ [Retrieved 2026-03-09]
+5. AMD-HPE Helios Press Release (2025-12-02): https://ir.amd.com/news-events/press-releases/detail/1269/ [Retrieved 2026-03-09]
+6. AMD 8-K — $800M Export Control Charge (2025-04-16): https://ir.amd.com/financial-information/sec-filings/content/0000002488-25-000039/amd-20250415.htm [Retrieved 2026-03-09]
 
-### Tier 2 Sources (Transcripts, Alternative Data, Government Data)
-9. Motley Fool -- MSFT Q2 2026 Earnings Call Transcript: https://www.fool.com/earnings/call-transcripts/2026/01/28/microsoft-msft-q2-2026-earnings-call-transcript/ [Retrieved 2026-03-08]
-10. Fortune -- "Microsoft demand backlog doubles to $625 billion...": https://fortune.com/2026/01/28/microsoft-stock-drops-azure-growth-slows-capex-spending-q2/ [Retrieved 2026-03-08]
-11. TechCrunch -- "Microsoft gained $7.6B from OpenAI last quarter": https://techcrunch.com/2026/01/28/microsoft-earnings-7-6-billion-openai/ [Retrieved 2026-03-08]
-12. TechBuzz.ai -- "Microsoft-OpenAI Partnership Restructures with $135B Valuation": https://www.techbuzz.ai/articles/microsoft-openai-partnership-restructures-with-135b-valuation [Retrieved 2026-03-08]
-13. OpenAI Blog -- "The next chapter of the Microsoft-OpenAI partnership": https://openai.com/index/next-chapter-of-microsoft-openai-partnership/ [Retrieved 2026-03-08]
-14. Federal Reserve -- H.15 Selected Interest Rates: https://www.federalreserve.gov/releases/h15/ [Retrieved 2026-03-08]
-15. PYMNTS -- "FTC Grills Microsoft Rivals to Bolster Antitrust Probe": https://www.pymnts.com/antitrust/2026/ftc-grills-microsoft-rivals-to-bolster-antitrust-probe/ [Retrieved 2026-03-08]
-16. SAMexpert -- "FTC vs Microsoft: The Broadest Antitrust Probe Since the 1990s": https://samexpert.com/ftc-microsoft-investigation-2025/ [Retrieved 2026-03-08]
+### Tier 2 — Earnings Transcripts & Insider Filings
+7. AMD Q4 FY2025 Earnings Call Transcript: https://www.fool.com/earnings/call-transcripts/2026/02/03/amd-amd-q4-2025-earnings-call-transcript/ [Retrieved 2026-03-09]
+8. Lisa Su Form 4 (Feb 2026 sale): https://www.stocktitan.net/sec-filings/AMD/form-4-advanced-micro-devices-inc-insider-trading-activity-77336ff2e4d5.html [Retrieved 2026-03-09]
 
-### Tier 3 Sources (Analyst Commentary, Industry Research, Podcasts)
-17. Futurum Group -- "Microsoft Q1 FY 2026: Cloud and AI Fuel Broad-Based Growth": https://futurumgroup.com/insights/microsoft-q1-fy-2026-cloud-and-ai-fuel-broad-based-growth/ [Retrieved 2026-03-08]
-18. Vocal Media/Trader -- "Microsoft Stock Analysis 2026: The $400 Billion Reality Check": https://vocal.media/trader/microsoft-stock-msft-analysis-2026-the-400-billion-reality-check-that-shook-wall-street [Retrieved 2026-03-08]
-19. StockAnalysis.com -- MSFT Forecast: https://stockanalysis.com/stocks/msft/forecast/ [Retrieved 2026-03-08]
-20. MarketBeat -- MSFT Forecast and Short Interest: https://www.marketbeat.com/stocks/NASDAQ/MSFT/forecast/ [Retrieved 2026-03-08]
-21. WallStreetZen -- MSFT Stock Forecast: https://www.wallstreetzen.com/stocks/us/nasdaq/msft/stock-forecast [Retrieved 2026-03-08]
-22. Turbo360 -- "Azure Market Share: The Latest Stats & Trends 2026": https://turbo360.com/blog/azure-market-share [Retrieved 2026-03-08]
-23. Programming Helper -- "Cloud Computing Market Share 2026": https://www.programming-helper.com/tech/cloud-computing-market-share-2026-aws-azure-google-cloud-analysis [Retrieved 2026-03-08]
-24. WEF -- Davos 2026 Nadella Conversation: https://www.weforum.org/meetings/world-economic-forum-annual-meeting-2026/sessions/conversation-with-satya-nadella-ceo-of-microsoft/ [Retrieved 2026-03-08]
-25. The Register -- "Microsoft CEO slams AI slop": https://www.theregister.com/2026/02/25/microsoft_boss_on_ai_content/ [Retrieved 2026-03-08]
-26. Dwarkesh Patel -- "Satya Nadella: How Microsoft is preparing for AGI": https://www.dwarkesh.com/p/satya-nadella-2 [Retrieved 2026-03-08]
-27. Grand View Research -- Cloud Computing Market: https://www.grandviewresearch.com/industry-analysis/cloud-computing-industry [Retrieved 2026-03-08]
-28. Precedence Research -- Cloud Computing Market: https://www.precedenceresearch.com/cloud-computing-market [Retrieved 2026-03-08]
-29. GeekWire -- "Microsoft beats expectations, cloud tops $50B": https://www.geekwire.com/2026/microsoft-beats-expectations-cloud-tops-50b-as-openai-and-anthropic-deals-reshape-its-business/ [Retrieved 2026-03-08]
-30. Seeking Alpha -- "Microsoft Is In A Bear Market, Creating A Major Opportunity": https://seekingalpha.com/article/4873886-microsoft-is-in-a-bear-market-which-is-creating-a-major-opportunity [Retrieved 2026-03-08]
-31. Alpha Spread -- MSFT DCF Valuation: https://www.alphaspread.com/security/nasdaq/msft/dcf-valuation [Retrieved 2026-03-08]
-32. Computerworld -- "Will Microsoft be laid low by the feds' antitrust probe?": https://www.computerworld.com/article/3852913/will-microsoft-be-laid-low-by-the-feds-antitrust-probe.html [Retrieved 2026-03-08]
-33. Fortune -- "Microsoft unveils $60 billion buyback, 10% dividend increase": https://fortune.com/2024/09/16/microsoft-60-billion-stock-buyback-10-percent-dividend-increase/ [Retrieved 2026-03-08]
-34. S&P Global -- "Microsoft and Meta earnings preview: Capex growth looms": https://www.spglobal.com/market-intelligence/en/news-insights/research/2026/01/microsoft-and-meta-earnings-preview1 [Retrieved 2026-03-08]
-35. Futurum Group -- "AI Capex 2026: The $690B Infrastructure Sprint": https://futurumgroup.com/insights/ai-capex-2026-the-690b-infrastructure-sprint/ [Retrieved 2026-03-08]
+### Tier 3 — Company IR & News
+9. AMD CES 2026 Keynote: https://www.engadget.com/computing/amd-at-ces-2026-live-updates-from-ceo-lisa-sus-keynote-presentation-190012370.html [Retrieved 2026-03-09]
+10. CNBC Lisa Su Interview (2026-02-04): https://www.cnbc.com/video/2026/02/04/watch-cnbcs-full-interview-with-amd-chair-and-ceo-lisa-su.html [Retrieved 2026-03-09]
+11. CNBC Meta-AMD Deal Coverage: https://www.cnbc.com/2026/02/24/meta-to-use-6gw-of-amd-gpus-days-after-expanded-nvidia-ai-chip-deal.html [Retrieved 2026-03-09]
+12. Tom's Hardware AMD-Meta Deal: https://www.tomshardware.com/tech-industry/artificial-intelligence/amd-meta-100-billion-deal [Retrieved 2026-03-09]
+13. Futurum Group Q4 Analysis: https://futurumgroup.com/insights/amd-q4-fy-2025-record-data-center-and-client-momentum/ [Retrieved 2026-03-09]
+14. The Decoder AMD-Meta Analysis: https://the-decoder.com/amd-basically-copy-pasted-its-openai-deal-for-meta-six-gigawatts-and-ten-percent-equity-included/ [Retrieved 2026-03-09]
+15. TechCrunch $800M Charge: https://techcrunch.com/2025/04/16/amd-takes-800m-charge-on-us-license-requirement-for-ai-chips/ [Retrieved 2026-03-09]
+16. Quartz $800M Charge: https://qz.com/amd-lisa-su-china-export-restrictions-commerce-department [Retrieved 2026-03-09]
+
+### Tier 4 — Financial Data Aggregators
+17. StockAnalysis.com AMD Statistics: https://stockanalysis.com/stocks/amd/statistics/ [Retrieved 2026-03-09]
+18. StockAnalysis.com AMD Forecast: https://stockanalysis.com/stocks/amd/forecast/ [Retrieved 2026-03-09]
+19. MacroTrends AMD P/E: https://www.macrotrends.net/stocks/charts/AMD/amd/pe-ratio [Retrieved 2026-03-09]
+20. MarketBeat AMD Forecast: https://www.marketbeat.com/stocks/NASDAQ/AMD/forecast/ [Attempted 2026-03-09; 403 blocked]
+
+### Tier 5 — Government/Official Data
+21. Federal Reserve H.15 Rates (2026-03-06): https://www.federalreserve.gov/releases/h15/ [Retrieved 2026-03-09]
+22. WSTS Semiconductor Forecast: https://www.wsts.org/76/Global-Semiconductor-Market-Approaches-1T-in-2026 [Retrieved 2026-03-09]
+
+### Tier 6 — Industry Reports & Analysis
+23. Deloitte Semiconductor Industry Outlook 2026: https://www.deloitte.com/us/en/insights/industry/technology/technology-media-telecom-outlooks/semiconductor-industry-outlook.html [Retrieved 2026-03-09]
+24. Fusion Worldwide Server CPU Market: https://www.fusionww.com/insights/blog/server-cpu-market-dynamics-in-2025 [Retrieved 2026-03-09]
+25. TechNetBooks GPU Market Report Q4 2025: https://www.technetbooks.com/2026/03/global-gpu-market-report-q4-2025.html [Retrieved 2026-03-09]
+26. AIM Multiple CUDA vs ROCm: https://research.aimultiple.com/cuda-vs-rocm/ [Retrieved 2026-03-09]
+27. Seeking Alpha Bear Case: https://seekingalpha.com/article/4831137-amd-youre-about-to-get-crushed [Attempted 2026-03-09; paywalled]
+28. Precedence Research AI Data Center GPU Market: https://www.precedenceresearch.com/ai-data-center-gpu-market [Retrieved 2026-03-09]
+29. Chipstrat AMD AI Accelerator Analysis: https://www.chipstrat.com/p/amds-ai-accelerator-business-puts [Retrieved 2026-03-09]
 
 ---
 
 ## Research Analyst Summary
 
-Microsoft is among the most thoroughly covered equities on Wall Street, with 33-55 analysts providing active coverage and extensive Tier 1 data availability from SEC filings and company IR. The data picture is comprehensive, with all Tier 1 and most Tier 2 sources successfully retrieved. **The single most important finding not immediately apparent from the filings is the concentration risk embedded in the $625B commercial RPO figure: approximately 45% ($280B) is attributable to OpenAI commitments, meaning Microsoft's headline "demand backlog doubled" narrative is significantly inflated by a single counterparty that is itself unprofitable and carrying $1.4T in its own commitments.** This concentration risk is not prominently disclosed in the press release or earnings call opening remarks and requires reading the analyst Q&A and third-party reporting to surface. Critical data gaps are limited to exact short interest figures and detailed sell-side model assumptions, neither of which materially impairs the analysis. The information environment is excellent for a fundamental analysis, though the bull-bear debate is unusually polarized: the Street consensus points to 45%+ upside, while fundamental valuation models suggest the stock may still be 18-28% overvalued even at current depressed levels. This divergence -- the widest spread between analyst targets and DCF fair value in at least 5 years -- is itself a critical data point that downstream analysts must reconcile.
+AMD is one of the most well-covered stocks in the semiconductor universe with extensive analyst coverage (34 analysts), deep sell-side research, and high retail investor interest. The data picture is comprehensive with one notable gap: the EDGAR tool failed CIK resolution for AMD (CIK: 0000002488), preventing automated retrieval of full 10-K text, proxy statement, and XBRL financials — analysts should retrieve these directly from the filing URLs provided above.
+
+**The single most important finding not in the filings:** The combined OpenAI + Meta deals (announced October 2025 and February 2026 respectively) represent a potential step-function change in AMD's AI GPU business trajectory. Together they commit 12 GW of deployment with ~$200B in potential multi-year revenue — but come with 320M warrant shares (~20% potential dilution) that vest on deployment and $600 stock price milestones. This creates a unique risk/reward dynamic where the bull case depends on AMD executing at a scale it has never achieved, while failure risk is partially mitigated by the fact that full dilution only occurs alongside massive revenue realization. The market has not fully processed the dilution implications — the stock trades at $190, and full vesting requires $600.
+
+**Critical data gaps that could undermine analysis:** (1) Full 10-K text needed for detailed segment margins, risk factors, and off-balance-sheet items. (2) Historical price data not retrieved — technical analyst needs this urgently. (3) Options chain data missing — needed for implied volatility and trade structuring. (4) Competitor financial data (NVDA, INTC) not retrieved for comp analysis.
+
+**Information environment:** Well-covered large-cap with strong analyst following. Key differentiation comes from understanding the deal economics of the OpenAI/Meta partnerships, the CUDA/ROCm software gap's real-world impact, and the China regulatory tail risk. The bear case is under-discussed relative to the bull case in public discourse — most coverage is promotional. The 8 bear case vectors identified above deserve rigorous modeling.
