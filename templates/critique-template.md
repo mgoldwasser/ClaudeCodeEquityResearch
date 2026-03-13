@@ -1,63 +1,70 @@
-# Pass 2 Critique — [Reviewing Analyst Role]
+# Targeted Debate — [Disagreement Topic]
+
 **Date:** [YYYY-MM-DD]
-**Reviewing Analyst:** [Your role — e.g., Macro Analyst]
-**Reviewing:** [Target analyst's work product — e.g., DCF Analyst's Pass 1 output]
+**Identified By:** Director of Research
+**Participants:** [Analyst A Role], [Analyst B Role] (and optionally [Analyst C Role])
 
 ---
 
-## Critique of [Target Analyst Role]'s Work Product
+## The Disagreement
 
-### 1. Weakest Assumption
+**Specific question:** [E.g., "What is the appropriate WACC: 14% (DCF Analyst) or 16% (Credit Analyst)?"]
 
-**Assumption identified:** [Quote the specific assumption from the work product]
+**Analyst A position:** [Role] argues [specific number or conclusion] because [evidence/reasoning].
+**Analyst B position:** [Role] argues [specific number or conclusion] because [evidence/reasoning].
 
-**Why it's weak:**
-[2-3 sentences. Be specific. Cite the number, the reasoning gap, or the missing evidence. "This seems aggressive" is not a critique. "This assumes 15% revenue growth for 5 years while the TAM is growing at 8% and the company's market share has been flat for 3 years" is a critique.]
-
-**Quantified impact if wrong:**
-[What happens to the conclusion if this assumption is off by [X]%? E.g., "If revenue growth is 10% instead of 15%, the DCF fair value drops from $45 to $32, a 29% reduction."]
-
-**Severity: [Low / Medium / High]**
+**Why this matters:** [How much does the final price target or rating change depending on who is right? E.g., "A 2% WACC difference moves the DCF fair value by $15/share (12%)."]
 
 ---
 
-### 2. Most Likely Source of Error
+## Analyst A: Best Evidence + Attack
 
-**Error source identified:** [What is most likely to be wrong in this analysis?]
+### My strongest evidence:
+[2-3 specific data points or logical arguments supporting Analyst A's position. Must include numbers.]
 
-**Why this is the most likely error:**
-[2-3 sentences. Not "this could be wrong" but "this is probably wrong because [specific evidence or logical reasoning]."]
+### Weakest point in Analyst B's argument:
+[1-2 specific weaknesses. Must cite the specific assumption or data that is questionable.]
 
-**Suggested correction:**
-[What would you do differently? Be constructive — don't just criticize, suggest a fix.]
-
-**Severity: [Low / Medium / High]**
-
----
-
-### 3. Recommended Change
-
-**What I'd change:** [One specific modification to the analysis]
-
-**Why:** [2-3 sentences justifying the change. Must include either data or logical reasoning.]
-
-**Impact on conclusion:** [How would this change affect the analyst's bottom-line conclusion — price target, competitive score, risk assessment, etc.?]
-
-**Severity: [Low / Medium / High]**
+### My proposed resolution:
+[A specific revised number that Analyst A could accept as a compromise, with reasoning. E.g., "I could accept 15% WACC if we use X cost of debt assumption."]
 
 ---
 
-### 4. What's Strong (Optional but encouraged)
+## Analyst B: Best Evidence + Attack
 
-[One sentence on what the analyst got right or what was particularly well-done. This isn't about being nice — it's about identifying which parts of the analysis the team can rely on with confidence.]
+### My strongest evidence:
+[2-3 specific data points or logical arguments supporting Analyst B's position. Must include numbers.]
+
+### Weakest point in Analyst A's argument:
+[1-2 specific weaknesses. Must cite the specific assumption or data that is questionable.]
+
+### My proposed resolution:
+[A specific revised number that Analyst B could accept as a compromise, with reasoning.]
 
 ---
 
-### Severity Guide
-- **High:** Would materially change the investment conclusion (>10% impact on price target or a rating change)
-- **Medium:** Meaningful but wouldn't change the overall conclusion on its own (5-10% impact)
-- **Low:** Methodological improvement that wouldn't materially affect the conclusion (<5% impact)
+## Resolution
+
+**Status:** [Resolved / Key Unresolved Risk]
+
+### If Resolved:
+- **Agreed number:** [The specific revised number both sides accept]
+- **Basis for agreement:** [What evidence or reasoning broke the deadlock]
+- **Impact on price target:** [+/- $X per share]
+
+### If Key Unresolved Risk:
+- **Analyst A's range:** [Number with probability, e.g., "14% WACC with 60% confidence"]
+- **Analyst B's range:** [Number with probability, e.g., "16% WACC with 55% confidence"]
+- **Director's handling:** [How the Director will weight this in the final note — e.g., "Use midpoint 15% for base case, show both in sensitivity table"]
+- **What would resolve it:** [What data or event would settle the debate, e.g., "Next quarter's debt issuance pricing will reveal market's cost of debt assessment"]
 
 ---
 
-*Critique by [Reviewing Analyst Role], Equity Research Swarm. Pass 2 adversarial review.*
+### Decision Gate
+**Did this critique change a number?** [Yes: changed [X] from [old] to [new] / No: flagged as Key Unresolved Risk]
+
+If the answer is "No" and it's also not flagged as Key Unresolved Risk, this debate was not worth running and should not be included in the final note.
+
+---
+
+*Targeted Debate facilitated by the Director of Research, Equity Research Swarm. Pass 2 decision-forcing review.*

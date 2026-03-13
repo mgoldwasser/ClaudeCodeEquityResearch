@@ -1,0 +1,230 @@
+{
+  "model": "META_COMPS",
+  "date": "2026-03-13",
+  "ticker": "META",
+  "currency": "USD_millions",
+  "price_blinded": true,
+  "data_quality": "All peer EVs are ESTIMATED from public sources (Tier 2); Director should update with live market data",
+  "peer_set": [
+    "GOOGL",
+    "AMZN",
+    "SNAP",
+    "PINS"
+  ],
+  "peer_set_justification": {
+    "GOOGL": "Primary digital ad competitor; AI platform; similar revenue scale",
+    "AMZN": "Growing digital ad business; technology infrastructure overlap",
+    "SNAP": "Pure-play social media advertising comps; younger demographic overlap",
+    "PINS": "Social commerce; high-growth comps; ad-dependent revenue model"
+  },
+  "peer_multiples": {
+    "GOOGL": {
+      "ticker": "GOOGL",
+      "name": "Alphabet Inc.",
+      "ev_ebitda_ltm": 16.2,
+      "ev_revenue_ltm": 5.68,
+      "ev_revenue_fwd": 5.19,
+      "pe_ltm": 23.2,
+      "pe_fwd": 19.4,
+      "ev_fcf_ltm": 30.9,
+      "peg_fwd": 1.62,
+      "gross_margin_pct": 58.5,
+      "op_margin_pct": 29.5,
+      "revenue_growth_1yr_pct": 12.0
+    },
+    "AMZN": {
+      "ticker": "AMZN",
+      "name": "Amazon.com, Inc.",
+      "ev_ebitda_ltm": 16.4,
+      "ev_revenue_ltm": 3.59,
+      "ev_revenue_fwd": 3.24,
+      "pe_ltm": 45.2,
+      "pe_fwd": 35.0,
+      "ev_fcf_ltm": 39.7,
+      "peg_fwd": 3.18,
+      "gross_margin_pct": 49.5,
+      "op_margin_pct": 10.6,
+      "revenue_growth_1yr_pct": 11.0
+    },
+    "SNAP": {
+      "ticker": "SNAP",
+      "name": "Snap Inc.",
+      "ev_ebitda_ltm": 36.7,
+      "ev_revenue_ltm": 3.38,
+      "ev_revenue_fwd": 2.93,
+      "pe_ltm": null,
+      "pe_fwd": null,
+      "ev_fcf_ltm": 110.0,
+      "peg_fwd": null,
+      "gross_margin_pct": 52.0,
+      "op_margin_pct": -7.7,
+      "revenue_growth_1yr_pct": 16.0
+    },
+    "PINS": {
+      "ticker": "PINS",
+      "name": "Pinterest, Inc.",
+      "ev_ebitda_ltm": 32.7,
+      "ev_revenue_ltm": 4.5,
+      "ev_revenue_fwd": 3.83,
+      "pe_ltm": 46.3,
+      "pe_fwd": 33.1,
+      "ev_fcf_ltm": 37.5,
+      "peg_fwd": 1.84,
+      "gross_margin_pct": 77.0,
+      "op_margin_pct": 10.0,
+      "revenue_growth_1yr_pct": 18.0
+    }
+  },
+  "peer_statistics": {
+    "ev_ebitda_ltm": {
+      "mean": 25.5,
+      "median": 24.55,
+      "min": 16.2,
+      "max": 36.7,
+      "n": 4
+    },
+    "ev_revenue_ltm": {
+      "mean": 4.29,
+      "median": 4.04,
+      "min": 3.38,
+      "max": 5.68,
+      "n": 4
+    },
+    "ev_revenue_fwd": {
+      "mean": 3.8,
+      "median": 3.54,
+      "min": 2.93,
+      "max": 5.19,
+      "n": 4
+    },
+    "pe_ltm": {
+      "mean": 38.23,
+      "median": 45.2,
+      "min": 23.2,
+      "max": 46.3,
+      "n": 3
+    },
+    "pe_fwd": {
+      "mean": 29.17,
+      "median": 33.1,
+      "min": 19.4,
+      "max": 35.0,
+      "n": 3
+    },
+    "ev_fcf_ltm": {
+      "mean": 54.53,
+      "median": 38.6,
+      "min": 30.9,
+      "max": 110.0,
+      "n": 4
+    },
+    "peg_fwd": {
+      "mean": 2.21,
+      "median": 1.84,
+      "min": 1.62,
+      "max": 3.18,
+      "n": 3
+    }
+  },
+  "peer_z_scores": {
+    "ev_ebitda_ltm": {
+      "GOOGL": -0.87,
+      "AMZN": -0.85,
+      "SNAP": 1.04,
+      "PINS": 0.67
+    },
+    "pe_ltm": {
+      "GOOGL": -1.15,
+      "AMZN": 0.53,
+      "PINS": 0.62
+    },
+    "pe_fwd": {
+      "GOOGL": -1.15,
+      "AMZN": 0.69,
+      "PINS": 0.46
+    }
+  },
+  "meta_metrics": {
+    "revenue_ltm": 200966,
+    "ebitda_ltm": 110000,
+    "ebit_ltm": 83276,
+    "net_income_ltm_reported": 60458,
+    "net_income_ltm_normalized": 78000,
+    "fcf_ltm": 43585,
+    "revenue_fwd_1yr": 255200,
+    "eps_fwd_1yr": 30.19,
+    "diluted_shares_M": 2574,
+    "eps_ltm_reported": 23.49,
+    "eps_ltm_normalized": 30.28,
+    "net_cash": 22848,
+    "gross_margin_pct": 82.0,
+    "op_margin_pct": 41.4,
+    "revenue_growth_pct": 22.2,
+    "note": "EV/P-based multiples require current stock price (blinded). Implied fair values provided below."
+  },
+  "implied_fair_values_per_share": {
+    "ev_ebitda_ltm": {
+      "multiple_applied": 24.55,
+      "implied_ev_M": 2700500.0,
+      "implied_equity_value_M": 2723348.0,
+      "implied_price_per_share": 1058.02,
+      "method": "Peer median EV/EBITDA (LTM) \u00d7 META EBITDA $110B + net cash $22.8B",
+      "caveat": "META EBITDA is [ESTIMATED]; D&A not directly disclosed"
+    },
+    "ev_revenue_ltm": {
+      "multiple_applied": 4.04,
+      "implied_ev_M": 811903.0,
+      "implied_equity_value_M": 834751.0,
+      "implied_price_per_share": 324.3,
+      "method": "Peer median EV/Revenue (LTM) \u00d7 META revenue $201B + net cash",
+      "caveat": "Revenue multiples less relevant for META given margin premium vs. peers"
+    },
+    "ev_revenue_fwd": {
+      "multiple_applied": 3.54,
+      "implied_ev_M": 903408.0,
+      "implied_equity_value_M": 926256.0,
+      "implied_price_per_share": 359.85,
+      "method": "Peer median EV/Revenue (Fwd) \u00d7 META consensus FY2026E rev $255.2B + net cash"
+    },
+    "pe_ltm_normalized": {
+      "multiple_applied": 45.2,
+      "net_income_used_M": 78000,
+      "implied_price_per_share": 1369.7,
+      "method": "Peer median P/E (LTM) \u00d7 META normalized net income $78B / 2574M shares",
+      "caveat": "META 2025 net income inflated by $15.93B one-time tax charge; normalized figure used"
+    },
+    "pe_fwd": {
+      "multiple_applied": 33.1,
+      "eps_used": 30.19,
+      "implied_price_per_share": 999.29,
+      "method": "Peer median P/E (Fwd) \u00d7 META consensus FY2026E EPS $30.19"
+    },
+    "ev_fcf_ltm": {
+      "multiple_applied": 38.6,
+      "implied_ev_M": 1682381.0,
+      "implied_equity_value_M": 1705229.0,
+      "implied_price_per_share": 662.48,
+      "method": "Peer median EV/FCF \u00d7 META FCF $43.6B + net cash",
+      "caveat": "META FCF depressed by CapEx surge; FCF will compress further in 2026-2027"
+    },
+    "_summary": {
+      "min_implied_price": 324.3,
+      "max_implied_price": 1369.7,
+      "mean_implied_price": 795.61,
+      "median_implied_price": 999.29,
+      "methodology_count": 6
+    }
+  },
+  "quality_premium_justification": {
+    "gross_margin_pct": 82.0,
+    "op_margin_pct": 41.4,
+    "assessment": "META merits 10-20% premium to peer median multiples on profitability; discount warranted on FCF yield given 2026-2027 CapEx surge"
+  },
+  "key_caveats": [
+    "All peer EV data is [ESTIMATED] \u2014 update with current market prices for precise multiples",
+    "META EV/FCF depressed by historic CapEx surge; FCF will compress further in FY2026",
+    "META normalized EPS adjusts for $15.93B one-time FY2025 tax charge",
+    "AMZN and GOOGL have significant non-advertising businesses; multiples not directly comparable",
+    "No price-based META multiples calculated (blinded)"
+  ]
+}

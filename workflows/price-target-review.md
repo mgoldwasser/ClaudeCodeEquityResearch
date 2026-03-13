@@ -19,8 +19,8 @@ Updating an existing research note due to new information (earnings release, gui
 1. Read the prior research note and the new data in `input/`.
 2. Classify the change:
    - **Financial update:** New earnings beat/miss, revised guidance → spawn DCF Analyst + Quant Analyst
-   - **Competitive shift:** New entrant, market share change, pricing action → spawn Competitive Analyst + DCF Analyst
-   - **Macro shift:** Rate change, regulatory action, FX move → spawn Macro Analyst + DCF Analyst
+   - **Competitive/sector shift:** New entrant, market share change, pricing action, industry dynamics → spawn Industry Analyst + DCF Analyst
+   - **Risk/macro shift:** Rate change, regulatory action, FX move, macro deterioration → spawn Risk & Contrarian Analyst + DCF Analyst
    - **Multi-factor:** Multiple material changes → spawn all relevant analysts
 3. Write a change memo: What changed, what hasn't, what specific questions the analysts should answer.
 
@@ -39,8 +39,8 @@ Each analyst receives:
 For price target reviews, **skip the full adversarial review** unless the change is fundamental:
 
 - **Routine update** (beat/miss within 10% of estimates): Director reviews analyst updates directly, no cross-critique needed.
-- **Material change** (>10% estimate revision, rating change consideration): Run abbreviated cross-critique — each spawned analyst reviews the others' updates (one round, no rebuttals).
-- **Fundamental change** (thesis-altering event): Escalate to full research note workflow (`workflows/full-research-note.md`).
+- **Material change** (>10% estimate revision, rating change consideration): Run abbreviated targeted critique — each spawned analyst reviews the others' updates (one round, no rebuttals).
+- **Fundamental change** (thesis-altering event): Escalate to full research note workflow (`workflows/full-research-note.md`) with 10 agents.
 
 ### Phase 3: Update Synthesis (Director)
 1. Revise the price target:
@@ -52,7 +52,7 @@ For price target reviews, **skip the full adversarial review** unless the change
 4. Add a "Change Summary" section at the top of the note.
 
 ### Phase 4: Output
-Save updated note to: `output/[TICKER]-price-target-review-[YYYY-MM-DD].md`
+Save updated note to: `output/[TICKER]/[DATE]/[TICKER]-price-target-review-[YYYY-MM-DD].md`
 
 ## Output Format
 The updated note should include a **Change Summary** header before the Executive Summary:
@@ -80,4 +80,4 @@ Then the full updated research note follows.
 ## Estimated Agent Calls
 - Routine update: 2-3 agents (targeted analysts only)
 - Material change: 3-4 agents + abbreviated review
-- Fundamental change: Escalate to full workflow (13 agents)
+- Fundamental change: Escalate to full workflow (10 agents)

@@ -1,0 +1,47 @@
+{
+  "model": "DCF Valuation",
+  "ticker": "NVDA",
+  "date": "2026-03-10",
+  "base_assumptions": {
+    "starting_revenue_fy2026": 215900,
+    "wacc": 0.1295,
+    "tax_rate": 0.15,
+    "shares_outstanding_millions": 2460,
+    "net_debt_millions": -60000
+  },
+  "scenarios": {
+    "bull": {
+      "price_per_share": 1048.69,
+      "enterprise_value": 2519769.0,
+      "equity_value": 2579769.0,
+      "terminal_value": 3337225.0,
+      "tv_pct_of_ev": 72.0,
+      "wacc": 0.1295,
+      "terminal_growth_rate": 0.035,
+      "year5_revenue": 607624.0,
+      "year5_gross_margin": 0.74
+    },
+    "base": {
+      "price_per_share": 691.37,
+      "enterprise_value": 1640777.0,
+      "equity_value": 1700777.0,
+      "terminal_value": 2030730.0,
+      "tv_pct_of_ev": 67.3,
+      "wacc": 0.1295,
+      "terminal_growth_rate": 0.03,
+      "year5_revenue": 411578.0,
+      "year5_gross_margin": 0.71
+    },
+    "bear": {
+      "price_per_share": 390.22,
+      "enterprise_value": 899930.0,
+      "equity_value": 959930.0,
+      "terminal_value": 1006389.0,
+      "tv_pct_of_ev": 60.8,
+      "wacc": 0.1295,
+      "terminal_growth_rate": 0.02,
+      "year5_revenue": 277998.0,
+      "year5_gross_margin": 0.64
+    }
+  }
+}

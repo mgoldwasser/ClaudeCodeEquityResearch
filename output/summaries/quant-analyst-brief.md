@@ -1,30 +1,35 @@
-## Quant Analyst — AMD Brief
+# Quant Analyst — Structured Brief
 
-**Bottom Line:** AMD is fairly valued to modestly undervalued on P/E (28.6x vs. 27.8x comp median) and significantly undervalued on PEG (0.51x vs. 1.16x median), but overvalued on EV/EBITDA (24.6x vs. 20.6x) at current margins — the entire bull case rests on margin expansion from 27.2% to 35%+ EBITDA.
+## Bottom Line
+Comp-implied fair value range of $700–$850/share (central estimate $722–$816/share) based on 5-company comparable set (AMD, Broadcom, TSMC, ASML, Qualcomm). EV/Revenue primary methodology yields $722/share; cross-checks via EV/EBITDA ($686–$898) and P/E ($801) converge tightly, suggesting comps may undervalue earnings power if NVIDIA sustains 75% gross margins.
 
-**Key Numbers:**
-- Comps-implied expected value: $205.00 (Bull $260 / Base $210 / Bear $140 at 25/50/25) [Source: screening.py, portfolio-math.py]
-- Expected return: +7.7% from $190.40
-- PEG ratio: 0.51x (17th percentile of comp group) — strongest signal [Source: StockAnalysis.com — Tier 4]
-- 5Y EPS CAGR: 55.9% vs. comp median ~22% [ESTIMATED]
-- EV/EBITDA: 24.6x (83rd percentile), 19.4% premium to 20.6x median
-- Historical avg forward P/E (5Y): ~40x; current 28.6x at ~25th percentile of own range
-- At historical 40x forward P/E: implied price $266 (+39.7%) [Source: GuruFocus, MacroTrends — Tier 4]
-- Central comps estimate (blended): $207 undiluted; ~$197 with partial dilution (80M shares) [ASSUMPTION]
+## Key Numbers
+- **EV/Revenue (median, 5-comp set):** 5.8x → **$722/share** (base case: $320B NTM revenue)
+- **EV/EBITDA (median, 5-comp set):** 22.0x → **$686–$898/share** (22–31% EBITDA margin range)
+- **P/E (median, 5-comp set):** 35.2x → **$801/share** (assumes 18.75% net margin)
+- **PEG (median, 5-comp set):** 1.2x
+- **Fair value range:** **$686–$807/share** (25th–75th percentile scenarios)
+- **Comp-implied premium over median:** 22–35x EV/EBITDA justified by 40%+ growth vs. peers (AMD 32%, Broadcom 28.5%, TSMC 38%)
+- **NVDA estimated NTM revenue:** $320B; **net cash position:** $50–60B; **shares outstanding:** 2,640M
 
-**Critical Assumptions:**
-- NTM EBITDA ~$12,500M at ~27% margin on ~$46B revenue [ESTIMATED] [confidence: medium]
-- NTM EPS ~$6.66 [ESTIMATED] [confidence: medium]
-- Comp set of 6 companies is adequate despite AMD's rapid business mix evolution [confidence: medium]
-- Partial warrant dilution of ~80M additional shares at reasonable price targets [ASSUMPTION] [confidence: low]
-- EBITDA margin expansion to 35%+ is achievable as GPU revenue scales [confidence: medium]
+## Critical Assumptions
+- NVDA sustains 75% gross margin through FY2027 (currently 67%; 800bps expansion embedded in price sensitivity)
+- NTM revenue reaches $320B (40%+ growth sustained)
+- EBITDA margin expands to 22–31% range; central case 25%
+- Peer comp multiples (median EV/Revenue 5.8x) apply to NVDA without adjustment for competitive intensity
+- Intel excluded as structural outlier (negative GAAP EPS, depressed profitability); 5-company set provides statistical reliability
 
-**Risks Identified:**
-- Quality score 29.0/100 (worst in comp group ex-INTC): ROIC 6.6%, EBITDA margin 27.2%
-- If margins stagnate at ~27%, EV/EBITDA median implies fair value ~$162 (14.9% downside)
-- Full warrant dilution (320M shares) cuts central estimate from $207 to ~$173
-- Historical forward P/E compression from ~40x to 28.6x may be structural, not cyclical
+## Data Gaps & Flags
+- [DATA GAP] Broadcom's hardware + software mix makes EBITDA not directly comparable; alternative 4-comp median calculated as reference
+- [ASSUMPTION] FY2027 guidance timing varies by comp; analyst consensus cross-checks required
+- [ESTIMATED] NVDA NTM revenue and margin projections based on latest guidance extrapolation (not full-year reported results)
+- [HIGH UNCERTAINTY] If NVIDIA trades >$850/share, premium justification depends entirely on durable 40%+ growth + 75%+ margin maintenance vs. competitive erosion
 
-**Weakest Point:** AMD's quality metrics (ROIC 6.6%, EBITDA margin 27.2%) are the weakest in the comp group excluding Intel — the growth premium is not yet supported by profitability.
+## Key Risk to Thesis
+**Margin compression scenario:** If NVIDIA gross margin compresses 500–1,000bps (to 65–70% due to hyperscaler custom silicon adoption or competitive ASP pressure), EBITDA margin falls to 18–22%, collapsing EV/EBITDA-implied value from $898 (base) to $686–$789, a 15–23% downside. Risk & Contrarian should stress this; comps assume margin durability not yet tested.
 
-**Data Gaps:** [ESTIMATED: Historical forward P/E values from free sources], [ESTIMATED: NTM revenue/EPS estimates from consensus], [DATA GAP: Exact competitor financial data retrieved from aggregators, not filings]
+## Signal IDs
+- **QUANT-001:** Median EV/Revenue of 5.8x from peer set (AMD, Broadcom, TSMC, ASML, Qualcomm) — unique quantitative anchor independent of DCF assumptions
+- **QUANT-002:** P/E upside signal ($801 vs. median $722) — suggests comps underprice operating leverage if NVIDIA sustains 40%+ growth + 75% margins; flagged for DCF sensitivity check
+- **QUANT-003:** Intel exclusion justification (2.0x SD outlier on EV/EBITDA, P/E, EV/FCF) — reduces outlier noise, improves statistical reliability
+- **QUANT-004:** Sensitivity framework (7 EBITDA margin scenarios × 4 EV/EBITDA multiples = $648–$1,833 range) — enables precise pass-through of margin/multiple assumptions to other analysts

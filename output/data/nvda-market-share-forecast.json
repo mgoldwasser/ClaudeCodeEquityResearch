@@ -1,0 +1,229 @@
+{
+  "baseline_2024": {
+    "NVIDIA": 92.0,
+    "AMD": 5.0,
+    "Custom Silicon (Google/Amazon/Meta)": 2.0,
+    "Intel": 0.5,
+    "Others (Qualcomm, Marvell, etc.)": 0.5
+  },
+  "hhi_2024": 8493.5,
+  "hhi_2030_linear": 4965.98193170145,
+  "hhi_2030_scurve": 4150.56581857886,
+  "forecasts": {
+    "linear": {
+      "method": "linear_share_shift",
+      "assumptions": "Constant annual share point changes; constrained by max_share_potential",
+      "forecast": {
+        "2024": {
+          "NVIDIA": 90.36144578313254,
+          "AMD": 6.024096385542169,
+          "Custom Silicon (Google/Amazon/Meta)": 2.4096385542168677,
+          "Intel": 0.6024096385542169,
+          "Others (Qualcomm, Marvell, etc.)": 0.6024096385542169
+        },
+        "2025": {
+          "NVIDIA": 85.42141230068337,
+          "AMD": 7.972665148063782,
+          "Custom Silicon (Google/Amazon/Meta)": 5.125284738041003,
+          "Intel": 0.797266514806378,
+          "Others (Qualcomm, Marvell, etc.)": 0.683371298405467
+        },
+        "2026": {
+          "NVIDIA": 80.99352051835852,
+          "AMD": 9.719222462203023,
+          "Custom Silicon (Google/Amazon/Meta)": 7.559395248380128,
+          "Intel": 0.9719222462203023,
+          "Others (Qualcomm, Marvell, etc.)": 0.7559395248380129
+        },
+        "2027": {
+          "NVIDIA": 77.00205338809035,
+          "AMD": 11.29363449691992,
+          "Custom Silicon (Google/Amazon/Meta)": 9.75359342915811,
+          "Intel": 1.129363449691992,
+          "Others (Qualcomm, Marvell, etc.)": 0.8213552361396306
+        },
+        "2028": {
+          "NVIDIA": 73.38551859099805,
+          "AMD": 12.720156555772993,
+          "Custom Silicon (Google/Amazon/Meta)": 11.741682974559687,
+          "Intel": 1.2720156555772992,
+          "Others (Qualcomm, Marvell, etc.)": 0.8806262230919765
+        },
+        "2029": {
+          "NVIDIA": 70.09345794392523,
+          "AMD": 14.018691588785046,
+          "Custom Silicon (Google/Amazon/Meta)": 13.551401869158877,
+          "Intel": 1.4018691588785046,
+          "Others (Qualcomm, Marvell, etc.)": 0.9345794392523363
+        },
+        "2030": {
+          "NVIDIA": 67.0840787119857,
+          "AMD": 15.20572450805009,
+          "Custom Silicon (Google/Amazon/Meta)": 15.20572450805009,
+          "Intel": 1.5205724508050091,
+          "Others (Qualcomm, Marvell, etc.)": 0.9838998211091234
+        }
+      }
+    },
+    "scurve": {
+      "method": "s_curve_share_shift",
+      "assumptions": "Sigmoid adoption curves; NVIDIA decays to max_share, competitors adopt S-curve",
+      "forecast": {
+        "2024": {
+          "NVIDIA": 82.81877781078256,
+          "AMD": 8.303658261630163,
+          "Custom Silicon (Google/Amazon/Meta)": 6.4748572332404555,
+          "Intel": 1.3868471076786146,
+          "Others (Qualcomm, Marvell, etc.)": 1.0158595866682159
+        },
+        "2025": {
+          "NVIDIA": 77.35854734780399,
+          "AMD": 9.953861245997018,
+          "Custom Silicon (Google/Amazon/Meta)": 9.417719222028015,
+          "Intel": 1.9547110758283852,
+          "Others (Qualcomm, Marvell, etc.)": 1.3151611083425963
+        },
+        "2026": {
+          "NVIDIA": 71.09004739336493,
+          "AMD": 11.848341232227488,
+          "Custom Silicon (Google/Amazon/Meta)": 12.796208530805686,
+          "Intel": 2.6066350710900474,
+          "Others (Qualcomm, Marvell, etc.)": 1.6587677725118484
+        },
+        "2027": {
+          "NVIDIA": 65.7612934408811,
+          "AMD": 13.458809093422596,
+          "Custom Silicon (Google/Amazon/Meta)": 15.668209549936963,
+          "Intel": 3.160825482148364,
+          "Others (Qualcomm, Marvell, etc.)": 1.9508624336109615
+        },
+        "2028": {
+          "NVIDIA": 62.27124278536016,
+          "AMD": 14.513579958202257,
+          "Custom Silicon (Google/Amazon/Meta)": 17.549217592127363,
+          "Intel": 3.523790750322542,
+          "Others (Qualcomm, Marvell, etc.)": 2.1421689139876645
+        },
+        "2029": {
+          "NVIDIA": 60.358661471972255,
+          "AMD": 15.091604532915055,
+          "Custom Silicon (Google/Amazon/Meta)": 18.580028083698508,
+          "Intel": 3.722699206914885,
+          "Others (Qualcomm, Marvell, etc.)": 2.2470067044992983
+        },
+        "2030": {
+          "NVIDIA": 59.41180296294232,
+          "AMD": 15.377766215644103,
+          "Custom Silicon (Google/Amazon/Meta)": 19.09034975123198,
+          "Intel": 3.8211724918539995,
+          "Others (Qualcomm, Marvell, etc.)": 2.2989085783276066
+        }
+      }
+    },
+    "monte_carlo": {
+      "method": "monte_carlo_share_scenarios",
+      "n_simulations": 1000,
+      "2030_statistics": {
+        "NVIDIA": {
+          "mean_2030": 63.64958620713672,
+          "median_2030": 63.623161466675185,
+          "std_2030": 1.916414759782315,
+          "p10": 61.24808325495085,
+          "p90": 66.15519022069644
+        },
+        "AMD": {
+          "mean_2030": 16.9466090173274,
+          "median_2030": 17.040452351823404,
+          "std_2030": 1.536864273285272,
+          "p10": 14.876935942491942,
+          "p90": 19.03890822223308
+        },
+        "Custom Silicon (Google/Amazon/Meta)": {
+          "mean_2030": 16.57771348270173,
+          "median_2030": 16.556583746558903,
+          "std_2030": 2.0171410623008192,
+          "p10": 14.040391643729471,
+          "p90": 19.182948730764256
+        },
+        "Intel": {
+          "mean_2030": 1.7034879035986137,
+          "median_2030": 1.7003955636223318,
+          "std_2030": 0.2004698900631347,
+          "p10": 1.446173473391619,
+          "p90": 1.9549230155162287
+        },
+        "Others (Qualcomm, Marvell, etc.)": {
+          "mean_2030": 1.1226033892355303,
+          "median_2030": 1.120461867963684,
+          "std_2030": 0.10322455509477158,
+          "p10": 0.9862889604517288,
+          "p90": 1.2541985388265173
+        }
+      }
+    }
+  },
+  "threat_scenarios": {
+    "custom_silicon_rapid_scale": {
+      "description": "Custom silicon gains faster than expected (4% annually vs. 2.5% base)",
+      "adjustments": {
+        "Custom Silicon (Google/Amazon/Meta)": {
+          "share_cagr": 4.0,
+          "max_share_potential": 35.0
+        },
+        "NVIDIA": {
+          "share_cagr": -2.5
+        }
+      },
+      "2030_nvda_share_impact": "NVIDIA share declines to ~65% (vs. 75% base case)"
+    },
+    "amd_ecosystem_parity": {
+      "description": "AMD ROCm achieves ecosystem parity faster; customers switch to AMD for cost",
+      "adjustments": {
+        "AMD": {
+          "share_cagr": 3.5,
+          "max_share_potential": 30.0
+        },
+        "NVIDIA": {
+          "share_cagr": -2.0
+        }
+      },
+      "2030_nvda_share_impact": "NVIDIA share declines to ~70% (vs. 75% base case)"
+    },
+    "nvidia_market_leadership_sustained": {
+      "description": "CUDA moat holds; custom silicon remains internal-only; AMD ROCm lags",
+      "adjustments": {
+        "NVIDIA": {
+          "share_cagr": -0.8,
+          "max_share_potential": 80.0
+        },
+        "AMD": {
+          "share_cagr": 0.6,
+          "max_share_potential": 12.0
+        },
+        "Custom Silicon (Google/Amazon/Meta)": {
+          "share_cagr": 0.8,
+          "max_share_potential": 10.0
+        }
+      },
+      "2030_nvda_share_impact": "NVIDIA maintains 80-82% share (stronger moat scenario)"
+    },
+    "intense_competitive_pressure": {
+      "description": "Custom silicon + AMD ROCm both scale rapidly; hyperscalers prioritize TCO",
+      "adjustments": {
+        "NVIDIA": {
+          "share_cagr": -3.5,
+          "max_share_potential": 55.0
+        },
+        "AMD": {
+          "share_cagr": 3.0,
+          "max_share_potential": 25.0
+        },
+        "Custom Silicon (Google/Amazon/Meta)": {
+          "share_cagr": 3.5,
+          "max_share_potential": 30.0
+        }
+      },
+      "2030_nvda_share_impact": "NVIDIA declines to ~55% (severe competitive loss scenario)"
+    }
+  }
+}

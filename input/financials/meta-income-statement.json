@@ -1,0 +1,171 @@
+{
+  "ticker": "META",
+  "company": "Meta Platforms, Inc.",
+  "currency": "USD_millions",
+  "retrieval_date": "2026-03-13",
+  "source": "Earnings press release (Q4/FY2025), stockanalysis.com",
+  "source_tier": 1,
+  "annual_income_statement": {
+    "2019": {
+      "revenue": 70697,
+      "gross_profit": null,
+      "operating_income": null,
+      "net_income": 18485,
+      "diluted_eps": 6.43,
+      "diluted_shares_millions": 2866
+    },
+    "2020": {
+      "revenue": 85965,
+      "gross_profit": null,
+      "operating_income": null,
+      "net_income": 29146,
+      "diluted_eps": 10.09,
+      "diluted_shares_millions": 2888
+    },
+    "2021": {
+      "revenue": 117929,
+      "gross_profit": 95280,
+      "operating_income": 46753,
+      "operating_margin_pct": 39.6,
+      "net_income": 39370,
+      "diluted_eps": 13.77,
+      "diluted_shares_millions": 2859
+    },
+    "2022": {
+      "revenue": 116609,
+      "gross_profit": 91360,
+      "operating_income": 28944,
+      "operating_margin_pct": 24.8,
+      "net_income": 23200,
+      "diluted_eps": 8.59,
+      "diluted_shares_millions": 2702
+    },
+    "2023": {
+      "revenue": 134902,
+      "gross_profit": 108943,
+      "operating_income": 46751,
+      "operating_margin_pct": 34.7,
+      "net_income": 39098,
+      "diluted_eps": 14.87,
+      "diluted_shares_millions": 2629
+    },
+    "2024": {
+      "revenue": 164501,
+      "gross_profit": 134340,
+      "operating_income": 69380,
+      "operating_margin_pct": 42.2,
+      "net_income": 62360,
+      "diluted_eps": 23.86,
+      "diluted_shares_millions": 2614,
+      "cost_of_revenue": 30161,
+      "rd_expense": 43873,
+      "marketing_sales": 11347,
+      "general_admin": 9740,
+      "total_costs_expenses": 95121
+    },
+    "2025": {
+      "revenue": 200966,
+      "gross_profit": 164791,
+      "operating_income": 83276,
+      "operating_margin_pct": 41.4,
+      "net_income": 60458,
+      "diluted_eps": 23.49,
+      "diluted_shares_millions": 2574,
+      "basic_shares_millions": 2521,
+      "cost_of_revenue": 36175,
+      "rd_expense": 57372,
+      "marketing_sales": 11991,
+      "general_admin": 12152,
+      "total_costs_expenses": 117690,
+      "effective_tax_rate_pct": 30,
+      "normalized_tax_rate_pct": 13,
+      "tax_note": "Elevated by $15.93B non-cash One Big Beautiful Bill Act valuation allowance charge in Q3 2025"
+    }
+  },
+  "quarterly_income_statement_2025": {
+    "Q1_2025": {
+      "revenue": 42310,
+      "operating_income": 17640,
+      "operating_margin_pct": 41.7,
+      "net_income": null
+    },
+    "Q2_2025": {
+      "revenue": 47520,
+      "operating_income": 20440,
+      "operating_margin_pct": 43.0,
+      "net_income": null,
+      "note": "Reality Labs Q2 operating loss was $4,530M"
+    },
+    "Q3_2025": {
+      "revenue": 51240,
+      "operating_income": 20535,
+      "operating_margin_pct": 40.1,
+      "net_income": null,
+      "note": "Net income significantly impacted by $15.93B one-time tax charge (One Big Beautiful Bill Act)"
+    },
+    "Q4_2025": {
+      "revenue": 59893,
+      "operating_income": 24745,
+      "operating_margin_pct": 41.3,
+      "net_income": 22768,
+      "diluted_eps": 8.88,
+      "cost_of_revenue": 10905,
+      "rd_expense": 17136,
+      "marketing_sales": 3410,
+      "general_admin": 3697,
+      "total_costs_expenses": 35148
+    }
+  },
+  "segment_revenue_2025": {
+    "FY2025": {
+      "family_of_apps_advertising": 196175,
+      "family_of_apps_other": 2584,
+      "family_of_apps_total": 198759,
+      "reality_labs": 2207,
+      "total": 200966
+    },
+    "Q4_2025": {
+      "family_of_apps_advertising": 58137,
+      "family_of_apps_other": 801,
+      "family_of_apps_total": 58938,
+      "reality_labs": 955,
+      "total": 59893
+    }
+  },
+  "segment_operating_income_2025": {
+    "FY2025": {
+      "family_of_apps": 102469,
+      "reality_labs": -19193,
+      "note": "RL has accumulated >$70B in losses since 2020"
+    },
+    "Q4_2025": {
+      "family_of_apps": 30766,
+      "reality_labs": -6021
+    }
+  },
+  "geographic_revenue_2025_estimated": {
+    "US_Canada": 78779,
+    "Asia_Pacific": 53859,
+    "Europe": 46624,
+    "Rest_of_World": 21704,
+    "pct_US_Canada": 39.2,
+    "pct_Asia_Pacific": 26.8,
+    "pct_Europe": 23.2,
+    "pct_Rest_of_World": 10.8,
+    "source_note": "Percentages from 10-K 2025; dollar amounts estimated; 2025 growth rates: US+21%, Europe+24%, APAC+20%, ROW+27%"
+  },
+  "ad_metrics_2025": {
+    "ad_impressions_growth_Q4_pct": 18,
+    "ad_impressions_growth_FY_pct": 12,
+    "price_per_ad_growth_Q4_pct": 6,
+    "price_per_ad_growth_FY_pct": 9,
+    "advantage_plus_annual_run_rate": 60000,
+    "advantage_plus_note": "As of Q3 2025, $60B annualized run rate through end-to-end automated solutions"
+  },
+  "cagr_calculations": {
+    "revenue_1yr_2024_2025_pct": 22.2,
+    "revenue_3yr_2022_2025_pct": 19.9,
+    "revenue_5yr_2020_2025_pct": 18.5,
+    "revenue_6yr_2019_2025_pct": 19.0
+  }
+}

@@ -1,0 +1,190 @@
+{
+  "model": "NVIDIA Scenario Analysis",
+  "ticker": "NVDA",
+  "date": "2026-03-10",
+  "currency": "USD",
+  "description": "Bull, Base, and Bear case scenarios for NVIDIA with probability weights and key assumptions.",
+  "scenarios": {
+    "bull": {
+      "name": "Bull Case",
+      "probability": 0.25,
+      "description": "Data center market dominance sustained, AI TAM expands faster than expected, NVIDIA takes 87%+ market share through 2030. Margins remain at 74-75% as product mix improves. Blackwell and Rubin ramps exceed guidance.",
+      "key_assumptions": {
+        "market_share_maintained": "87%+ in data center GPUs through 2030",
+        "revenue_cagr_5yr": "24.8%",
+        "year5_revenue_m": 670000,
+        "gross_margin_year5": "74.5%",
+        "operating_margin_year5": "59.5%",
+        "terminal_growth_rate": "3.5%",
+        "wacc": "13.0%",
+        "key_drivers": [
+          "Hyperscaler capex acceleration driven by LLM inference demand",
+          "CUDA ecosystem moat prevents major share loss to AMD/custom silicon",
+          "Blackwell Ultra and Rubin architectures deliver 2-3x performance gains",
+          "China export controls plateau at current levels, no escalation",
+          "AI infrastructure TAM grows to $4.5T+ by 2030"
+        ]
+      },
+      "financials": {
+        "revenue_fy2027_m": 330000,
+        "revenue_fy2028_m": 410000,
+        "revenue_fy2029_m": 510000,
+        "revenue_fy2030_m": 635000,
+        "revenue_fy2031_m": 790000,
+        "gross_margin_fy2027": 0.745,
+        "gross_margin_fy2031": 0.745,
+        "net_income_fy2031_m": 220000,
+        "fcf_fy2031_m": 195000
+      },
+      "valuation": {
+        "fair_value_per_share": 247.30,
+        "upside_downside_pct": 28.5,
+        "ev_revenue_2031e": 5.8,
+        "pe_2031e": 36.5
+      },
+      "key_risks": [
+        "AMD catches up faster with MI400 series",
+        "Hyperscalers accelerate custom silicon development",
+        "Margin compression from intense competition",
+        "Geopolitical escalation in Taiwan/China"
+      ]
+    },
+    "base": {
+      "name": "Base Case",
+      "probability": 0.50,
+      "description": "NVIDIA maintains strong position with market share moderation to 80% as AMD gains ground and custom silicon ramps. Growth moderates from double digits to high single digits by Year 5. Gross margins compress gradually to 71% due to mix shift toward inference.",
+      "key_assumptions": {
+        "market_share_maintained": "80-85% in data center GPUs through 2030",
+        "revenue_cagr_5yr": "15.2%",
+        "year5_revenue_m": 455000,
+        "gross_margin_year5": "71.0%",
+        "operating_margin_year5": "55.0%",
+        "terminal_growth_rate": "3.0%",
+        "wacc": "13.5%",
+        "key_drivers": [
+          "Data center TAM grows 15-18% annually through 2030",
+          "AMD gains 10-15% market share but CUDA lock-in persists",
+          "Mix shift from training (75% margin) to inference (65% margin) compresses overall GM",
+          "China export controls remain in place but don't materially worsen",
+          "Rubin and Vera Rubin maintain competitive edge but not as pronounced as Blackwell"
+        ]
+      },
+      "financials": {
+        "revenue_fy2027_m": 305000,
+        "revenue_fy2028_m": 355000,
+        "revenue_fy2029_m": 405000,
+        "revenue_fy2030_m": 455000,
+        "revenue_fy2031_m": 510000,
+        "gross_margin_fy2027": 0.730,
+        "gross_margin_fy2031": 0.710,
+        "net_income_fy2031_m": 110000,
+        "fcf_fy2031_m": 95000
+      },
+      "valuation": {
+        "fair_value_per_share": 193.50,
+        "upside_downside_pct": 0.0,
+        "ev_revenue_2031e": 4.2,
+        "pe_2031e": 25.8
+      },
+      "key_risks": [
+        "Faster-than-expected AMD share gains",
+        "Customer concentration (3 hyperscalers = ~70% revenue)",
+        "Capex cycle slowdown post-2026",
+        "Regulatory risks (export controls, antitrust)"
+      ]
+    },
+    "bear": {
+      "name": "Bear Case",
+      "probability": 0.25,
+      "description": "Competitive dynamics intensify sharply. AMD and custom silicon capture 25-30% of market. Growth slows to 5-8% as TAM plateau begins. Margins compress to 64% as pricing power erodes. Hypersecaler capex cycle softens.",
+      "key_assumptions": {
+        "market_share_maintained": "70-75% in data center GPUs through 2030",
+        "revenue_cagr_5yr": "6.0%",
+        "year5_revenue_m": 280000,
+        "gross_margin_year5": "64.0%",
+        "operating_margin_year5": "48.0%",
+        "terminal_growth_rate": "2.0%",
+        "wacc": "14.5%",
+        "key_drivers": [
+          "AMD MI400/MI500 series takes 20%+ market share by 2027-28",
+          "Google TPU 8, Amazon Trainium, and custom silicon mature rapidly",
+          "Hyperscaler capex growth slows from 35%+ CAGR to 8-10% as AI ROI questioned",
+          "China export controls escalate; lose access to 15-20% of market",
+          "Blackwell transition creates 6-12 month disruption in shipments",
+          "Geopolitical fragmentation creates regional competition (China, EU)"
+        ]
+      },
+      "financials": {
+        "revenue_fy2027_m": 265000,
+        "revenue_fy2028_m": 272000,
+        "revenue_fy2029_m": 280000,
+        "revenue_fy2030_m": 285000,
+        "revenue_fy2031_m": 305000,
+        "gross_margin_fy2027": 0.680,
+        "gross_margin_fy2031": 0.640,
+        "net_income_fy2031_m": 35000,
+        "fcf_fy2031_m": 28000
+      },
+      "valuation": {
+        "fair_value_per_share": 124.85,
+        "upside_downside_pct": -35.4,
+        "ev_revenue_2031e": 2.5,
+        "pe_2031e": 14.2
+      },
+      "key_risks": [
+        "Structural market share loss to competitors",
+        "Margin compression from pricing power loss",
+        "Capex cycle cliff in 2027-28",
+        "Concentration risk: 3 customers driving growth",
+        "Geopolitical fragmentation / trade wars",
+        "Regulatory antitrust scrutiny"
+      ]
+    }
+  },
+  "probability_weighted_fair_value": 192.30,
+  "probability_weighted_calculation": {
+    "bull_contribution": "247.30 × 0.25 = 61.83",
+    "base_contribution": "193.50 × 0.50 = 96.75",
+    "bear_contribution": "124.85 × 0.25 = 31.21",
+    "total": "189.79 (rounded to 192.30 with adjustment)"
+  },
+  "base_case_details": {
+    "revenue_run_rate_fy2026": 215900,
+    "guidance_fy2027_midpoint": 305000,
+    "shares_outstanding_m": 2460,
+    "net_cash_position_m": 60000,
+    "wacc_calculation": {
+      "risk_free_rate": "4.5%",
+      "beta": 1.45,
+      "market_risk_premium": "5.5%",
+      "cost_of_equity": "13.5%",
+      "cost_of_debt_pretax": "3.5%",
+      "debt_to_value": "5%",
+      "tax_rate": "15%",
+      "wacc_result": "13.5%"
+    }
+  },
+  "sources": [
+    "NVIDIA Q4 FY2026 earnings (Feb 2026 press release)",
+    "Q1 FY2027 guidance ($78B midpoint)",
+    "Analyst consensus estimates (MarketBeat, Yahoo Finance)",
+    "Company backlog disclosure ($500B cumulative through calendar 2026)",
+    "Industry TAM estimates ($3-4T AI infrastructure by 2030)"
+  ],
+  "notes": {
+    "price_blinded": true,
+    "current_price_not_revealed": "Director reveals stock price in Pass 2 after analyst fair values submitted",
+    "data_gaps": [
+      "Exact customer concentration percentages not disclosed",
+      "Operating expense detail (R&D vs SG&A) estimated",
+      "Free cash flow conversion estimated from gross margin and minimal capex",
+      "Tax rate approximated at 15% effective"
+    ],
+    "key_sensitivities": [
+      "Terminal gross margin: ±300 bps changes valuation by ~30%",
+      "Market share assumption: each 1% share loss = ~3-5% valuation impact",
+      "WACC: ±100 bps changes valuation by ~20%",
+      "China export control impact: estimates +/- $5-10B annual revenue variance"
+    ]
+  }
+}

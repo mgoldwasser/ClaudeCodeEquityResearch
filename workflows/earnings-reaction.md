@@ -17,8 +17,8 @@ Rapid post-earnings analysis. Time-constrained — prioritize speed over depth.
 2. Identify the 3-5 most important data points (revenue beat/miss, EPS beat/miss, guidance change, margin surprise, one-time items).
 3. Write a rapid context memo: "Here's what happened and here's what matters."
 
-### Phase 1: Parallel Sprint (Director spawns 4 analysts)
-Spawn all four analysts **in parallel** with time-constrained instructions:
+### Phase 1: Parallel Sprint (Director spawns 5-6 analysts)
+Spawn the relevant analysts **in parallel** with time-constrained instructions:
 
 **DCF Analyst:**
 ```
@@ -30,14 +30,9 @@ Rapid update only. Read the earnings release and prior research note. Update rev
 Rapid update only. Assess whether the earnings result changes the company's relative position vs. comps. Has the valuation gap widened or narrowed? Any comp companies that reported recently with contrasting results? Focus on: (1) post-earnings multiple vs. comp group, (2) estimate revision direction. Keep output to 1 page.
 ```
 
-**Competitive Analyst:**
+**Industry Analyst:**
 ```
-Rapid update only. From the earnings call, identify any competitive commentary — market share claims, competitive wins/losses, pricing actions, new product launches, competitive threats mentioned. Focus on: (1) any change to competitive position, (2) management tone on competition. Keep output to half a page.
-```
-
-**Macro Analyst:**
-```
-Rapid update only. From the earnings call, identify any macro commentary — demand environment, input costs, FX impact, regulatory mentions, guidance assumptions about the macro environment. Focus on: (1) management's macro read, (2) whether it contradicts or confirms your prior macro view. Keep output to half a page.
+Rapid update only. From the earnings call, identify any competitive or industry commentary — market share claims, competitive wins/losses, pricing actions, new product launches, competitive threats, industry dynamics. Focus on: (1) any change to competitive position, (2) sector implications, (3) management tone on industry outlook. Keep output to half a page.
 ```
 
 **Catalyst Analyst:**
@@ -87,7 +82,7 @@ The Director synthesizes directly from Pass 1 outputs:
    - Is a full model update warranted? (triggers `workflows/price-target-review.md`)
 
 ### Phase 4: Output
-Save to: `output/[TICKER]-earnings-reaction-[YYYY-MM-DD].md`
+Save to: `output/[TICKER]/[DATE]/[TICKER]-earnings-reaction-[YYYY-MM-DD].md`
 
 ## Output Format (1-Page Earnings Reaction)
 
@@ -126,7 +121,7 @@ Save to: `output/[TICKER]-earnings-reaction-[YYYY-MM-DD].md`
 ```
 
 ## Estimated Agent Calls
-- Pass 1: 6-7 parallel agents (time-constrained; Credit Analyst optional)
+- Pass 1: 5-6 parallel agents (time-constrained; Credit Analyst optional)
 - Pass 2: SKIPPED
 - Synthesis: Director only
-- Total: 6-7 agent invocations, 1 sequential phase + Director synthesis
+- Total: 5-6 agent invocations, 1 sequential phase + Director synthesis

@@ -1,0 +1,68 @@
+{
+  "ticker": "META",
+  "company": "Meta Platforms, Inc.",
+  "exchange": "NASDAQ",
+  "retrieval_date": "2026-03-13",
+  "source": "MarketBeat, StockAnalysis, MarketScreener",
+  "source_tier": 3,
+  "WARNING": "PRICE DATA - DO NOT INCLUDE IN BLINDED ANALYST MEMOS",
+  "current_price": {
+    "price_usd": 638.18,
+    "date": "2026-03-12",
+    "market_cap_usd_billions": 1618.33,
+    "note": "As of March 12, 2026 close"
+  },
+  "price_history": {
+    "52_week_high": 796.25,
+    "52_week_high_date": "2025-08-15",
+    "52_week_low": 479.80,
+    "52_week_low_date": "2025-04-21",
+    "all_time_high_close": 788.82,
+    "all_time_high_date": "2025-08-12",
+    "recent_peak": 744.00,
+    "recent_peak_date": "2026-01-28",
+    "pct_from_52wk_high": -19.9,
+    "pct_from_52wk_low": 32.9,
+    "pct_from_ath": -19.1
+  },
+  "annual_closing_prices_approx": {
+    "2019_end": 209.0,
+    "2020_end": 273.0,
+    "2021_end": 338.0,
+    "2022_end": 120.0,
+    "2023_end": 353.0,
+    "2024_end": 589.0,
+    "2025_end": null,
+    "note": "Approximate year-end prices for reference"
+  },
+  "valuation_multiples_current": {
+    "pe_trailing": 27.2,
+    "pe_forward_2026_consensus": 21.1,
+    "ev_ebitda_trailing": null,
+    "price_to_fcf_trailing": 14.6,
+    "price_to_sales_trailing": 8.0,
+    "note": "Based on $638 price, FY2025 financials, and consensus 2026 EPS of $30.19"
+  },
+  "analyst_consensus": {
+    "rating": "Strong Buy",
+    "total_analysts": 41,
+    "strong_buy": 19,
+    "buy": 18,
+    "hold": 4,
+    "sell": 0,
+    "average_price_target": 835.77,
+    "median_price_target": 830,
+    "high_price_target": 1144,
+    "low_price_target": 645,
+    "implied_upside_pct": 31.0,
+    "source": "StockAnalysis consensus as of March 2026"
+  },
+  "consensus_estimates": {
+    "2026_revenue_millions": 255200,
+    "2026_eps_diluted": 30.19,
+    "2027_revenue_millions": 301820,
+    "2027_eps_diluted": 34.90,
+    "2026_revenue_growth_pct": 27.0,
+    "2027_revenue_growth_pct": 18.3
+  }
+}

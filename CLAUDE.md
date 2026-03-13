@@ -10,41 +10,40 @@ This is an equity research team operating as a multi-agent swarm. The lead agent
 
 ## Team Structure
 
-### Core Analysts (Always Active)
+### Design Principles
 
-| Role | Agent File | Type | Active In |
-|------|-----------|------|-----------|
-| Director of Research | `agents/director-of-research.md` | Lead (Orchestrator) | Pass 1 (dispatch), Pass 2 (synthesis + final call) |
-| DCF Analyst | `agents/dcf-analyst.md` | Specialist | Pass 1 (model), Pass 2 (critique + rebuttal) |
-| Quant Analyst | `agents/quant-analyst.md` | Specialist | Pass 1 (comps + screens), Pass 2 (critique + rebuttal) |
-| Competitive Analyst | `agents/competitive-analyst.md` | Specialist | Pass 1 (landscape), Pass 2 (critique + rebuttal) |
-| Macro Analyst | `agents/macro-analyst.md` | Specialist | Pass 1 (macro overlay), Pass 2 (critique + rebuttal) |
-| Editor | `agents/editor.md` | Specialist | Pass 2 only (synthesis + formatting) |
+1. **Signal Independence:** Each analyst accesses partitioned data to produce genuinely orthogonal signals. See `agents/research-analyst.md` for the partition map.
+2. **Price Blinding:** No analyst (except Technical) sees the current stock price during Pass 1. The Director reveals price only after all fair value estimates are submitted. This eliminates anchoring bias.
+3. **Decision-Forcing Critiques:** Pass 2 targets only the 3-5 most consequential disagreements, not all-vs-all review. Each critique must change a number or become a "Key Unresolved Risk."
+4. **Anti-Herding:** The Risk & Contrarian Analyst works independently in Pass 1 (no access to other analysts' work or company context memo). In Pass 2, the Director assigns a bull-case defender to create symmetric adversarial pressure.
 
 ### Data & Research (Runs First)
 
 | Role | Agent File | Type | Active In |
 |------|-----------|------|-----------|
-| Research Analyst | `agents/research-analyst.md` | Specialist | **Phase 0** (data gathering before all other analysts) + Pass 2 (critique + data validation) |
+| Research Analyst | `agents/research-analyst.md` | Specialist | **Phase 0** (data gathering + partitioning before all other analysts) + Pass 2 (data validation) |
+
+### Core Analysts (Spawned in Parallel)
+
+| Role | Agent File | Type | Active In | Data Partition |
+|------|-----------|------|-----------|----------------|
+| Director of Research | `agents/director-of-research.md` | Lead (Orchestrator) | Pass 1 (dispatch), Pass 2 (synthesis + final call) | All (reads full memo, passes blinded version) |
+| DCF Analyst | `agents/dcf-analyst.md` | Specialist | Pass 1 (model), Pass 2 (targeted critique) | `input/financials/`, `input/transcripts/` (guidance only) |
+| Quant Analyst | `agents/quant-analyst.md` | Specialist | Pass 1 (comps + screens), Pass 2 (targeted critique) | `input/financials/`, `input/market/` |
+| Industry Analyst | `agents/industry-analyst.md` | Specialist | Pass 1 (sector + competitive landscape), Pass 2 (targeted critique) | `input/market/`, `input/macro/` (regulatory only) |
+| Editor | `agents/editor.md` | Specialist | Pass 2 only (synthesis + formatting) | All Pass 1 outputs |
 
 ### Extended Analysts (Spawned in Parallel with Core)
 
-| Role | Agent File | Type | Active In |
-|------|-----------|------|-----------|
-| Risk Analyst | `agents/risk-analyst.md` | Specialist | Pass 1 (risk quantification), Pass 2 (critique + rebuttal) |
-| Credit Analyst | `agents/credit-analyst.md` | Specialist | Pass 1 (balance sheet + debt), Pass 2 (critique + rebuttal) |
-| Catalyst Analyst | `agents/catalyst-analyst.md` | Specialist | Pass 1 (event mapping), Pass 2 (critique + rebuttal) |
-| ESG & Governance Analyst | `agents/esg-governance-analyst.md` | Specialist | Pass 1 (governance + ESG risks), Pass 2 (critique + rebuttal) |
-| Technical Analyst | `agents/technical-analyst.md` | Specialist | Pass 1 (price action + timing), Pass 2 (critique + rebuttal) |
-| Sector Analyst | `agents/sector-analyst.md` | Specialist | Pass 1 (sector structure + growth modeling), Pass 2 (critique + rebuttal) |
-
-### Deep Analysis Agents (Spawned in Parallel with Core)
-
-| Role | Agent File | Type | Active In |
-|------|-----------|------|-----------|
-| Devil's Advocate | `agents/devils-advocate.md` | Specialist | Pass 1 (independent bear case), Pass 2 (targeted challenges) |
-| Forensic Analyst | `agents/forensic-analyst.md` | Specialist | Pass 1 (accounting quality + fraud detection), Pass 2 (critique + rebuttal) |
-| Sentiment Analyst | `agents/sentiment-analyst.md` | Specialist | Pass 1 (transcript tone + management credibility), Pass 2 (critique + rebuttal) |
+| Role | Agent File | Type | Active In | Data Partition |
+|------|-----------|------|-----------|----------------|
+| Risk & Contrarian Analyst | `agents/risk-contrarian-analyst.md` | Specialist (INDEPENDENT) | Pass 1 (independent risk + bear case), Pass 2 (targeted challenges) | `input/macro/`, `input/alt-data/`, `input/filings/` — NO financials, NO context memo |
+| Credit Analyst | `agents/credit-analyst.md` | Specialist | Pass 1 (balance sheet + debt), Pass 2 (targeted critique) | `input/financials/` (debt detail), `input/filings/` |
+| Catalyst Analyst | `agents/catalyst-analyst.md` | Specialist | Pass 1 (event mapping), Pass 2 (targeted critique) | `input/transcripts/`, `input/market/`, `input/filings/` |
+| ESG & Governance Analyst | `agents/esg-governance-analyst.md` | Specialist | Pass 1 (governance + ESG risks), Pass 2 (targeted critique) | `input/filings/`, `input/transcripts/` |
+| Technical Analyst | `agents/technical-analyst.md` | Specialist | Pass 1 (price action + timing), Pass 2 (targeted critique) | `input/price-data/` ONLY |
+| Quality & Credibility Analyst | `agents/quality-credibility-analyst.md` | Specialist | Pass 1 (accounting quality + management credibility), Pass 2 (targeted critique) | `input/transcripts/`, `input/filings/`, `input/financials/` |
+| Model Builder | `agents/model-builder.md` | Specialist | Pass 1 (generates Python models), Pass 2 (validates + cross-checks) | `input/financials/` |
 
 ### Portfolio-Level Agents (Post-Analysis)
 
@@ -53,7 +52,6 @@ This is an equity research team operating as a multi-agent swarm. The lead agent
 | Trade Structurer | `agents/trade-structurer.md` | Specialist | Pass 2 only (trade construction after thesis established) |
 | Position Sizing Analyst | `agents/position-sizing-analyst.md` | Specialist | Pass 2 only (sizing after all analysis complete) |
 | Portfolio Manager | `agents/portfolio-manager.md` | Specialist | Post-Pass 2 (portfolio construction from multiple stock analyses) |
-| Model Builder | `agents/model-builder.md` | Specialist | Pass 1 (generates Python models), Pass 2 (validates + cross-checks) |
 
 ### Utility Agents
 
@@ -65,193 +63,226 @@ This is an equity research team operating as a multi-agent swarm. The lead agent
 
 ## Two-Pass Workflow
 
-### Pass 1 — Parallel Research
+### Run Setup — Directory Structure + Telemetry
 
-The Director first spawns the Research Analyst to gather external data, then spawns all analysts in parallel.
+Before beginning any research, the Director creates the run directory and starts telemetry:
+
+```bash
+# Create per-ticker, per-date output directory
+TICKER="[TICKER]"
+DATE="$(date +%Y-%m-%d)"
+RUN_DIR="output/${TICKER}/${DATE}"
+mkdir -p "${RUN_DIR}"/{pass1,pass2/critiques,summaries,models,charts,data}
+
+# Update the "latest" symlink for this ticker
+ln -sfn "${DATE}" "output/${TICKER}/latest"
+
+# Record run start time
+date -u +"%Y-%m-%dT%H:%M:%SZ"
+```
+
+Save the start timestamp in `output/[TICKER]/[DATE]/data/telemetry.json`. Record timestamps at each phase boundary (start and end of each phase below). After each subagent returns, record its token usage (input/output tokens, model) from the response metadata. If exact token counts are unavailable, estimate from content length (1 token ≈ 4 chars English) and mark with `[EST]`.
+
+**All output paths below use `output/[TICKER]/[DATE]/` as the run root.** The `latest` symlink always points to the most recent run date for that ticker.
+
+### Pass 1 — Parallel Research (Price-Blinded)
+
+The Director first spawns the Research Analyst to gather and PARTITION external data, then spawns all analysts in parallel with partitioned data access. **No analyst except Technical sees the current stock price.**
 
 **Spawning instructions for the Director:**
 
-1. **Phase 0 — Data Intelligence:** Spawn the Research Analyst first:
-   - **Research Analyst:** "Gather all available external data for [TICKER] following the framework in `agents/research-analyst.md`. Use all available tool scripts (`tools/edgar-enhanced.py`, `tools/transcript-fetcher.py`, `tools/market-data.sh`, `tools/macro-data.py`, `tools/alt-data.py`). Use WebSearch and WebFetch for transcripts, analyst commentary, podcasts, and industry data. Produce a Data Intelligence Memo. Save retrieved data to `output/data/` and key filings to `input/`. Company context: [memo]."
-   - Wait for Research Analyst to complete. Review the Data Intelligence Memo for data completeness.
+1. **Phase 0 — Data Intelligence + Partitioning:** Spawn the Research Analyst first:
+   - **Research Analyst:** "Gather all available external data for [TICKER] following the framework in `agents/research-analyst.md`. Use all available tool scripts. Produce a Data Intelligence Memo AND a price-blinded version. Partition all data into the directory structure defined in your agent file (`input/financials/`, `input/transcripts/`, `input/filings/`, `input/market/`, `input/macro/`, `input/alt-data/`, `input/price-data/`). Save retrieved data to `output/[TICKER]/[DATE]/data/` and partitioned inputs to `input/`."
+   - Wait for Research Analyst to complete. Review the FULL Data Intelligence Memo (Director only).
 
-2. Read and digest all files in `input/` (now populated by Research Analyst).
+2. Read and digest all files in `input/` (Director sees everything).
 3. Check `output/notes/` for cross-stock notes from other research runs.
-4. Write a brief (3-5 sentence) company context memo that all analysts receive.
-5. Spawn the following agents **in parallel** (all 14 research analysts simultaneously):
+4. Write a **price-blinded** company context memo (see `agents/director-of-research.md` for blinding rules).
+5. Spawn the following agents **in parallel** (all 10 research analysts simultaneously), giving each ONLY their assigned data partitions:
 
    **Core Analysts:**
 
-   - **DCF Analyst:** "Build a 5-year DCF with bull/base/bear cases following the framework in `agents/dcf-analyst.md`. Use `templates/dcf-model-template.md` for output format. Output probability distribution using `templates/probability-output-template.md`. Input materials are in `input/`. Company context: [memo]."
+   - **DCF Analyst:** "Build a 5-year DCF with bull/base/bear cases following `agents/dcf-analyst.md`. Use `templates/dcf-model-template.md` for output. Output probability distribution using `templates/probability-output-template.md`. Input: `input/financials/` and `input/transcripts/` (guidance sections only). Context: [blinded memo]."
 
-   - **Quant Analyst:** "Run comparables analysis following the framework in `agents/quant-analyst.md`. Use `templates/comp-table-template.md` for output format. Output probability distribution using `templates/probability-output-template.md`. Input materials are in `input/`. Company context: [memo]."
+   - **Quant Analyst:** "Run comparables analysis following `agents/quant-analyst.md`. Use `templates/comp-table-template.md` for output. Input: `input/financials/` and `input/market/`. Context: [blinded memo]."
 
-   - **Competitive Analyst:** "Map the competitive landscape following the framework in `agents/competitive-analyst.md`. Write cross-stock notes to `output/notes/` when discoveries affect competitors. Input materials are in `input/`. Company context: [memo]."
-
-   - **Macro Analyst:** "Assess macro positioning following the framework in `agents/macro-analyst.md`. Input materials are in `input/`. Company context: [memo]."
+   - **Industry Analyst:** "Analyze the sector structure, competitive landscape, market share dynamics, strategic power assessment, regulatory environment, value chain, and secular trends following `agents/industry-analyst.md`. **MANDATORY #1: Complete the Demand Evolution & Application-Level TAM analysis (Step 2.5) using `templates/demand-tam-template.md`.** This includes: historical CAGR benchmarking, application-level demand decomposition (minimum 5 workload types), technology adoption framework with 2+ historical analogues, demand multiplier scenarios (minimum 3 new application waves), Jevons paradox analysis, and top-down vs bottom-up TAM reconciliation. **MANDATORY #2: Complete the Strategic Power Assessment (Step 4) using `templates/strategic-powers-template.md` (Helmer 7 Powers).** This includes: Power-by-Power scoring with evidence, Financial Translation Matrix mapping each Power to specific DCF assumptions, Power Durability Timeline with half-lives, Competitive Vulnerability Map vs. top 2-3 competitors, and Strategic Power → Investment Thesis Bridge. Generate Python models. Write cross-stock notes when discoveries affect competitors. Input: `input/market/` and `input/macro/` (regulatory only). Context: [blinded memo]."
 
    **Extended Analysts:**
 
-   - **Risk Analyst:** "Quantify and model all risk dimensions following the framework in `agents/risk-analyst.md`. Include stress tests, drawdown analysis, volatility assessment, and correlation analysis. Input materials are in `input/`. Company context: [memo]."
+   - **Risk & Contrarian Analyst:** "Build an INDEPENDENT risk assessment and bear case for [TICKER] following `agents/risk-contrarian-analyst.md`. You do NOT receive the company context memo or other analysts' work. Input: `input/macro/`, `input/alt-data/`, `input/filings/` (risk factors only). Identify key assumptions, search for disconfirming evidence, run stress tests, construct contrarian thesis, calculate break-even probability."
+     **NOTE:** This agent receives NO company context memo and NO financial statements — independence is mandatory.
 
-   - **Credit Analyst:** "Analyze the capital structure, debt sustainability, covenant compliance, and liquidity following the framework in `agents/credit-analyst.md`. Input materials are in `input/`. Company context: [memo]."
+   - **Credit Analyst:** "Analyze capital structure, debt sustainability, covenant compliance, and liquidity following `agents/credit-analyst.md`. Input: `input/financials/` (debt detail) and `input/filings/` (covenants). Context: [blinded memo]."
 
-   - **Catalyst Analyst:** "Map all upcoming catalysts, estimate their probability and magnitude, and assess what the market is already pricing in following the framework in `agents/catalyst-analyst.md`. Input materials are in `input/`. Company context: [memo]."
+   - **Catalyst Analyst:** "Map all upcoming catalysts, estimate probability/magnitude, assess what the market may be pricing in following `agents/catalyst-analyst.md`. Input: `input/transcripts/`, `input/market/`, `input/filings/` (8-K). Context: [blinded memo]."
 
-   - **ESG & Governance Analyst:** "Assess board quality, executive compensation alignment, shareholder rights, and material ESG risks following the framework in `agents/esg-governance-analyst.md`. Input materials are in `input/`. Company context: [memo]."
+   - **ESG & Governance Analyst:** "Assess board quality, compensation alignment, shareholder rights, and material ESG risks following `agents/esg-governance-analyst.md`. Input: `input/filings/` (proxy, DEF 14A) and `input/transcripts/`. Context: [blinded memo]."
 
-   - **Technical Analyst:** "Analyze price action, volume, momentum, relative strength, and entry/exit timing following the framework in `agents/technical-analyst.md`. Input materials are in `input/`. Company context: [memo]."
+   - **Technical Analyst:** "Analyze price action, volume, momentum, relative strength, and entry/exit timing following `agents/technical-analyst.md`. Input: `input/price-data/` ONLY. Context: [blinded memo]."
 
-   - **Sector Analyst:** "Analyze the sector structure, growth dynamics, regulatory environment, value chain, market share landscape, and secular trends following the framework in `agents/sector-analyst.md`. Generate Python models. Write cross-stock notes when sector changes affect specific peers. Input materials are in `input/`. Company context: [memo]."
+   - **Quality & Credibility Analyst:** "Assess accounting quality and management credibility following `agents/quality-credibility-analyst.md`. Calculate Beneish M-Score and Altman Z-Score. Analyze earnings call tone, hedging patterns, press release spin, and cross-quarter comparison. Input: `input/transcripts/`, `input/filings/`, `input/financials/`. Context: [blinded memo]."
 
-   - **Model Builder:** "Generate executable Python models for the DCF, comparables, risk analysis, credit analysis, and sector analysis following the framework in `agents/model-builder.md`. Coordinate with other analysts' assumptions. Save all models to `output/models/`. Input materials are in `input/`. Company context: [memo]."
+   - **Model Builder:** "Generate executable Python models for the DCF, comparables, risk analysis, credit analysis, and sector analysis following `agents/model-builder.md`. Save all models to `output/[TICKER]/[DATE]/models/`. Input: `input/financials/`. Context: [blinded memo]."
 
-   **Deep Analysis Agents:**
+6. The **Editor**, **Position Sizing Analyst**, **Trade Structurer**, and **Portfolio Manager** do NOT participate in Pass 1.
 
-   - **Devil's Advocate:** "Build an independent bear case following the framework in `agents/devils-advocate.md`. Identify the 3-5 key assumptions the thesis depends on, search for disconfirming evidence, construct a contrarian thesis, and run a pre-mortem analysis. Use `tools/portfolio-math.py kelly-scenarios` to calculate break-even bear probability. Write cross-stock notes when bear case research reveals competitor intelligence. Input materials are in `input/`. Company context: [memo]."
-
-   - **Forensic Analyst:** "Analyze accounting quality and fraud risk following the framework in `agents/forensic-analyst.md`. Calculate Beneish M-Score (`tools/portfolio-math.py beneish`) and Altman Z-Score (`tools/portfolio-math.py altman-z`). Check revenue quality, cash flow vs. accrual divergence, management governance, and audit history. Input materials are in `input/`. Company context: [memo]."
-
-   - **Sentiment Analyst:** "Analyze earnings call transcripts and management communications following the framework in `agents/sentiment-analyst.md`. Use `tools/sentiment-analyzer.py` for automated scoring. Score management confidence, detect hedging patterns, compare to prior quarters if available. Input materials are in `input/`. Company context: [memo]."
-
-4. The **Editor**, **Position Sizing Analyst**, **Trade Structurer**, and **Portfolio Manager** do NOT participate in Pass 1. They wait.
-
-6. Collect all Pass 1 work products. Save each to `output/pass1/` with filenames:
-   - `output/pass1/data-intelligence-memo.md` (from Phase 0 Research Analyst)
-   - `output/pass1/dcf-analysis.md`
-   - `output/pass1/quant-analysis.md`
-   - `output/pass1/competitive-analysis.md`
-   - `output/pass1/macro-analysis.md`
-   - `output/pass1/risk-analysis.md`
-   - `output/pass1/credit-analysis.md`
-   - `output/pass1/catalyst-analysis.md`
-   - `output/pass1/esg-governance-analysis.md`
-   - `output/pass1/technical-analysis.md`
-   - `output/pass1/sector-analysis.md`
-   - `output/pass1/devils-advocate-report.md`
-   - `output/pass1/forensic-quality-report.md`
-   - `output/pass1/sentiment-intelligence-report.md`
-   - `output/data/` (all retrieved data files from Research Analyst)
-   - `output/models/` (all Python models from Model Builder and Sector Analyst)
-   - `output/notes/` (cross-stock intelligence notes, if any)
+7. Collect all Pass 1 work products. Save each to `output/[TICKER]/[DATE]/pass1/` with filenames:
+   - `output/[TICKER]/[DATE]/pass1/data-intelligence-memo.md` (from Phase 0 Research Analyst)
+   - `output/[TICKER]/[DATE]/pass1/dcf-analysis.md`
+   - `output/[TICKER]/[DATE]/pass1/quant-analysis.md`
+   - `output/[TICKER]/[DATE]/pass1/industry-analysis.md`
+   - `output/[TICKER]/[DATE]/pass1/risk-contrarian-report.md`
+   - `output/[TICKER]/[DATE]/pass1/credit-analysis.md`
+   - `output/[TICKER]/[DATE]/pass1/catalyst-analysis.md`
+   - `output/[TICKER]/[DATE]/pass1/esg-governance-analysis.md`
+   - `output/[TICKER]/[DATE]/pass1/technical-analysis.md`
+   - `output/[TICKER]/[DATE]/pass1/quality-credibility-report.md`
+   - `output/[TICKER]/[DATE]/data/` (all retrieved data files from Research Analyst)
+   - `output/[TICKER]/[DATE]/models/` (all Python models from Model Builder and Industry Analyst)
+   - `output/notes/` (cross-stock intelligence notes — shared across tickers, not per-run)
 
 ### Pass 1.5 — Context Compression
 
-Before starting Pass 2, run the Summarizer to reduce context size. This prevents each analyst from receiving 15 full reports (~50K+ tokens) during cross-critique.
+Before starting Pass 2, run the Summarizer to reduce context size.
 
 **Step 1.5 — Summarize Pass 1 Work Products**
 
-Spawn the Summarizer (runs on Haiku with low effort for maximum speed/cost efficiency):
+Spawn the Summarizer (runs on Haiku with low effort):
 
-> "Read all 15 work products in `output/pass1/`. For each one, produce a structured brief following the Standard Brief Format in `agents/summarizer.md`. Save all briefs to `output/summaries/`. Each brief must be under 400 words while preserving all numbers, assumptions, source citations, and data gap flags."
+> "Read all 10 work products in `output/[TICKER]/[DATE]/pass1/`. For each one, produce a structured brief following the Standard Brief Format in `agents/summarizer.md`. Save all briefs to `output/[TICKER]/[DATE]/summaries/`. Each brief must be under 400 words while preserving all numbers, assumptions, source citations, and data gap flags."
 
-Save briefs to `output/summaries/[analyst-name]-brief.md`.
+Save briefs to `output/[TICKER]/[DATE]/summaries/[analyst-name]-brief.md`.
 
-### Pass 2 — Adversarial Review + Synthesis
+### Pass 2 — Decision-Forcing Review + Synthesis
 
 Once all Pass 1 work products are collected and summarized:
 
-**Step 2.1 — Cross-Critique**
+**Step 2.1 — Identify Key Disagreements (Director)**
 
-Feed the **summarized briefs** (from `output/summaries/`) to EACH of the fifteen Pass 1 analysts — NOT the full reports. Each analyst also retains access to their own full Pass 1 work product. Instruction:
+The Director reads all summary briefs and identifies the **3-5 most consequential disagreements** by comparing analyst conclusions. Examples:
+- DCF fair value vs. Quant fair value (if >15% divergence)
+- Risk & Contrarian bear probability vs. other analysts' implied probability
+- Growth rate assumptions that differ by >5 percentage points
+- Any assumption where two analysts reach opposite conclusions
 
-> "Review the summary briefs of every other analyst's work (in `output/summaries/`). For each one, identify: (1) the weakest assumption, (2) the most likely source of error, and (3) one thing you'd change. Use the critique format in `templates/critique-template.md`. Be specific and cite numbers. If you need more detail on a specific analyst's work, read their full report in `output/pass1/`."
+For each disagreement, the Director defines:
+- The specific question to resolve (e.g., "What is the appropriate WACC: 14% or 16%?")
+- Which 2-3 analysts are the relevant parties
+- What evidence would resolve it
 
-Spawn all fifteen critique tasks **in parallel**. Save critiques to `output/pass2/critiques/`.
+**Step 2.2 — Targeted Critiques (3-5 Focused Debates)**
 
-**Step 2.2 — Rebuttals (One Round Only)**
+For EACH identified disagreement, spawn ONLY the relevant analysts:
 
-Feed each analyst the critiques of their own work. Instruction:
+> "[Analyst A] and [Analyst B]: You disagree on [specific issue]. [A] argues [position with number]. [B] argues [position with number]. Each of you: (1) state your best evidence, (2) identify the weakest point in the other's argument, (3) propose a resolution with a specific revised number. If no resolution is possible, state your competing probability ranges for the final note's 'Key Unresolved Risk' section."
 
-> "You have received critiques of your Pass 1 analysis. Respond to each critique: accept it and revise your conclusion, reject it with specific reasoning, or partially accept with modifications. One paragraph per critique. No defensive language — just evidence."
+Spawn all 3-5 targeted critique tasks **in parallel**. Save to `output/[TICKER]/[DATE]/pass2/critiques/`.
 
-Spawn all fifteen rebuttal tasks **in parallel**. Save to `output/pass2/rebuttals/`.
+**Step 2.2.5 — Bull Case Defense (Anti-Herding)**
 
-**CRITICAL: Only one round of rebuttals. No infinite loops.**
+The Director assigns ONE analyst (not the Risk & Contrarian) to explicitly defend the bull case against the Risk & Contrarian's bear case. This creates symmetric adversarial pressure:
 
-**Step 2.2.5 — Summarize Critiques & Rebuttals**
+> "[Assigned Analyst]: The Risk & Contrarian Analyst has constructed a bear case arguing [summary]. Your job is to defend the bull case with specific evidence. What is the strongest counter-argument to each of the Risk & Contrarian's key concerns? Where does the bear case overstate risk or underweight positive catalysts?"
 
-Before handing materials to the Editor, run the Summarizer again to compress the critique/rebuttal phase:
+Save to `output/[TICKER]/[DATE]/pass2/bull-defense.md`.
 
-> "Read all critiques in `output/pass2/critiques/` and all rebuttals in `output/pass2/rebuttals/`. Produce a single Disagreement Map following the format in `agents/summarizer.md`. Save to `output/summaries/disagreement-map.md`. Maximum 600 words."
+**Step 2.3 — Summarize Debates**
 
-**Step 2.3 — Editor Synthesis**
+Run the Summarizer to compress the critique phase:
+
+> "Read all critiques in `output/[TICKER]/[DATE]/pass2/critiques/` and the bull defense in `output/[TICKER]/[DATE]/pass2/bull-defense.md`. Produce a single Disagreement Map following the format in `agents/summarizer.md`. For each debate: state the resolution (revised number) or flag as 'Key Unresolved Risk' with competing ranges. Save to `output/[TICKER]/[DATE]/summaries/disagreement-map.md`. Maximum 600 words."
+
+**Step 2.4 — Editor Synthesis**
 
 Hand materials to the Editor in this priority order:
-1. **Full** Pass 1 work products (15 analyst outputs) — the Editor needs complete detail for synthesis
-2. **Disagreement Map** (from `output/summaries/disagreement-map.md`) — compressed view of all critiques and rebuttals
-3. The Editor may read individual critiques/rebuttals from `output/pass2/` only if the Disagreement Map flags an unresolved contradiction that needs the full context
+1. **Full** Pass 1 work products (10 analyst outputs) — the Editor needs complete detail for synthesis
+2. **Disagreement Map** (from `output/[TICKER]/[DATE]/summaries/disagreement-map.md`) — compressed view of targeted critiques and bull defense
+3. The Editor may read individual critiques from `output/[TICKER]/[DATE]/pass2/` only if the Disagreement Map flags an unresolved contradiction that needs full context
 
 Instruction to Editor:
 
-> "Synthesize all materials into a final research note using `templates/research-note-template.md`. Follow the framework in `agents/editor.md`. Do NOT summarize — synthesize into one coherent argument. Use the Disagreement Map in `output/summaries/disagreement-map.md` to identify key disputes and resolutions. Read full critiques/rebuttals only for unresolved contradictions. Integrate risk, credit, catalyst, ESG/governance, technical, forensic, sentiment, and devil's advocate analyses into the appropriate sections. Include probability distributions using `templates/probability-output-template.md`."
+> "Synthesize all materials into a final research note using `templates/research-note-template.md`. Follow the framework in `agents/editor.md`. Do NOT summarize — synthesize into one coherent argument. Use the Disagreement Map in `output/[TICKER]/[DATE]/summaries/disagreement-map.md` to identify key disputes and resolutions. Read full critiques only for unresolved contradictions. Integrate the Risk & Contrarian report, Quality & Credibility report, Industry analysis, credit, catalyst, ESG/governance, and technical analyses into the appropriate sections. Include probability distributions using `templates/probability-output-template.md`. Produce a Signal Independence Audit in the appendix: list unique SIGNAL-IDs, which agents cited each, and compute the independence ratio (target > 0.5)."
 
-Save Editor output to `output/pass2/editor-draft.md`.
+Save Editor output to `output/[TICKER]/[DATE]/pass2/editor-draft.md`.
 
-**Step 2.4 — Trade Structurer**
+**Step 2.5 — Trade Structurer**
 
 Once the Editor's draft is complete, spawn the Trade Structurer:
 
 > "Design the optimal trade structure to express the thesis following the framework in `agents/trade-structurer.md`. Read the Editor's draft for rating, price target, and thesis. Check options data with `tools/market-data.sh options [TICKER]` and peer correlations with `tools/portfolio-math.py correlation`. Produce a Trade Structure Memo with primary trade, hedge, alternatives, and risk/reward profiles."
 
-Save to `output/pass2/trade-structure-memo.md`.
+Save to `output/[TICKER]/[DATE]/pass2/trade-structure-memo.md`.
 
-**Step 2.5 — Position Sizing**
+**Step 2.6 — Position Sizing**
 
 Once the Editor's draft is complete (can run in parallel with Trade Structurer), spawn the Position Sizing Analyst:
 
-> "Read the Editor's draft and all Pass 1 work products (especially Risk Analyst and Catalyst Analyst outputs). Follow the framework in `agents/position-sizing-analyst.md`. Produce a position sizing recommendation including Kelly fraction, entry strategy, exit triggers, and portfolio context."
+> "Read the Editor's draft and all Pass 1 work products (especially Risk & Contrarian and Catalyst Analyst outputs). Follow the framework in `agents/position-sizing-analyst.md`. Produce a position sizing recommendation including Kelly fraction, entry strategy, exit triggers, and portfolio context."
 
-Save to `output/pass2/position-sizing.md`.
+Save to `output/[TICKER]/[DATE]/pass2/position-sizing.md`.
 
-**Step 2.6 — Director Final Review**
+**Step 2.7 — Director Final Review (Price Reveal)**
 
 The Director:
 1. Reviews the Editor's draft, Trade Structure Memo, and Position Sizing recommendation.
-2. Assigns a conviction rating (1-5) based on:
+2. **PRICE REVEAL:** Now (and only now) reveal the current stock price. Record each analyst's price-blind fair value estimate BEFORE comparing to market price. The gap between analyst fair values and market price IS the investment signal.
+3. Assigns a conviction rating (1-5) based on:
    - Analyst agreement level (high agreement = higher conviction, unless groupthink suspected)
    - Data quality (more [DATA GAP] flags = lower conviction)
    - Thesis fragility (how many things have to go right?)
-   - Forensic quality score (≤ 2/5 caps conviction at 2)
-   - Devil's Advocate challenge strength (strong unaddressed challenges reduce conviction)
-3. Writes the executive summary and price target recommendation.
-4. Runs `python tools/portfolio-math.py expected-value` to verify probability-weighted price target.
-5. If analysts fundamentally disagree on a key assumption and couldn't resolve it in rebuttals, the Director flags it as a **"Key Unresolved Risk"** rather than forcing false consensus.
-6. Saves the final note to `output/[TICKER]-research-note-[DATE].md`.
+   - Quality & Credibility score (≤ 2/5 caps conviction at 2)
+   - Risk & Contrarian challenge strength (strong unaddressed challenges reduce conviction)
+4. Writes the executive summary and price target recommendation.
+5. Derives price target: set probability weights (bull/base/bear) BEFORE calculating scenario prices. The expected value vs. current price gap is the signal — do NOT adjust weights to close it.
+6. Runs `python tools/portfolio-math.py expected-value` to verify probability-weighted price target.
+7. If analysts fundamentally disagree on a key assumption and the targeted debates didn't resolve it, the Director flags it as a **"Key Unresolved Risk"** rather than forcing false consensus.
+8. Shows the analyst-blind fair values vs. market price table in the final note appendix.
+9. Saves the final note to `output/[TICKER]/[DATE]/[TICKER]-research-note-[DATE].md`.
 
-**Step 2.7 — Report Generation**
+**Step 2.8 — Report Generation**
 
 The Director generates final deliverables:
-1. `python tools/report-generator.py charts --scenarios-file output/data/[TICKER]-scenarios.json --output output/charts/ --ticker [TICKER]`
-2. `python tools/report-generator.py pdf --input output/[TICKER]-research-note-[DATE].md --output output/[TICKER]-report-[DATE].pdf --charts-dir output/charts/`
-3. `python tools/report-generator.py executive-summary --input output/[TICKER]-research-note-[DATE].md --output output/[TICKER]-exec-summary-[DATE].pdf --chart output/charts/scenario-histogram.png`
+1. `python tools/report-generator.py charts --scenarios-file output/[TICKER]/[DATE]/data/[TICKER]-scenarios.json --output output/[TICKER]/[DATE]/charts/ --ticker [TICKER] --current-price [PRICE]`
+2. `python tools/report-generator.py pdf --input output/[TICKER]/[DATE]/[TICKER]-research-note-[DATE].md --output output/[TICKER]/[DATE]/[TICKER]-report-[DATE].pdf --charts-dir output/[TICKER]/[DATE]/charts/`
+3. `python tools/report-generator.py executive-summary --input output/[TICKER]/[DATE]/[TICKER]-research-note-[DATE].md --output output/[TICKER]/[DATE]/[TICKER]-exec-summary-[DATE].pdf --chart output/[TICKER]/[DATE]/charts/scenario-histogram.png`
 
-**Step 2.8 — Cross-Stock Trigger Check**
+**Step 2.9 — Cross-Stock Trigger Check**
 
 After analysis completes, check `output/notes/` for cross-stock notes and follow `workflows/cross-stock-trigger.md`.
+
+**Step 2.10 — Telemetry Finalization**
+
+Record the run end time. Compile all phase timestamps and agent token usage into `output/[TICKER]/[DATE]/data/telemetry.json`. Include:
+- Wall-clock time per phase and total
+- Token usage per agent (input, output, total, model)
+- Total tokens (input + output) across all agents
+- Estimated cost based on published API pricing (Opus input: $15/MTok, output: $75/MTok; Sonnet input: $3/MTok, output: $15/MTok; Haiku input: $0.25/MTok, output: $1.25/MTok — update rates if pricing has changed)
+- Include the telemetry summary as Section 17 of the final research note
 
 ---
 
 ## Output Format
 
-The final research note in `output/` must include these sections in order:
+The final research note in `output/[TICKER]/[DATE]/` must include these sections in order:
 
 1. **Executive Summary** — One paragraph. Includes: rating (Buy/Hold/Sell), price target, current price, conviction rating (1-5), and the single biggest risk. Must be readable in 60 seconds.
-2. **Investment Thesis** — Bull/Base/Bear cases, 2-3 sentences each, with probability weights.
+2. **Investment Thesis** — Bull/Base/Bear cases, 2-3 sentences each, with probability weights. Weights must be set BEFORE scenario prices.
 3. **Business Overview** — Concise. Only what matters for the thesis. No company history lessons.
 4. **Financial Analysis** — DCF summary table, key assumptions, comps table, critical metrics.
 5. **Credit & Balance Sheet** — Capital structure, leverage ratios, covenant headroom, liquidity assessment, maturity profile.
-6. **Competitive Position** — Moat assessment, competitive score (1-10), market share dynamics, top threat.
-7. **Macro & Risk Factors** — What breaks the thesis. Quantified macro exposures. Stress test results. Drawdown analysis.
+6. **Industry & Competitive Position** — Sector structure, Strategic Power Assessment (Helmer 7 Powers with Financial Translation Matrix), market share dynamics, competitive threats, Power Durability Timeline, Competitive Vulnerability Map, regulatory landscape, value chain positioning, secular trends. (Unified from Industry Analyst.)
+7. **Risk, Macro & Contrarian Analysis** — What breaks the thesis. Quantified macro exposures. Stress test results. Drawdown analysis. Independent bear case. Pre-mortem. Disconfirming evidence. (Unified from Risk & Contrarian Analyst.)
 8. **Catalyst Calendar** — Near/medium/long-term catalysts with probabilities, magnitude, and priced-in assessment.
 9. **ESG & Governance** — Board quality score, compensation alignment, shareholder rights, material ESG risks with financial impact.
 10. **Technical Context** — Trend, key levels, momentum, relative strength, entry/exit timing recommendation.
-11. **Sector Analysis** — Sector growth model, market share dynamics, regulatory landscape, value chain positioning, secular trends.
-12. **Analyst Debate Summary** — Key disagreements from Pass 2 and how they were resolved (or not).
-13. **Price Target Derivation** — Weighted methodology (DCF weight + comps weight), scenario probabilities, implied range.
+11. **Quality & Credibility Assessment** — Accounting quality rating (1-5), Beneish M-Score, Altman Z-Score, management tone score, hedging patterns, unified red flag register, credibility trend. (Unified from Quality & Credibility Analyst.)
+12. **Analyst Debate Summary** — Key disagreements from Pass 2 targeted debates: what was resolved (with revised numbers) and what remains as "Key Unresolved Risk."
+13. **Price Target Derivation** — Weighted methodology (DCF weight + comps weight), scenario probabilities, implied range. Analyst-blind fair values vs. market price table.
 14. **Position Sizing** — Recommended portfolio weight, Kelly fraction, entry/exit strategy, risk budget impact.
-15. **Executable Models** — Links to Python models in `output/models/` (DCF, comps, risk, sector, credit).
-16. **Appendix** — Full DCF model, complete sensitivity tables, detailed comp table, risk model, credit detail, data sources.
+15. **Executable Models** — Links to Python models in `output/[TICKER]/[DATE]/models/` (DCF, comps, risk, sector, credit).
+16. **Appendix** — Full DCF model, complete sensitivity tables, detailed comp table, risk model, credit detail, data sources, Signal Independence Audit.
+17. **Research Run Telemetry** — Wall-clock time by phase, token usage by agent (input/output/total), model used per agent, estimated cost. Data sourced from `output/[TICKER]/[DATE]/data/telemetry.json`.
 
 ### Portfolio-Level Output (Multi-Stock Mode)
 
@@ -260,6 +291,55 @@ When the Portfolio Manager is activated (after analyzing multiple stocks), the f
 - `output/portfolio/optimizer.py` — Executable portfolio optimization model
 - `output/portfolio/correlation-matrix.py` — Correlation analysis code
 - `output/portfolio/scenario-model.py` — Monte Carlo portfolio simulation
+
+### Directory Structure Reference
+
+```
+output/
+├── [TICKER]/                          # One directory per stock (e.g., NVDA/, AMD/, MSFT/)
+│   ├── latest → 2026-03-10/          # Symlink: always points to most recent run
+│   ├── 2026-03-10/                    # One directory per research run date
+│   │   ├── pass1/                     # All Pass 1 analyst work products
+│   │   │   ├── dcf-analysis.md
+│   │   │   ├── quant-analysis.md
+│   │   │   ├── industry-analysis.md
+│   │   │   ├── risk-contrarian-report.md
+│   │   │   ├── credit-analysis.md
+│   │   │   ├── catalyst-analysis.md
+│   │   │   ├── esg-governance-analysis.md
+│   │   │   ├── technical-analysis.md
+│   │   │   ├── quality-credibility-report.md
+│   │   │   └── data-intelligence-memo.md
+│   │   ├── pass2/                     # All Pass 2 outputs
+│   │   │   ├── critiques/             # Targeted debate outputs
+│   │   │   ├── bull-defense.md
+│   │   │   ├── editor-draft.md
+│   │   │   ├── trade-structure-memo.md
+│   │   │   └── position-sizing.md
+│   │   ├── summaries/                 # Compressed briefs and disagreement map
+│   │   ├── models/                    # Python models for this run
+│   │   ├── charts/                    # Generated charts for this run
+│   │   ├── data/                      # Retrieved data, scenarios JSON, telemetry
+│   │   │   ├── [TICKER]-scenarios.json
+│   │   │   └── telemetry.json
+│   │   ├── [TICKER]-research-note-[DATE].md   # Final research note
+│   │   ├── [TICKER]-report-[DATE].pdf         # Full PDF report
+│   │   └── [TICKER]-exec-summary-[DATE].pdf   # Executive summary PDF
+│   └── 2026-03-09/                    # Previous run (preserved)
+│       └── ...
+├── notes/                             # Cross-stock intelligence (shared, not per-ticker)
+│   └── [TICKER]-impacts-[PEER].md
+└── portfolio/                         # Portfolio-level output (shared)
+    └── portfolio-construction-[DATE].md
+```
+
+**Key conventions:**
+- `output/[TICKER]/latest/` always points to the most recent research — use this for quick access
+- Previous runs are preserved indefinitely (delete manually if disk space is a concern)
+- Cross-stock notes in `output/notes/` are shared across all tickers (not per-run) so that any stock's analysis can discover relevant intelligence from other stocks
+- The `latest` symlink is updated atomically at the START of each run — if a run fails mid-way, `latest` points to the incomplete run (check `telemetry.json` for completion status)
+- To find the latest research note for any stock: `output/[TICKER]/latest/[TICKER]-research-note-*.md`
+- To compare today's vs. yesterday's analysis: `diff output/NVDA/2026-03-10/pass1/dcf-analysis.md output/NVDA/2026-03-09/pass1/dcf-analysis.md`
 
 ---
 
@@ -284,15 +364,15 @@ Choose the format that minimizes tokens for the data type:
 
 | Data Type | Best Format | Why | Example |
 |-----------|------------|-----|---------|
-| Structured numerical data (prices, financials, ratios) | **JSON** | Compact, parseable, no prose overhead | `output/data/*.json` |
-| Analyst prose (reports, memos, critiques) | **Markdown** | More token-dense than JSON for text; no key/value wrapper overhead | `output/pass1/*.md` |
-| Tabular data (comp tables, sensitivity matrices) | **Markdown tables** or **CSV** | Markdown tables are readable; CSV is smallest for large datasets | Inline tables or `output/data/*.csv` |
-| Scenario parameters (bull/base/bear inputs) | **JSON** | Agents can parse directly; avoids ambiguity | `output/data/*-scenarios.json` |
-| Cross-agent summaries | **Structured markdown** (brief format) | Fixed headings + bullet points = high info density, low tokens | `output/summaries/*.md` |
+| Structured numerical data (prices, financials, ratios) | **JSON** | Compact, parseable, no prose overhead | `output/[TICKER]/[DATE]/data/*.json` |
+| Analyst prose (reports, memos, critiques) | **Markdown** | More token-dense than JSON for text; no key/value wrapper overhead | `output/[TICKER]/[DATE]/pass1/*.md` |
+| Tabular data (comp tables, sensitivity matrices) | **Markdown tables** or **CSV** | Markdown tables are readable; CSV is smallest for large datasets | Inline tables or `output/[TICKER]/[DATE]/data/*.csv` |
+| Scenario parameters (bull/base/bear inputs) | **JSON** | Agents can parse directly; avoids ambiguity | `output/[TICKER]/[DATE]/data/*-scenarios.json` |
+| Cross-agent summaries | **Structured markdown** (brief format) | Fixed headings + bullet points = high info density, low tokens | `output/[TICKER]/[DATE]/summaries/*.md` |
 
 **Rules:**
 - Never wrap prose in JSON. A 2,000-word analyst report as a JSON string with escaped newlines costs ~30% more tokens than plain markdown.
-- Never pass raw API responses between agents. Extract only the fields needed and save structured data to `output/data/`.
+- Never pass raw API responses between agents. Extract only the fields needed and save structured data to `output/[TICKER]/[DATE]/data/`.
 - For numerical results that downstream agents need to parse, use JSON with flat keys (avoid deep nesting).
 - For human-readable output that agents also consume, use markdown with consistent heading structure.
 - When an agent only needs 3 numbers from a 5,000-token report, use the Summarizer or have the upstream agent save a separate small file with just those numbers.
@@ -301,9 +381,10 @@ Choose the format that minimizes tokens for the data type:
 
 | Phase | What gets loaded | Target context size |
 |-------|-----------------|-------------------|
-| Pass 1 (each analyst) | Input materials + company context memo | ~10-20K tokens |
-| Pass 2 Cross-Critique (each analyst) | Own full report + 14 summary briefs | ~15-25K tokens (vs ~70K+ without summarizer) |
-| Pass 2 Editor | 15 full reports + disagreement map | ~60K tokens (vs ~120K+ with full critiques/rebuttals) |
+| Pass 1 (each analyst) | Partitioned input data + blinded context memo | ~10-20K tokens |
+| Pass 2 Targeted Critiques (2-3 analysts each) | Own full report + counterpart's brief + Director's framing | ~8-15K tokens per debate |
+| Pass 2 Bull Defense (1 analyst) | Risk & Contrarian report + own analysis | ~10-15K tokens |
+| Pass 2 Editor | 10 full reports + disagreement map | ~45K tokens (vs ~120K+ with old all-vs-all) |
 | Portfolio Manager | Per-stock portfolio briefs (not full notes) | ~5-10K tokens per stock |
 
 ---
@@ -381,29 +462,70 @@ Set these environment variables for richer data:
 
 Before the Director signs off on any final output, verify:
 
+**Data & Sources:**
 - [ ] Every numerical claim has a source citation or `[ASSUMPTION]` / `[ESTIMATED]` tag
-- [ ] DCF terminal value percentage is disclosed and flagged if > 50%
-- [ ] Comp set is justified (not just "same sector")
-- [ ] At least one bear case scenario is modeled with > 20% downside
-- [ ] Macro risks are mapped to specific P&L line items
-- [ ] Stress tests include at least one >30% downside scenario with probability
-- [ ] Credit/covenant analysis completed (or flagged as data gap)
-- [ ] Catalyst calendar includes at least 3 identifiable catalysts with timing
-- [ ] ESG/Governance scores assigned with evidence
-- [ ] Position sizing recommendation includes Kelly fraction and binding constraint
-- [ ] Technical analysis confirms or explicitly flags divergence from fundamental thesis
-- [ ] No unresolved contradictions between analysts (or explicitly flagged as "Key Unresolved Risk")
-- [ ] Executive summary is readable in under 60 seconds
-- [ ] Price target derivation shows methodology weights and math
+- [ ] All data points are tagged with source tier (1-10) and retrieval date
 - [ ] Data Intelligence Memo confirms Tier 1-3 data sources were retrieved (10-K, transcript, market data)
 - [ ] Bear case evidence was specifically searched for (not just bull case data gathering)
-- [ ] All data points are tagged with source tier (1-10) and retrieval date
 - [ ] Cross-stock notes checked and addressed if relevant
-- [ ] Forensic quality score assigned (Beneish M-Score calculated, accounting quality rated 1-5)
-- [ ] Sentiment analysis completed (management tone scored, hedging patterns identified)
-- [ ] Devil's Advocate challenge addressed (strongest counter-argument explicitly rebutted in final note)
-- [ ] Probability distribution output follows `templates/probability-output-template.md` format
+- [ ] At least 2 independent TAM estimates retrieved (or gap flagged as `[CRITICAL DATA GAP]`)
+- [ ] Historical CAGRs calculated (1-year, 3-year, 5-year) for subject company and sector
+- [ ] Actual diluted share count retrieved from latest 10-K/10-Q (not estimated)
+
+**Price Blinding & Anti-Anchoring:**
+- [ ] No analyst (except Technical) received the current stock price during Pass 1
+- [ ] Analyst fair value estimates were recorded BEFORE price reveal in Step 2.7
+- [ ] Probability weights (bull/base/bear) were set BEFORE scenario prices were calculated
+- [ ] Analyst-blind fair values vs. market price table included in appendix
+- [ ] If all fair values cluster within ±5% of market price, residual anchoring investigated
+
+**Demand & TAM Analysis:**
+- [ ] Application-level demand decomposition completed (at least 5 workload types with adoption stage, growth model, compute intensity)
+- [ ] Technology adoption framework positions sector on maturity curve with at least 2 historical analogues (cloud, mobile, internet, etc.)
+- [ ] Demand multiplier scenarios model at least 3 potential new application waves (agents, robotics, video AI, sovereign AI, etc.)
+- [ ] Top-down TAM vs bottom-up application-level TAM reconciled (or gap >20% explained)
+- [ ] Algorithm efficiency modeled for both supply-side (cost reduction) AND demand-side (Jevons paradox / usage increase)
+- [ ] Forward CAGR explicitly compared to historical CAGR with divergence justified
+- [ ] Growth deceleration (if assumed) has specific mechanism identified — "growth always decelerates" is not analysis
+
+**Financial Analysis:**
+- [ ] DCF terminal value percentage is disclosed and flagged if > 50%
+- [ ] Comp set is justified (not just "same sector")
+- [ ] Credit/covenant analysis completed (or flagged as data gap)
+- [ ] Price target derivation shows methodology weights and math
 - [ ] Expected value price target verified with `tools/portfolio-math.py expected-value`
+- [ ] Probability distribution output follows `templates/probability-output-template.md` format
+- [ ] DCF revenue projections cross-checked against Industry Analyst bottom-up TAM (within ±15%)
+
+**Risk & Contrarian:**
+- [ ] At least one bear case scenario is modeled with > 20% downside
+- [ ] Stress tests include at least one >30% downside scenario with probability
+- [ ] Risk & Contrarian Analyst's strongest challenge explicitly addressed in final note
+- [ ] Bull case defense completed (symmetric adversarial pressure)
+- [ ] Macro risks are mapped to specific P&L line items
+
+**Quality & Credibility:**
+- [ ] Quality & Credibility score assigned (Beneish M-Score calculated, accounting quality rated 1-5)
+- [ ] Management tone scored, hedging patterns identified, credibility trend assessed
+- [ ] If quality score ≤ 2/5, conviction capped at 2
+
+**Other Analysts:**
+- [ ] Catalyst calendar includes at least 3 identifiable catalysts with timing
+- [ ] ESG/Governance scores assigned with evidence
+- [ ] Technical analysis confirms or explicitly flags divergence from fundamental thesis
+- [ ] Strategic Power Assessment completed using Helmer 7 Powers framework with 1-10 scores and quantified evidence
+- [ ] Financial Translation Matrix maps each Power to specific DCF assumptions (margin, growth, retention, share, pricing, WACC)
+- [ ] Power Durability Timeline shows half-life for each Power; cliff risk flagged if >3 Powers erode within same 2-year window
+- [ ] Competitive Vulnerability Map scores top 2-3 competitors on same 7 Powers
+- [ ] DCF Analyst has validated key assumptions against Financial Translation Matrix; fragile assumptions flagged
+
+**Synthesis & Output:**
+- [ ] No unresolved contradictions between analysts (or explicitly flagged as "Key Unresolved Risk")
+- [ ] Executive summary is readable in under 60 seconds
+- [ ] Position sizing recommendation includes Kelly fraction and binding constraint
 - [ ] Trade structure memo completed with max loss specified
+- [ ] Signal Independence Audit in appendix (target ratio > 0.5)
 - [ ] PDF report and executive summary PDF generated
 - [ ] Scenario charts generated (histogram + distribution)
+- [ ] Telemetry JSON saved to `output/[TICKER]/[DATE]/data/telemetry.json` with timing and token usage
+- [ ] Research Run Telemetry section included in final research note (Section 17)

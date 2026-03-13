@@ -1,0 +1,10 @@
+{
+  "ticker": "META",
+  "run_date": "2026-03-13",
+  "phases": {
+    "setup": {
+      "start": "'"$(date -u +"%Y-%m-%dT%H:%M:%SZ")"'"
+    }
+  },
+  "agents": {}
+}

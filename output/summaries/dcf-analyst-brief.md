@@ -1,30 +1,49 @@
-## DCF Analyst — AMD Brief
+# DCF Analyst — Structured Brief
 
-**Bottom Line:** The DCF produces a probability-weighted fair value of $154.07/share, representing 19.1% downside from $190.40 — AMD is OVERVALUED at current price unless you lower the discount rate (WACC 16% to ~13%) or assume near-perfect execution on mega-deals.
+## Bottom Line
+NVIDIA fair value of $668.62/share (probability-weighted across three scenarios). Base case $646.73/share (55% probability) assumes competitive moderation, gross margin compression to 68%, and 19% revenue CAGR through FY2031. Medium conviction across all estimates given data gaps on share count and beta.
 
-**Key Numbers:**
-- Probability-weighted fair value: $154.07 (Bull $223.10 / Base $154.58 / Bear $84.00 at 25/50/25) [Source: DCF model]
-- Expected return: -19.1% from $190.40
-- WACC: 16.0% (beta 2.02, ERP 5.50% [ESTIMATED], Rf 4.15%) [Source: StockAnalysis.com Tier 4, Fed H.15 Tier 5]
-- Terminal value as % of EV: 72-80% across all scenarios
-- Base case FY2030 revenue: $98,500M (23.2% CAGR); FY2030 EBITDA margin: 40.8% (incl. SBC)
-- Mega-deal realization rate: 75% base / 40% bear / 95% bull [ASSUMPTION]
-- Warrant dilution: 200M shares (base), 320M (bull), 0M (bear) — bull case haircut of $45/share
-- Upside/downside ratio: 0.31x (unfavorable)
+## Key Numbers
+- **Fair Value (Probability-Weighted):** $668.62/share
+- **Bull Case:** $794.67/share (30% probability)
+- **Base Case:** $646.73/share (55% probability)
+- **Bear Case:** $496.80/share (15% probability)
+- **FY2031 Revenue Forecast (Base):** $513.3B
+- **FY2027-2031 Revenue CAGR:** 19%
+- **Terminal Gross Margin (Base):** 68% (vs. 71.1% FY2026A)
+- **WACC:** 11.8% (Cost of Equity 11.8% / 12.7% calculated, Weighted Avg 11.8%)
+- **Terminal Growth Rate:** 2.5% (Base)
+- **PV of FCF (Years 1-5, Base):** $428.3M
+- **PV of Terminal Value (Base):** $1,101.2B
+- **Enterprise Value (Base):** $1,529.5B
+- **Diluted Shares:** 2,450M [ESTIMATED]
 
-**Critical Assumptions:**
-- Beta/WACC of 2.02/16.0% — THE most impactful variable; at 1.6/14%, base case jumps to ~$200+ [confidence: medium]
-- Mega-deal revenue realization at 75% (base) — historical large semi deals realize 60-80% [confidence: medium]
-- MI450 production H2 2026 with ~1 quarter delay [confidence: medium] [LOW CONFIDENCE ASSUMPTION]
-- Terminal gross margin 57.5% driven by DC mix shift to 74% of revenue by FY2030 [confidence: medium-high]
-- Terminal growth rate 3.0% [confidence: medium]
+## Critical Assumptions
+- **Data Center TAM FY2031:** $480B (20% CAGR from $170B FY2026A)
+- **NVIDIA Data Center Share (Base, FY2031):** 75% vs. 85% current
+- **Data Center Revenue Growth (Base, CAGR):** 24%
+- **Gross Margin Path:** 73% FY2027 → 68% FY2031 (inference mix 20% → 45%, competitive pricing, process maturity)
+- **Gaming Growth:** 5% CAGR (mature cycle)
+- **Automotive Growth:** 40% CAGR (early ramp, 3-5 major commitments assumed)
+- **R&D Decline:** 25.5% of revenue (FY2026A) → 20.5% (FY2031E)
+- **CapEx:** 3-5% of revenue (fabless model)
+- **Tax Rate:** 17.5%
+- **ASP Decline (Base):** 3-5% annually
 
-**Risks Identified:**
-- Warrant dilution is a "tax on success" — 320M shares compress bull case from $268 to $223 (-$45/share)
-- At WACC 16%, even bull case offers only 17.2% upside; base case = 19% downside
-- $190 requires ~30% rev CAGR + 42% EBITDA margin or WACC ~13% to justify
-- Terminal value dominance (72-80%) reduces model reliability
+## Data Gaps & Flags
+- **[DATA GAP]** Diluted share count; estimated at 2,450M (will recompute at price reveal)
+- **[DATA GAP]** Full 10-K filing not retrieved; capex and tax details estimated from peers
+- **[DATA GAP]** Beta calculation: estimated 1.15 from peer semiconductors, not 2-year regression
+- **[ASSUMPTION]** FCF conversion 66-70%; uses EBITDA bridge, not historical free cash flow
+- **[DATA GAP]** Free cash flow history; typical for semiconductors but not validated for NVIDIA
+- **[ASSUMPTION]** Customer concentration estimated at 85-90% hyperscaler dependency
+- **[DATA GAP]** China revenue exposure estimated at $5-10B impact of export controls
 
-**Weakest Point:** The 60/40 blend of exit multiple TV ($603B) vs. perpetuity growth TV ($242B) is highly sensitive to the weighting choice — a 50/50 blend would reduce fair value by ~$10-15/share.
+## Key Risk to Thesis
+**Competitive share loss from AMD MI325X, Google TPUs, and Amazon Trainium in inference workloads.** If custom silicon wins 15-20% of incremental inference share by FY2029, gross margins compress to 55% (vs. base 68%) and share falls to 70% by FY2031, forcing fair value down to $496.80 (bear case). CUDA ecosystem creates only 18-24 month lag; no guarantee it holds indefinitely at scale.
 
-**Data Gaps:** [DATA GAP: No segment-level margin disclosure CPU vs GPU within Data Center], [DATA GAP: Mega-deal contract terms not fully public], [DATA GAP: Warrant vesting schedule detail], [DATA GAP: Damodaran January 2026 ERP — using ESTIMATED 5.50%], [DATA GAP: Full 10-K text for CapEx breakdown], [DATA GAP: Options chain / implied volatility]
+## Signal IDs
+- **SIG-DCF-001:** Discrete TAM model distinguishing training ($170B CY2025) from inference growth path (reaching $480B by FY2031)
+- **SIG-DCF-002:** Margin compression mechanism quantified by inference mix shift (20% → 45% of volume) and ASP decline trajectory
+- **SIG-DCF-003:** Data center market share decay model (85% → 75% over 5 years) tied to competitive ramp and hyperscaler custom silicon adoption
+- **SIG-DCF-004:** Probability-weighted valuation with asymmetric scenarios (upside/downside ratio 0.97x; base case 55% vs. bull 30%)

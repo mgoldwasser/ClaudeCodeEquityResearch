@@ -6,10 +6,9 @@ When analysts researching Stock A discover information that materially affects S
 ## Who Writes Cross-Stock Notes?
 
 The following agents are instructed to write notes when they discover cross-stock intelligence:
-- **Competitive Analyst** — market share shifts, new competitive threats, pricing changes
-- **Sector Analyst** — TAM changes, industry dynamics affecting multiple companies
+- **Industry Analyst** — market share shifts, new competitive threats, pricing changes, industry dynamics affecting multiple companies
 - **Research Analyst** — data discoveries from external sources affecting peers
-- **Devil's Advocate** — disconfirming evidence that reveals competitor advantages/weaknesses
+- **Risk & Contrarian Analyst** — disconfirming evidence that reveals competitor advantages/weaknesses, macro/systemic risks affecting peers
 
 ## Note Format
 
@@ -61,13 +60,13 @@ If the note is high-materiality, the Director spawns a **lightweight review** �
 **Spawn these analysts only (in parallel):**
 
 1. **DCF Analyst** — re-run the DCF with the new information. Does the price target change?
-2. **Competitive Analyst** — reassess competitive position given the new intelligence
-3. **Devil's Advocate** — does this new information strengthen or weaken the bear case?
+2. **Industry Analyst** — reassess competitive position and industry dynamics given the new intelligence
+3. **Risk & Contrarian Analyst** — does this new information strengthen or weaken the bear case?
 
 **Context for review agents:**
 ```
 CROSS-STOCK REVIEW CONTEXT:
-- Original research note: output/[TICKER]-research-note-[DATE].md
+- Original research note: output/[TICKER]/[DATE]/[TICKER]-research-note-[DATE].md
 - Original rating: [Buy/Hold/Sell]
 - Original price target: $[X]
 - New cross-stock note: output/notes/[SOURCE]-to-[TARGET]-[DATE].md
@@ -79,7 +78,7 @@ YOU ARE NOT DOING A FULL ANALYSIS. Only assess the impact of the new information
 3. The original rating
 ```
 
-**Do NOT re-run:** Editor, Position Sizing, Portfolio Manager, Technical Analyst, Macro Analyst, Credit Analyst, ESG Analyst, Trade Structurer, Forensic Analyst, Sentiment Analyst (unless the note specifically concerns their domain)
+**Do NOT re-run:** Editor, Position Sizing, Portfolio Manager, Technical Analyst, Credit Analyst, ESG Analyst, Trade Structurer, Quality & Credibility Analyst (unless the note specifically concerns their domain)
 
 #### Step 4: Director Decision
 
@@ -93,7 +92,7 @@ After the lightweight review:
 
 #### Step 5: Research Addendum (if needed)
 
-**Save to:** `output/[TICKER]-addendum-[DATE].md`
+**Save to:** `output/[TICKER]/[DATE]/[TICKER]-addendum-[DATE].md`
 
 ```markdown
 # [TICKER] — Research Addendum

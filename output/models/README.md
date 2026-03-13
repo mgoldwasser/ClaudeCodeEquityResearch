@@ -29,6 +29,66 @@ Capital structure analysis ($6.5B net cash position), debt instrument detail, ma
 
 ---
 
+## NVDA Models (2026-03-10)
+
+### 1. nvda_dcf_model.py — Discounted Cash Flow Valuation
+5-year revenue projections with bull/base/bear scenarios. Segment-level revenue build (data center 87% of FY2026 mix). Projects gross margins from Q4 FY2026 baseline (75% gross margin). Operating expenses modeled as % of revenue with scale benefits. WACC calculated from CAPM components (Rf=4.5%, Beta=1.45, ERP=5.5%, specific risk=1.0%). Terminal value via perpetuity growth method (3.0% base case). Comprehensive FCF bridge with CapEx and NWC changes.
+
+**Key outputs:** Implied price targets per scenario (Bull $247.30, Base $193.50, Bear $124.85), 5-year revenue/margin projections, WACC x TGR sensitivity table, terminal value % of EV check, JSON results.
+
+**Base Assumptions:**
+- Current revenue (FY2026): $215.9B
+- Revenue CAGR: Bull 24.8%, Base 15.2%, Bear 6.0%
+- Gross margins Year 5: Bull 74.5%, Base 71.0%, Bear 64.0%
+- Terminal growth: Bull 3.5%, Base 3.0%, Bear 2.0%
+- Shares outstanding: 2,460M
+- Net cash: $60B
+
+### 2. nvda_comps_model.py — Comparable Company Analysis
+Compares NVIDIA against 6 semiconductor/AI chip peers (AMD, Broadcom, Qualcomm, ASML, Marvell, Intel) on EV/Revenue, EV/EBITDA, P/E Forward multiples. Calculates statistical summaries (mean, median, std dev, quartiles), z-score analysis, outlier detection (>2 SD threshold), and implied valuation range from comp medians and percentiles (25th/75th).
+
+**Key outputs:** Full multiples table, peer statistics by metric, outlier flags (e.g., Intel's depressed P/E), implied valuations via EV/Rev/EBITDA/PE methods, valuation range and average, JSON results.
+
+**Peer Set:**
+- AMD: Closest GPU competitor; lower margin/share
+- Broadcom: Diversified semi; similar complexity
+- Qualcomm: Fabless semi; comparable structure
+- ASML: Key supplier; stable demand
+- Marvell: Mid-tier semi; lower growth
+- Intel: Legacy competitor; margin struggles
+
+### 3. nvda_risk_model.py — Risk and Stress Test Analysis
+Monte Carlo valuation simulation (10,000 paths, annual volatility 48%, fixed seed 42). Calculates Value at Risk (VaR) and Conditional VaR (CVaR) at 95% and 99% confidence levels. Kelly criterion position sizing (full/half/quarter variants). Stress tests individual risks (market share loss 5%, margin compression 8%, China export controls 10%, hyperscaler capex slowdown 12%) and combined scenarios. Drawdown analysis with recovery time estimates.
+
+**Key outputs:** Monte Carlo distribution (mean $193.50, std dev from 48% vol), VaR 95%=$145 floor (25% downside), VaR 99%=$126 floor (35% downside), Kelly full=8-10%/half=4-5%/quarter=2-2.5%, stress scenario downsides (individual 5-8%, combined 20-25%), drawdown analysis, JSON results.
+
+**Risk Factors Modeled:**
+- Market share loss to AMD/custom silicon
+- Gross margin compression from mix shift (training→inference)
+- China export control escalation
+- Hyperscaler capex cycle slowdown / TAM plateau
+
+### 4. nvda_scenarios.json — Scenario Definitions
+Structured bull/base/bear cases with probabilities (25%/50%/25%), detailed financial projections (Year 1-5 revenues, net income, FCF), and key assumptions. Bull case emphasizes AI TAM expansion + CUDA moat; base case models moderate competition + market share erosion; bear case reflects capex cycle cliff + geopolitical fragmentation.
+
+**Scenario Summary:**
+
+| Scenario | Prob | Fair Value | Theme |
+|----------|------|-----------|-------|
+| Bull | 25% | $247.30 | AI acceleration, 87%+ market share, 74-75% margins sustained |
+| Base | 50% | $193.50 | Market share 80-85%, 15% revenue CAGR, 71% margins |
+| Bear | 25% | $124.85 | Competitive loss, 70-75% share, 6% CAGR, 64% margins |
+
+**Probability-Weighted Fair Value:** $192.30
+
+**Key Sensitivity Drivers:**
+- Terminal gross margin ±300 bps → ±30% valuation swing
+- Market share ±1% → ±3-5% valuation impact
+- WACC ±100 bps → ±20% valuation impact
+- China export controls → ±$5-10B revenue variance
+
+---
+
 ## MSFT Models (2026-03-08)
 
 ### 1. msft-dcf-model.py — Discounted Cash Flow

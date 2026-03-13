@@ -1,0 +1,60 @@
+{
+  "model": "Comparables Valuation",
+  "ticker": "NVDA",
+  "date": "2026-03-10",
+  "peer_count": 6,
+  "statistics": {
+    "EV/Revenue": {
+      "count": 6,
+      "mean": 7.39,
+      "median": 8.39,
+      "stdev": 2.71,
+      "min": 3.44,
+      "max": 10.17,
+      "q25": 4.74,
+      "q75": 9.24
+    },
+    "EV/EBITDA": {
+      "count": 6,
+      "mean": 31.23,
+      "median": 25.89,
+      "stdev": 16.95,
+      "min": 11.84,
+      "max": 60.21,
+      "q25": 22.93,
+      "q75": 40.65
+    },
+    "P/E": {
+      "count": 6,
+      "mean": 109.99,
+      "median": 88.76,
+      "stdev": 88.7,
+      "min": 21.89,
+      "max": 244.23,
+      "q25": 39.91,
+      "q75": 176.37
+    }
+  },
+  "implied_valuations": {
+    "EV/Revenue (Median)": {
+      "price_per_share": 736.34,
+      "multiple_used": 8.39
+    },
+    "EV/EBITDA (Median)": {
+      "price_per_share": 1709.71,
+      "multiple_used": 25.89
+    },
+    "P/E (Median)": {
+      "price_per_share": 1846.64,
+      "multiple_used": 88.76
+    },
+    "EV/EBITDA (25th %ile)": {
+      "price_per_share": 1514.24,
+      "multiple_used": 22.93
+    },
+    "EV/EBITDA (75th %ile)": {
+      "price_per_share": 2684.42,
+      "multiple_used": 40.65
+    }
+  }
+}

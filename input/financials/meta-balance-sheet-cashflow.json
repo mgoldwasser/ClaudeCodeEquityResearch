@@ -1,0 +1,121 @@
+{
+  "ticker": "META",
+  "currency": "USD_millions",
+  "retrieval_date": "2026-03-13",
+  "source": "Earnings press release Q4/FY2025, stockanalysis.com",
+  "source_tier": 1,
+  "balance_sheet": {
+    "2021": {
+      "cash_and_equivalents": 16601,
+      "total_cash_investments": null,
+      "total_debt": 13936,
+      "total_assets": 165987,
+      "shareholders_equity": 124879,
+      "book_value_per_share": 43.68
+    },
+    "2022": {
+      "cash_and_equivalents": 14681,
+      "total_debt": 26571,
+      "total_assets": 185727,
+      "shareholders_equity": 125713,
+      "book_value_per_share": 46.53
+    },
+    "2023": {
+      "cash_and_equivalents": 41862,
+      "total_debt": 37198,
+      "total_assets": 229623,
+      "shareholders_equity": 153168,
+      "book_value_per_share": 58.26
+    },
+    "2024": {
+      "cash_and_equivalents": 43889,
+      "marketable_securities": 33926,
+      "total_cash_investments": 77815,
+      "accounts_receivable": 16994,
+      "current_assets": 100045,
+      "property_equipment_net": 121346,
+      "total_assets": 276054,
+      "long_term_debt": 28826,
+      "total_liabilities": 93417,
+      "shareholders_equity": 182637,
+      "book_value_per_share": 69.87
+    },
+    "2025": {
+      "cash_and_equivalents": 35873,
+      "marketable_securities": 45719,
+      "total_cash_investments": 81592,
+      "accounts_receivable": 19769,
+      "current_assets": 108722,
+      "property_equipment_net": 176400,
+      "total_assets": 366021,
+      "long_term_debt": 58744,
+      "total_debt": 83900,
+      "total_liabilities": 148778,
+      "shareholders_equity": 217243,
+      "book_value_per_share": 84.40,
+      "diluted_shares_millions": 2574
+    }
+  },
+  "cash_flow": {
+    "2021": {
+      "operating_cash_flow": 57683,
+      "capex": -18686,
+      "free_cash_flow": 38993,
+      "share_repurchases": -50118,
+      "dividends": 0
+    },
+    "2022": {
+      "operating_cash_flow": 50475,
+      "capex": -31186,
+      "free_cash_flow": 19289,
+      "share_repurchases": -31615,
+      "dividends": 0
+    },
+    "2023": {
+      "operating_cash_flow": 71113,
+      "capex": -27045,
+      "free_cash_flow": 44068,
+      "share_repurchases": -26813,
+      "dividends": 0
+    },
+    "2024": {
+      "operating_cash_flow": 91328,
+      "capex": -37256,
+      "finance_lease_payments": -1969,
+      "free_cash_flow": 52103,
+      "share_repurchases": -30125,
+      "dividends_paid": -5072
+    },
+    "2025": {
+      "operating_cash_flow": 115800,
+      "capex": -69691,
+      "finance_lease_payments": -2524,
+      "free_cash_flow_reported": 43585,
+      "free_cash_flow_alt": 46109,
+      "free_cash_flow_note": "Two definitions; one includes finance lease payments",
+      "share_repurchases": -26248,
+      "dividends_paid": -5324
+    },
+    "Q4_2025": {
+      "operating_cash_flow": 36214,
+      "capex": -21383,
+      "finance_lease_payments": -754,
+      "free_cash_flow": 14077
+    }
+  },
+  "credit_metrics": {
+    "credit_rating_moodys": "Aa3",
+    "credit_rating_outlook": "Stable",
+    "debt_to_ebitda_note": "Projected <1x for year-end 2026 and 2027 per Moody's",
+    "total_liquidity_2025": 81592,
+    "long_term_debt_2025": 58744,
+    "net_debt_2025": -22848,
+    "net_debt_note": "Net cash positive: $81.6B liquidity minus $58.7B LT debt"
+  },
+  "headcount": {
+    "dec_2025": 78865,
+    "dec_2024": 74067,
+    "yoy_growth_pct": 6.5,
+    "note": "Reality Labs >1,000 positions eliminated in 2025 restructuring"
+  }
+}

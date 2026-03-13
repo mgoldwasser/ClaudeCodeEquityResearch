@@ -19,7 +19,7 @@ After running the full-research-note workflow for multiple stocks, construct an 
 ### Phase 0: Universe Assembly (Director)
 
 **If individual research notes already exist:**
-1. Read all completed research notes in `output/`.
+1. Read all completed research notes in `output/[TICKER]/[DATE]/` across multiple tickers.
 2. Extract key inputs for each stock: expected return, conviction, volatility, beta, sector, Kelly fraction, catalyst timeline.
 3. Proceed to Phase 1.
 
@@ -34,7 +34,7 @@ After running the full-research-note workflow for multiple stocks, construct an 
 Spawn the Portfolio Manager:
 
 ```
-Read all completed research notes in output/. Follow the framework in agents/portfolio-manager.md.
+Read all completed research notes in output/[TICKER]/[DATE]/ across all analyzed tickers. Follow the framework in agents/portfolio-manager.md.
 
 1. Build the correlation matrix across all candidates.
 2. Identify correlation clusters.
@@ -62,15 +62,16 @@ All models must be executable with python3 and use the portfolio weights from th
 
 ### Phase 3: Risk Validation
 
-Spawn the Risk Analyst to validate the portfolio:
+Spawn the Risk & Contrarian Analyst to validate the portfolio:
 
 ```
-Read the Portfolio Manager's portfolio construction in output/portfolio/. Validate:
+Read the Portfolio Manager's portfolio construction in output/portfolio/portfolio-construction-[DATE].md. Validate:
 1. Portfolio-level VaR and CVaR within risk budget
 2. Stress test the portfolio under historical episodes (GFC, COVID, Rate Shock)
 3. Verify no hidden correlation clusters were missed
 4. Check tail risk — what happens in a correlated drawdown?
-5. Save validation report to output/portfolio/risk-validation.md.
+5. Identify key unresolved risks or contrarian viewpoints among holdings
+6. Save validation report to output/portfolio/risk-validation.md.
 ```
 
 ### Phase 4: Director Review

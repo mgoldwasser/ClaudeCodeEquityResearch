@@ -1,0 +1,24 @@
+{
+  "ticker": "NVDA",
+  "current_price": 177.82,
+  "scenarios": [
+    {
+      "name": "Bull Case",
+      "probability": 0.3,
+      "price": 80.0,
+      "description": "Capex cycle sustained, CUDA moat holds, 75%+ share through 2028"
+    },
+    {
+      "name": "Base Case",
+      "probability": 0.53,
+      "price": 65.5,
+      "description": "Moderate growth deceleration, 70% share by 2030, 71% gross margin"
+    },
+    {
+      "name": "Bear Case",
+      "probability": 0.17,
+      "price": 50.0,
+      "description": "Capex deceleration, custom silicon gains 25%+, margin compression"
+    }
+  ]
+}

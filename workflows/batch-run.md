@@ -148,7 +148,7 @@ Use existing tags from `data/stocks.json` → `tag_definitions` when possible. I
 ## Output
 
 Batch run produces:
-- Individual research notes for each stock (see `workflows/full-research-note.md` for per-stock output)
+- Individual research notes for each stock in `output/[TICKER]/[DATE]/` (see `workflows/full-research-note.md` for per-stock output)
 - Cross-stock intelligence notes in `output/notes/`
 - Updated staleness tracking in `data/stocks.json`
 - Optional: portfolio construction if 5+ stocks completed

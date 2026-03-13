@@ -1,0 +1,67 @@
+{
+  "model": "Risk & Stress Test",
+  "ticker": "NVDA",
+  "date": "2026-03-10",
+  "monte_carlo": {
+    "simulations": 10000,
+    "mean": 217.09,
+    "median": 193.26,
+    "stdev": 111.17,
+    "p5": 87.44,
+    "p25": 140.11,
+    "p75": 267.04,
+    "p95": 425.72,
+    "min": 29.45,
+    "max": 1273.94,
+    "prob_bull": 0.3014,
+    "prob_bear": 0.1814
+  },
+  "var_cvar": {
+    "var_95pct": -1.2001,
+    "var_99pct": -2.0524,
+    "cvar_95pct": -0.0363,
+    "cvar_99pct": -0.096
+  },
+  "kelly_criterion": {
+    "full_kelly": 0,
+    "half_kelly": 0.0,
+    "quarter_kelly": 0.0
+  },
+  "stress_scenarios": [
+    {
+      "scenario": "Market Share Loss",
+      "base_value": 193.5,
+      "stressed_value": 183.82,
+      "downside_pct": 0.05,
+      "factors_applied": {
+        "market_share_loss": 0.05
+      }
+    },
+    {
+      "scenario": "Margin Compression",
+      "base_value": 193.5,
+      "stressed_value": 178.02,
+      "downside_pct": 0.08,
+      "factors_applied": {
+        "margin_compression": 0.08
+      }
+    },
+    {
+      "scenario": "Combined Stress",
+      "base_value": 193.5,
+      "stressed_value": 139.77,
+      "downside_pct": 0.2777,
+      "factors_applied": {
+        "market_share_loss": 0.05,
+        "margin_compression": 0.04,
+        "geopolitical_shock": 0.1,
+        "customer_concentration": 0.12
+      }
+    }
+  ],
+  "volatility_metrics": {
+    "annual_volatility": 0.48,
+    "beta": 1.45,
+    "market_volatility": 0.15
+  }
+}

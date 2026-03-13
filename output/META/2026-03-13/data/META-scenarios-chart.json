@@ -1,0 +1,20 @@
+{
+  "ticker": "META",
+  "scenarios": [
+    {
+      "name": "Bear Case",
+      "price": 490.61,
+      "probability": 0.25
+    },
+    {
+      "name": "Base Case",
+      "price": 856.04,
+      "probability": 0.5
+    },
+    {
+      "name": "Bull Case",
+      "price": 1296.23,
+      "probability": 0.25
+    }
+  ]
+}

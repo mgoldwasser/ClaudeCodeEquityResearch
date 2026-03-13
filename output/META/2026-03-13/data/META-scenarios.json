@@ -1,0 +1,211 @@
+{
+  "ticker": "META",
+  "company": "Meta Platforms, Inc.",
+  "date": "2026-03-13",
+  "currency": "USD",
+  "price_blinded": true,
+  "note": "Probability weights set BEFORE calculating scenario prices (anti-anchoring protocol). Director reveals current stock price in Step 2.7 after fair values are locked.",
+  "analyst": "Model Builder Agent",
+  "source_models": [
+    "output/META/2026-03-13/models/meta_dcf_model.py",
+    "output/META/2026-03-13/models/meta_comps_model.py",
+    "output/META/2026-03-13/models/meta_risk_model.py"
+  ],
+
+  "scenarios": {
+    "bull": {
+      "label": "Bull Case",
+      "probability": 0.25,
+      "description": "AI monetization materializes faster (Meta AI subs $5B+ by 2027), Reels/Threads ad load continues expanding, TikTok US exit boosts share, CapEx ROI validates via high-margin AI revenue streams. Reality Labs losses begin to moderate. Operating leverage drives margins above 45%.",
+      "key_assumptions": {
+        "fy2026_revenue_growth_pct": 28.7,
+        "fy2030_revenue_M": 529222,
+        "foa_op_margin_pct_2026": 52.5,
+        "foa_op_margin_pct_2030": 55.5,
+        "capex_pct_rev_2026": 49.0,
+        "capex_pct_rev_2030": 22.0,
+        "wacc_pct": 10.36,
+        "terminal_growth_rate_pct": 4.0,
+        "terminal_ebitda_multiple": 20.0,
+        "tax_rate_pct": 13.0,
+        "share_reduction_annual_pct": 2.0
+      },
+      "dcf_output": {
+        "pv_fcfs_5yr_M": 335249,
+        "pv_terminal_value_M": 1963773,
+        "tv_pct_of_ev": 85.4,
+        "enterprise_value_M": 2299022,
+        "equity_value_M": 2321870,
+        "fair_value_per_share_perpetuity": 997.80,
+        "fair_value_per_share_exit_multiple": 1992.59,
+        "fair_value_per_share_blended": 1296.23
+      },
+      "implied_upside_from_bear_case_pct": 164.2
+    },
+
+    "base": {
+      "label": "Base Case",
+      "probability": 0.50,
+      "description": "Consensus-aligned: FY2026 +27% growth, deceleration to ~12% by FY2030. AI investment ROI is real but diffuse — improves ad targeting and efficiency, not discrete new revenue streams in the near term. Operating margin compresses in 2026-2027 due to CapEx/R&D then recovers. Reality Labs losses stable.",
+      "key_assumptions": {
+        "fy2026_revenue_growth_pct": 27.1,
+        "fy2030_revenue_M": 440154,
+        "foa_op_margin_pct_2026": 51.0,
+        "foa_op_margin_pct_2030": 53.0,
+        "capex_pct_rev_2026": 49.0,
+        "capex_pct_rev_2030": 23.0,
+        "wacc_pct": 10.36,
+        "terminal_growth_rate_pct": 3.5,
+        "terminal_ebitda_multiple": 18.0,
+        "tax_rate_pct": 14.5,
+        "share_reduction_annual_pct": 1.5
+      },
+      "dcf_output": {
+        "pv_fcfs_5yr_M": 226198,
+        "pv_terminal_value_M": 1281869,
+        "tv_pct_of_ev": 85.0,
+        "enterprise_value_M": 1508067,
+        "equity_value_M": 1530915,
+        "fair_value_per_share_perpetuity": 641.36,
+        "fair_value_per_share_exit_multiple": 1356.99,
+        "fair_value_per_share_blended": 856.04
+      },
+      "annual_projections": [
+        {"year": 2026, "revenue_M": 255336, "revenue_growth_pct": 27.1, "ebit_margin_pct": "See model", "ufcf_M": 5983, "capex_M": 125114},
+        {"year": 2027, "revenue_M": 304145, "revenue_growth_pct": 19.1, "ufcf_M": 25809, "capex_M": 133824},
+        {"year": 2028, "revenue_M": 350120, "revenue_growth_pct": 15.1, "ufcf_M": 60788, "capex_M": 126043},
+        {"year": 2029, "revenue_M": 396014, "revenue_growth_pct": 13.1, "ufcf_M": 102987, "capex_M": 110884},
+        {"year": 2030, "revenue_M": 440154, "revenue_growth_pct": 11.1, "ufcf_M": 138989, "capex_M": 101235}
+      ]
+    },
+
+    "bear": {
+      "label": "Bear Case",
+      "probability": 0.25,
+      "description": "CapEx ROI disappoints (AI revenue fails to materialize at scale by 2028), EU DMA WhatsApp fine ~$10-16B in 2026-2027, youth mental health trial losses >$5B in 2026, Chinese advertisers (Temu/Shein) pull back $5-8B on trade tensions, margin remains compressed through 2028. Revenue growth decelerates sharply to ~8% by 2029-2030.",
+      "key_assumptions": {
+        "fy2026_revenue_growth_pct": 23.8,
+        "fy2030_revenue_M": 373469,
+        "foa_op_margin_pct_2026": 49.0,
+        "foa_op_margin_pct_2030": 51.0,
+        "capex_pct_rev_2026": 50.0,
+        "capex_pct_rev_2030": 26.0,
+        "wacc_pct": 10.36,
+        "terminal_growth_rate_pct": 2.5,
+        "terminal_ebitda_multiple": 14.0,
+        "tax_rate_pct": 17.5,
+        "share_reduction_annual_pct": 1.0
+      },
+      "dcf_output": {
+        "pv_fcfs_5yr_M": 117846,
+        "pv_terminal_value_M": 718468,
+        "tv_pct_of_ev": 85.9,
+        "enterprise_value_M": 836313,
+        "equity_value_M": 859161,
+        "fair_value_per_share_perpetuity": 350.96,
+        "fair_value_per_share_exit_multiple": 816.45,
+        "fair_value_per_share_blended": 490.61
+      },
+      "bear_case_risks_embedded": [
+        "EU DMA WhatsApp investigation → $14-16B fine + interoperability mandate",
+        "Youth mental health litigation → $5-12B adverse verdict/settlement",
+        "Chinese advertiser pullback (Temu/Shein) → $5-7B revenue gap",
+        "CapEx ROI failure → structurally compressed FCF through 2028",
+        "Revenue growth deceleration below consensus by ~3-4pp per year"
+      ]
+    }
+  },
+
+  "probability_weighted_fair_value": {
+    "bull_contribution": 324.06,
+    "base_contribution": 428.02,
+    "bear_contribution": 122.65,
+    "total_weighted_fair_value_per_share": 874.73,
+    "methodology": "25% Bull ($1,296.23) + 50% Base ($856.04) + 25% Bear ($490.61)",
+    "note": "Blended DCF: 70% perpetuity growth method, 30% exit EBITDA multiple cross-check"
+  },
+
+  "comps_implied_range": {
+    "method": "Peer median multiples (GOOGL, AMZN, SNAP, PINS)",
+    "implied_range_low": 324.30,
+    "implied_range_high": 1369.70,
+    "implied_mean": 795.61,
+    "implied_median": 999.29,
+    "best_comps_method": "EV/EBITDA and P/E forward most relevant; EV/Revenue least relevant given META margin premium",
+    "data_quality": "All peer EV data [ESTIMATED] from public sources (Tier 2)",
+    "caveat": "META FCF depressed in 2026-2027 due to CapEx surge; EV/FCF multiple less reliable near-term"
+  },
+
+  "monte_carlo_summary": {
+    "iterations": 10000,
+    "seed": 42,
+    "mean": 566.41,
+    "median": 544.28,
+    "std_dev": 159.93,
+    "p5": 348.01,
+    "p10": 385.04,
+    "p25": 456.08,
+    "p50": 544.28,
+    "p75": 650.83,
+    "p90": 772.50,
+    "p95": 854.88,
+    "var_5pct": 348.01,
+    "cvar_5pct": 309.38
+  },
+
+  "stress_test_summary": [
+    {"scenario": "Global Recession 2027", "probability_pct": 12, "fair_value": 121.56, "downside_from_base_pct": -85.8},
+    {"scenario": "EU DMA WhatsApp Fine + Interop", "probability_pct": 10, "fair_value": 429.37, "downside_from_base_pct": -49.8},
+    {"scenario": "CapEx ROI Failure", "probability_pct": 15, "fair_value": 276.02, "downside_from_base_pct": -67.8},
+    {"scenario": "Chinese Advertiser Pullback", "probability_pct": 10, "fair_value": 500.38, "downside_from_base_pct": -41.5},
+    {"scenario": "Youth Mental Health Verdict $12B", "probability_pct": 12, "fair_value": 477.07, "downside_from_base_pct": -44.3},
+    {"scenario": "Reality Labs Shutdown + Writedown", "probability_pct": 8, "fair_value": 708.67, "upside_from_base_pct": 17.1},
+    {"scenario": "Perfect Storm (All Bear)", "probability_pct": 2, "fair_value": 44.36, "downside_from_base_pct": -94.8}
+  ],
+
+  "key_value_drivers": {
+    "most_sensitive_to": "Terminal growth rate and WACC (TV = 85%+ of EV in all scenarios)",
+    "biggest_upside_driver": "AI monetization speed — Meta AI subscriptions + new ad formats",
+    "biggest_downside_driver": "CapEx ROI failure combined with EU regulatory action",
+    "fcf_inflection_point": "FY2028 — base case FCF recovers to $60B+ once CapEx normalizes",
+    "rl_net_present_cost": "Reality Labs worth -$150 to -$200/share in NPV terms if losses persist at $19B/yr (base case)"
+  },
+
+  "wacc_details": {
+    "risk_free_rate_pct": 4.3,
+    "equity_risk_premium_pct": 5.5,
+    "beta": 1.20,
+    "cost_of_equity_pct": 10.90,
+    "after_tax_cost_of_debt_pct": 4.10,
+    "equity_weight": 0.92,
+    "debt_weight": 0.08,
+    "wacc_pct": 10.36
+  },
+
+  "quality_flags": [
+    "[ASSUMPTION] All scenario probability weights (25/50/25) set before calculating prices",
+    "[ASSUMPTION] Terminal value is 85%+ of EV — high sensitivity to WACC/TGR inputs",
+    "[ASSUMPTION] CapEx normalization timeline is highly uncertain; key sensitivity driver",
+    "[ESTIMATED] D&A estimated as % of revenue; actual figure not directly disclosed",
+    "[ESTIMATED] META EBITDA $110B is estimated (D&A not disclosed)",
+    "[DATA GAP] Exact debt maturity schedule not retrieved; total LT debt $58.7B known",
+    "[ASSUMPTION] Net cash bridge uses FY2025 balance sheet; will change with CapEx deployment"
+  ],
+
+  "format_compatibility": {
+    "report_generator_compatible": true,
+    "required_fields_present": ["ticker", "date", "scenarios", "probability_weighted_fair_value"],
+    "chart_inputs": {
+      "bull_price": 1296.23,
+      "base_price": 856.04,
+      "bear_price": 490.61,
+      "bull_prob": 0.25,
+      "base_prob": 0.50,
+      "bear_prob": 0.25,
+      "weighted_price": 874.73,
+      "monte_carlo_p5": 348.01,
+      "monte_carlo_p95": 854.88,
+      "monte_carlo_median": 544.28
+    }
+  }
+}

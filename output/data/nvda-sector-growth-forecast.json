@@ -1,0 +1,98 @@
+{
+  "growth_drivers": [
+    {
+      "name": "AI Capex Cycle (Hyperscaler Capex)",
+      "current_magnitude": 65,
+      "growth_rate": 0.5,
+      "contribution_to_cagr": 0.14
+    },
+    {
+      "name": "TAM Expansion (Training + Inference Workloads)",
+      "current_magnitude": 116,
+      "growth_rate": 0.3,
+      "contribution_to_cagr": 0.12
+    },
+    {
+      "name": "Custom Silicon Adoption",
+      "current_magnitude": 8,
+      "growth_rate": 0.5,
+      "contribution_to_cagr": 0.03
+    },
+    {
+      "name": "Inference Workload Proliferation",
+      "current_magnitude": 35,
+      "growth_rate": 0.4,
+      "contribution_to_cagr": 0.08
+    },
+    {
+      "name": "Price Erosion (Unit Volume Offset)",
+      "current_magnitude": 1.0,
+      "growth_rate": -0.05,
+      "contribution_to_cagr": -0.01
+    }
+  ],
+  "implied_sector_cagr": 0.36000000000000004,
+  "forecasts": {
+    "linear": {
+      "method": "linear",
+      "cagr": 0.36000000000000004,
+      "forecast": {
+        "2024": 116.0,
+        "2025": 157.76000000000002,
+        "2026": 214.55360000000005,
+        "2027": 291.79289600000004,
+        "2028": 396.8383385600001,
+        "2029": 539.7001404416002,
+        "2030": 733.9921910005763
+      },
+      "2030_value": 733.9921910005763,
+      "description": "Constant 36.0% annual growth"
+    },
+    "scurve": {
+      "method": "s_curve",
+      "tam": 500,
+      "steepness": 0.6,
+      "inflection_year": 2027.5,
+      "implied_cagr": 0.2335967692822123,
+      "forecast": {
+        "2024": 54.54841059780646,
+        "2025": 91.21276190317818,
+        "2026": 144.52524868749802,
+        "2027": 212.7787415941705,
+        "2028": 287.22125840582953,
+        "2029": 355.47475131250195,
+        "2030": 408.7872380968218
+      },
+      "2030_value": 408.7872380968218,
+      "description": "Logistic S-curve with TAM=$500B, inflection @2027"
+    },
+    "exponential": {
+      "method": "exponential",
+      "doubling_period": 1.5,
+      "implied_cagr": 0.5874010519681994,
+      "forecast": {
+        "2024": 116.0,
+        "2025": 184.13852202831112,
+        "2026": 292.3016835756106,
+        "2027": 464.0,
+        "2028": 736.5540881132445,
+        "2029": 1169.2067343024423,
+        "2030": 1856.0
+      },
+      "2030_value": 1856.0,
+      "description": "Exponential with 1.5-year doubling period"
+    },
+    "monte_carlo": {
+      "method": "monte_carlo",
+      "n_simulations": 1000,
+      "mean_2030": 750.8959376264653,
+      "median_2030": 729.2113035850483,
+      "std_2030": 198.18252821807428,
+      "percentile_10": 517.5930671901868,
+      "percentile_90": 1022.6068048373553,
+      "p_growth_gt_25pct_cagr": 0.966,
+      "p_growth_gt_35pct_cagr": 0.561,
+      "p_growth_lt_15pct_cagr": 0.001
+    }
+  }
+}

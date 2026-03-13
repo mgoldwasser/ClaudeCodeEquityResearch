@@ -27,6 +27,30 @@ Always build revenue from the bottom up:
 
 Never start with "consensus estimates say 8% growth." Start with the drivers and see where they lead.
 
+**Step 1.5 — TAM Validation & Historical Benchmarking**
+
+Before finalizing revenue projections, validate against external TAM data and historical precedent:
+
+1. **Historical CAGR check:** Calculate the subject company's 3-year and 5-year revenue CAGR from filings. Compare your projected CAGR to historical. If projected > 2x historical (or < 0.5x), explicitly justify the divergence.
+
+2. **Industry Analyst cross-check:** Compare your revenue projections to the Industry Analyst's bottom-up application-level TAM (Step 2.5 in their framework). If your implied market share × TAM ≠ your revenue projection within ±15%, investigate.
+
+3. **Demand regime assumption:** Explicitly state whether you assume linear growth, S-curve deceleration, or exponential acceleration — and why. If you assume deceleration, explain what causes it. If you assume sustained growth, cite the demand drivers.
+
+**Step 1.6 — Strategic Power Validation**
+
+After receiving the Industry Analyst's Strategic Power Assessment (7 Powers / `templates/strategic-powers-template.md`), validate that your key DCF assumptions are supported by identified Powers:
+
+1. **Financial Translation Matrix check:** For each of your material assumptions (revenue growth, gross margin, operating margin, retention/churn, market share), confirm that the Industry Analyst's Power assessment justifies it. If an assumption lacks a supporting Power, flag it as `[FRAGILE ASSUMPTION: No strategic power supports X]`.
+
+2. **Power Durability check:** If a Power that supports a key assumption has a half-life WITHIN your DCF forecast period, model the decay. Example: If Switching Costs (supporting 95% retention) have a half-life of 2028, model retention declining from 95% to 85% over 2028-2031.
+
+3. **Cliff Risk check:** If the Industry Analyst flags CLIFF RISK (>3 Powers eroding in the same 2-year window), model a scenario where multiple assumptions degrade simultaneously. This becomes the bear case floor.
+
+4. **WACC adjustment:** If composite Power score is ≤3/10, add 100-200bps company-specific risk premium to WACC. If ≥7/10, company-specific risk premium should be minimal (0-50bps). Document the link.
+
+**Red line:** Never use "consensus estimates" or "management guidance" as the sole basis for growth projections. Growth must be derived from TAM × share × pricing dynamics, cross-checked against historical CAGR. Every material margin or growth assumption must trace to a strategic Power or be flagged as fragile.
+
 ### Margin Assumptions
 - Model gross margin by segment if possible.
 - Operating expenses: separate fixed vs. variable components.
@@ -101,6 +125,8 @@ Use the template in `templates/dcf-model-template.md`. Output must include:
 - Never ignore stock-based compensation in FCF (treat it as a real cost)
 - Never fail to disclose terminal value as a percentage of enterprise value
 - Flag any assumption where you have low confidence: `[LOW CONFIDENCE ASSUMPTION: ...]`
+- Never project revenue growth without first calculating and citing the subject company's historical 3-year and 5-year CAGR
+- Never assume growth deceleration without identifying the specific mechanism (market saturation, competitive entry, pricing pressure, demand plateau). "Growth always decelerates" is not analysis.
 
 ## Interaction Style
 - Precise and methodical. Every number must trace back to an assumption or source.

@@ -19,13 +19,10 @@ If no materials are provided in `input/`, the Research Analyst will retrieve all
 
 ### Phase 0: Data Intelligence (Director + Research Analyst)
 1. Create output directories:
-   ```
-   output/pass1/
-   output/pass2/critiques/
-   output/pass2/rebuttals/
-   output/data/
-   output/models/
-   output/notes/
+   ```bash
+   mkdir -p output/[TICKER]/[DATE]/{pass1,pass2/critiques,pass2/debates,summaries,models,charts,data}
+   mkdir -p output/notes
+   ln -sfn [DATE] output/[TICKER]/latest
    ```
 2. Spawn the **Research Analyst** to gather all available external data:
    ```
@@ -43,174 +40,182 @@ If no materials are provided in `input/`, the Research Analyst will retrieve all
    Use WebSearch for: earnings transcripts, analyst commentary, podcasts,
    conference transcripts, industry reports, bear case evidence.
    Use WebFetch to retrieve full text of transcripts and key documents.
-   Produce a Data Intelligence Memo. Save to output/pass1/data-intelligence-memo.md.
-   Save retrieved data to output/data/. Save key filings to input/.
+   Partition all data into input/financials/, input/transcripts/, input/filings/,
+   input/market/, input/macro/, input/alt-data/, input/price-data/.
+   Produce both a full Data Intelligence Memo AND a price-blinded Data Intelligence Memo
+   (omit current stock price). Save to output/[TICKER]/[DATE]/pass1/data-intelligence-memo.md and
+   output/[TICKER]/[DATE]/pass1/data-intelligence-memo-priceblind.md.
+   Save retrieved data to output/[TICKER]/[DATE]/data/. Save key filings to input/.
    ```
 3. Wait for Research Analyst to complete.
 4. Read ALL files in `input/` (now populated by Research Analyst).
 5. Check `output/notes/` for cross-stock notes from prior research runs.
-6. Write company context memo (3-5 sentences), including key data gaps flagged by Research Analyst.
+6. Write a **price-blinded** company context memo (3-5 sentences), including key data gaps flagged by Research Analyst. Do not include current stock price. This memo goes to all analysts except Technical Analyst.
 
-### Phase 1: Parallel Research (Director spawns 14 analysts)
-Spawn all fourteen analysts **in parallel** using the Task tool:
+### Phase 1: Parallel Research (Director spawns 10 analysts)
+Spawn all ten analysts **in parallel** using the Task tool:
 
 **Core Analysts:**
 
 **Task 1 — DCF Analyst:**
 ```
-Read the company context memo and all input materials in input/. Build a 5-year DCF model following your framework in agents/dcf-analyst.md. Use templates/dcf-model-template.md for output format. Save your work product to output/pass1/dcf-analysis.md.
+Read the price-blinded company context memo and input/financials/. Build a 5-year DCF model following your framework in agents/dcf-analyst.md. Use templates/dcf-model-template.md for output format. Save your work product to output/[TICKER]/[DATE]/pass1/dcf-analysis.md.
 ```
 
 **Task 2 — Quant Analyst:**
 ```
-Read the company context memo and all input materials in input/. Run comparables analysis following your framework in agents/quant-analyst.md. Use templates/comp-table-template.md for output format. Use tools/screening.py if quantitative screens are needed. Save your work product to output/pass1/quant-analysis.md.
+Read the price-blinded company context memo and input/financials/ + input/market/. Run comparables analysis following your framework in agents/quant-analyst.md. Use templates/comp-table-template.md for output format. Use tools/screening.py if quantitative screens are needed. Save your work product to output/[TICKER]/[DATE]/pass1/quant-analysis.md.
 ```
 
-**Task 3 — Competitive Analyst:**
+**Task 3 — Industry Analyst:**
 ```
-Read the company context memo and all input materials in input/. Map the competitive landscape following your framework in agents/competitive-analyst.md. Save your work product to output/pass1/competitive-analysis.md.
-```
-
-**Task 4 — Macro Analyst:**
-```
-Read the company context memo and all input materials in input/. Assess macro positioning following your framework in agents/macro-analyst.md. Save your work product to output/pass1/macro-analysis.md.
+Read the price-blinded company context memo and input/market/ + input/macro/ (regulatory only). Map the competitive landscape, sector structure, growth dynamics, regulatory environment, value chain economics, market share landscape, and secular trends following your framework in agents/industry-analyst.md. Generate Python models for sector growth and market share evolution if relevant. Save your work product to output/[TICKER]/[DATE]/pass1/industry-analysis.md.
 ```
 
 **Extended Analysts:**
 
-**Task 5 — Risk Analyst:**
+**Task 4 — Credit Analyst:**
 ```
-Read the company context memo and all input materials in input/. Quantify all risk dimensions following your framework in agents/risk-analyst.md. Include stress tests, drawdown analysis, volatility assessment, correlation analysis, and risk-adjusted return metrics. Save your work product to output/pass1/risk-analysis.md.
-```
-
-**Task 6 — Credit Analyst:**
-```
-Read the company context memo and all input materials in input/. Analyze capital structure, debt sustainability, covenant compliance, and liquidity following your framework in agents/credit-analyst.md. Save your work product to output/pass1/credit-analysis.md.
+Read the price-blinded company context memo and input/financials/ + input/filings/. Analyze capital structure, debt sustainability, covenant compliance, and liquidity following your framework in agents/credit-analyst.md. Save your work product to output/[TICKER]/[DATE]/pass1/credit-analysis.md.
 ```
 
-**Task 7 — Catalyst Analyst:**
+**Task 5 — Catalyst Analyst:**
 ```
-Read the company context memo and all input materials in input/. Map all upcoming catalysts with probability, magnitude, and priced-in assessment following your framework in agents/catalyst-analyst.md. Save your work product to output/pass1/catalyst-analysis.md.
-```
-
-**Task 8 — ESG & Governance Analyst:**
-```
-Read the company context memo and all input materials in input/. Assess board quality, compensation alignment, shareholder rights, and material ESG risks following your framework in agents/esg-governance-analyst.md. Save your work product to output/pass1/esg-governance-analysis.md.
+Read the price-blinded company context memo and input/filings/ + input/transcripts/. Map all upcoming catalysts with probability, magnitude, and priced-in assessment following your framework in agents/catalyst-analyst.md. Save your work product to output/[TICKER]/[DATE]/pass1/catalyst-analysis.md.
 ```
 
-**Task 9 — Technical Analyst:**
+**Task 6 — ESG & Governance Analyst:**
 ```
-Read the company context memo and all input materials in input/. Analyze price action, volume, momentum, relative strength, and entry/exit timing following your framework in agents/technical-analyst.md. Save your work product to output/pass1/technical-analysis.md.
-```
-
-**Task 10 — Sector Analyst:**
-```
-Read the company context memo and all input materials in input/. Analyze sector structure, growth dynamics, regulatory environment, value chain economics, market share landscape, and secular trends following your framework in agents/sector-analyst.md. Generate Python models for sector growth and market share evolution. Save your work product to output/pass1/sector-analysis.md. Save Python models to output/pass1/sector-growth-model.py and output/pass1/sector-share-model.py.
+Read the price-blinded company context memo and input/filings/ + input/transcripts/. Assess board quality, compensation alignment, shareholder rights, and material ESG risks following your framework in agents/esg-governance-analyst.md. Save your work product to output/[TICKER]/[DATE]/pass1/esg-governance-analysis.md.
 ```
 
-**Task 11 — Model Builder:**
+**Task 7 — Technical Analyst:**
 ```
-Read the company context memo and all input materials in input/. Generate executable Python models for DCF, comparables, risk analysis, and credit analysis following your framework in agents/model-builder.md. All assumptions must be named variables. All models must execute with python3. Save all models to output/models/. Generate output/models/README.md listing all models.
+Read the full company context memo (WITH current stock price) and input/price-data/. Analyze price action, volume, momentum, relative strength, and entry/exit timing following your framework in agents/technical-analyst.md. Save your work product to output/[TICKER]/[DATE]/pass1/technical-analysis.md.
 ```
 
 **Deep Analysis Agents:**
 
-**Task 12 — Devil's Advocate:**
+**Task 8 — Quality & Credibility Analyst:**
 ```
-Read the company context memo and all input materials in input/. Build an independent bear case following your framework in agents/devils-advocate.md. Identify the 3-5 key assumptions the bull thesis depends on, invert each, search for disconfirming evidence, construct the contrarian thesis, write the pre-mortem, and calculate the break-even bear probability using tools/portfolio-math.py kelly-scenarios. Do NOT read other analysts' work — your Pass 1 output must be independently derived. Save your work product to output/pass1/devils-advocate-report.md.
-```
-
-**Task 13 — Forensic Analyst:**
-```
-Read the company context memo and all input materials in input/. Perform forensic accounting analysis following your framework in agents/forensic-analyst.md. Calculate Beneish M-Score and Altman Z-Score using tools/portfolio-math.py beneish and tools/portfolio-math.py altman-z. Assess revenue quality, cash flow quality, balance sheet risks, and management/governance. Assign an accounting quality rating (1-5). Save your work product to output/pass1/forensic-analysis.md.
+Read the price-blinded company context memo and input/transcripts/ + input/filings/ + input/financials/. Perform forensic accounting analysis and management communication analysis following your framework in agents/quality-credibility-analyst.md. Calculate Beneish M-Score and Altman Z-Score using tools/portfolio-math.py beneish and tools/portfolio-math.py altman-z. Assess revenue quality, cash flow quality, balance sheet risks, management/governance, management tone, and communication patterns. Assign accounting quality rating (1-5) and management credibility score. Save your work product to output/[TICKER]/[DATE]/pass1/quality-credibility-report.md.
 ```
 
-**Task 14 — Sentiment Analyst:**
+**Task 9 — Risk & Contrarian Analyst:**
 ```
-Read the company context memo and all input materials in input/. Analyze management tone and communication patterns following your framework in agents/sentiment-analyst.md. Run tools/sentiment-analyzer.py analyze on the latest earnings transcript. If prior quarter transcript is available, run tools/sentiment-analyzer.py compare. Score management confidence, identify hedging clusters, analyze Q&A section, and flag red flags. Save your work product to output/pass1/sentiment-analysis.md.
-```
-
-**Wait for all fourteen tasks to complete before proceeding.**
-
-### Phase 2: Adversarial Review (Director manages)
-
-**Step 2.1 — Cross-Critique (parallel)**
-Feed all fourteen Pass 1 work products + Data Intelligence Memo to each analyst. Spawn 15 critique tasks in parallel (14 original analysts + the Devil's Advocate produces targeted challenges):
-
-```
-You have received the work products from all fourteen analysts and the Data Intelligence Memo. Review each OTHER analyst's work (not your own). For each, identify:
-1. The weakest assumption
-2. The most likely source of error
-3. One thing you'd change
-Use the critique format in templates/critique-template.md. Be specific and cite numbers.
-Save critiques to output/pass2/critiques/[your-role]-critiques.md.
+You are the independent contrarian voice. DO NOT read the company context memo and DO NOT receive financial data.
+Read input/macro/ + input/alt-data/ + input/filings/ only. Following your framework in agents/risk-contrarian-analyst.md:
+1. Build an independent bear case by inverting the bull thesis. Search for disconfirming evidence.
+2. Identify macro/systemic risks that could break the thesis.
+3. Assess management execution risk and governance red flags.
+4. Calculate the break-even bear probability using tools/portfolio-math.py kelly-scenarios.
+Your Pass 1 output must be independently derived — do NOT read other analysts' work. Save your work product to output/[TICKER]/[DATE]/pass1/risk-contrarian-report.md.
 ```
 
-The Devil's Advocate also produces Pass 2 targeted challenges after reading all analyst work — this is in addition to the standard critique format.
-
-**Wait for all critiques to complete.**
-
-**Step 2.2 — Rebuttals (parallel)**
-Feed each analyst the critiques OF THEIR work. Spawn 15 rebuttal tasks in parallel:
-
+**Task 10 — Model Builder:**
 ```
-You have received critiques of your Pass 1 analysis from the other analysts. Respond to each critique:
-- Accept and revise your conclusion, OR
-- Reject with specific reasoning, OR
-- Partially accept with modifications
-One paragraph per critique. No defensive language — just evidence.
-Save rebuttals to output/pass2/rebuttals/[your-role]-rebuttals.md.
+Read the price-blinded company context memo and input/financials/ + input/market/. Generate executable Python models for DCF, comparables, credit analysis, and risk analysis following your framework in agents/model-builder.md. All assumptions must be named variables. All models must execute with python3. Save all models to output/[TICKER]/[DATE]/models/. Generate output/[TICKER]/[DATE]/models/README.md listing all models.
 ```
 
-**Wait for all rebuttals to complete. ONE ROUND ONLY — no further iteration.**
+**Wait for all ten tasks to complete before proceeding.**
+
+### Phase 2: Targeted Debates (Director manages)
+
+**Step 2.1 — Director Identifies Key Disagreements**
+Read all ten Pass 1 work products. Identify the 3-5 most consequential disagreements:
+- Revenue growth assumptions (DCF vs. Quant vs. Industry)
+- Competitive positioning (Industry Analyst vs. Risk & Contrarian view)
+- Key risks or thesis fragility (Risk & Contrarian vs. bull case defense)
+- Credit/covenant headroom (Credit Analyst vs. macro stress scenarios)
+- Catalyst timing and probability (Catalyst Analyst vs. Risk & Contrarian skepticism)
+
+Write a brief memo identifying these disagreements and the analysts who should debate them.
+
+**Step 2.2 — Targeted Critique Debates (parallel)**
+Spawn ONLY the relevant analysts for each disagreement (not all-vs-all). Each debate pair/trio receives:
+- Both analysts' full Pass 1 work products
+- The disagreement framing
+- Instructions from templates/critique-template.md
+
+Example debate setup:
+```
+DCF Analyst vs. Quant Analyst vs. Industry Analyst debate: What is the realistic revenue CAGR?
+[Each analyst reviews the others' revenue assumptions, points out weakest assumptions, cites evidence]
+Save to output/[TICKER]/[DATE]/pass2/debates/revenue-growth-debate.md
+```
+
+Run 3-5 targeted debates in parallel (not 15 all-vs-all critiques).
+
+**Wait for all debates to complete.**
+
+**Step 2.2.5 — Bull Case Defense**
+Spawn ONE analyst to defend the bull case against the Risk & Contrarian report:
+
+```
+You have read the Risk & Contrarian Analyst's bear case in output/[TICKER]/[DATE]/pass1/risk-contrarian-report.md.
+For each major challenge to the bull thesis:
+1. Identify the assumption the bear case questions
+2. Present the evidence supporting the bull case
+3. Assess the probability the bear case scenario occurs
+Do NOT be defensive. Present the counterevidence dispassionately.
+Save to output/[TICKER]/[DATE]/pass2/debates/bull-case-defense.md
+```
+
+**Step 2.3 — Summarize Debates**
+Before handing materials to the Editor, run the Summarizer to compress the debate phase:
+
+```
+Read all debates in output/[TICKER]/[DATE]/pass2/debates/ and the bull case defense. Produce a single Disagreement Map following the format in agents/summarizer.md. For each disagreement: (1) What is the core question, (2) Position A, (3) Position B, (4) resolution or unresolved status. Maximum 600 words. Save to output/[TICKER]/[DATE]/summaries/disagreement-map.md
+```
 
 ### Phase 3: Synthesis (Director → Editor → Trade Structurer → Position Sizing → Director)
 
 **Step 3.1 — Editor Synthesis**
 ```
-Read ALL materials: all 14 Pass 1 work products, all critiques, all rebuttals, the Data Intelligence Memo, and any cross-stock notes in output/notes/. Synthesize into a complete research note using templates/research-note-template.md. Follow your framework in agents/editor.md. Integrate risk, credit, catalyst, ESG/governance, technical, forensic, sentiment, and contrarian analyses into the appropriate sections. Include probability distribution using templates/probability-output-template.md. Flag any unresolved contradictions. Save to output/pass2/editor-draft.md.
+Read ALL materials: all 10 Pass 1 work products, all debates in output/[TICKER]/[DATE]/pass2/debates/, the Disagreement Map in output/[TICKER]/[DATE]/summaries/disagreement-map.md, the Data Intelligence Memo, and any cross-stock notes in output/notes/. Synthesize into a complete research note using templates/research-note-template.md. Follow your framework in agents/editor.md. Integrate credit, catalyst, ESG/governance, technical, quality & credibility, and risk & contrarian analyses into the appropriate sections. Use the Disagreement Map to identify key disputes and how they were (or weren't) resolved. Include probability distribution using templates/probability-output-template.md. Flag any unresolved contradictions. Save to output/[TICKER]/[DATE]/pass2/editor-draft.md.
 ```
 
 **Step 3.2 — Trade Structurer**
 Once the Editor's draft is ready, spawn the Trade Structurer:
 ```
-Read the Editor's draft in output/pass2/editor-draft.md and key Pass 1 work products (especially dcf-analysis.md, risk-analysis.md, competitive-analysis.md, technical-analysis.md, and devils-advocate-report.md). Follow your framework in agents/trade-structurer.md. Propose the primary trade, pair trade / hedge, options overlay, and alternative structures. Calculate risk/reward for each. Use tools/portfolio-math.py correlation for pair trades. Save to output/pass2/trade-structure.md.
+Read the Editor's draft in output/[TICKER]/[DATE]/pass2/editor-draft.md and key Pass 1 work products (especially dcf-analysis.md, risk-contrarian-report.md, industry-analysis.md, and technical-analysis.md). Follow your framework in agents/trade-structurer.md. Propose the primary trade, pair trade / hedge, options overlay, and alternative structures. Calculate risk/reward for each. Use tools/portfolio-math.py correlation for pair trades. Save to output/[TICKER]/[DATE]/pass2/trade-structure.md.
 ```
 
 **Step 3.3 — Position Sizing**
 Once the Editor's draft is ready, spawn the Position Sizing Analyst (can run in parallel with Trade Structurer):
 ```
-Read the Editor's draft in output/pass2/editor-draft.md and all Pass 1 work products (especially risk-analysis.md, catalyst-analysis.md, and forensic-analysis.md). Follow your framework in agents/position-sizing-analyst.md. Use tools/portfolio-math.py kelly-scenarios and tools/portfolio-math.py vol-size for calculations. Produce a complete position sizing recommendation. Save to output/pass2/position-sizing.md.
+Read the Editor's draft in output/[TICKER]/[DATE]/pass2/editor-draft.md and all Pass 1 work products (especially risk-contrarian-report.md, catalyst-analysis.md, and quality-credibility-report.md). Follow your framework in agents/position-sizing-analyst.md. Use tools/portfolio-math.py kelly-scenarios and tools/portfolio-math.py vol-size for calculations. Produce a complete position sizing recommendation. Save to output/[TICKER]/[DATE]/pass2/position-sizing.md.
 ```
 
 **Step 3.4 — Director Final Review**
 The Director:
-1. Reviews `output/pass2/editor-draft.md`, `output/pass2/position-sizing.md`, and `output/pass2/trade-structure.md`
-2. Reviews forensic analysis — if accounting quality ≤ 2, caps conviction at 3
-3. Reviews devil's advocate report — ensures key challenges are addressed
-4. Assigns conviction rating (1-5)
-5. Calculates probability-weighted expected price using `tools/portfolio-math.py expected-value`
-6. Writes executive summary and price target recommendation
-7. Integrates position sizing and trade structure into the final note
-8. Resolves any flagged contradictions or marks them as "Key Unresolved Risk"
-9. Saves final note to `output/[TICKER]-research-note-[DATE].md`
-10. Saves scenario data to `output/[TICKER]-scenarios.json`
+1. REVEAL current stock price to yourself (now that all research is complete)
+2. Reviews `output/[TICKER]/[DATE]/pass2/editor-draft.md`, `output/[TICKER]/[DATE]/pass2/position-sizing.md`, and `output/[TICKER]/[DATE]/pass2/trade-structure.md`
+3. Reviews quality & credibility report — if accounting quality ≤ 2, caps conviction at 3
+4. Reviews risk & contrarian report — ensures key challenges are addressed; if strong unaddressed challenges, note as "Key Unresolved Risk"
+5. Assigns conviction rating (1-5) based on analyst agreement, data quality, thesis fragility, and forensic quality
+6. Calculates probability-weighted expected price using `tools/portfolio-math.py expected-value`
+7. Writes executive summary and price target recommendation
+8. Integrates position sizing and trade structure into the final note
+9. Resolves any flagged contradictions or marks them as "Key Unresolved Risk"
+10. Saves final note to `output/[TICKER]/[DATE]/[TICKER]-research-note-[DATE].md`
+11. Saves scenario data to `output/[TICKER]/[DATE]/[TICKER]-scenarios.json`
 
 ### Phase 4: Report Generation
 
 **Step 4.1 — Generate Charts**
 ```
-python tools/report-generator.py charts --scenarios-file output/[TICKER]-scenarios.json --output output/charts/ --ticker [TICKER]
+python tools/report-generator.py charts --scenarios-file output/[TICKER]/[DATE]/[TICKER]-scenarios.json --output output/[TICKER]/[DATE]/charts/ --ticker [TICKER]
 ```
 
 **Step 4.2 — Generate Full Research PDF**
 ```
-python tools/report-generator.py pdf --input output/[TICKER]-research-note-[DATE].md --output output/[TICKER]-report.pdf
+python tools/report-generator.py pdf --input output/[TICKER]/[DATE]/[TICKER]-research-note-[DATE].md --output output/[TICKER]/[DATE]/[TICKER]-report-[DATE].pdf
 ```
 
 **Step 4.3 — Generate Executive Summary PDF**
 ```
-python tools/report-generator.py executive-summary --input output/[TICKER]-research-note-[DATE].md --output output/[TICKER]-exec-summary.pdf
+python tools/report-generator.py executive-summary --input output/[TICKER]/[DATE]/[TICKER]-research-note-[DATE].md --output output/[TICKER]/[DATE]/[TICKER]-exec-summary-[DATE].pdf
 ```
 
 ### Phase 5: Cross-Stock Intelligence Check
@@ -234,9 +239,8 @@ Before saving the final output, the Director checks:
 - [ ] ESG/governance scores assigned
 - [ ] Position sizing recommendation with Kelly fraction
 - [ ] Technical analysis confirms or flags divergence
-- [ ] Forensic quality rating assigned (Beneish + Altman + 5-point scale)
-- [ ] Sentiment analysis completed with confidence score
-- [ ] Devil's advocate report addresses key assumptions with break-even probability
+- [ ] Quality & credibility rating assigned (Beneish + Altman + 5-point accounting scale + management credibility score)
+- [ ] Risk & Contrarian report addresses key assumptions with break-even probability
 - [ ] Probability distribution uses templates/probability-output-template.md format
 - [ ] Expected value calculated via tools/portfolio-math.py expected-value
 - [ ] Trade structure includes max loss for every proposed trade
@@ -246,30 +250,33 @@ Before saving the final output, the Director checks:
 - [ ] No unresolved contradictions (or explicitly flagged)
 - [ ] Executive summary readable in <60 seconds
 - [ ] Price target derivation shows math
+- [ ] All 10 analysts represented in synthesis (or gaps explained)
+- [ ] Targeted debates document 3-5 key disagreements and resolutions
 
 ## Output
 
 Final outputs:
-- `output/[TICKER]-research-note-[YYYY-MM-DD].md` — Full research note (Markdown)
-- `output/[TICKER]-report.pdf` — Full research report (PDF with embedded charts)
-- `output/[TICKER]-exec-summary.pdf` — Standalone executive summary (1-2 pages)
-- `output/[TICKER]-scenarios.json` — Scenario data for programmatic use
-- `output/charts/` — Generated visualizations (probability histogram, return distribution, sensitivity heatmap, waterfall)
+- `output/[TICKER]/[DATE]/[TICKER]-research-note-[YYYY-MM-DD].md` — Full research note (Markdown)
+- `output/[TICKER]/[DATE]/[TICKER]-report-[DATE].pdf` — Full research report (PDF with embedded charts)
+- `output/[TICKER]/[DATE]/[TICKER]-exec-summary-[DATE].pdf` — Standalone executive summary (1-2 pages)
+- `output/[TICKER]/[DATE]/[TICKER]-scenarios.json` — Scenario data for programmatic use
+- `output/[TICKER]/[DATE]/charts/` — Generated visualizations (probability histogram, return distribution, sensitivity heatmap, waterfall)
 
 Intermediate work products:
-- `output/pass1/` — 14 individual analyst outputs + Data Intelligence Memo
-- `output/pass2/critiques/` — Cross-analyst critiques (15 files)
-- `output/pass2/rebuttals/` — Analyst rebuttals (15 files)
-- `output/pass2/editor-draft.md` — Editor's synthesis
-- `output/pass2/trade-structure.md` — Trade structure recommendation
-- `output/pass2/position-sizing.md` — Position sizing recommendation
-- `output/models/` — Executable Python models
-- `output/notes/` — Cross-stock intelligence notes
+- `output/[TICKER]/[DATE]/pass1/` — 10 individual analyst outputs + Data Intelligence Memos (full + price-blinded)
+- `output/[TICKER]/[DATE]/pass2/debates/` — Targeted disagreement debates (3-5 files)
+- `output/[TICKER]/[DATE]/pass2/debates/bull-case-defense.md` — Bull case defense against bear case
+- `output/[TICKER]/[DATE]/pass2/editor-draft.md` — Editor's synthesis
+- `output/[TICKER]/[DATE]/pass2/trade-structure.md` — Trade structure recommendation
+- `output/[TICKER]/[DATE]/pass2/position-sizing.md` — Position sizing recommendation
+- `output/[TICKER]/[DATE]/summaries/` — Compressed briefs and disagreement map
+- `output/[TICKER]/[DATE]/models/` — Executable Python models
+- `output/notes/` — Cross-stock intelligence notes (shared across tickers)
 
 ## Estimated Agent Calls
 - Phase 0 (Data): 1 agent (Research Analyst)
-- Phase 1 (Research): 14 parallel agents
-- Phase 2 critiques: 15 parallel agents
-- Phase 2 rebuttals: 15 parallel agents
+- Phase 1 (Research): 10 parallel agents
+- Phase 2 debates: 3-5 targeted debates (5-6 analysts involved)
+- Phase 2 summarization: 1 agent (Summarizer)
 - Phase 3 (Synthesis): Editor + Trade Structurer + Position Sizing = 3 agents
-- Total: ~48 agent invocations (but only 7 sequential phases due to parallelism)
+- Total: ~20-24 agent invocations (but only 6 sequential phases due to parallelism)

@@ -1,0 +1,229 @@
+===============================================================================
+EQUITY RESEARCH SWARM — RESTRUCTURING PLAN
+Based on: AMD Swarm Audit (2026-03-10)
+Goal: Reduce agents, increase orthogonality, eliminate signal duplication
+===============================================================================
+
+DIAGNOSIS (from audit):
+- 15 analysts produce ~90 claims from ~30 independent signals (3x inflation)
+- Adversarial review: 79% of critiques produce no material change
+- All agents read same inputs → anchoring to current price + same-source echo
+- 4 agent pairs have 60-80% scope overlap
+- Bear-biased by design (Devil's Advocate on Opus/high; no symmetric bull challenge)
+
+===============================================================================
+CHANGE 1: AGENT MERGES (15 research analysts → 10)
+===============================================================================
+
+1a. Competitive Analyst + Sector Analyst → "Industry Analyst"
+    - File: agents/industry-analyst.md (NEW)
+    - Delete: agents/competitive-analyst.md, agents/sector-analyst.md
+    - Rationale: Both analyze market share, industry structure, competitive dynamics
+    - Preserve from Competitive: Moat scoring (1-10), pricing power, threat assessment
+    - Preserve from Sector: Python growth models, adoption curves, value chain, regulatory
+    - Remove overlap: Market share analysis appears once, not twice
+    - Model: sonnet / medium
+
+1b. Risk Analyst + Devil's Advocate + Macro Analyst → "Risk & Contrarian Analyst"
+    - File: agents/risk-contrarian-analyst.md (NEW)
+    - Delete: agents/risk-analyst.md, agents/devils-advocate.md, agents/macro-analyst.md
+    - Rationale: All three produce bear cases from same evidence; macro stress tests
+      overlap with risk stress tests; DA pre-mortem overlaps with risk scenarios
+    - Preserve from Risk: Stress tests, drawdown analysis, volatility, correlation,
+      Kelly fraction, quantitative risk scoring
+    - Preserve from Devil's Advocate: Assumption dependency chain, pre-mortem,
+      disconfirming evidence search, break-even probability, contrarian thesis
+    - Preserve from Macro: Macro-to-P&L mapping, FX quantification, cycle positioning,
+      catastrophic scenario analysis, regulatory pipeline
+    - Remove overlap: One bear case instead of three; one catastrophic scenario section;
+      one risk matrix combining all dimensions
+    - Model: opus / high (inherits DA's rigor requirement)
+    - CRITICAL: This agent is explicitly INDEPENDENT — does NOT read other analysts'
+      work in Pass 1 (inherits DA's independence rule)
+
+1c. Forensic Analyst + Sentiment Analyst → "Quality & Credibility Analyst"
+    - File: agents/quality-credibility-analyst.md (NEW)
+    - Delete: agents/forensic-analyst.md, agents/sentiment-analyst.md
+    - Rationale: Both assess management credibility; both flagged same items (reserve
+      release, GPU opacity); Beneish + tone scoring = unified quality assessment
+    - Preserve from Forensic: M-Score, Z-Score, revenue quality, cash flow quality,
+      accounting quality rating (1-5), governance checks
+    - Preserve from Sentiment: Tone scoring, hedging analysis, Q&A analysis,
+      press release vs. reality, cross-quarter comparison
+    - Remove overlap: One management credibility score instead of two (8.5/10 + 82/100);
+      one reserve release finding instead of two
+    - Model: sonnet / high (upgrade from haiku to get forensic rigor)
+
+AGENTS AFTER MERGE (10 research analysts):
+  Core:     DCF, Quant, Industry (was Competitive+Sector)
+  Extended: Risk & Contrarian (was Risk+DA+Macro), Credit, Catalyst, ESG/Governance,
+            Technical, Quality & Credibility (was Forensic+Sentiment)
+  Utility:  Model Builder
+  Plus:     Research Analyst (Phase 0), Editor, Summarizer,
+            Trade Structurer, Position Sizing, Portfolio Manager
+
+===============================================================================
+CHANGE 2: PRICE-BLINDING PROTOCOL
+===============================================================================
+
+2a. Research Analyst (Phase 0) creates TWO data packages:
+    - input/price-data/ — Contains ONLY: current price, 52W range, volume,
+      historical prices, options chains, technical indicators
+    - input/fundamental-data/ — Contains EVERYTHING ELSE: financials, transcripts,
+      filings, macro data, industry data. NO current stock price anywhere.
+
+2b. Director's company context memo MUST NOT include current stock price.
+    - New rule: "The company context memo must describe the business, recent events,
+      and thesis question — but MUST NOT include the current stock price, market cap,
+      or any valuation multiples that reveal the current price."
+
+2c. Analyst access rules:
+    - Technical Analyst: Gets input/price-data/ (needs price for TA)
+    - ALL OTHER ANALYSTS: Get input/fundamental-data/ ONLY
+    - Director reveals current price ONLY in Step 2.6 (Final Review) after
+      all analyst fair values are submitted
+
+2d. The Director compares price-blind fair value estimates to market price
+    AFTER all analysis is complete. This eliminates anchoring.
+
+===============================================================================
+CHANGE 3: INFORMATION PARTITIONING
+===============================================================================
+
+Instead of all agents reading the same input/, partition data by analytical need:
+
+3a. Research Analyst (Phase 0) saves data to partitioned directories:
+    - input/financials/    — 10-K, 10-Q, XBRL data, financial statements
+    - input/transcripts/   — Earnings calls, IR presentations, management commentary
+    - input/filings/       — DEF 14A, Form 4, 13F, 8-K, proxy statements
+    - input/market/        — Competitor data, industry reports, TAM estimates
+    - input/macro/         — FRED data, government statistics, regulatory filings
+    - input/price-data/    — Current price, historical prices, options, volume
+    - input/alt-data/      — Insider trading, short interest, institutional holdings
+
+3b. Agent partition assignments (PRIMARY data access):
+    GROUP A — Financial Modelers:
+      DCF Analyst:          input/financials/ + input/transcripts/ (guidance only)
+      Quant Analyst:        input/financials/ + input/market/ (peer data)
+      Model Builder:        input/financials/ (builds from analyst assumptions)
+
+    GROUP B — Strategic Analysts:
+      Industry Analyst:     input/market/ + input/macro/ (regulatory only)
+
+    GROUP C — Risk & Contrarian:
+      Risk & Contrarian:    input/macro/ + input/alt-data/ + input/filings/ (risk factors)
+                            DOES NOT get input/financials/ in Pass 1 (forces independent view)
+
+    GROUP D — Quality & Governance:
+      Quality & Credibility: input/transcripts/ + input/filings/ + input/financials/
+      ESG & Governance:      input/filings/ (proxy, DEF 14A) + input/transcripts/
+
+    GROUP E — Specialist:
+      Credit Analyst:       input/financials/ (debt detail) + input/filings/ (covenants)
+      Catalyst Analyst:     input/transcripts/ + input/market/ + input/filings/ (8-K)
+      Technical Analyst:    input/price-data/ ONLY
+
+    NOTE: Agents can REQUEST data from other partitions during Pass 1, but must
+    flag it: [CROSS-PARTITION DATA: Accessed input/financials/ for revenue figure]
+    This creates an audit trail for signal independence.
+
+===============================================================================
+CHANGE 4: DECISION-FORCING CRITIQUE PROCESS
+===============================================================================
+
+Replace open-ended "critique everything" with targeted decision gates.
+
+4a. After Pass 1, Director identifies the 3-5 MOST CONSEQUENTIAL DISAGREEMENTS
+    by comparing analyst conclusions. Only these go to critique/rebuttal.
+
+4b. New critique format (replaces templates/critique-template.md):
+    For each disagreement:
+    - State the two (or more) competing positions with specific numbers
+    - Each side submits: their best evidence, the weakest point of the other side
+    - REQUIRED OUTPUT: a revised number both sides accept, OR an explicit
+      "Key Unresolved Risk" with competing probability ranges
+    - If the critique doesn't change a number → it wasn't worth running
+
+4c. Only the RELEVANT analysts participate in each critique:
+    - WACC disagreement? → DCF Analyst vs. Credit Analyst vs. Risk & Contrarian
+    - Market share disagreement? → Industry Analyst vs. DCF Analyst
+    - Bear probability disagreement? → Risk & Contrarian vs. DCF Analyst vs. Quant
+    NOT all 10 analysts critiquing all 10 reports.
+
+4d. Maximum 3-5 focused critiques instead of 15×15 = 225 critique pairs.
+
+===============================================================================
+CHANGE 5: SIGNAL INDEPENDENCE TRACKING
+===============================================================================
+
+5a. Every claim in the final note must include a [SIGNAL-ID: X] tag:
+    - SIGNAL-ID is a unique identifier for the underlying data point
+    - Example: [SIGNAL-ID: CUDA-GAP-01] for the CUDA performance gap finding
+    - If multiple agents cite the same signal, they must use the same SIGNAL-ID
+
+5b. The Editor must produce a Signal Independence Audit in the appendix:
+    - List of unique SIGNAL-IDs cited in the note
+    - For each: which agents cited it, what underlying data point it traces to
+    - Independence ratio: unique signals / total citations
+    - Target: independence ratio > 0.5 (currently ~0.33)
+
+5c. When the note says "multiple analysts corroborate X" — the Editor must verify
+    they're citing different underlying data, not the same data point rephrased.
+
+===============================================================================
+CHANGE 6: ANTI-HERDING MEASURES
+===============================================================================
+
+6a. Risk & Contrarian Analyst produces Pass 1 output INDEPENDENTLY
+    (does not read other analysts' Phase 0 data intelligence memo or company context)
+    Instead receives: ticker symbol + "build an independent bear case from scratch"
+
+6b. Add bull-case accountability: In Pass 2, the Director must assign one analyst
+    to explicitly DEFEND the bull case against the Risk & Contrarian's bear case.
+    This creates symmetric adversarial pressure.
+
+6c. Probability weights (bull/base/bear) must be set BEFORE scenario prices are
+    calculated, not after. Current process: set prices → adjust weights to match
+    current stock price. New process: set weights → calculate expected value →
+    compare to current price → the DIFFERENCE is the signal.
+
+===============================================================================
+CHANGE 7: UPDATE ALL DEPENDENT FILES
+===============================================================================
+
+7a. CLAUDE.md — Full rewrite of:
+    - Team Structure tables
+    - Two-Pass Workflow (spawning instructions)
+    - Output Format (merged sections)
+    - Quality Gates (updated for new agent roster)
+    - Context Budget Guidelines (reduced agent count)
+
+7b. templates/research-note-template.md — Update sections:
+    - Merge "Competitive Position" + "Sector Analysis" → "Industry & Competitive Position"
+    - Merge "Macro & Risk Factors" into unified "Risk, Macro & Contrarian Analysis"
+    - Merge "Forensic Quality" + "Sentiment" into "Quality & Credibility Assessment"
+    - Add "Signal Independence Audit" to appendix
+
+7c. templates/critique-template.md — Replace with decision-forcing format
+
+7d. workflows/full-research-note.md — Update for new agent roster + workflow
+7e. workflows/earnings-reaction.md — Update agent references
+7f. workflows/price-target-review.md — Update agent references
+7g. workflows/batch-run.md — Update agent references (if referencing specific agents)
+
+===============================================================================
+ORDER OF EXECUTION
+===============================================================================
+
+Phase 1: Create new merged agent files (3 new agents)
+Phase 2: Add price-blinding + partitioning to Research Analyst + Director
+Phase 3: Rewrite CLAUDE.md (team structure, workflow, quality gates)
+Phase 4: Update templates (research note, critique)
+Phase 5: Update workflows
+Phase 6: Create done.txt with full change log
+Phase 7: Delete old agent files
+
+ESTIMATED FILES CHANGED: ~15
+ESTIMATED FILES CREATED: ~3 new agents + plan.txt + done.txt
+ESTIMATED FILES DELETED: ~5 old agents (competitive, sector, risk, devils-advocate,
+                          macro, forensic, sentiment)

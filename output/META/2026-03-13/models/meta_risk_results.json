@@ -1,0 +1,266 @@
+{
+  "model": "META_RISK",
+  "date": "2026-03-13",
+  "ticker": "META",
+  "currency": "USD_millions",
+  "price_blinded": true,
+  "random_seed": 42,
+  "monte_carlo": {
+    "n_iterations": 10000,
+    "mean": 566.41,
+    "median": 544.28,
+    "std_dev": 159.93,
+    "min": 196.24,
+    "max": 1936.55,
+    "p5": 348.01,
+    "p10": 385.04,
+    "p25": 456.08,
+    "p75": 650.83,
+    "p90": 772.5,
+    "p95": 854.88,
+    "var_5pct": 348.01,
+    "var_10pct": 385.04,
+    "cvar_5pct": 309.38,
+    "cvar_10pct": 338.42,
+    "histogram": [
+      {
+        "bucket_low": 196.0,
+        "bucket_high": 283.0,
+        "count": 101,
+        "pct_of_total": 1.0
+      },
+      {
+        "bucket_low": 283.0,
+        "bucket_high": 370.0,
+        "count": 678,
+        "pct_of_total": 6.8
+      },
+      {
+        "bucket_low": 370.0,
+        "bucket_high": 457.0,
+        "count": 1747,
+        "pct_of_total": 17.5
+      },
+      {
+        "bucket_low": 457.0,
+        "bucket_high": 544.0,
+        "count": 2475,
+        "pct_of_total": 24.8
+      },
+      {
+        "bucket_low": 544.0,
+        "bucket_high": 631.0,
+        "count": 2120,
+        "pct_of_total": 21.2
+      },
+      {
+        "bucket_low": 631.0,
+        "bucket_high": 718.0,
+        "count": 1342,
+        "pct_of_total": 13.4
+      },
+      {
+        "bucket_low": 718.0,
+        "bucket_high": 805.0,
+        "count": 771,
+        "pct_of_total": 7.7
+      },
+      {
+        "bucket_low": 805.0,
+        "bucket_high": 892.0,
+        "count": 386,
+        "pct_of_total": 3.9
+      },
+      {
+        "bucket_low": 892.0,
+        "bucket_high": 979.0,
+        "count": 204,
+        "pct_of_total": 2.0
+      },
+      {
+        "bucket_low": 979.0,
+        "bucket_high": 1066.0,
+        "count": 94,
+        "pct_of_total": 0.9
+      },
+      {
+        "bucket_low": 1066.0,
+        "bucket_high": 1153.0,
+        "count": 40,
+        "pct_of_total": 0.4
+      },
+      {
+        "bucket_low": 1153.0,
+        "bucket_high": 1240.0,
+        "count": 18,
+        "pct_of_total": 0.2
+      },
+      {
+        "bucket_low": 1240.0,
+        "bucket_high": 1327.0,
+        "count": 11,
+        "pct_of_total": 0.1
+      },
+      {
+        "bucket_low": 1327.0,
+        "bucket_high": 1414.0,
+        "count": 3,
+        "pct_of_total": 0.0
+      },
+      {
+        "bucket_low": 1414.0,
+        "bucket_high": 1501.0,
+        "count": 4,
+        "pct_of_total": 0.0
+      },
+      {
+        "bucket_low": 1501.0,
+        "bucket_high": 1588.0,
+        "count": 1,
+        "pct_of_total": 0.0
+      },
+      {
+        "bucket_low": 1588.0,
+        "bucket_high": 1676.0,
+        "count": 3,
+        "pct_of_total": 0.0
+      },
+      {
+        "bucket_low": 1676.0,
+        "bucket_high": 1763.0,
+        "count": 0,
+        "pct_of_total": 0.0
+      },
+      {
+        "bucket_low": 1763.0,
+        "bucket_high": 1850.0,
+        "count": 1,
+        "pct_of_total": 0.0
+      },
+      {
+        "bucket_low": 1850.0,
+        "bucket_high": 1937.0,
+        "count": 0,
+        "pct_of_total": 0.0
+      }
+    ],
+    "probability_above_300": 98.4,
+    "probability_above_400": 87.6,
+    "probability_above_500": 63.0,
+    "probability_above_600": 35.5,
+    "probability_above_700": 17.6,
+    "probability_below_200": 0.0,
+    "probability_below_300": 1.6,
+    "probability_below_400": 12.4
+  },
+  "stress_tests": [
+    {
+      "scenario": "Recession_2027",
+      "label": "Global Recession 2027 \u2014 Digital Ad Contraction",
+      "probability": 0.12,
+      "description": "US/global recession in 2027 causes digital ad spend to contract 15-20%, similar to 2022 pattern but amplified by fixed AI infrastructure costs. Meta revenue declines -15% in 2027, recovers slowly.",
+      "fair_value_before_one_time": 121.56,
+      "one_time_ev_reduction_M": 0,
+      "per_share_one_time_impact": 0.0,
+      "fair_value_after_one_time": 121.56,
+      "wacc_used": 10.92,
+      "terminal_growth_used": 0.025
+    },
+    {
+      "scenario": "EU_DMA_Fine_WhatsApp",
+      "label": "EU DMA WhatsApp Maximum Fine + Forced Interoperability",
+      "probability": 0.1,
+      "description": "EU DMA investigation concludes with maximum fine ($14-16B) AND forced interoperability requirement that weakens WhatsApp moat. EU revenue growth slows to near-zero for 2 years.",
+      "fair_value_before_one_time": 434.81,
+      "one_time_ev_reduction_M": 14000,
+      "per_share_one_time_impact": 5.44,
+      "fair_value_after_one_time": 429.37,
+      "wacc_used": 9.92,
+      "terminal_growth_used": 0.032
+    },
+    {
+      "scenario": "CapEx_ROI_Failure",
+      "label": "AI Infrastructure ROI Fails to Materialize by 2028",
+      "probability": 0.15,
+      "description": "Meta invests $115-135B in 2026 and $80-100B in 2027 in AI compute but cannot monetize meaningfully. No Meta AI subscription uptake, Llama models fall behind OpenAI/Google. CapEx sunk, free cash flow structurally impaired. Market re-rates at lower multiples.",
+      "terminal_multiple_penalty": -4.0,
+      "fair_value_before_one_time": 276.02,
+      "one_time_ev_reduction_M": 0,
+      "per_share_one_time_impact": 0.0,
+      "fair_value_after_one_time": 276.02,
+      "wacc_used": 10.22,
+      "terminal_growth_used": 0.03
+    },
+    {
+      "scenario": "Chinese_Advertiser_Pullback",
+      "label": "US-China Trade War: Chinese Advertisers Exit Meta",
+      "probability": 0.1,
+      "description": "Temu, Shein, and other Chinese e-commerce players ($7B+ estimated spend) are forced to exit or dramatically reduce US social media advertising due to tariffs, app bans, or political pressure. Sudden revenue gap of $5-8B in FY2026.",
+      "fair_value_before_one_time": 500.38,
+      "one_time_ev_reduction_M": 0,
+      "per_share_one_time_impact": 0.0,
+      "fair_value_after_one_time": 500.38,
+      "wacc_used": 9.72,
+      "terminal_growth_used": 0.033
+    },
+    {
+      "scenario": "Youth_Mental_Health_Verdict",
+      "label": "Youth Mental Health Trial: Adverse Verdict ~$10-20B Settlement",
+      "probability": 0.12,
+      "description": "2026 trial calendar produces adverse verdict or settlement for youth mental health cases. CFO confirmed 'may result in material loss.' Conservative estimate: $10B settlement; aggressive: $20B. Using $12B as base for this stress scenario.",
+      "ongoing_cost_M": 500,
+      "fair_value_before_one_time": 481.73,
+      "one_time_ev_reduction_M": 12000,
+      "per_share_one_time_impact": 4.66,
+      "fair_value_after_one_time": 477.07,
+      "wacc_used": 9.72,
+      "terminal_growth_used": 0.033
+    },
+    {
+      "scenario": "Reality_Labs_Shutdown",
+      "label": "Reality Labs Shutdown / Write-Down",
+      "probability": 0.08,
+      "description": "Meta discontinues Reality Labs after cumulative losses exceed $90B. Write-down of $10-15B in assets. Short-term EPS negative but long-term FCF positive (eliminates $19B annual loss). Net NPV: ambiguous (near-term charge, long-term positive).",
+      "fair_value_before_one_time": 713.33,
+      "one_time_ev_reduction_M": 12000,
+      "per_share_one_time_impact": 4.66,
+      "fair_value_after_one_time": 708.67,
+      "wacc_used": 9.22,
+      "terminal_growth_used": 0.035
+    }
+  ],
+  "tail_risk": {
+    "scenario": "Combined_Tail_Risk",
+    "label": "Perfect Storm Bear Case (Recession + EU + CapEx Failure)",
+    "probability": 0.02,
+    "fair_value_before_charges": 57.57,
+    "total_one_time_charges_M": 34000,
+    "per_share_one_time": 13.21,
+    "fair_value_after_charges": 44.36,
+    "wacc_used": 11.0,
+    "components": [
+      "Recession 2027",
+      "EU WhatsApp fine $14B",
+      "Youth mental health $12B",
+      "RL write-down $8B",
+      "CapEx ROI failure"
+    ]
+  },
+  "key_risk_factors": [
+    "CapEx ROI uncertainty ($115-135B 2026 investment with no quantified ROI timeline)",
+    "EU DMA WhatsApp investigation \u2014 potential $14-16B fine or forced interoperability",
+    "Youth mental health litigation \u2014 2026 trial calendar; CFO flagged 'material loss' risk",
+    "Chinese advertiser pullback risk (~$7B estimated Meta revenue from Temu/Shein)",
+    "Revenue cyclicality \u2014 digital ad market declined in 2022; recession scenario models -15% YoY",
+    "Reality Labs \u2014 $19.2B annual loss with no path to profitability disclosed",
+    "Governance concentration \u2014 Zuckerberg retains majority control via Class B shares",
+    "AI model competitive gap \u2014 Llama 4 received tepid developer reception; Avocado unproven"
+  ],
+  "model_assumptions": [
+    "ASSUMPTION: Monte Carlo parameter distributions based on analyst estimates and historical volatility",
+    "ASSUMPTION: Revenue growth distributions based on consensus estimates \u00b1 historical vol",
+    "ASSUMPTION: CapEx normalization trajectory based on management guidance + analyst estimates",
+    "ASSUMPTION: All distributions are truncated normal \u2014 tails are not fat-tailed",
+    "ASSUMPTION: Random seed 42 for full reproducibility"
+  ]
+}

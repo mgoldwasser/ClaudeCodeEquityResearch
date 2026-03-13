@@ -1,0 +1,52 @@
+{
+  "ticker": "META",
+  "date": "2026-03-13",
+  "totalWallClockSeconds": 3300,
+  "phases": [
+    {"name": "Phase 0 — Data Gathering", "durationSeconds": 1040},
+    {"name": "Pass 1 — 10 Parallel Analysts", "durationSeconds": 630},
+    {"name": "Pass 1.5 — Summarizer", "durationSeconds": 170},
+    {"name": "Pass 2.1-2.3 — Targeted Debates + Bull Defense", "durationSeconds": 320},
+    {"name": "Pass 2.3 — Disagreement Map", "durationSeconds": 50},
+    {"name": "Pass 2.4 — Editor Synthesis", "durationSeconds": 500},
+    {"name": "Pass 2.5-2.6 — Trade Structure + Position Sizing", "durationSeconds": 270},
+    {"name": "Pass 2.7 — Director Final Review", "durationSeconds": 300}
+  ],
+  "tokenUsage": {
+    "totalInput": 1063000,
+    "totalOutput": 741000,
+    "totalTokens": 1804000,
+    "note": "All counts estimated [EST] from content length at ~4 chars/token",
+    "byAgent": [
+      {"agent": "Research Analyst", "input": 60000, "output": 47000, "model": "claude-sonnet-4-6"},
+      {"agent": "DCF Analyst", "input": 30000, "output": 24000, "model": "claude-opus-4-6"},
+      {"agent": "Quant Analyst", "input": 48000, "output": 36000, "model": "claude-sonnet-4-6"},
+      {"agent": "Industry Analyst", "input": 48000, "output": 36000, "model": "claude-sonnet-4-6"},
+      {"agent": "Risk & Contrarian Analyst", "input": 35000, "output": 26000, "model": "claude-opus-4-6"},
+      {"agent": "Credit Analyst", "input": 28000, "output": 20000, "model": "claude-sonnet-4-6"},
+      {"agent": "Catalyst Analyst", "input": 25000, "output": 19000, "model": "claude-sonnet-4-6"},
+      {"agent": "ESG & Governance Analyst", "input": 35000, "output": 27000, "model": "claude-sonnet-4-6"},
+      {"agent": "Technical Analyst", "input": 28000, "output": 22000, "model": "claude-sonnet-4-6"},
+      {"agent": "Quality & Credibility Analyst", "input": 33000, "output": 25000, "model": "claude-sonnet-4-6"},
+      {"agent": "Model Builder", "input": 47000, "output": 35000, "model": "claude-sonnet-4-6"},
+      {"agent": "Summarizer (Pass 1.5)", "input": 88000, "output": 66000, "model": "claude-haiku-4-5"},
+      {"agent": "Debate 1 Fair Value", "input": 43000, "output": 32000, "model": "claude-opus-4-6"},
+      {"agent": "Debate 2 CapEx ROI", "input": 42000, "output": 30000, "model": "claude-opus-4-6"},
+      {"agent": "Debate 3 Governance", "input": 35000, "output": 26000, "model": "claude-sonnet-4-6"},
+      {"agent": "Debate 4 Bear Probability", "input": 27000, "output": 20000, "model": "claude-sonnet-4-6"},
+      {"agent": "Bull Defense", "input": 40000, "output": 30000, "model": "claude-sonnet-4-6"},
+      {"agent": "Disagreement Map", "input": 50000, "output": 38000, "model": "claude-haiku-4-5"},
+      {"agent": "Editor", "input": 93000, "output": 68000, "model": "claude-opus-4-6"},
+      {"agent": "Trade Structurer", "input": 29000, "output": 22000, "model": "claude-sonnet-4-6"},
+      {"agent": "Position Sizing Analyst", "input": 30000, "output": 22000, "model": "claude-sonnet-4-6"},
+      {"agent": "Director", "input": 100000, "output": 50000, "model": "claude-opus-4-6"}
+    ]
+  },
+  "estimatedCost": {
+    "note": "Based on published API pricing — Opus $15/$75/MTok, Sonnet $3/$15/MTok, Haiku $0.25/$1.25/MTok",
+    "opusUsd": 22.50,
+    "sonnetUsd": 8.55,
+    "haikuUsd": 0.17,
+    "totalUsd": 31.22
+  }
+}

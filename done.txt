@@ -1,0 +1,235 @@
+===============================================================================
+EQUITY RESEARCH SWARM — RESTRUCTURING CHANGE LOG
+Completed: 2026-03-10
+Based on: AMD Swarm Audit (output/AMD-swarm-audit-2026-03-10.md)
+Plan file: plan.txt
+===============================================================================
+
+SUMMARY:
+  - Research analysts reduced from 15 to 10 (3 merges)
+  - Price-blinding protocol added to eliminate anchoring bias
+  - Data partitioning added for signal independence
+  - All-vs-all critique (15x15 = 225 pairs) replaced with 3-5 targeted debates
+  - Anti-herding measures added (independent Risk & Contrarian, bull case defense)
+  - Signal Independence tracking added (SIGNAL-ID tags, independence audit)
+  - Estimated agent calls per run: ~48 → ~20-24
+
+===============================================================================
+PHASE 1: NEW MERGED AGENT FILES (3 files created)
+===============================================================================
+
+1. CREATED: agents/industry-analyst.md
+   - Merges: agents/competitive-analyst.md + agents/sector-analyst.md
+   - Model: sonnet / medium
+   - Preserves: Moat scoring (1-10), pricing power, threat assessment (from Competitive)
+   - Preserves: Python growth models, adoption curves, value chain, regulatory (from Sector)
+   - Removes overlap: Market share analysis appears once, not twice
+   - 10 analytical steps covering sector + competitive in one unified framework
+
+2. CREATED: agents/risk-contrarian-analyst.md
+   - Merges: agents/risk-analyst.md + agents/devils-advocate.md + agents/macro-analyst.md
+   - Model: opus / high (inherits DA's rigor requirement)
+   - INDEPENDENCE RULE: Does NOT read other analysts' work or context memo in Pass 1
+   - Part A: 9 steps (assumptions, disconfirming evidence, macro, risk taxonomy,
+     stress tests, drawdown, contrarian thesis + pre-mortem, correlation, risk metrics)
+   - Part B: Targeted challenges in Pass 2
+   - One unified bear case instead of three overlapping ones
+
+3. CREATED: agents/quality-credibility-analyst.md
+   - Merges: agents/forensic-analyst.md + agents/sentiment-analyst.md
+   - Model: sonnet / high (upgraded from haiku/low)
+   - Unified red flag register (accounting + tone/evasion flags in one table)
+   - Single management credibility score (1-5) replaces two overlapping scales
+   - 7 analytical steps combining forensic + sentiment workflows
+
+===============================================================================
+PHASE 2: PRICE-BLINDING + DATA PARTITIONING
+===============================================================================
+
+4. MODIFIED: agents/research-analyst.md
+   - Added: Price-Blinding Protocol section
+     - Data partitioned into: input/financials/, input/transcripts/, input/filings/,
+       input/market/, input/macro/, input/alt-data/, input/price-data/
+     - Two versions of Data Intelligence Memo: full (Director only) and blinded (analysts)
+     - Price data isolated in input/price-data/ (accessible only to Technical Analyst)
+   - Added: Information Partition Map table
+     - Shows which agent gets which data partitions
+     - Cross-partition access requires audit trail tag:
+       [CROSS-PARTITION: Accessed input/financials/ for [specific data point]]
+
+5. MODIFIED: agents/director-of-research.md
+   - Pass 1 Step 5: Added PRICE-BLINDING RULE to context memo
+     - Must NOT include: current stock price, market cap, EV, valuation multiples,
+       52-week range, or any metric revealing current price
+   - Pass 2 Step 2: Updated references from old agents to new merged agents
+     - "Forensic Analyst" → "Quality & Credibility Analyst"
+     - "Sentiment Analyst's tone score" → unified credibility score
+     - "Devil's Advocate" → "Risk & Contrarian Analyst"
+   - Added new Step 6: "PRICE REVEAL — Anti-Anchoring Protocol"
+     - Reveal price only after all fair values submitted
+     - Record analyst fair values before revealing market price
+     - Flag if all values cluster within +/-5% (potential residual anchoring)
+   - Step 7: Added ANTI-ANCHORING RULE for probability weights
+     - Weights must be set BEFORE scenario prices are calculated
+     - Gap between expected value and market price IS the signal
+   - Added 3 new Red Lines:
+     - Never include current price in context memo
+     - Never adjust probability weights to make EV match current price
+     - Never assign bull-case defender same as Risk & Contrarian
+
+===============================================================================
+PHASE 3: CLAUDE.md MASTER ORCHESTRATION REWRITE
+===============================================================================
+
+6. MODIFIED: CLAUDE.md
+   - Team Structure: Complete rewrite
+     - Added 4 Design Principles (Signal Independence, Price Blinding,
+       Decision-Forcing Critiques, Anti-Herding)
+     - New agent roster tables with "Data Partition" column
+     - 10 research analysts (down from 15)
+     - Risk & Contrarian marked as "(INDEPENDENT)"
+   - Two-Pass Workflow: Complete rewrite
+     - Pass 1 renamed "Parallel Research (Price-Blinded)"
+     - Phase 0 includes data partitioning instructions
+     - 10 analyst spawn instructions (down from 14) with partition assignments
+     - Risk & Contrarian gets special handling (no context memo, no financials)
+     - Pass 1.5: Updated for 10 work products
+     - Pass 2 renamed "Decision-Forcing Review + Synthesis"
+       - Step 2.1: Director identifies 3-5 most consequential disagreements
+       - Step 2.2: Targeted critiques (only relevant analysts per disagreement)
+       - Step 2.2.5: Bull Case Defense (anti-herding)
+       - Step 2.3: Summarize debates
+       - Step 2.4: Editor Synthesis (10 outputs, Signal Independence Audit)
+       - Step 2.5: Trade Structurer
+       - Step 2.6: Position Sizing (references Risk & Contrarian)
+       - Step 2.7: Director Final Review (Price Reveal + anti-anchoring)
+       - Step 2.8: Report Generation
+       - Step 2.9: Cross-Stock Trigger Check
+   - Output Format: Merged sections
+     - "Competitive Position" + "Sector Analysis" → "Industry & Competitive Position"
+     - "Macro & Risk Factors" + contrarian → "Risk, Macro & Contrarian Analysis"
+     - "Forensic Quality" + "Sentiment" → "Quality & Credibility Assessment"
+     - Added "Signal Independence Audit" to appendix
+     - Added "Analyst-Blind Fair Values vs. Market Price" to appendix
+   - Context Budget Guidelines: Updated for new structure
+     - Pass 2 targeted critiques: ~8-15K tokens per debate (was ~15-25K for all-vs-all)
+     - Editor: ~45K tokens (was ~60K)
+   - Quality Gates: Complete rewrite with categorized sections
+     - New category: "Price Blinding & Anti-Anchoring" (5 gates)
+     - Updated all references from old agent names to new
+     - Added: Signal Independence Audit (target ratio > 0.5)
+     - Added: Bull case defense completed
+
+===============================================================================
+PHASE 4: TEMPLATE UPDATES
+===============================================================================
+
+7. MODIFIED: templates/research-note-template.md
+   - Section 5: "Competitive Position" → "Industry & Competitive Position"
+     - Added sector structure, regulatory landscape, value chain, secular trends
+     - Source: Industry Analyst (was Competitive Analyst)
+   - Sections 5.5 + 6.5: MERGED into "Quality & Credibility Assessment"
+     - Unified red flag register (accounting + tone/evasion)
+     - Single source: Quality & Credibility Analyst
+     - Deleted old Section 6.5
+   - Sections 6 + 7.5: MERGED into "Risk, Macro & Contrarian Analysis"
+     - Combined macro, risk matrix, contrarian thesis, pre-mortem, break-even
+     - Single source: Risk & Contrarian Analyst
+     - Deleted old Section 7.5
+   - Section 7: Updated "Analyst Debate Summary"
+     - "Adversarial Review" → "Targeted Debates"
+     - Added "Bull Case Defense" subsection
+   - Appendix: Added Signal Independence Audit + Analyst-Blind Fair Values table
+   - All sections renumbered
+
+8. REPLACED: templates/critique-template.md
+   - Old: Generic 3-point critique (weakest assumption, error source, one change)
+   - New: Decision-forcing debate template
+     - Specific disagreement framed by Director
+     - Two sides present best evidence + attack weakest point
+     - Each proposes resolution with specific number
+     - Resolution: agreed number OR "Key Unresolved Risk" with ranges
+     - Decision gate: did this change a number? If not, it wasn't worth running
+
+===============================================================================
+PHASE 5: WORKFLOW UPDATES
+===============================================================================
+
+9. MODIFIED: workflows/full-research-note.md
+   - Phase 0: Added data partitioning, price-blinded memo, dual Data Intelligence Memos
+   - Phase 1: 14 analysts → 10 analysts with partition-specific instructions
+     - Competitive + Sector → Industry Analyst
+     - Macro Analyst deleted (merged into Risk & Contrarian)
+     - Risk + DA → Risk & Contrarian (independent, no context memo)
+     - Forensic + Sentiment → Quality & Credibility
+     - All analysts receive data partitions, not full input/
+   - Phase 2: All-vs-all → 3-5 targeted debates + bull case defense
+     - output/pass2/critiques/ + rebuttals/ → output/pass2/debates/
+   - Phase 3: Updated all agent references
+   - Quality Gate: Updated for new agents
+   - Estimated calls: ~48 → ~20-24
+
+10. MODIFIED: workflows/earnings-reaction.md
+    - Competitive Analyst → Industry Analyst
+    - Macro Analyst deleted (Director handles brief macro context)
+    - Estimated calls: 6-7 → 5-6
+
+11. MODIFIED: workflows/price-target-review.md
+    - Competitive → Industry Analyst
+    - Macro → Risk & Contrarian Analyst
+    - Fundamental change escalation: 13 → 10 agents
+
+12. MODIFIED: workflows/cross-stock-trigger.md
+    - Who writes notes: Competitive → Industry, Sector → deleted, DA → Risk & Contrarian
+    - Cross-Stock Review: Competitive → Industry, DA → Risk & Contrarian
+    - Do-NOT-re-run list updated for new agent roster
+
+13. MODIFIED: workflows/portfolio-construction.md
+    - Risk Analyst → Risk & Contrarian Analyst in Phase 3
+
+===============================================================================
+PHASE 6: OLD FILE DELETION
+===============================================================================
+
+14. DELETED: agents/competitive-analyst.md (merged into industry-analyst.md)
+15. DELETED: agents/sector-analyst.md (merged into industry-analyst.md)
+16. DELETED: agents/risk-analyst.md (merged into risk-contrarian-analyst.md)
+17. DELETED: agents/devils-advocate.md (merged into risk-contrarian-analyst.md)
+18. DELETED: agents/macro-analyst.md (merged into risk-contrarian-analyst.md)
+19. DELETED: agents/forensic-analyst.md (merged into quality-credibility-analyst.md)
+20. DELETED: agents/sentiment-analyst.md (merged into quality-credibility-analyst.md)
+
+===============================================================================
+FINAL FILE COUNT
+===============================================================================
+
+Files created:  3 (new merged agents) + plan.txt + done.txt = 5
+Files modified: 10 (director, research analyst, CLAUDE.md, 2 templates, 5 workflows)
+Files deleted:  7 (old agent files)
+Total changes:  22 file operations
+
+===============================================================================
+REMAINING AGENT ROSTER (18 agents total)
+===============================================================================
+
+Research Analysts (10):
+  1. DCF Analyst (agents/dcf-analyst.md)
+  2. Quant Analyst (agents/quant-analyst.md)
+  3. Industry Analyst (agents/industry-analyst.md) [NEW - merged]
+  4. Risk & Contrarian Analyst (agents/risk-contrarian-analyst.md) [NEW - merged]
+  5. Credit Analyst (agents/credit-analyst.md)
+  6. Catalyst Analyst (agents/catalyst-analyst.md)
+  7. ESG & Governance Analyst (agents/esg-governance-analyst.md)
+  8. Technical Analyst (agents/technical-analyst.md)
+  9. Quality & Credibility Analyst (agents/quality-credibility-analyst.md) [NEW - merged]
+  10. Model Builder (agents/model-builder.md)
+
+Support (8):
+  11. Director of Research (agents/director-of-research.md) [MODIFIED]
+  12. Research Analyst (agents/research-analyst.md) [MODIFIED]
+  13. Editor (agents/editor.md)
+  14. Summarizer (agents/summarizer.md)
+  15. Trade Structurer (agents/trade-structurer.md)
+  16. Position Sizing Analyst (agents/position-sizing-analyst.md)
+  17. Portfolio Manager (agents/portfolio-manager.md)
+  18. (none deleted from support)

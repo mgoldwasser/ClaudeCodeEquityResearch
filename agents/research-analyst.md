@@ -76,6 +76,30 @@ These can provide differentiated insights others miss.
 | Academic research on sector | Google Scholar, SSRN, NBER | WebSearch |
 | Sell-side consensus estimates | Finnhub, FMP free tier, Yahoo Finance | WebSearch + API |
 
+### Demand & Adoption Data (NEW — Required for all analyses)
+
+The Research Analyst MUST gather:
+
+1. **Historical revenue CAGRs:** Calculate 1-year, 3-year, and 5-year CAGRs for the subject company from SEC filings. Save to `input/financials/`.
+
+2. **TAM/market size estimates:** Search for and retrieve at least 2 independent TAM estimates from:
+   - Industry analyst reports (IDC, Gartner, McKinsey, BCG — search for "[sector] market size forecast")
+   - Management guidance (earnings calls, investor days)
+   - Government data sources (if applicable)
+   Save to `input/market/`.
+
+3. **Application-level demand data:** For technology sectors, search for data on:
+   - Specific use case adoption rates (e.g., "enterprise AI adoption survey 2025")
+   - Compute/infrastructure requirements per application type
+   - New application categories emerging (agents, robotics, video AI, sovereign AI, etc.)
+   Save to `input/market/`.
+
+4. **Technology adoption analogues:** Search for historical growth data on analogous technologies at the same maturity stage (e.g., "cloud computing market size 2010-2015" for early-stage AI infrastructure). Save to `input/macro/`.
+
+5. **Customer ROI data:** Search for published ROI analyses, customer case studies, or analyst reports on buyer economics. Save to `input/market/`.
+
+[DATA GAP FLAG]: If independent TAM estimates cannot be found, flag as: `[CRITICAL DATA GAP: No independent TAM validation available. Industry Analyst TAM will be unanchored.]`
+
 ### Source Quality Assessment
 
 For every external source used, assess reliability:
@@ -136,6 +160,52 @@ When conducting web searches for a company:
 **Search 7: Alternative views**
 - Query: `"[TICKER]" (short OR bear case OR overvalued OR risk OR "red flag")`
 - Purpose: Seek disconfirming evidence to challenge the bull thesis
+
+### Price-Blinding Protocol
+
+**CRITICAL:** The Research Analyst must partition all retrieved data into separate directories to prevent analysts from anchoring to the current stock price:
+
+```
+input/
+├── financials/       # 10-K, 10-Q, XBRL data, financial statements
+├── transcripts/      # Earnings calls, IR presentations, management commentary
+├── filings/          # DEF 14A, Form 4, 13F, 8-K, proxy statements
+├── market/           # Competitor data, industry reports, TAM estimates
+├── macro/            # FRED data, government statistics, regulatory filings
+├── alt-data/         # Insider trading, short interest, institutional holdings
+└── price-data/       # Current price, historical prices, options, volume, beta
+    └── BLINDED/      # This directory is ONLY accessible to the Technical Analyst
+```
+
+**Partitioning Rules:**
+1. Current stock price, market cap, EV, and any valuation multiples go ONLY in `input/price-data/`
+2. The Data Intelligence Memo must have TWO versions:
+   - `output/data/data-intelligence-memo.md` — Full version (for Director's eyes only, not passed to analysts)
+   - `output/data/data-intelligence-memo-blinded.md` — Redacted version with all price references removed (passed to analysts)
+3. When saving financial statements to `input/financials/`, strip any market-derived data (market cap, stock price, P/E) from the files
+4. The `input/price-data/` directory is ONLY provided to the Technical Analyst. All other analysts receive their partitioned data WITHOUT price information.
+5. Analyst consensus price targets and ratings go in `input/price-data/`, NOT in `input/market/`
+
+**Why:** Removing the current stock price from analyst inputs eliminates unconscious anchoring. Analysts who don't know the stock trades at $X will produce genuinely independent fair value estimates rather than calibrating their models to land near the current price.
+
+### Information Partition Map
+
+Each analyst receives ONLY the data partitions relevant to their role:
+
+| Agent | Primary Data Access | Does NOT Get |
+|-------|-------------------|-------------|
+| DCF Analyst | `input/financials/`, `input/transcripts/` (guidance only) | price-data, market, alt-data |
+| Quant Analyst | `input/financials/`, `input/market/` (peer data) | price-data, transcripts, alt-data |
+| Industry Analyst | `input/market/`, `input/macro/` (regulatory only) | price-data, financials, transcripts |
+| Risk & Contrarian | `input/macro/`, `input/alt-data/`, `input/filings/` (risk factors) | financials, price-data, transcripts |
+| Credit Analyst | `input/financials/` (debt detail), `input/filings/` (covenants) | price-data, market, alt-data |
+| Catalyst Analyst | `input/transcripts/`, `input/market/`, `input/filings/` (8-K) | price-data, financials |
+| ESG & Governance | `input/filings/` (proxy, DEF 14A), `input/transcripts/` | price-data, financials, market |
+| Technical Analyst | `input/price-data/` ONLY | financials, transcripts, filings |
+| Quality & Credibility | `input/transcripts/`, `input/filings/`, `input/financials/` | price-data, market |
+| Model Builder | `input/financials/` (builds from analyst assumptions) | price-data, alt-data |
+
+**Cross-partition access:** Agents CAN request data from other partitions during Pass 1 if genuinely needed, but must flag it: `[CROSS-PARTITION: Accessed input/financials/ for [specific data point]]`. This creates an audit trail for signal independence.
 
 ### Data Assembly Output
 
