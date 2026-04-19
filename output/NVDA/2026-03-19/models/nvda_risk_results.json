@@ -1,0 +1,270 @@
+{
+  "model": "nvda_risk_model",
+  "ticker": "NVDA",
+  "generated": "2026-03-19",
+  "random_seed": 42,
+  "monte_carlo_results": {
+    "n_simulations": 5000,
+    "mean_price": 245.16,
+    "std_price": 147.99,
+    "percentiles": {
+      "p5": 84.96,
+      "p10": 104.64,
+      "p25": 144.61,
+      "p50": 207.0,
+      "p75": 304.62,
+      "p90": 431.82,
+      "p95": 521.33
+    },
+    "var_95_price": 84.96,
+    "cvar_95_price": 69.18,
+    "var_99_price": 58.98,
+    "cvar_99_price": 51.72,
+    "price_distribution_histogram": {
+      "$30-$104": 481,
+      "$104-$177": 1444,
+      "$177-$251": 1225,
+      "$251-$325": 773,
+      "$325-$399": 416,
+      "$399-$472": 289,
+      "$472-$546": 154,
+      "$546-$620": 87,
+      "$620-$693": 44,
+      "$693-$767": 33,
+      "$767-$841": 25,
+      "$841-$915": 9,
+      "$915-$988": 8,
+      "$988-$1062": 3,
+      "$1062-$1136": 3,
+      "$1136-$1210": 3,
+      "$1283-$1357": 1,
+      "$1431-$1504": 2
+    }
+  },
+  "factor_stress_tests": [
+    {
+      "scenario_name": "AI Capex Cycle Pause (12-18mo)",
+      "description": "Hyperscalers pause capex expansion after overbuilding; NVDA revenue flat/down",
+      "tier": "NVDA-specific",
+      "probability": 0.2,
+      "revenue_yr1_stressed": 161954.0,
+      "revenue_yr2_stressed": 145758.0,
+      "ebitda_yr1_stressed": 92961.0,
+      "stressed_ebitda_margin": 0.574,
+      "multiple_compression_applied": 0.0,
+      "stressed_price_estimate": 59.51,
+      "base_price_estimate": 82.63,
+      "implied_pct_change": -0.2799,
+      "is_tail_risk": false
+    },
+    {
+      "scenario_name": "AMD MI450 Share Capture",
+      "description": "AMD executes flawlessly, captures 15-20pp GPU market share from NVDA",
+      "tier": "Competitive",
+      "probability": 0.25,
+      "revenue_yr1_stressed": 190025.0,
+      "revenue_yr2_stressed": 174823.0,
+      "ebitda_yr1_stressed": 105274.0,
+      "stressed_ebitda_margin": 0.554,
+      "multiple_compression_applied": 0.0,
+      "stressed_price_estimate": 67.11,
+      "base_price_estimate": 82.63,
+      "implied_pct_change": -0.1879,
+      "is_tail_risk": false
+    },
+    {
+      "scenario_name": "Custom ASIC Displacement",
+      "description": "Hyperscaler TPU/Trainium/Maia scale faster than expected; NVDA TAM shrinks",
+      "tier": "Structural",
+      "probability": 0.2,
+      "revenue_yr1_stressed": 198663.0,
+      "revenue_yr2_stressed": 168864.0,
+      "ebitda_yr1_stressed": 116019.0,
+      "stressed_ebitda_margin": 0.584,
+      "multiple_compression_applied": 0.0,
+      "stressed_price_estimate": 73.74,
+      "base_price_estimate": 82.63,
+      "implied_pct_change": -0.1076,
+      "is_tail_risk": false
+    },
+    {
+      "scenario_name": "China Export Control Escalation",
+      "description": "US restricts ALL NVDA chip sales to China; FY2026 China ~16% of rev",
+      "tier": "Regulatory",
+      "probability": 0.15,
+      "revenue_yr1_stressed": 181388.0,
+      "revenue_yr2_stressed": 163249.0,
+      "ebitda_yr1_stressed": 107744.0,
+      "stressed_ebitda_margin": 0.594,
+      "multiple_compression_applied": 0.0,
+      "stressed_price_estimate": 68.63,
+      "base_price_estimate": 82.63,
+      "implied_pct_change": -0.1694,
+      "is_tail_risk": false
+    },
+    {
+      "scenario_name": "Interest Rate Spike (+200bps)",
+      "description": "Macro rate shock compresses tech multiples; earnings power unchanged",
+      "tier": "Macro",
+      "probability": 0.1,
+      "revenue_yr1_stressed": 215938.0,
+      "revenue_yr2_stressed": 215938.0,
+      "ebitda_yr1_stressed": 130427.0,
+      "stressed_ebitda_margin": 0.604,
+      "multiple_compression_applied": 0.3,
+      "stressed_price_estimate": 58.48,
+      "base_price_estimate": 82.63,
+      "implied_pct_change": -0.2923,
+      "is_tail_risk": false
+    },
+    {
+      "scenario_name": "Combined Stress (Bull Decomp + ASIC + Rates)",
+      "description": "Worst-case: capex pause + ASIC acceleration + rate shock simultaneously",
+      "tier": "Tail Risk",
+      "probability": 0.05,
+      "revenue_yr1_stressed": 140360.0,
+      "revenue_yr2_stressed": 112288.0,
+      "ebitda_yr1_stressed": 73548.0,
+      "stressed_ebitda_margin": 0.524,
+      "multiple_compression_applied": 0.25,
+      "stressed_price_estimate": 36.17,
+      "base_price_estimate": 82.63,
+      "implied_pct_change": -0.5622,
+      "is_tail_risk": true
+    }
+  ],
+  "parametric_var": {
+    "0.9": {
+      "confidence": 0.9,
+      "horizon_years": 1.0,
+      "expected_return": 0.2,
+      "volatility": 0.55,
+      "var_return": -0.5049,
+      "cvar_return": -0.7652,
+      "var_description": "With 90% confidence, annual return will not be worse than -50.5%",
+      "cvar_description": "Expected return given tail event beyond 90% VaR: -76.5%",
+      "method": "Parametric (Normal distribution)"
+    },
+    "0.95": {
+      "confidence": 0.95,
+      "horizon_years": 1.0,
+      "expected_return": 0.2,
+      "volatility": 0.55,
+      "var_return": -0.7047,
+      "cvar_return": -0.9344,
+      "var_description": "With 95% confidence, annual return will not be worse than -70.5%",
+      "cvar_description": "Expected return given tail event beyond 95% VaR: -93.4%",
+      "method": "Parametric (Normal distribution)"
+    },
+    "0.99": {
+      "confidence": 0.99,
+      "horizon_years": 1.0,
+      "expected_return": 0.2,
+      "volatility": 0.55,
+      "var_return": -1.0795,
+      "cvar_return": -1.266,
+      "var_description": "With 99% confidence, annual return will not be worse than -107.9%",
+      "cvar_description": "Expected return given tail event beyond 99% VaR: -126.6%",
+      "method": "Parametric (Normal distribution)"
+    }
+  },
+  "drawdown_analysis": {
+    "historical_drawdowns": [
+      {
+        "episode": "2018 Crypto/Gaming Bust",
+        "peak_to_trough": -0.55,
+        "recovery_months": 18
+      },
+      {
+        "episode": "2019-2020 COVID Crash",
+        "peak_to_trough": -0.28,
+        "recovery_months": 4
+      },
+      {
+        "episode": "2022 Rate Shock/Tech Selloff",
+        "peak_to_trough": -0.66,
+        "recovery_months": 14
+      },
+      {
+        "episode": "GFC 2008",
+        "peak_to_trough": -0.7,
+        "recovery_months": 24
+      }
+    ],
+    "average_historical_drawdown": -0.5475,
+    "worst_historical_drawdown": -0.7,
+    "average_recovery_months": 15.0,
+    "forward_scenario_drawdowns": [
+      {
+        "scenario": "Moderate Correction (capex pause)",
+        "estimated_drawdown": -0.3,
+        "triggering_condition": "Hyperscaler Q2 capex guidance cut"
+      },
+      {
+        "scenario": "Severe Correction (ASIC + cycle)",
+        "estimated_drawdown": -0.55,
+        "triggering_condition": "AMD share capture + cycle peak narrative"
+      },
+      {
+        "scenario": "Extreme Bear (combined tail risk)",
+        "estimated_drawdown": -0.75,
+        "triggering_condition": "Export controls + capex bust + rate spike simultaneously"
+      }
+    ],
+    "key_insight": "NVDA has sustained 55-70% drawdowns during each cycle peak; recoveries have been fast (4-24 months) due to fundamental re-acceleration. Bear case requires answering: what structural demand shift prevents recovery?"
+  },
+  "historical_scenarios": [
+    {
+      "name": "Dot-Com Bust (2000-2002)",
+      "peak_to_trough_revenue": -0.5,
+      "peak_to_trough_price": -0.75,
+      "recovery_years": 4,
+      "applicability": "High \u2014 tech overvaluation, capex pullback"
+    },
+    {
+      "name": "GFC (2008-2009)",
+      "peak_to_trough_revenue": -0.2,
+      "peak_to_trough_price": -0.6,
+      "recovery_years": 2,
+      "applicability": "Medium \u2014 macro demand shock, less relevant for AI infrastructure"
+    },
+    {
+      "name": "2022 Rate Shock",
+      "peak_to_trough_revenue": -0.16,
+      "peak_to_trough_price": -0.66,
+      "recovery_years": 2,
+      "applicability": "High \u2014 most recent; gaming/crypto bust; AI recovery followed"
+    },
+    {
+      "name": "Crypto Mining Collapse (2018)",
+      "peak_to_trough_revenue": -0.25,
+      "peak_to_trough_price": -0.55,
+      "recovery_years": 2,
+      "applicability": "Medium \u2014 demand concentration risk (AI \u2260 crypto mining)"
+    }
+  ],
+  "risk_adjusted_returns": {
+    "expected_return": 0.2,
+    "volatility": 0.55,
+    "risk_free": 0.045,
+    "sharpe_ratio": 0.282,
+    "sortino_ratio_approx": 0.434,
+    "kelly_full": 0.5124,
+    "kelly_half": 0.2562,
+    "kelly_quarter": 0.1281,
+    "practical_kelly": 0.1281,
+    "note": "Kelly assumes returns follow the expected return/volatility distribution; use quarter-Kelly as practical sizing due to parameter uncertainty"
+  },
+  "assumptions": {
+    "n_simulations": 5000,
+    "forecast_years": 5,
+    "revenue_growth_mu": 0.3,
+    "revenue_growth_sigma": 0.25,
+    "gm_mean": 0.74,
+    "gm_std": 0.04,
+    "wacc_mean": 0.111,
+    "wacc_std": 0.015,
+    "expected_annual_return": 0.2,
+    "annual_volatility": 0.55
+  }
+}

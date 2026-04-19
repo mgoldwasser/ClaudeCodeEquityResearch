@@ -1,0 +1,77 @@
+{
+  "ticker": "NVDA",
+  "source": "stockanalysis.com + NVIDIA press release",
+  "source_tier": 1,
+  "retrieval_date": "2026-03-19",
+  "currency": "USD_millions",
+  "balance_sheet": {
+    "FY2026": {
+      "period_end": "2026-01-25",
+      "total_assets": 206800,
+      "current_assets": 125600,
+      "cash_and_equivalents": 10600,
+      "cash_marketable_securities_total": 62600,
+      "total_liabilities": 49500,
+      "current_liabilities": 32200,
+      "total_debt": 11000,
+      "long_term_debt": 7500,
+      "shareholders_equity": 157300,
+      "retained_earnings": 147000,
+      "working_capital": 93400,
+      "shares_outstanding_diluted_approx": 24300,
+      "shares_outstanding_units": "millions",
+      "net_cash_position": 51600,
+      "interest_coverage_ratio": 503.4,
+      "notes": "Cash includes both cash equivalents and marketable securities per press release"
+    },
+    "FY2025": {
+      "period_end": "2025-01-26",
+      "total_assets": 111600,
+      "cash_and_equivalents": 8600,
+      "total_debt": 10000,
+      "long_term_debt": 8500,
+      "shareholders_equity": 79300,
+      "working_capital": 62100
+    }
+  },
+  "cash_flow": {
+    "FY2026": {
+      "operating_cash_flow": 102718,
+      "capex": -6042,
+      "free_cash_flow": 96676,
+      "fcf_margin_pct": 44.8,
+      "share_repurchases": -40086,
+      "dividends_paid": -974,
+      "total_shareholder_returns": 41060
+    },
+    "FY2025": {
+      "operating_cash_flow": 64089,
+      "capex": -3236,
+      "free_cash_flow": 60853,
+      "share_repurchases": -33706,
+      "dividends_paid": -834
+    },
+    "FY2024": {
+      "operating_cash_flow": 28090,
+      "capex": -1069,
+      "free_cash_flow": 27021,
+      "share_repurchases": -9533,
+      "dividends_paid": -395
+    },
+    "FY2023": {
+      "operating_cash_flow": 5641,
+      "capex": -1833,
+      "free_cash_flow": 3808,
+      "share_repurchases": -10039,
+      "dividends_paid": -398
+    }
+  },
+  "credit_metrics": {
+    "total_debt_to_equity": 0.070,
+    "net_cash_to_market_cap_note": "[DATA GAP: see price-data partition]",
+    "interest_expense_fy2026": 259,
+    "interest_coverage": 503.4,
+    "debt_maturity_profile": "[DATA GAP: requires full 10-K notes section]",
+    "credit_rating": "[DATA GAP: not retrieved]"
+  }
+}

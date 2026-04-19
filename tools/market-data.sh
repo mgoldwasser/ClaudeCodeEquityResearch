@@ -5,8 +5,15 @@
 #   ./tools/market-data.sh profile <TICKER>        Get company profile
 #   ./tools/market-data.sh peers <TICKER>          Get peer companies
 #   ./tools/market-data.sh stats <TICKER>          Get key statistics
+#
+# All commands accept --as-of YYYY-MM-DD (see tools/AS_OF.md).
+# Most commands wrap Yahoo's live-snapshot API and will hard-fail in historical mode;
+# the `history` command is natively filterable.
 
 set -euo pipefail
+
+# shellcheck source=_as_of.sh
+source "$(dirname "$0")/_as_of.sh"
 
 # Yahoo Finance unofficial API endpoints
 YF_BASE="https://query1.finance.yahoo.com/v8/finance"
@@ -15,8 +22,17 @@ YF_V6="https://query2.finance.yahoo.com/v6/finance"
 
 CURL_OPTS=(-s -L --max-time 10)
 
+# Extract --as-of before argv dispatch; keep remaining args.
+as_of_extract_flag "$@"
+as_of_resolve "${AS_OF_CLI}"
+if [[ ${#REST_ARGS[@]} -gt 0 ]]; then
+    set -- "${REST_ARGS[@]}"
+else
+    set --
+fi
+
 usage() {
-    echo "Usage: $0 <command> <TICKER> [options]"
+    echo "Usage: $0 <command> <TICKER> [options] [--as-of YYYY-MM-DD]"
     echo ""
     echo "Commands:"
     echo "  quote <TICKER>              Current price, market cap, volume, basic multiples"
@@ -27,17 +43,39 @@ usage() {
     echo "  history <TICKER> [PERIOD]   Historical price data (PERIOD: 1mo,3mo,6mo,1y,2y,5y,max)"
     echo "  options <TICKER>            Options chain data (nearest expiry)"
     echo ""
+    echo "--as-of:  Historical retrieval (YYYY-MM-DD). Only 'history' supports past dates;"
+    echo "          all other commands hard-fail because Yahoo returns only live data."
+    echo ""
     echo "Examples:"
     echo "  $0 quote AAPL"
     echo "  $0 summary MSFT"
     echo "  $0 history GOOGL 1y"
+    echo "  $0 history GOOGL 1y --as-of 2023-01-15"
     echo "  $0 options TSLA"
     echo "  $0 peers GOOGL"
     exit 1
 }
 
+# Seconds-per-period lookup for historical-mode period1 computation.
+# max → 0 (use epoch 0 as period1, i.e., all available history up to as-of).
+period_seconds() {
+    case "$1" in
+        1mo)  echo  2592000 ;;
+        3mo)  echo  7776000 ;;
+        6mo)  echo 15552000 ;;
+        1y)   echo 31536000 ;;
+        2y)   echo 63072000 ;;
+        5y)   echo 157680000 ;;
+        max)  echo 0 ;;  # sentinel: use epoch 0
+        *)    echo 31536000 ;;
+    esac
+}
+
 # Fetch quote data using Yahoo Finance
 fetch_quote() {
+    as_of_assert_live_only "market-data.sh" "quote" \
+        "Yahoo /v7/quote returns only a live snapshot; historical intraday quotes are not available via the free API." \
+        "Use: market-data.sh history $1 1mo --as-of <DATE>"
     local ticker="${1^^}"
     echo "Fetching quote for ${ticker}..." >&2
 
@@ -118,6 +156,9 @@ except Exception as e:
 
 # Fetch company profile
 fetch_profile() {
+    as_of_assert_live_only "market-data.sh" "profile" \
+        "Yahoo profile endpoint has no dated equivalent; sector/industry classifications are always current." \
+        "For historical company classification, use: edgar-enhanced.py company $1 --as-of <DATE>"
     local ticker="${1^^}"
     echo "Fetching profile for ${ticker}..." >&2
 
@@ -156,6 +197,9 @@ except Exception as e:
 
 # Fetch key statistics
 fetch_stats() {
+    as_of_assert_live_only "market-data.sh" "stats" \
+        "Yahoo key statistics are a live snapshot (TTM metrics computed against current date)." \
+        "Use: edgar-enhanced.py financials $1 --as-of <DATE> for historical XBRL facts."
     local ticker="${1^^}"
     echo "Fetching key statistics for ${ticker}..." >&2
 
@@ -229,7 +273,9 @@ except Exception as e:
 
 # Fetch historical price data
 fetch_history() {
-    local ticker="${1^^}"
+    # `history` is Category A: naturally filterable via period2 epoch.
+    local ticker
+    ticker="$(as_of_upper "$1")"
     local period="${2:-1y}"
     echo "Fetching ${period} historical prices for ${ticker}..." >&2
 
@@ -241,7 +287,21 @@ fetch_history() {
         2y|5y|max) interval="1wk" ;;
     esac
 
-    local url="https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?range=${period}&interval=${interval}"
+    local url
+    if as_of_is_historical; then
+        local p2="${AS_OF_EPOCH}"
+        local seconds p1
+        seconds="$(period_seconds "$period")"
+        if [[ "$seconds" == "0" ]]; then
+            p1=0
+        else
+            p1=$(( p2 - seconds ))
+        fi
+        url="https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?period1=${p1}&period2=${p2}&interval=${interval}"
+        echo "[as-of] history window: $(date -u -r "${p1}" '+%Y-%m-%d' 2>/dev/null || date -u -d "@${p1}" '+%Y-%m-%d') to ${AS_OF}" >&2
+    else
+        url="https://query1.finance.yahoo.com/v8/finance/chart/${ticker}?range=${period}&interval=${interval}"
+    fi
     local result
     result=$(curl "${CURL_OPTS[@]}" \
         -H "User-Agent: Mozilla/5.0" \
@@ -356,6 +416,9 @@ except Exception as e:
 
 # Fetch options data
 fetch_options() {
+    as_of_assert_live_only "market-data.sh" "options" \
+        "Yahoo options chains are live-only; historical options data requires a paid provider." \
+        "No free alternative — flag as [DATA GAP] in historical runs."
     local ticker="${1^^}"
     echo "Fetching options data for ${ticker}..." >&2
 
@@ -438,6 +501,9 @@ except Exception as e:
 
 # All-in-one summary
 fetch_summary() {
+    as_of_assert_live_only "market-data.sh" "summary" \
+        "Summary is a composite of Yahoo live-snapshot endpoints (quote + stats)." \
+        "Build a historical snapshot by combining: market-data.sh history $1 1mo --as-of <DATE> + edgar-enhanced.py financials $1 --as-of <DATE>"
     local ticker="${1^^}"
     echo "=== Market Data Summary: ${ticker} ===" >&2
     echo ""
@@ -460,6 +526,9 @@ case "${1:-}" in
         ;;
     peers)
         [ -z "${2:-}" ] && usage
+        as_of_assert_live_only "market-data.sh" "peers" \
+            "Yahoo peer lists are live-only and change frequently; no dated equivalent is published." \
+            "For historical peer construction, use same-SIC companies from SEC EDGAR as of the as-of date."
         echo "Note: Use python3 tools/alt-data.py peers $2 for comprehensive peer discovery." >&2
         echo "Fetching basic sector/industry info to help identify peers..." >&2
         fetch_profile "$2"

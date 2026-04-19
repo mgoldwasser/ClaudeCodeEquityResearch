@@ -1,0 +1,57 @@
+{
+  "ticker": "NVDA",
+  "WARNING": "THIS FILE CONTAINS PRICE-SENSITIVE DATA. DO NOT SHARE WITH PRICE-BLINDED ANALYSTS.",
+  "source": "Web search aggregating multiple sources (CNBC, MarketBeat, StockAnalysis) — Tier 6-7",
+  "retrieval_date": "2026-03-19",
+  "current_price": {
+    "price_usd": 180.25,
+    "date": "2026-03-19",
+    "intraday_range": "179.76 - 183.65",
+    "source": "Multiple web sources; point-in-time as of market hours 2026-03-19"
+  },
+  "price_history": {
+    "52_week_high": 212.19,
+    "52_week_low": 86.62,
+    "52_week_low_date": "2026-04-07 [NOTE: This may be a data error — April 7 2025 not April 2026; likely April 7, 2025 post-tariff announcement]",
+    "all_time_high_close": 207.02,
+    "all_time_high_date": "2025-10-29",
+    "feb_2026_price": 188.38,
+    "price_as_of_2026_03_17": 181.94,
+    "1yr_total_return_pct": 53.85,
+    "ytd_2026_note": "Stock described as 'in a funk' in March 2026 per CNBC (2026-03-17) — trading well below Oct 2025 ATH"
+  },
+  "valuation_metrics": {
+    "market_cap_approx_usd_trillions": 4.4,
+    "pe_ratio_trailing": 37.14,
+    "pe_ratio_note": "Based on GAAP diluted EPS $4.90 and price ~$180",
+    "forward_pe_estimate": "[ESTIMATED at ~23x if Q1 FY2027 $78B run rate implies ~$8/share forward EPS]",
+    "dividend_yield_pct": 2.2,
+    "note": "Dividend yield calculation may be error in source — at $180 stock price and $974M annual dividends on 24.3B shares, actual yield = $0.04/share = 0.02%; 2.2% figure appears incorrect [DATA GAP: verify]"
+  },
+  "analyst_price_targets": {
+    "consensus_rating": "Strong Buy",
+    "analysts_covering": 39,
+    "buy_ratings": 39,
+    "hold_ratings": 1,
+    "sell_ratings": 0,
+    "average_12m_price_target_usd": 268.88,
+    "high_price_target_usd": 380,
+    "low_price_target_usd": 220,
+    "recent_targets": {
+      "jp_morgan_2026_02_26": 265,
+      "hsbc_2025_10_15": 320
+    },
+    "implied_upside_from_current_avg_pct": 49.0
+  },
+  "options_data": {
+    "note": "[DATA GAP: Options chain not retrieved — run tools/market-data.sh options NVDA for IV, put/call ratio, key strike activity]"
+  },
+  "technical_levels": {
+    "current_price": 180.25,
+    "technical_range_90_pct_prob": "168.92 - 192.82",
+    "resistance_1": 192.82,
+    "support_1": 168.92,
+    "all_time_high": 212.19,
+    "key_observation": "Stock is ~15% below ATH of $212.19, consolidating after strong run from April 2025 low of $86.62"
+  }
+}

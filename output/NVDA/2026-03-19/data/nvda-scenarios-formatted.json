@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Bull",
+    "price": 265.41,
+    "probability": 0.25,
+    "description": "Vera Rubin ramps on schedule; Jevons demand acceleration; CUDA moat intact; 4 upside catalysts materialize"
+  },
+  {
+    "name": "Base",
+    "price": 159.00,
+    "probability": 0.47,
+    "description": "Blackwell/Rubin ramp continues; AMD greenfield wins; AI capex decelerates but does not reverse; 72% terminal GM"
+  },
+  {
+    "name": "Bear",
+    "price": 62.90,
+    "probability": 0.28,
+    "description": "AI capex plateau; AMD pricing pressure; margins compress to 66%; China $0; tariff exposure"
+  }
+]

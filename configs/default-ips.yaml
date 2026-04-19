@@ -1,0 +1,95 @@
+# Default Investment Policy Statement
+# A generic diversified US large-cap core mandate. Every research run validates
+# against this IPS unless a different one is supplied via `--ips <path>`.
+#
+# Fields here are read by tools/ips-validator.py. Field names must remain
+# stable — if you rename, update the validator in the same commit.
+
+mandate:
+  name: "Default Diversified US Large-Cap Core"
+  type: "long-only"
+  benchmark: "S&P 500"
+  style: "core"
+  horizon_months: 18
+  effective_date: "2026-01-01"
+  allowed_ratings: ["Buy", "Hold"]   # Long-only excludes Sell
+
+return_risk:
+  target_excess_return_bps: 200
+  vol_band_mult_low: 0.9
+  vol_band_mult_high: 1.2
+  tracking_error_ceiling_bps: 600
+  max_drawdown_pct: -25.0
+  information_ratio_target: 0.5
+
+universe:
+  min_market_cap_usd: 10_000_000_000           # $10B
+  min_float_usd: 2_000_000_000                 # $2B
+  allowed_exchanges: ["NYSE", "NASDAQ", "AMEX"]
+  allowed_sectors:
+    - "Communication Services"
+    - "Consumer Discretionary"
+    - "Consumer Staples"
+    - "Energy"
+    - "Financials"
+    - "Health Care"
+    - "Industrials"
+    - "Information Technology"
+    - "Materials"
+    - "Real Estate"
+    - "Utilities"
+
+position:
+  max_single_name_weight_pct: 5.0              # hard cap on any single holding
+  max_single_name_vs_bench_bps: 300            # benchmark weight + 300bps
+  min_initiation_weight_pct: 0.5               # smaller than this is noise
+  max_issuer_family_weight_pct: 7.0            # parent + subsidiaries
+
+sector_factor:
+  max_sector_deviation_bps: 500                # vs. benchmark weight
+  max_industry_concentration_pct: 25.0
+  max_factor_tilt_std: 1.5                     # standardized factor exposure
+
+liquidity:
+  min_adv_usd: 50_000_000                      # $50M 30-day ADV
+  max_pct_of_adv: 10.0                         # position ≤ 10% of 30-day ADV
+  assumed_exit_days: 10
+  max_pct_of_shares_outstanding: 5.0           # passive-ownership threshold
+
+quality:
+  min_beneish_m_score: -1.78                   # below this = earnings-manipulation flag
+  min_altman_z_nonfin: 1.81                    # distress zone
+  disallow_going_concern: true
+  restatement_lookback_months: 24
+  require_unqualified_audit: true
+
+exclusions:
+  controversial_weapons: true                   # Ottawa/Oslo/CCM
+  tobacco: false
+  thermal_coal_mining: true
+  civilian_firearms: false
+  sanctions_screens: ["OFAC", "EU", "UK_HMT"]
+  min_msci_esg_rating: "BBB"                   # portfolio-level floor, not per-security
+  un_global_compact_violations: true
+  sector_exclusions: []                         # entire-sector exclusions (rare)
+  issuer_restricted_list: []                    # populated at runtime
+  dual_class_max_insider_voting_pct: 60.0       # flag, not hard exclusion
+
+turnover_tax:
+  annual_turnover_budget_pct: 60
+  short_term_gain_scrutiny_months: 12
+  wash_sale_days: 30
+
+derivatives:
+  options_permitted: true
+  allowed_option_structures: ["covered_call", "protective_put", "collar"]
+  max_gross_leverage: 1.0
+  max_net_leverage: 1.0
+  max_single_trade_notional_pct: 2.0
+
+governance:
+  portfolio_manager: ""
+  oversight_committee: []
+  client_signoff_cadence: "quarterly"
+  exception_authority: "PM + CIO"
+  review_cadence_months: 12

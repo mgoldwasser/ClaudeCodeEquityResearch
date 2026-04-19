@@ -1,0 +1,54 @@
+{
+  "ticker": "NVDA",
+  "source": "Goldman Sachs, KPMG, Deloitte, SemiWiki, PwC (Tier 5-6)",
+  "retrieval_date": "2026-03-19",
+  "macro_environment": {
+    "global_gdp_growth_2026_pct": 2.8,
+    "us_gdp_growth_2026_pct": 2.6,
+    "china_gdp_growth_2026_pct": 4.8,
+    "us_core_inflation_end_2026_pct": "slightly above 2%",
+    "fed_policy_outlook": "Rate cuts expected in 2026 as inflation approaches target; financial conditions easing",
+    "note": "Goldman Sachs Macro Outlook Dec 2025 (Tier 5)"
+  },
+  "semiconductor_industry_macro": {
+    "global_semiconductor_market_2026_usd_bn": 975,
+    "yoy_growth_pct": 26,
+    "ai_segment_premium": "AI semiconductor growing ~3x faster than overall semiconductor market",
+    "interest_rate_sensitivity": {
+      "note": "AI capex is less rate-sensitive than traditional enterprise IT because it is competitive necessity, not discretionary. Hyperscalers funded from operating cash flows, not debt.",
+      "risk_factor": "Rate increases could slow startup/non-hyperscaler AI adoption"
+    }
+  },
+  "export_control_regulatory": {
+    "h20_restrictions": {
+      "status": "H20 chip requires export license for China sales",
+      "financial_impact_q1_fy2026": "$4.5B inventory charge",
+      "estimated_h20_china_revenue_2024": "$12-15B [ESTIMATED, Tier 7]",
+      "current_status_q4_fy2026": "H200 approvals received but no revenue generated yet; H20 license applications unresolved",
+      "nvidia_guidance_policy": "China Data Center compute revenue EXCLUDED from Q1 FY2027 guidance"
+    },
+    "antitrust": {
+      "status": "Antitrust scrutiny growing as NVIDIA approaches dominant market position",
+      "specific_actions": "[DATA GAP: specific regulatory filings not retrieved]"
+    },
+    "tariffs": {
+      "risk": "NVIDIA mentions tariffs as macroeconomic headwind in 10-K risk factors",
+      "manufacturing_location": "All advanced chips manufactured by TSMC in Taiwan; no U.S. manufacturing currently"
+    }
+  },
+  "fred_data": {
+    "note": "[DATA GAP: FRED API not called directly — macro data sourced from secondary research reports]",
+    "key_rates": {
+      "fed_funds_rate": "[DATA GAP: specific rate not retrieved]",
+      "10yr_treasury": "[DATA GAP: not retrieved]",
+      "suggestion": "Run tools/macro-data.py rates for live FRED data"
+    }
+  },
+  "deepseek_impact_analysis": {
+    "event": "DeepSeek R1 model release, January 2025",
+    "initial_market_reaction": "NVDA dropped ~17%, lost ~$600B market cap in one day",
+    "subsequent_reality": "AI spending did NOT slow in 2025; hyperscalers reaffirmed and increased spending plans",
+    "nvidia_response": "Jensen Huang argued DeepSeek validates Jevons paradox — more efficient models drive MORE compute demand at scale",
+    "outcome": "NVDA recovered and reached $212 high by October 2025; Jevons paradox thesis confirmed by FY2026 results"
+  }
+}

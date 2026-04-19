@@ -1,0 +1,49 @@
+{
+  "tickers": [
+    "NVDA",
+    "QQQ",
+    "SMH",
+    "TLT",
+    "SPY"
+  ],
+  "correlation_matrix": [
+    [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0
+    ]
+  ],
+  "avg_pairwise_correlation": 0.0,
+  "effective_independent_bets": 5.0,
+  "num_positions": 5
+}

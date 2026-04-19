@@ -1,0 +1,201 @@
+{
+  "ticker": "NVDA",
+  "analysis_date": "2026-03-19",
+  "model": "Industry Sector Model v1.0",
+  "tam_scenarios": {
+    "bull": {
+      "2026": {
+        "total_tam_b": 165.9,
+        "nvda_share": 0.9,
+        "nvda_dc_revenue_b": 149.3,
+        "nvda_total_revenue_b": 166.4
+      },
+      "2027": {
+        "total_tam_b": 235.1,
+        "nvda_share": 0.87,
+        "nvda_dc_revenue_b": 204.5,
+        "nvda_total_revenue_b": 228.0
+      },
+      "2028": {
+        "total_tam_b": 338.7,
+        "nvda_share": 0.84,
+        "nvda_dc_revenue_b": 284.5,
+        "nvda_total_revenue_b": 317.1
+      },
+      "2029": {
+        "total_tam_b": 496.8,
+        "nvda_share": 0.81,
+        "nvda_dc_revenue_b": 402.4,
+        "nvda_total_revenue_b": 448.5
+      },
+      "2030": {
+        "total_tam_b": 746.5,
+        "nvda_share": 0.78,
+        "nvda_dc_revenue_b": 582.3,
+        "nvda_total_revenue_b": 649.0
+      },
+      "2031": {
+        "total_tam_b": 1132.0,
+        "nvda_share": 0.76,
+        "nvda_dc_revenue_b": 860.3,
+        "nvda_total_revenue_b": 958.9
+      },
+      "2032": {
+        "total_tam_b": 1757.8,
+        "nvda_share": 0.74,
+        "nvda_dc_revenue_b": 1300.8,
+        "nvda_total_revenue_b": 1449.9
+      }
+    },
+    "base": {
+      "2026": {
+        "total_tam_b": 165.9,
+        "nvda_share": 0.88,
+        "nvda_dc_revenue_b": 146.0,
+        "nvda_total_revenue_b": 162.7
+      },
+      "2027": {
+        "total_tam_b": 215.8,
+        "nvda_share": 0.83,
+        "nvda_dc_revenue_b": 179.1,
+        "nvda_total_revenue_b": 199.6
+      },
+      "2028": {
+        "total_tam_b": 284.0,
+        "nvda_share": 0.78,
+        "nvda_dc_revenue_b": 221.5,
+        "nvda_total_revenue_b": 246.9
+      },
+      "2029": {
+        "total_tam_b": 377.6,
+        "nvda_share": 0.74,
+        "nvda_dc_revenue_b": 279.4,
+        "nvda_total_revenue_b": 311.4
+      },
+      "2030": {
+        "total_tam_b": 507.9,
+        "nvda_share": 0.7,
+        "nvda_dc_revenue_b": 355.5,
+        "nvda_total_revenue_b": 396.3
+      },
+      "2031": {
+        "total_tam_b": 685.1,
+        "nvda_share": 0.675,
+        "nvda_dc_revenue_b": 462.4,
+        "nvda_total_revenue_b": 515.4
+      },
+      "2032": {
+        "total_tam_b": 933.8,
+        "nvda_share": 0.65,
+        "nvda_dc_revenue_b": 607.0,
+        "nvda_total_revenue_b": 676.6
+      }
+    },
+    "bear": {
+      "2026": {
+        "total_tam_b": 165.9,
+        "nvda_share": 0.85,
+        "nvda_dc_revenue_b": 141.0,
+        "nvda_total_revenue_b": 157.2
+      },
+      "2027": {
+        "total_tam_b": 193.5,
+        "nvda_share": 0.775,
+        "nvda_dc_revenue_b": 149.9,
+        "nvda_total_revenue_b": 167.1
+      },
+      "2028": {
+        "total_tam_b": 226.8,
+        "nvda_share": 0.7,
+        "nvda_dc_revenue_b": 158.8,
+        "nvda_total_revenue_b": 177.0
+      },
+      "2029": {
+        "total_tam_b": 266.5,
+        "nvda_share": 0.64,
+        "nvda_dc_revenue_b": 170.6,
+        "nvda_total_revenue_b": 190.1
+      },
+      "2030": {
+        "total_tam_b": 313.8,
+        "nvda_share": 0.58,
+        "nvda_dc_revenue_b": 182.0,
+        "nvda_total_revenue_b": 202.9
+      },
+      "2031": {
+        "total_tam_b": 369.0,
+        "nvda_share": 0.54,
+        "nvda_dc_revenue_b": 199.3,
+        "nvda_total_revenue_b": 222.1
+      },
+      "2032": {
+        "total_tam_b": 434.9,
+        "nvda_share": 0.5,
+        "nvda_dc_revenue_b": 217.4,
+        "nvda_total_revenue_b": 242.3
+      }
+    }
+  },
+  "power_scores": {
+    "nvda_composite": 54,
+    "nvda_composite_pct": 0.771,
+    "amd_composite": 28,
+    "google_tpu_composite": 38,
+    "by_power": {
+      "Scale Economies": {
+        "score": 8,
+        "trend": "Strengthening",
+        "half_life_year": 2030
+      },
+      "Network Effects": {
+        "score": 9,
+        "trend": "Stable (eroding slowly)",
+        "half_life_year": 2030
+      },
+      "Counter-Positioning": {
+        "score": 6,
+        "trend": "Eroding",
+        "half_life_year": 2027
+      },
+      "Switching Costs": {
+        "score": 9,
+        "trend": "Stable (eroding 2028+)",
+        "half_life_year": 2029
+      },
+      "Branding": {
+        "score": 7,
+        "trend": "Stable",
+        "half_life_year": 2029
+      },
+      "Cornered Resource": {
+        "score": 8,
+        "trend": "Eroding",
+        "half_life_year": 2027
+      },
+      "Process Power": {
+        "score": 7,
+        "trend": "Strengthening",
+        "half_life_year": 2031
+      }
+    }
+  },
+  "jevons_base_case_5yr_multiplier": 0.774,
+  "cliff_risk_windows": {
+    "2029-2030": [
+      "Network Effects"
+    ],
+    "2026-2027": [
+      "Counter-Positioning",
+      "Cornered Resource"
+    ],
+    "2028-2029": [
+      "Switching Costs"
+    ]
+  },
+  "notes": [
+    "All TAM estimates from Tier 5-7 sources. CRITICAL DATA GAP: No Gartner/IDC estimate.",
+    "Market share estimates are AI GPU/accelerator market only, excluding custom ASICs.",
+    "DC revenue % of total assumed stable at 89.7% \u2014 validate with DCF team.",
+    "Physical AI scenario (Pre-Commercial) probability-adjusted; HIGH UNCERTAINTY on timing."
+  ]
+}

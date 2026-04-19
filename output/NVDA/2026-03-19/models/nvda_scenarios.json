@@ -1,0 +1,78 @@
+{
+  "ticker": "NVDA",
+  "generated": "2026-03-19",
+  "description": "NVIDIA scenario parameters for report-generator.py charts. Probabilities set BEFORE price calculation to prevent anchoring bias.",
+  "methodology": "Probability-weighted expected value. Scenarios calibrated to Q1 FY2027 guidance ($78B), competitive dynamics (AMD MI450, custom ASICs), and hyperscaler capex trajectory.",
+  "scenarios": [
+    {
+      "name": "Bull",
+      "probability": 0.25,
+      "price_target": 274.52,
+      "description": "AI infrastructure supercycle sustains; Blackwell > consensus; new application waves (autonomous vehicles, robotics, sovereign AI) open $1T TAM; CUDA moat holds >10 years; gross margins expand to 76%",
+      "revenue_fy2027_M": 313111,
+      "revenue_fy2031_M": 860000,
+      "gross_margin": 0.76,
+      "wacc": 0.1,
+      "terminal_growth_rate": 0.04,
+      "key_assumptions": [
+        "FY2027 revenue +45% (in line with guided Q1 run-rate sustained)",
+        "AMD fails to exceed 15% GPU market share",
+        "Custom ASICs grow but NVDA TAM expands faster",
+        "No incremental China export restrictions",
+        "Gross margin expands 1pp per year through FY2029"
+      ]
+    },
+    {
+      "name": "Base",
+      "probability": 0.5,
+      "price_target": 139.43,
+      "description": "Deceleration from hypergrowth to sustained structural growth; some market share erosion to AMD and ASICs; gross margins stable at 74%; CUDA moat durable but edge cases erode",
+      "revenue_fy2027_M": 313111,
+      "revenue_fy2031_M": 573000,
+      "gross_margin": 0.74,
+      "wacc": 0.111,
+      "terminal_growth_rate": 0.035,
+      "key_assumptions": [
+        "FY2027 revenue +45% consistent with guidance trajectory",
+        "AMD captures 5-8pp GPU market share by FY2029",
+        "Custom ASICs take 15-20% of incremental workloads",
+        "H20 China restrictions continue; no new restrictions",
+        "Gross margins flat at 74%; ASIC pricing pressure offset by mix"
+      ]
+    },
+    {
+      "name": "Bear",
+      "probability": 0.25,
+      "price_target": 52.0,
+      "description": "Capex digestion cycle pauses hyperscaler orders; AMD executes strongly; ASIC displacement accelerates; China restrictions escalate; revenue growth stalls then recovers slowly",
+      "revenue_fy2027_M": 259126,
+      "revenue_fy2031_M": 259000,
+      "gross_margin": 0.68,
+      "wacc": 0.122,
+      "terminal_growth_rate": 0.025,
+      "key_assumptions": [
+        "FY2027 revenue +20% (capex pause + Q2/Q3 digestion)",
+        "AMD captures 15-20pp GPU market share by FY2029",
+        "China export escalation removes ~$30B addressable market",
+        "Gross margins fall to 68% from pricing + mix pressure",
+        "FY2029 revenue contracts 5% as cycle peaks"
+      ]
+    }
+  ],
+  "expected_value": {
+    "probability_weighted_price": 151.34,
+    "note": "Computed by nvda_dcf_model.py"
+  },
+  "risk_calibration": {
+    "upside_catalyst": "GTC 2026 Vera Rubin architecture adoption; agentic AI compute scaling laws; physical AI (robotics) workloads",
+    "downside_catalyst": "Hyperscaler capex pause; AMD MI450 benchmarks above B200; incremental China export controls",
+    "key_unresolved_risk": "Custom ASIC displacement rate \u2014 depends on software ecosystem lock-in durability (CUDA moat half-life)",
+    "cross_stock_note": "AMD research (2026-03-09) flagged OpenAI 6GW and Meta 6GW AMD commitments \u2014 suggests base case share erosion thesis has high-credibility evidence"
+  },
+  "data_sources": {
+    "revenue_anchor": "NVIDIA Q4 FY2026 earnings release + Q1 FY2027 guidance (Tier 1)",
+    "growth_rates": "Analyst DCF assumptions (Tier 2) \u2014 model judgment",
+    "margins": "NVIDIA actual FY2026 financials + Q1 FY2027 guidance (Tier 1)",
+    "competitive_dynamics": "Cross-stock AMD note (2026-03-09, HIGH priority) + market data (Tier 2)"
+  }
+}

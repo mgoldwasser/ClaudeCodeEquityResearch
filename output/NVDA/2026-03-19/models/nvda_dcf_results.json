@@ -1,0 +1,266 @@
+{
+  "model": "nvda_dcf_model",
+  "ticker": "NVDA",
+  "generated": "2026-03-19",
+  "wacc_calculation": {
+    "wacc": 0.138609,
+    "cost_of_equity": 0.14625,
+    "after_tax_cost_of_debt": 0.0287,
+    "components": {
+      "risk_free_rate": 0.045,
+      "equity_risk_premium": 0.055,
+      "beta": 1.75,
+      "specific_risk_premium": 0.005,
+      "pre_tax_cost_of_debt": 0.035,
+      "tax_rate": 0.18,
+      "debt_weight": 0.065,
+      "equity_weight": 0.935
+    }
+  },
+  "scenario_results": {
+    "bull": {
+      "probability": 0.25,
+      "revenue_projections": {
+        "2027": 356297.7,
+        "2028": 498816.8,
+        "2029": 623521.0,
+        "2030": 735754.8,
+        "2031": 838760.4
+      },
+      "ebitda_projections": {
+        "2027": 236938.0,
+        "2028": 331713.2,
+        "2029": 414641.5,
+        "2030": 489276.9,
+        "2031": 557775.7
+      },
+      "fcf_projections": {
+        "2027": 185969.6,
+        "2028": 260357.4,
+        "2029": 325446.8,
+        "2030": 384027.3,
+        "2031": 437791.0
+      },
+      "wacc": 0.138632,
+      "terminal_value": {
+        "gordon_growth_tv": 4616175.7,
+        "exit_multiple_tv": 16733271.0,
+        "blended_tv": 10674723.3,
+        "wacc": 0.138632,
+        "tgr": 0.04,
+        "exit_multiple": 30.0
+      },
+      "enterprise_value": 6619320.8,
+      "tv_pct_of_ev": 0.8426,
+      "tv_warning": true,
+      "equity_value": 6670920.8,
+      "price_per_share": 274.52
+    },
+    "base": {
+      "probability": 0.5,
+      "revenue_projections": {
+        "2027": 313110.1,
+        "2028": 391387.6,
+        "2029": 450095.8,
+        "2030": 495105.3,
+        "2031": 534713.8
+      },
+      "ebitda_projections": {
+        "2027": 198824.9,
+        "2028": 248531.1,
+        "2029": 285810.8,
+        "2030": 314391.9,
+        "2031": 339543.3
+      },
+      "fcf_projections": {
+        "2027": 152077.5,
+        "2028": 190096.9,
+        "2029": 218611.5,
+        "2030": 240472.6,
+        "2031": 259710.5
+      },
+      "wacc": 0.138609,
+      "terminal_value": {
+        "gordon_growth_tv": 2594372.8,
+        "exit_multiple_tv": 7469952.6,
+        "blended_tv": 5032162.7,
+        "wacc": 0.138609,
+        "tgr": 0.035,
+        "exit_multiple": 22.0
+      },
+      "enterprise_value": 3336631.9,
+      "tv_pct_of_ev": 0.7881,
+      "tv_warning": true,
+      "equity_value": 3388231.9,
+      "price_per_share": 139.43
+    },
+    "bear": {
+      "probability": 0.25,
+      "revenue_projections": {
+        "2027": 259125.6,
+        "2028": 272081.9,
+        "2029": 258477.8,
+        "2030": 271401.7,
+        "2031": 287685.8
+      },
+      "ebitda_projections": {
+        "2027": 142519.1,
+        "2028": 149645.0,
+        "2029": 142162.8,
+        "2030": 149270.9,
+        "2031": 158227.2
+      },
+      "fcf_projections": {
+        "2027": 102354.6,
+        "2028": 107472.3,
+        "2029": 102098.7,
+        "2030": 107203.6,
+        "2031": 113635.9
+      },
+      "wacc": 0.138564,
+      "terminal_value": {
+        "gordon_growth_tv": 1025649.0,
+        "exit_multiple_tv": 2215180.8,
+        "blended_tv": 1620414.9,
+        "wacc": 0.138564,
+        "tgr": 0.025,
+        "exit_multiple": 14.0
+      },
+      "enterprise_value": 1212077.5,
+      "tv_pct_of_ev": 0.6987,
+      "tv_warning": true,
+      "equity_value": 1263677.5,
+      "price_per_share": 52.0
+    }
+  },
+  "probability_weighted_price": 151.34,
+  "sensitivity_table": {
+    "wacc_range": [
+      0.09,
+      0.1,
+      0.11,
+      0.12,
+      0.13,
+      0.14
+    ],
+    "tgr_range": [
+      0.02,
+      0.025,
+      0.03,
+      0.035,
+      0.04,
+      0.045
+    ],
+    "price_grid": [
+      [
+        185.9,
+        190.0,
+        194.9,
+        200.6,
+        207.5,
+        215.9
+      ],
+      [
+        172.2,
+        175.2,
+        178.7,
+        182.7,
+        187.4,
+        192.9
+      ],
+      [
+        160.7,
+        163.0,
+        165.6,
+        168.5,
+        171.9,
+        175.8
+      ],
+      [
+        150.8,
+        152.6,
+        154.6,
+        156.8,
+        159.3,
+        162.2
+      ],
+      [
+        142.2,
+        143.6,
+        145.2,
+        146.9,
+        148.8,
+        151.0
+      ],
+      [
+        134.5,
+        135.7,
+        136.9,
+        138.3,
+        139.8,
+        141.5
+      ]
+    ],
+    "description": "Implied price per share; rows=WACC, cols=TGR"
+  },
+  "assumptions": {
+    "hist_revenue_millions": {
+      "FY2022": 26914,
+      "FY2023": 26974,
+      "FY2024": 60922,
+      "FY2025": 130497,
+      "FY2026": 215938
+    },
+    "fy2026_base_revenue_millions": 215938,
+    "diluted_shares_millions": 24300,
+    "net_debt_millions": -51600,
+    "scenario_weights": {
+      "bull": 0.25,
+      "base": 0.5,
+      "bear": 0.25
+    },
+    "revenue_growth_rates": {
+      "bull": [
+        0.65,
+        0.4,
+        0.25,
+        0.18,
+        0.14
+      ],
+      "base": [
+        0.45,
+        0.25,
+        0.15,
+        0.1,
+        0.08
+      ],
+      "bear": [
+        0.2,
+        0.05,
+        -0.05,
+        0.05,
+        0.06
+      ]
+    },
+    "gross_margins": {
+      "bull": 0.76,
+      "base": 0.74,
+      "bear": 0.68
+    },
+    "terminal_growth_rates": {
+      "bull": 0.04,
+      "base": 0.035,
+      "bear": 0.025
+    },
+    "exit_multiples": {
+      "bull": 30.0,
+      "base": 22.0,
+      "bear": 14.0
+    }
+  },
+  "quality_flags": {
+    "tv_warning_bull": true,
+    "tv_warning_base": true,
+    "tv_warning_bear": true
+  }
+}

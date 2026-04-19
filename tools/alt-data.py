@@ -21,8 +21,42 @@ import time
 import urllib.request
 import urllib.error
 import urllib.parse
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from typing import Dict, List, Optional
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _as_of  # noqa: E402
+
+
+def _historical_warning(as_of: Optional[date], topic: str) -> Optional[str]:
+    if not as_of:
+        return None
+    return (
+        f"as_of={as_of.isoformat()}: the third-party aggregators below "
+        f"(Yahoo, Finviz, MarketBeat, WhaleWisdom, OpenInsider, CNN, Zacks) "
+        f"return LIVE {topic} — they will leak post-as_of data into a "
+        f"backtest. Use only sources flagged as_of_safe=true, and prefer "
+        f"SEC-based paths (tools/edgar-enhanced.py) for point-in-time data."
+    )
+
+
+def _filter_by_field(records: List[Dict], field: str,
+                     as_of: Optional[date]) -> List[Dict]:
+    """Filter a Finnhub-style list of dicts by a date field <= as_of."""
+    if not as_of:
+        return records
+    as_of_str = as_of.isoformat()
+    out = []
+    for r in records:
+        if not isinstance(r, dict):
+            continue
+        v = r.get(field)
+        if not v:
+            continue
+        s = str(v)[:10]
+        if s <= as_of_str:
+            out.append(r)
+    return out
 
 # ============================================================
 # CONFIGURATION
@@ -67,7 +101,7 @@ def _fetch_text(url: str) -> str:
 # INSIDER TRADING
 # ============================================================
 
-def get_insider_trades(ticker: str) -> Dict:
+def get_insider_trades(ticker: str, as_of: Optional[date] = None) -> Dict:
     """
     Get insider trading data from multiple free sources.
 
@@ -77,12 +111,17 @@ def get_insider_trades(ticker: str) -> Dict:
 
     Args:
         ticker: Stock ticker
+        as_of: If set, Finnhub transactions are filtered by filingDate
+               and third-party aggregators are flagged as_of_safe=false.
 
     Returns:
         Dict with insider trading data and source URLs
     """
+    as_of_str = as_of.isoformat() if as_of else None
     result = {
         "ticker": ticker.upper(),
+        "as_of": as_of_str,
+        "historical_mode_warning": _historical_warning(as_of, "insider data"),
         "data_sources": {},
         "retrieval_instructions": [],
     }
@@ -105,15 +144,24 @@ def get_insider_trades(ticker: str) -> Dict:
             "Shares traded", "Price per share", "Value",
             "Shares owned after transaction"
         ],
-        "retrieval": f"Use WebFetch on: {openinsider_url}"
+        "retrieval": f"Use WebFetch on: {openinsider_url}",
+        "as_of_safe": False,
+        "as_of_note": (
+            f"OpenInsider returns the last 730 days from today. Post-filter "
+            f"results to filing_date <= {as_of_str}." if as_of_str else None
+        ),
     }
 
-    # Source 2: SEC EDGAR Form 4 (authoritative)
+    # Source 2: SEC EDGAR Form 4 (authoritative — the as_of-safe path)
     result["data_sources"]["sec_edgar"] = {
         "name": "SEC EDGAR (Form 4)",
         "url": f"https://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&company={ticker}&CIK=&type=4&dateb=&owner=include&count=40",
         "description": "Official SEC Form 4 filings (XML format)",
-        "retrieval": f"Use: python3 tools/edgar-enhanced.py insider {ticker}"
+        "retrieval": (
+            f"Use: python3 tools/edgar-enhanced.py insider {ticker}"
+            + (f" --as-of {as_of_str}" if as_of_str else "")
+        ),
+        "as_of_safe": True,
     }
 
     # Source 3: Finnhub (if API key available)
@@ -121,16 +169,24 @@ def get_insider_trades(ticker: str) -> Dict:
         finnhub_url = f"https://finnhub.io/api/v1/stock/insider-transactions?symbol={ticker}&token={FINNHUB_API_KEY}"
         data = _fetch_json(finnhub_url)
         if "error" not in data:
+            txns = data.get("data", [])
+            total_before = len(txns)
+            if as_of_str:
+                # Finnhub insider-transactions rows have 'filingDate' and 'transactionDate'
+                txns = _filter_by_field(txns, "filingDate", as_of)
             result["data_sources"]["finnhub"] = {
                 "name": "Finnhub API",
-                "transactions": data.get("data", [])[:20],
-                "total": len(data.get("data", [])),
+                "transactions": txns[:20],
+                "total": len(txns),
+                "total_before_as_of_filter": total_before if as_of_str else None,
+                "as_of_safe": True,
             }
     else:
         result["data_sources"]["finnhub"] = {
             "name": "Finnhub API",
             "note": "Set FINNHUB_API_KEY for automated insider data",
-            "register": "https://finnhub.io/register"
+            "register": "https://finnhub.io/register",
+            "as_of_safe": True,  # would be, if key were set
         }
 
     # Source 4: Yahoo Finance
@@ -138,7 +194,8 @@ def get_insider_trades(ticker: str) -> Dict:
         "name": "Yahoo Finance Insider Transactions",
         "url": f"https://finance.yahoo.com/quote/{ticker.upper()}/insider-transactions/",
         "description": "Summary of recent insider transactions",
-        "retrieval": f"Use WebFetch on the URL above"
+        "retrieval": f"Use WebFetch on the URL above",
+        "as_of_safe": False,
     }
 
     result["analysis_framework"] = {
@@ -168,7 +225,8 @@ def get_insider_trades(ticker: str) -> Dict:
 # INSTITUTIONAL HOLDINGS
 # ============================================================
 
-def get_institutional_holdings(ticker: str) -> Dict:
+def get_institutional_holdings(ticker: str,
+                               as_of: Optional[date] = None) -> Dict:
     """
     Get institutional ownership data from free sources.
 
@@ -178,12 +236,17 @@ def get_institutional_holdings(ticker: str) -> Dict:
 
     Args:
         ticker: Stock ticker
+        as_of: If set, Finnhub ownership is filtered by reportDate and
+               third-party aggregators are flagged as_of_safe=false.
 
     Returns:
         Dict with institutional ownership data and sources
     """
+    as_of_str = as_of.isoformat() if as_of else None
     result = {
         "ticker": ticker.upper(),
+        "as_of": as_of_str,
+        "historical_mode_warning": _historical_warning(as_of, "institutional holdings"),
         "data_sources": {},
     }
 
@@ -197,7 +260,8 @@ def get_institutional_holdings(ticker: str) -> Dict:
             "Top institutional holders (name, shares, % held, value, date)",
             "Top mutual fund holders",
         ],
-        "retrieval": f"Use WebFetch on the URL above"
+        "retrieval": f"Use WebFetch on the URL above",
+        "as_of_safe": False,
     }
 
     # Source 2: WhaleWisdom
@@ -210,7 +274,8 @@ def get_institutional_holdings(ticker: str) -> Dict:
             "Ownership concentration (top 10/20 holders %)",
             "Historical ownership trends (last 9 quarters free)",
         ],
-        "retrieval": f"Use WebFetch on the URL above"
+        "retrieval": f"Use WebFetch on the URL above",
+        "as_of_safe": False,
     }
 
     # Source 3: Finnhub
@@ -218,17 +283,29 @@ def get_institutional_holdings(ticker: str) -> Dict:
         ownership_url = f"https://finnhub.io/api/v1/stock/ownership?symbol={ticker}&token={FINNHUB_API_KEY}"
         data = _fetch_json(ownership_url)
         if "error" not in data:
+            rows = data.get("ownership", [])
+            total_before = len(rows)
+            if as_of_str:
+                # Finnhub ownership rows have 'filingDate' / 'reportDate'
+                rows = _filter_by_field(rows, "filingDate", as_of) or \
+                       _filter_by_field(rows, "reportDate", as_of)
             result["data_sources"]["finnhub"] = {
                 "name": "Finnhub API - Institutional Ownership",
-                "ownership": data.get("ownership", [])[:15],
+                "ownership": rows[:15],
+                "total_before_as_of_filter": total_before if as_of_str else None,
+                "as_of_safe": True,
             }
 
-    # Source 4: SEC 13F search
+    # Source 4: SEC 13F search (as_of-safe — use edgar-enhanced institutional)
     result["data_sources"]["sec_13f"] = {
         "name": "SEC EDGAR 13F Filings",
         "url": "https://www.sec.gov/data-research/sec-markets-data/13f-securities-data-sets",
         "description": "Quarterly bulk 13F datasets from SEC",
-        "note": "Use edgar-enhanced.py institutional command for more detail"
+        "note": (
+            f"Use: python3 tools/edgar-enhanced.py institutional {ticker}"
+            + (f" --as-of {as_of_str}" if as_of_str else "")
+        ),
+        "as_of_safe": True,
     }
 
     # Source 5: Finviz
@@ -236,6 +313,7 @@ def get_institutional_holdings(ticker: str) -> Dict:
         "name": "Finviz",
         "url": f"https://finviz.com/quote.ashx?t={ticker.upper()}",
         "data_available": ["Institutional ownership %", "Insider ownership %", "Short float %"],
+        "as_of_safe": False,
     }
 
     result["analysis_framework"] = {
@@ -265,7 +343,7 @@ def get_institutional_holdings(ticker: str) -> Dict:
 # SHORT INTEREST
 # ============================================================
 
-def get_short_interest(ticker: str) -> Dict:
+def get_short_interest(ticker: str, as_of: Optional[date] = None) -> Dict:
     """
     Get short interest data from free sources.
 
@@ -274,27 +352,41 @@ def get_short_interest(ticker: str) -> Dict:
 
     Args:
         ticker: Stock ticker
+        as_of: If set, the live aggregators are flagged as_of_safe=false.
+               FINRA is the only vintage-correct path; the agent must post-
+               filter by settlement date.
 
     Returns:
         Dict with short interest data and sources
     """
+    as_of_str = as_of.isoformat() if as_of else None
     result = {
         "ticker": ticker.upper(),
+        "as_of": as_of_str,
+        "historical_mode_warning": _historical_warning(as_of, "short interest"),
         "data_sources": {},
     }
 
-    # Source 1: FINRA (official)
+    # Source 1: FINRA (official — the as_of-safe path)
     result["data_sources"]["finra"] = {
         "name": "FINRA Short Interest",
         "api": "https://developer.finra.org/",
         "description": "Official short interest data, published twice monthly",
         "frequency": "Bi-monthly (mid-month and end-of-month settlement dates)",
         "delay": "~10 business days after settlement date",
-        "note": "FINRA API requires free registration at developer.finra.org",
+        "note": (
+            "FINRA API requires free registration at developer.finra.org."
+            + (
+                f" HISTORICAL MODE: request settlementDate <= {as_of_str} "
+                f"and drop rows where reportingDate > {as_of_str}."
+                if as_of_str else ""
+            )
+        ),
         "daily_short_volume": {
             "description": "Daily short sale volume (different from short interest)",
             "url": "https://www.finra.org/finra-data/browse-catalog/short-interest/data",
-        }
+        },
+        "as_of_safe": True,
     }
 
     # Source 2: Yahoo Finance
@@ -307,7 +399,8 @@ def get_short_interest(ticker: str) -> Dict:
             "Short ratio (days to cover)",
             "Shares short (current and prior month)",
         ],
-        "retrieval": f"Use WebFetch or tools/market-data.sh stats {ticker}"
+        "retrieval": f"Use WebFetch or tools/market-data.sh stats {ticker}",
+        "as_of_safe": False,
     }
 
     # Source 3: Finviz
@@ -315,6 +408,7 @@ def get_short_interest(ticker: str) -> Dict:
         "name": "Finviz",
         "url": f"https://finviz.com/quote.ashx?t={ticker.upper()}",
         "data_available": ["Short float %", "Short ratio"],
+        "as_of_safe": False,
     }
 
     # Source 4: MarketBeat
@@ -322,6 +416,7 @@ def get_short_interest(ticker: str) -> Dict:
         "name": "MarketBeat Short Interest",
         "url": f"https://www.marketbeat.com/stocks/NYSE/{ticker.upper()}/short-interest/",
         "data_available": ["Short interest history", "Days to cover trend"],
+        "as_of_safe": False,
     }
 
     result["analysis_framework"] = {
@@ -354,7 +449,7 @@ def get_short_interest(ticker: str) -> Dict:
 # OWNERSHIP SUMMARY
 # ============================================================
 
-def get_ownership_summary(ticker: str) -> Dict:
+def get_ownership_summary(ticker: str, as_of: Optional[date] = None) -> Dict:
     """
     Get combined ownership picture: insider + institutional + short interest.
 
@@ -362,26 +457,51 @@ def get_ownership_summary(ticker: str) -> Dict:
 
     Args:
         ticker: Stock ticker
+        as_of: If set, propagates to each sub-call; retrieval priority
+               list is rewritten to prefer as_of-safe SEC paths over
+               third-party aggregators.
 
     Returns:
         Dict with combined ownership data
     """
-    return {
-        "ticker": ticker.upper(),
-        "insider_trades": get_insider_trades(ticker),
-        "institutional_holdings": get_institutional_holdings(ticker),
-        "short_interest": get_short_interest(ticker),
-        "combined_sources": {
-            "yahoo_all_in_one": f"https://finance.yahoo.com/quote/{ticker.upper()}/holders/",
-            "finviz_summary": f"https://finviz.com/quote.ashx?t={ticker.upper()}",
-        },
-        "retrieval_priority": [
+    as_of_str = as_of.isoformat() if as_of else None
+    if as_of_str:
+        retrieval_priority = [
+            f"1. python3 tools/edgar-enhanced.py insider {ticker} --as-of {as_of_str}",
+            f"2. python3 tools/edgar-enhanced.py institutional {ticker} --as-of {as_of_str}",
+            f"3. FINRA short interest: request settlementDate <= {as_of_str}",
+            f"4. Finnhub (if FINNHUB_API_KEY set): as_of-filtered by filingDate",
+            f"5. AVOID Yahoo/Finviz/OpenInsider/WhaleWisdom in historical mode — "
+            f"they return LIVE data and will leak post-{as_of_str} ownership "
+            f"into the backtest.",
+        ]
+    else:
+        retrieval_priority = [
             f"1. WebFetch: https://finance.yahoo.com/quote/{ticker.upper()}/holders/",
             f"2. WebFetch: https://finance.yahoo.com/quote/{ticker.upper()}/key-statistics/",
             f"3. WebFetch: http://openinsider.com/screener?s={ticker.upper()}&fd=365",
             f"4. python3 tools/edgar-enhanced.py insider {ticker}",
             f"5. python3 tools/edgar-enhanced.py institutional {ticker}",
-        ],
+        ]
+
+    return {
+        "ticker": ticker.upper(),
+        "as_of": as_of_str,
+        "historical_mode_warning": _historical_warning(as_of, "ownership data"),
+        "insider_trades": get_insider_trades(ticker, as_of=as_of),
+        "institutional_holdings": get_institutional_holdings(ticker, as_of=as_of),
+        "short_interest": get_short_interest(ticker, as_of=as_of),
+        "combined_sources": {
+            "yahoo_all_in_one": {
+                "url": f"https://finance.yahoo.com/quote/{ticker.upper()}/holders/",
+                "as_of_safe": False,
+            },
+            "finviz_summary": {
+                "url": f"https://finviz.com/quote.ashx?t={ticker.upper()}",
+                "as_of_safe": False,
+            },
+        },
+        "retrieval_priority": retrieval_priority,
     }
 
 
@@ -389,7 +509,7 @@ def get_ownership_summary(ticker: str) -> Dict:
 # ANALYST ESTIMATES / CONSENSUS
 # ============================================================
 
-def get_analyst_estimates(ticker: str) -> Dict:
+def get_analyst_estimates(ticker: str, as_of: Optional[date] = None) -> Dict:
     """
     Get consensus analyst estimates from free sources.
 
@@ -398,16 +518,23 @@ def get_analyst_estimates(ticker: str) -> Dict:
 
     Args:
         ticker: Stock ticker
+        as_of: If set, Finnhub recommendations / eps-estimate / price-target
+               rows are filtered by their respective date fields, and live
+               aggregators (Yahoo, MarketBeat, CNN, Zacks) are flagged
+               as_of_safe=false.
 
     Returns:
         Dict with consensus estimate sources
     """
+    as_of_str = as_of.isoformat() if as_of else None
     result = {
         "ticker": ticker.upper(),
+        "as_of": as_of_str,
+        "historical_mode_warning": _historical_warning(as_of, "consensus estimates"),
         "data_sources": {},
     }
 
-    # Source 1: Yahoo Finance
+    # Source 1: Yahoo Finance (live — always unsafe)
     result["data_sources"]["yahoo_finance"] = {
         "name": "Yahoo Finance - Analysis",
         "url": f"https://finance.yahoo.com/quote/{ticker.upper()}/analysis/",
@@ -418,10 +545,11 @@ def get_analyst_estimates(ticker: str) -> Dict:
             "EPS revisions (up/down counts)",
             "Growth estimates (next 5Y, past 5Y, next Y)",
         ],
-        "retrieval": f"Use WebFetch on the URL above"
+        "retrieval": "Use WebFetch on the URL above",
+        "as_of_safe": False,
     }
 
-    # Source 2: Finnhub
+    # Source 2: Finnhub (vintage-correct via per-row date filters)
     if FINNHUB_API_KEY:
         # Recommendation trends
         rec_url = f"https://finnhub.io/api/v1/stock/recommendation?symbol={ticker}&token={FINNHUB_API_KEY}"
@@ -435,11 +563,47 @@ def get_analyst_estimates(ticker: str) -> Dict:
         pt_url = f"https://finnhub.io/api/v1/stock/price-target?symbol={ticker}&token={FINNHUB_API_KEY}"
         pt_data = _fetch_json(pt_url)
 
+        # Recommendations: each row has 'period' (YYYY-MM-DD, the recommendation
+        # date); drop rows reported after as_of.
+        rec_rows = rec_data if isinstance(rec_data, list) else []
+        rec_before = len(rec_rows)
+        if as_of_str and rec_rows:
+            rec_rows = _filter_by_field(rec_rows, "period", as_of)
+
+        # EPS estimates: each row has 'period' (the fiscal-period end). In
+        # vintage mode we keep only estimates whose published period endpoint
+        # is on or before as_of (forward-looking estimates published after
+        # as_of are a leak).
+        eps_rows = eps_data.get("data", []) if isinstance(eps_data, dict) else []
+        eps_before = len(eps_rows)
+        if as_of_str and eps_rows:
+            eps_rows = _filter_by_field(eps_rows, "period", as_of)
+
+        # Price target: single snapshot with 'lastUpdated'. If the snapshot
+        # post-dates as_of, null it out.
+        pt_payload: Dict = pt_data if isinstance(pt_data, dict) else {}
+        pt_is_post_as_of = False
+        if as_of_str and pt_payload:
+            last_updated = str(pt_payload.get("lastUpdated", ""))[:10]
+            if last_updated and last_updated > as_of_str:
+                pt_is_post_as_of = True
+                pt_payload = {
+                    "note": (
+                        f"Finnhub price-target snapshot (lastUpdated="
+                        f"{last_updated}) post-dates as_of={as_of_str} and "
+                        f"has been dropped to prevent lookahead leak."
+                    ),
+                }
+
         result["data_sources"]["finnhub"] = {
             "name": "Finnhub API",
-            "recommendations": rec_data[:6] if isinstance(rec_data, list) else rec_data,
-            "eps_estimates": eps_data.get("data", [])[:4] if isinstance(eps_data, dict) else eps_data,
-            "price_target": pt_data if isinstance(pt_data, dict) else {},
+            "recommendations": rec_rows[:6],
+            "eps_estimates": eps_rows[:4],
+            "price_target": pt_payload,
+            "recommendations_before_as_of_filter": rec_before if as_of_str else None,
+            "eps_estimates_before_as_of_filter": eps_before if as_of_str else None,
+            "price_target_dropped_by_as_of": pt_is_post_as_of if as_of_str else None,
+            "as_of_safe": True,
         }
     else:
         result["data_sources"]["finnhub"] = {
@@ -451,28 +615,32 @@ def get_analyst_estimates(ticker: str) -> Dict:
                 f"EPS estimates: /stock/eps-estimate?symbol={ticker}",
                 f"Price target: /stock/price-target?symbol={ticker}",
                 f"Revenue estimates: /stock/revenue-estimate?symbol={ticker}",
-            ]
+            ],
+            "as_of_safe": True,
         }
 
-    # Source 3: MarketBeat
+    # Source 3: MarketBeat (live page — unsafe in historical mode)
     result["data_sources"]["marketbeat"] = {
         "name": "MarketBeat",
         "url": f"https://www.marketbeat.com/stocks/NYSE/{ticker.upper()}/forecast/",
         "data_available": ["Analyst ratings", "Price targets", "EPS estimates"],
+        "as_of_safe": False,
     }
 
-    # Source 4: CNN Money / TipRanks
+    # Source 4: CNN Money / TipRanks (live)
     result["data_sources"]["cnn_forecast"] = {
         "name": "CNN Money Forecast",
         "url": f"https://money.cnn.com/quote/forecast/forecast.html?symb={ticker.upper()}",
         "data_available": ["Analyst consensus", "Price target range"],
+        "as_of_safe": False,
     }
 
-    # Source 5: Zacks (limited free)
+    # Source 5: Zacks (live)
     result["data_sources"]["zacks"] = {
         "name": "Zacks",
         "url": f"https://www.zacks.com/stock/quote/{ticker.upper()}/detailed-estimates",
         "data_available": ["EPS estimates", "Zacks rank", "Estimate revisions"],
+        "as_of_safe": False,
     }
 
     return result
@@ -482,7 +650,7 @@ def get_analyst_estimates(ticker: str) -> Dict:
 # PEER DISCOVERY
 # ============================================================
 
-def discover_peers(ticker: str) -> Dict:
+def discover_peers(ticker: str, as_of: Optional[date] = None) -> Dict:
     """
     Discover comparable/peer companies from multiple sources.
 
@@ -492,16 +660,32 @@ def discover_peers(ticker: str) -> Dict:
 
     Args:
         ticker: Stock ticker
+        as_of: If set, all peer lists are flagged with caveats about
+               current-state reflection. Peer membership drifts slowly,
+               so Finnhub/SEC-SIC are still useful but not guaranteed
+               point-in-time correct; Yahoo "People Also Watch" is fully
+               live and flagged unsafe.
 
     Returns:
         Dict with peer company suggestions from multiple sources
     """
+    as_of_str = as_of.isoformat() if as_of else None
     result = {
         "ticker": ticker.upper(),
+        "as_of": as_of_str,
+        "historical_mode_warning": _historical_warning(as_of, "peer groups"),
         "data_sources": {},
     }
 
-    # Source 1: Finnhub peers
+    peer_drift_note = (
+        f"Peer membership drifts slowly (M&A, delistings, business-model "
+        f"shifts). This list reflects the CURRENT peer set; for an as_of "
+        f"of {as_of_str}, the agent should cross-check peer existence and "
+        f"business overlap against as_of-vintage 10-K risk-factor / "
+        f"competition disclosures." if as_of_str else None
+    )
+
+    # Source 1: Finnhub peers (current snapshot, slowly drifting)
     if FINNHUB_API_KEY:
         peers_url = f"https://finnhub.io/api/v1/stock/peers?symbol={ticker}&token={FINNHUB_API_KEY}"
         peers_data = _fetch_json(peers_url)
@@ -509,40 +693,61 @@ def discover_peers(ticker: str) -> Dict:
             result["data_sources"]["finnhub"] = {
                 "name": "Finnhub Peers",
                 "peers": peers_data,
+                "as_of_safe": False,
+                "as_of_note": peer_drift_note,
             }
 
-    # Source 2: Yahoo Finance
+    # Source 2: Yahoo Finance (live page — unsafe)
     result["data_sources"]["yahoo_finance"] = {
         "name": "Yahoo Finance - Comparison",
         "url": f"https://finance.yahoo.com/quote/{ticker.upper()}/",
         "note": "Yahoo shows 'People Also Watch' and sector peers on the quote page",
-        "retrieval": f"Use WebFetch on the URL and look for peer company mentions"
+        "retrieval": "Use WebFetch on the URL and look for peer company mentions",
+        "as_of_safe": False,
     }
 
-    # Source 3: Finviz sector screening
+    # Source 3: Finviz sector screening (live screen)
     result["data_sources"]["finviz_sector"] = {
         "name": "Finviz - Sector Peers",
         "url": f"https://finviz.com/screener.ashx?v=111&f=ind_stocksonly&t={ticker.upper()}",
         "description": "Screen for companies in the same industry and similar market cap",
+        "as_of_safe": False,
     }
 
-    # Source 4: SEC SIC code
+    # Source 4: SEC SIC code (vintage-correct when used with as_of-aware edgar)
     result["data_sources"]["sec_sic"] = {
         "name": "SEC - Same SIC Code",
         "description": "Companies with the same SIC code filed with the SEC",
-        "retrieval": f"Use: python3 tools/edgar-enhanced.py company {ticker} — note the SIC code, "
-                     f"then search EDGAR for other companies with the same SIC",
+        "retrieval": (
+            f"Use: python3 tools/edgar-enhanced.py company {ticker}"
+            + (f" --as-of {as_of_str}" if as_of_str else "")
+            + " — note the SIC code, then search EDGAR for other companies "
+              "with the same SIC at as_of."
+        ),
+        "as_of_safe": True,
+        "as_of_note": peer_drift_note,
     }
 
-    # Source 5: Web search
+    # Source 5: Web search (queries are as_of-aware; agent must still vet)
     result["data_sources"]["web_search"] = {
         "name": "Web Search",
         "queries": [
             f'"{ticker}" competitors',
             f'"{ticker}" comparable companies',
             f'"{ticker}" peer group valuation',
-        ],
+        ]
+        + (
+            [f'"{ticker}" competitors {as_of.year}',
+             f'"{ticker}" peer group {as_of.year}']
+            if as_of_str else []
+        ),
         "description": "Search for analyst reports that define the peer group",
+        "as_of_safe": False,
+        "as_of_note": (
+            f"Prefer sources dated before {as_of_str}; reject articles "
+            f"published after as_of to avoid lookahead."
+            if as_of_str else None
+        ),
     }
 
     result["peer_selection_criteria"] = {
@@ -591,26 +796,32 @@ Examples:
     # Insider
     insider_parser = subparsers.add_parser("insider", help="Insider trading data")
     insider_parser.add_argument("ticker", help="Stock ticker")
+    _as_of.add_argument(insider_parser)
 
     # Institutional
     inst_parser = subparsers.add_parser("institutional", help="Institutional holdings")
     inst_parser.add_argument("ticker", help="Stock ticker")
+    _as_of.add_argument(inst_parser)
 
     # Short interest
     short_parser = subparsers.add_parser("short-interest", help="Short interest data")
     short_parser.add_argument("ticker", help="Stock ticker")
+    _as_of.add_argument(short_parser)
 
     # Ownership summary
     own_parser = subparsers.add_parser("ownership-summary", help="Combined ownership picture")
     own_parser.add_argument("ticker", help="Stock ticker")
+    _as_of.add_argument(own_parser)
 
     # Analyst estimates
     est_parser = subparsers.add_parser("analyst-estimates", help="Consensus estimates")
     est_parser.add_argument("ticker", help="Stock ticker")
+    _as_of.add_argument(est_parser)
 
     # Peers
     peers_parser = subparsers.add_parser("peers", help="Peer company discovery")
     peers_parser.add_argument("ticker", help="Stock ticker")
+    _as_of.add_argument(peers_parser)
 
     args = parser.parse_args()
 
@@ -618,18 +829,20 @@ Examples:
         parser.print_help()
         sys.exit(1)
 
+    as_of = _as_of.resolve(getattr(args, "as_of", None))
+
     if args.command == "insider":
-        result = get_insider_trades(args.ticker)
+        result = get_insider_trades(args.ticker, as_of=as_of)
     elif args.command == "institutional":
-        result = get_institutional_holdings(args.ticker)
+        result = get_institutional_holdings(args.ticker, as_of=as_of)
     elif args.command == "short-interest":
-        result = get_short_interest(args.ticker)
+        result = get_short_interest(args.ticker, as_of=as_of)
     elif args.command == "ownership-summary":
-        result = get_ownership_summary(args.ticker)
+        result = get_ownership_summary(args.ticker, as_of=as_of)
     elif args.command == "analyst-estimates":
-        result = get_analyst_estimates(args.ticker)
+        result = get_analyst_estimates(args.ticker, as_of=as_of)
     elif args.command == "peers":
-        result = discover_peers(args.ticker)
+        result = discover_peers(args.ticker, as_of=as_of)
     else:
         parser.print_help()
         sys.exit(1)

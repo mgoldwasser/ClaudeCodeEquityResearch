@@ -23,8 +23,11 @@ import sys
 import urllib.request
 import urllib.error
 import urllib.parse
-from datetime import datetime
+from datetime import date, datetime
 from typing import Dict, List, Optional, Tuple
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _as_of  # noqa: E402
 
 # ============================================================
 # CONFIGURATION
@@ -44,7 +47,8 @@ FINNHUB_API_KEY = os.environ.get("FINNHUB_API_KEY", "")
 # MOTLEY FOOL TRANSCRIPT SEARCH
 # ============================================================
 
-def search_motley_fool(ticker: str, count: int = 1) -> List[Dict]:
+def search_motley_fool(ticker: str, count: int = 1,
+                       as_of: Optional[date] = None) -> List[Dict]:
     """
     Search Motley Fool for earnings call transcripts.
 
@@ -55,6 +59,8 @@ def search_motley_fool(ticker: str, count: int = 1) -> List[Dict]:
     Args:
         ticker: Stock ticker symbol
         count: Number of transcripts to find
+        as_of: If set, agent must filter results to transcripts dated
+               on or before as_of (Motley Fool URLs embed the call date).
 
     Returns:
         List of dicts with 'title', 'url', 'date' keys
@@ -67,10 +73,14 @@ def search_motley_fool(ticker: str, count: int = 1) -> List[Dict]:
         f"?q={ticker.upper()}"
     )
 
-    # Also try a broader search pattern
-    search_urls = [
-        f"https://www.google.com/search?q=site:fool.com+%22earnings+call+transcript%22+{ticker.upper()}&num={count * 2}",
-    ]
+    as_of_str = as_of.isoformat() if as_of else None
+    date_filter_note = (
+        f"HISTORICAL MODE: drop any transcript with call date > {as_of_str}. "
+        "Motley Fool URLs embed the date (e.g., .../2021/07/28/...). "
+        "Check that date first, then WebFetch."
+        if as_of_str else
+        "Use WebSearch to find transcript URLs, then WebFetch to retrieve content."
+    )
 
     print(f"[Transcript Search] Searching Motley Fool for {ticker} transcripts...")
     print(f"[Transcript Search] Motley Fool transcript index: {search_url}")
@@ -79,23 +89,28 @@ def search_motley_fool(ticker: str, count: int = 1) -> List[Dict]:
 
     # Provide structured search guidance for the agent
     print(json.dumps({
+        "as_of": as_of_str,
         "search_guidance": {
             "motley_fool": {
                 "index_url": search_url,
                 "search_query": f'site:fool.com "{ticker}" "earnings call transcript"',
                 "url_pattern": f"https://www.fool.com/earnings-call-transcripts/...",
-                "notes": "Motley Fool is the most reliable free transcript source. "
-                         "Use WebSearch to find transcript URLs, then WebFetch to retrieve content."
+                "notes": f"Motley Fool is the most reliable free transcript source. {date_filter_note}"
             },
             "company_ir": {
                 "search_query": f'"{ticker}" investor relations earnings transcript',
-                "notes": "Many companies publish transcripts directly on their IR page."
+                "notes": (
+                    "Many companies publish transcripts directly on their IR page. "
+                    + (f"In historical mode, only fetch transcripts dated <= {as_of_str}."
+                       if as_of_str else "")
+                )
             },
             "alternative_sources": [
                 {
                     "name": "Finnhub",
                     "api": f"https://finnhub.io/api/v1/stock/transcripts?symbol={ticker}&token=YOUR_KEY",
-                    "notes": "Free API, 60 calls/minute. Requires registration for API key."
+                    "notes": "Free API, 60 calls/minute. Requires registration for API key. "
+                             "This tool's 'finnhub' subcommand already applies the as_of filter."
                 },
             ]
         }
@@ -108,7 +123,7 @@ def search_motley_fool(ticker: str, count: int = 1) -> List[Dict]:
 # COMPANY IR PAGE FINDER
 # ============================================================
 
-def find_ir_page(ticker: str) -> Dict:
+def find_ir_page(ticker: str, as_of: Optional[date] = None) -> Dict:
     """
     Find a company's Investor Relations page.
 
@@ -118,12 +133,26 @@ def find_ir_page(ticker: str) -> Dict:
 
     Args:
         ticker: Stock ticker symbol
+        as_of: If set, agent must filter IR materials to items dated
+               on or before as_of. IR pages themselves are live snapshots;
+               individual materials (transcripts, filings) are dated.
 
     Returns:
         Dict with search guidance
     """
+    as_of_str = as_of.isoformat() if as_of else None
+
     # Common IR page URL patterns
     ir_patterns = {
+        "as_of": as_of_str,
+        "historical_mode_warning": (
+            f"IR pages are live — they show current management, current capital "
+            f"structure, and current press releases. When operating --as-of {as_of_str}, "
+            f"only retrieve dated artifacts (transcripts, PDF 10-Ks, press releases) "
+            f"whose publication date is on or before {as_of_str}. Do not use the "
+            f"'About' or 'Leadership' pages for historical management tenure."
+            if as_of_str else None
+        ),
         "search_queries": [
             f'"{ticker}" investor relations',
             f'"{ticker}" IR earnings transcript',
@@ -159,7 +188,8 @@ def find_ir_page(ticker: str) -> Dict:
 # FINNHUB TRANSCRIPT API
 # ============================================================
 
-def fetch_finnhub_transcript(ticker: str, api_key: str = "") -> Dict:
+def fetch_finnhub_transcript(ticker: str, api_key: str = "",
+                             as_of: Optional[date] = None) -> Dict:
     """
     Fetch earnings transcripts from Finnhub API.
 
@@ -169,6 +199,8 @@ def fetch_finnhub_transcript(ticker: str, api_key: str = "") -> Dict:
     Args:
         ticker: Stock ticker symbol
         api_key: Finnhub API key (or set FINNHUB_API_KEY env var)
+        as_of: If set, drop transcripts whose call date is after as_of and
+               return the most recent transcript <= as_of.
 
     Returns:
         Dict with transcript data or error
@@ -195,9 +227,25 @@ def fetch_finnhub_transcript(ticker: str, api_key: str = "") -> Dict:
             return {"error": f"No transcripts found for {ticker}", "raw": data}
 
         transcripts = data["transcripts"]
+        total_before = len(transcripts)
+
+        # Vintage filter: drop transcripts whose call date is after as_of.
+        # Finnhub transcript list entries include 'time' (YYYY-MM-DD HH:MM:SS).
+        as_of_str = as_of.isoformat() if as_of else None
+        if as_of_str:
+            def _before(t):
+                t_str = str(t.get("time", "") or t.get("year", ""))
+                return t_str[:10] <= as_of_str
+            transcripts = [t for t in transcripts if _before(t)]
+            print(
+                f"[Finnhub] as_of={as_of_str}: {total_before} → {len(transcripts)} "
+                f"transcripts after vintage filter",
+                file=sys.stderr,
+            )
+
         print(f"[Finnhub] Found {len(transcripts)} transcript(s) for {ticker}")
 
-        # Fetch the most recent transcript
+        # Fetch the most recent transcript (after filtering)
         if transcripts:
             latest = transcripts[0]
             transcript_id = latest.get("id", "")
@@ -208,12 +256,21 @@ def fetch_finnhub_transcript(ticker: str, api_key: str = "") -> Dict:
                 detail = json.loads(resp2.read().decode())
 
             return {
+                "as_of": as_of_str,
                 "available_transcripts": transcripts[:10],
                 "latest_transcript": detail,
                 "source": "Finnhub API"
             }
 
-        return {"available_transcripts": transcripts, "source": "Finnhub API"}
+        return {
+            "as_of": as_of_str,
+            "available_transcripts": transcripts,
+            "source": "Finnhub API",
+            "note": (
+                f"No transcripts available on or before {as_of_str}"
+                if as_of_str else "No transcripts available"
+            )
+        }
 
     except urllib.error.HTTPError as e:
         return {"error": f"Finnhub API error: {e.code}", "message": str(e)}
@@ -310,20 +367,24 @@ Examples:
     search_parser.add_argument("ticker", help="Stock ticker symbol")
     search_parser.add_argument("--count", type=int, default=1,
                               help="Number of transcripts to find (default: 1)")
+    _as_of.add_argument(search_parser)
 
     # IR page finder
     ir_parser = subparsers.add_parser("ir", help="Find company IR page")
     ir_parser.add_argument("ticker", help="Stock ticker symbol")
+    _as_of.add_argument(ir_parser)
 
     # Finnhub
     finnhub_parser = subparsers.add_parser("finnhub", help="Fetch from Finnhub API")
     finnhub_parser.add_argument("ticker", help="Stock ticker symbol")
     finnhub_parser.add_argument("--api-key", default="",
                                help="Finnhub API key (or set FINNHUB_API_KEY env var)")
+    _as_of.add_argument(finnhub_parser)
 
-    # Extract
+    # Extract — local file; as_of is a no-op but accepted for uniformity
     extract_parser = subparsers.add_parser("extract", help="Extract key quotes from transcript text")
     extract_parser.add_argument("file", help="Path to transcript text file")
+    _as_of.add_argument(extract_parser)
 
     args = parser.parse_args()
 
@@ -331,14 +392,16 @@ Examples:
         parser.print_help()
         sys.exit(1)
 
+    as_of = _as_of.resolve(getattr(args, "as_of", None))
+
     if args.command == "search":
-        search_motley_fool(args.ticker, args.count)
+        search_motley_fool(args.ticker, args.count, as_of=as_of)
 
     elif args.command == "ir":
-        find_ir_page(args.ticker)
+        find_ir_page(args.ticker, as_of=as_of)
 
     elif args.command == "finnhub":
-        result = fetch_finnhub_transcript(args.ticker, args.api_key)
+        result = fetch_finnhub_transcript(args.ticker, args.api_key, as_of=as_of)
         print(json.dumps(result, indent=2, default=str))
 
     elif args.command == "extract":

@@ -1,0 +1,178 @@
+{
+  "model": "nvda_credit_model",
+  "ticker": "NVDA",
+  "generated": "2026-03-19",
+  "capital_structure": {
+    "total_debt": 11000,
+    "cash_and_securities": 62600,
+    "net_cash_position": 51600,
+    "weighted_avg_interest_rate": 0.0346,
+    "estimated_annual_interest": 380.5,
+    "instruments": [
+      {
+        "description": "Senior Notes (estimated bucket 1)",
+        "amount": 3500,
+        "rate": 0.03,
+        "maturity_year": 2027,
+        "type": "Fixed"
+      },
+      {
+        "description": "Senior Notes (estimated bucket 2)",
+        "amount": 3500,
+        "rate": 0.033,
+        "maturity_year": 2030,
+        "type": "Fixed"
+      },
+      {
+        "description": "Senior Notes (estimated bucket 3)",
+        "amount": 4000,
+        "rate": 0.04,
+        "maturity_year": 2033,
+        "type": "Fixed"
+      }
+    ],
+    "note": "[DATA GAP: Actual maturity schedule requires 10-K Note 12+]"
+  },
+  "maturity_profile": {
+    "2026": 0,
+    "2027": 3500,
+    "2028": 0,
+    "2029": 0,
+    "2030": 3500,
+    "2031": 0,
+    "2032": 0,
+    "2033": 4000,
+    "2034": 0
+  },
+  "leverage_ratios": {
+    "gross_debt_to_ebitda": 0.082,
+    "net_debt_to_ebitda": -0.387,
+    "debt_to_equity": 0.07,
+    "net_cash_to_ebitda": 0.387,
+    "interpretation": "Net leverage is NEGATIVE (net cash > debt), meaning NVDA is a net creditor. This is an extremely rare and strong credit position for a company of this size."
+  },
+  "coverage_ratios": {
+    "ebitda_interest_coverage": 515.0,
+    "ebit_interest_coverage": 503.4,
+    "fcf_to_debt": 8.789,
+    "fixed_charge_coverage": 108.2,
+    "years_to_repay_debt_from_fcf": 0.11,
+    "interpretation": "Interest coverage of 515x is exceptional. NVDA generates more FCF (96,676M) than its entire debt outstanding (11,000M). Credit risk is minimal even in severe stress scenarios."
+  },
+  "covenant_headroom": {
+    "net_leverage": {
+      "current": -0.387,
+      "threshold": 3.0,
+      "headroom": 3.387,
+      "breach": false
+    },
+    "interest_coverage": {
+      "current": 515.0,
+      "threshold": 3.0,
+      "headroom": 512.0,
+      "breach": false
+    },
+    "debt_to_equity": {
+      "current": 0.07,
+      "threshold": 1.0,
+      "headroom": 0.93,
+      "breach": false
+    }
+  },
+  "stress_tests": [
+    {
+      "scenario_name": "Revenue -20% (mild downturn)",
+      "revenue_decline_pct": 0.2,
+      "stressed_revenue": 172750.0,
+      "stressed_ebitda": 100886.0,
+      "gross_leverage_stressed": 0.11,
+      "net_leverage_stressed": -0.511,
+      "interest_coverage_stressed": 390.0,
+      "covenant_breach": false,
+      "interpretation": "At 20% revenue decline: EBITDA $100,886M vs interest $259M \u2014 no covenant breach"
+    },
+    {
+      "scenario_name": "Revenue -30% (severe downturn)",
+      "revenue_decline_pct": 0.3,
+      "stressed_revenue": 151157.0,
+      "stressed_ebitda": 85252.0,
+      "gross_leverage_stressed": 0.13,
+      "net_leverage_stressed": -0.605,
+      "interest_coverage_stressed": 329.0,
+      "covenant_breach": false,
+      "interpretation": "At 30% revenue decline: EBITDA $85,252M vs interest $259M \u2014 no covenant breach"
+    },
+    {
+      "scenario_name": "Revenue -50% (catastrophic)",
+      "revenue_decline_pct": 0.5,
+      "stressed_revenue": 107969.0,
+      "stressed_ebitda": 56576.0,
+      "gross_leverage_stressed": 0.19,
+      "net_leverage_stressed": -0.912,
+      "interest_coverage_stressed": 218.0,
+      "covenant_breach": false,
+      "interpretation": "At 50% revenue decline: EBITDA $56,576M vs interest $259M \u2014 no covenant breach"
+    },
+    {
+      "scenario_name": "Revenue -70% (dot-com level)",
+      "revenue_decline_pct": 0.7,
+      "stressed_revenue": 64781.0,
+      "stressed_ebitda": 29411.0,
+      "gross_leverage_stressed": 0.37,
+      "net_leverage_stressed": -1.754,
+      "interest_coverage_stressed": 114.0,
+      "covenant_breach": false,
+      "interpretation": "At 70% revenue decline: EBITDA $29,411M vs interest $259M \u2014 no covenant breach"
+    }
+  ],
+  "altman_z_score": {
+    "z_prime_score": 12.854,
+    "zone": "SAFE",
+    "components": {
+      "x1_wc_to_assets": 0.4516,
+      "x2_re_to_assets": 0.7108,
+      "x3_ebit_to_assets": 0.6305,
+      "x4_equity_to_liab": 3.1778
+    },
+    "cutoffs": {
+      "safe_zone": 2.6,
+      "grey_zone_lower": 1.1,
+      "grey_zone_upper": 2.6
+    },
+    "interpretation": "Z' = 12.85 \u2014 SAFE zone (well above safe threshold of 2.6). NVDA has no credit distress risk."
+  },
+  "liquidity": {
+    "current_ratio": 3.9,
+    "quick_ratio": 1.94,
+    "cash_coverage_short_term_debt": 17.9,
+    "fcf_coverage_short_term_debt": 27.6,
+    "cash_months_of_operating_expenses": -67.0,
+    "liquidity_rating": "EXCEPTIONAL",
+    "interpretation": "Cash + securities of $62,600M covers all current liabilities (1.9x quick ratio). NVDA generates $96,676M FCF annually \u2014 more than 8x total debt. Liquidity is not a risk factor."
+  },
+  "refinancing_analysis": {
+    "current_annual_interest_expense": 380.5,
+    "refinancing_rate": 0.052,
+    "new_annual_interest_expense": 572.0,
+    "annual_interest_change": 191.5,
+    "pct_change": 0.5033,
+    "note": "Refinancing at 5.2% from weighted 3.5% increases annual interest by $+191.5M \u2014 immaterial vs $96,676M FCF"
+  },
+  "data_gaps": [
+    "Debt maturity profile requires full 10-K Note 12+ (not extracted)",
+    "Covenant thresholds are estimated from investment-grade industry norms",
+    "Credit rating not retrieved",
+    "D&A not separately extracted; EBITDA estimate uses $3,000M D&A proxy"
+  ],
+  "overall_credit_assessment": {
+    "rating": "EXCEPTIONAL",
+    "key_metrics": {
+      "net_cash_position_M": 51600,
+      "interest_coverage_x": 515.0,
+      "years_to_repay_debt": 0.11,
+      "altman_z_prime": 12.854,
+      "altman_zone": "SAFE"
+    },
+    "summary": "NVDA is one of the strongest balance sheets in global tech. Net cash of $51,600M covers all debt 4.7x. Interest coverage of 515x is exceptional. Even at -50% revenue decline, no covenant breach occurs. Credit risk is NOT a material risk factor for equity investors."
+  }
+}

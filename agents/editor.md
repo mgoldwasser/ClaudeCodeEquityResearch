@@ -68,6 +68,18 @@ Before finalizing, verify:
 #### Step 5: Format Compliance
 Apply the template from `templates/research-note-template.md` exactly. Every section must be present. If a section has insufficient data, include it with a `[DATA GAP]` notation rather than omitting it.
 
+#### Step 5.5: Emit the Signal Independence Audit (Appendix F)
+
+Before finalizing the note, run the Signal Independence tool to populate Appendix F:
+
+```bash
+python tools/signal-independence.py report --run-dir output/[TICKER]/[DATE]
+```
+
+Paste the tool's markdown output verbatim as **Appendix F — Signal Independence Audit**. Do not edit or paraphrase it. The Director runs `gate` separately as a blocking pre-publication check; if that gate fails the note is returned for re-dispatch before publication, so the report you embed here must match the artifact the gate will read.
+
+If the tool prints `NO_SIGNALS` (no `[SIGNAL-ID: NAMESPACE-CODE]` tags found in `pass1/`), do not silently omit Appendix F. Embed the tool's warning message verbatim and flag it in your handoff notes to the Director — this is a signal-hygiene failure upstream.
+
 #### Step 6: Integrate New Analysis Sections
 Ensure the research note includes these additional sections (from Phase 4 agents):
 

@@ -1,0 +1,130 @@
+{
+  "ticker": "NVDA",
+  "source": "NVIDIA official press release + stockanalysis.com",
+  "source_tier": 1,
+  "retrieval_date": "2026-03-19",
+  "fiscal_year_end": "January (last Sunday of January)",
+  "currency": "USD_millions",
+  "annual_income_statement": {
+    "FY2026": {
+      "period_end": "2026-01-25",
+      "revenue": 215938,
+      "gross_profit": 153463,
+      "gross_margin_pct": 71.1,
+      "operating_income": 130387,
+      "operating_margin_pct": 60.4,
+      "net_income_gaap": 120067,
+      "net_income_margin_pct": 55.6,
+      "eps_diluted_gaap": 4.90,
+      "eps_diluted_non_gaap": 4.77,
+      "rd_expense": "[DATA GAP: not separately extracted]",
+      "notes": "FY2026 gross margin impacted by $4.5B H20 excess inventory charge in Q1 FY2026"
+    },
+    "FY2025": {
+      "period_end": "2025-01-26",
+      "revenue": 130497,
+      "gross_profit": 97858,
+      "gross_margin_pct": 75.0,
+      "operating_income": 81453,
+      "operating_margin_pct": 62.5,
+      "net_income_gaap": 72880,
+      "net_income_margin_pct": 55.8,
+      "eps_diluted_gaap": 2.94
+    },
+    "FY2024": {
+      "period_end": "2024-01-28",
+      "revenue": 60922,
+      "gross_profit": 44301,
+      "gross_margin_pct": 72.7,
+      "operating_income": 32972,
+      "operating_margin_pct": 54.1,
+      "net_income_gaap": 29760,
+      "net_income_margin_pct": 48.8,
+      "eps_diluted_gaap": 1.19
+    },
+    "FY2023": {
+      "period_end": "2023-01-29",
+      "revenue": 26974,
+      "gross_profit": 15356,
+      "gross_margin_pct": 56.9,
+      "operating_income": 4224,
+      "operating_margin_pct": 15.7,
+      "net_income_gaap": 4368,
+      "net_income_margin_pct": 16.2,
+      "eps_diluted_gaap": 0.17
+    },
+    "FY2022": {
+      "period_end": "2022-01-30",
+      "revenue": 26914,
+      "gross_profit": 17475,
+      "gross_margin_pct": 64.9,
+      "operating_income": 10041,
+      "operating_margin_pct": 37.3,
+      "net_income_gaap": 9752,
+      "net_income_margin_pct": 36.2,
+      "eps_diluted_gaap": 0.39
+    }
+  },
+  "quarterly_income_statement": {
+    "Q4_FY2026": {
+      "period_end": "2026-01-25",
+      "revenue": 68100,
+      "revenue_yoy_pct": 73,
+      "revenue_qoq_pct": 20,
+      "gross_margin_gaap_pct": 75.0,
+      "gross_margin_non_gaap_pct": 75.2,
+      "operating_income_gaap": 44300,
+      "net_income_gaap": 43000,
+      "eps_diluted_gaap": 1.76,
+      "eps_diluted_non_gaap": 1.62
+    },
+    "Q3_FY2026": {
+      "period_end": "2025-10-26",
+      "revenue": 56860,
+      "revenue_yoy_pct": 94,
+      "data_center_revenue": 51200,
+      "notes": "Q3 FY2026 data"
+    }
+  },
+  "segment_revenue": {
+    "FY2026_full_year": {
+      "data_center": 193700,
+      "data_center_pct_of_total": 89.7,
+      "gaming": 16000,
+      "professional_visualization": 3200,
+      "automotive_robotics": 2300
+    },
+    "Q4_FY2026": {
+      "data_center": 62300,
+      "data_center_yoy_pct": 75,
+      "data_center_qoq_pct": 22,
+      "gaming": 3700,
+      "gaming_yoy_pct": 47,
+      "gaming_qoq_pct": -13,
+      "professional_visualization": 1300,
+      "professional_visualization_yoy_pct": 159,
+      "automotive_robotics": 604,
+      "automotive_robotics_yoy_pct": 6,
+      "networking_within_data_center": 11000,
+      "networking_yoy_multiplier": "3.5x"
+    }
+  },
+  "guidance_q1_fy2027": {
+    "revenue_midpoint": 78000,
+    "revenue_range": "plus or minus 2%",
+    "revenue_low": 76440,
+    "revenue_high": 79560,
+    "gross_margin_gaap_pct": 74.9,
+    "gross_margin_non_gaap_pct": 75.0,
+    "gross_margin_tolerance_bps": 50,
+    "opex_gaap": 7700,
+    "opex_non_gaap": 7500,
+    "tax_rate_fy2027_range": "17-19%",
+    "note": "Guidance EXCLUDES assumed Data Center compute revenue from China"
+  },
+  "cagr_calculations": {
+    "revenue_1yr_fy25_to_fy26": "65.5%",
+    "revenue_3yr_fy23_to_fy26": "100.0%",
+    "revenue_4yr_fy22_to_fy26": "68.3%"
+  }
+}

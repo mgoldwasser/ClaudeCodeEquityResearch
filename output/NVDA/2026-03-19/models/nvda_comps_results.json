@@ -1,0 +1,181 @@
+{
+  "model": "nvda_comps_model",
+  "ticker": "NVDA",
+  "generated": "2026-03-19",
+  "data_quality": "PEER DATA IS [ESTIMATED] \u2014 requires live market data for precision",
+  "nvda_multiples": {
+    "ev_revenue": 10.2,
+    "ev_ebitda": 16.9,
+    "p_e": 17.9,
+    "ev_fcf": 22.8,
+    "peg_ratio": 0.4,
+    "gross_margin": 71.1,
+    "ebitda_margin": 60.4,
+    "revenue_growth_1yr": 65.5,
+    "revenue_growth_fwd": 45.0
+  },
+  "nvda_ev_used": 2200000,
+  "peer_multiples": {
+    "AMD": {
+      "ev_revenue": 6.9,
+      "ev_ebitda": 31.0,
+      "p_e": 115.0,
+      "ev_fcf": 56.2,
+      "peg_ratio": 5.75,
+      "gross_margin": 50.0,
+      "ebitda_margin": 22.0,
+      "revenue_growth_1yr": 14.0,
+      "revenue_growth_fwd": 20.0
+    },
+    "AVGO": {
+      "ev_revenue": 15.9,
+      "ev_ebitda": 26.5,
+      "p_e": 138.2,
+      "ev_fcf": 37.3,
+      "peg_ratio": 7.68,
+      "gross_margin": 64.0,
+      "ebitda_margin": 60.0,
+      "revenue_growth_1yr": 44.0,
+      "revenue_growth_fwd": 18.0
+    },
+    "QCOM": {
+      "ev_revenue": 4.3,
+      "ev_ebitda": 13.2,
+      "p_e": 19.2,
+      "ev_fcf": 21.8,
+      "peg_ratio": 1.92,
+      "gross_margin": 56.0,
+      "ebitda_margin": 33.0,
+      "revenue_growth_1yr": 17.0,
+      "revenue_growth_fwd": 10.0
+    },
+    "MRVL": {
+      "ev_revenue": 11.9,
+      "ev_ebitda": 40.0,
+      "p_e": null,
+      "ev_fcf": 53.3,
+      "peg_ratio": null,
+      "gross_margin": 53.0,
+      "ebitda_margin": 30.0,
+      "revenue_growth_1yr": 46.0,
+      "revenue_growth_fwd": 35.0
+    },
+    "ASML": {
+      "ev_revenue": 8.5,
+      "ev_ebitda": 25.5,
+      "p_e": 37.8,
+      "ev_fcf": 56.0,
+      "peg_ratio": 3.15,
+      "gross_margin": 51.0,
+      "ebitda_margin": 33.0,
+      "revenue_growth_1yr": 15.0,
+      "revenue_growth_fwd": 12.0
+    }
+  },
+  "peer_statistics": {
+    "ev_revenue": {
+      "mean": 9.5,
+      "median": 8.5,
+      "std_dev": 4.04,
+      "min": 4.3,
+      "max": 15.9,
+      "p25": 4.3,
+      "p75": 11.9,
+      "count": 5
+    },
+    "ev_ebitda": {
+      "mean": 27.24,
+      "median": 26.5,
+      "std_dev": 8.69,
+      "min": 13.2,
+      "max": 40.0,
+      "p25": 13.2,
+      "p75": 31.0,
+      "count": 5
+    },
+    "p_e": {
+      "mean": 77.55,
+      "median": 76.4,
+      "std_dev": 50.16,
+      "min": 19.2,
+      "max": 138.2,
+      "p25": 19.2,
+      "p75": 138.2,
+      "count": 4
+    },
+    "ev_fcf": {
+      "mean": 44.92,
+      "median": 53.3,
+      "std_dev": 13.51,
+      "min": 21.8,
+      "max": 56.2,
+      "p25": 21.8,
+      "p75": 56.0,
+      "count": 5
+    }
+  },
+  "nvda_z_scores": {
+    "ev_revenue": 0.17,
+    "ev_ebitda": -1.19,
+    "p_e": -1.19,
+    "ev_fcf": -1.64
+  },
+  "implied_valuation_by_metric": {
+    "ev_revenue": {
+      "p25_price": 40.33,
+      "median_price": 77.66,
+      "p75_price": 107.87
+    },
+    "ev_ebitda": {
+      "p25_price": 72.95,
+      "median_price": 144.32,
+      "p75_price": 168.46
+    },
+    "ev_fcf": {
+      "p25_price": 88.85,
+      "median_price": 214.17,
+      "p75_price": 224.92
+    }
+  },
+  "outlier_flags": [],
+  "composite_ranking": [
+    [
+      "NVDA*",
+      -120.09
+    ],
+    [
+      "MRVL",
+      -88.55
+    ],
+    [
+      "AMD",
+      -59.25
+    ],
+    [
+      "AVGO",
+      -57.29
+    ],
+    [
+      "QCOM",
+      -45.47
+    ],
+    [
+      "ASML",
+      -44.49
+    ]
+  ],
+  "primary_comp_tickers": [
+    "AMD",
+    "AVGO",
+    "QCOM",
+    "MRVL",
+    "ASML"
+  ],
+  "assumptions": {
+    "nvda_rev_ttm": 215938,
+    "nvda_ebitda_ttm": 130387,
+    "nvda_fcf_ttm": 96676,
+    "nvda_net_debt": -51600,
+    "nvda_ev_blinded_estimate": 2200000
+  }
+}

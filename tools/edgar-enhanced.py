@@ -24,8 +24,11 @@ import time
 import urllib.request
 import urllib.error
 import urllib.parse
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from typing import Dict, List, Optional, Tuple
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _as_of  # noqa: E402
 
 # ============================================================
 # CONFIGURATION
@@ -86,7 +89,8 @@ def _resolve_cik(ticker: str) -> Optional[str]:
 # FILING RETRIEVAL
 # ============================================================
 
-def get_filing(ticker: str, filing_type: str, count: int = 1) -> Dict:
+def get_filing(ticker: str, filing_type: str, count: int = 1,
+               as_of: Optional[date] = None) -> Dict:
     """
     Get SEC filing metadata and URLs for a specific filing type.
 
@@ -96,6 +100,7 @@ def get_filing(ticker: str, filing_type: str, count: int = 1) -> Dict:
         ticker: Stock ticker
         filing_type: SEC form type (10-K, 10-Q, DEF-14A, etc.)
         count: Number of recent filings to return
+        as_of: If set, return only filings with filingDate <= as_of.
 
     Returns:
         Dict with filing metadata, URLs, and retrieval instructions
@@ -125,10 +130,15 @@ def get_filing(ticker: str, filing_type: str, count: int = 1) -> Dict:
     primary_docs = recent.get("primaryDocument", [])
     descriptions = recent.get("primaryDocDescription", [])
 
+    as_of_str = as_of.isoformat() if as_of else None
+
     results = []
     for i, form in enumerate(forms):
         form_normalized = form.upper().replace("-", "").replace("/A", "")
         target_normalized = filing_type.upper().replace("-", "")
+
+        if as_of_str and dates[i] > as_of_str:
+            continue  # lookahead guard
 
         if form_normalized == target_normalized or form.upper() == filing_type.upper():
             accession_clean = accessions[i].replace("-", "")
@@ -181,7 +191,8 @@ def get_filing(ticker: str, filing_type: str, count: int = 1) -> Dict:
 # INSIDER TRADING (FORM 4)
 # ============================================================
 
-def get_insider_trades(ticker: str, months: int = 12) -> Dict:
+def get_insider_trades(ticker: str, months: int = 12,
+                       as_of: Optional[date] = None) -> Dict:
     """
     Get insider trading data from SEC Form 4 filings.
 
@@ -191,6 +202,8 @@ def get_insider_trades(ticker: str, months: int = 12) -> Dict:
     Args:
         ticker: Stock ticker
         months: Number of months of history to retrieve
+        as_of: If set, the window ends on as_of (not today) and Form 4s
+               filed after as_of are excluded.
 
     Returns:
         Dict with insider trading summary and individual transactions
@@ -211,22 +224,30 @@ def get_insider_trades(ticker: str, months: int = 12) -> Dict:
     accessions = recent.get("accessionNumber", [])
     primary_docs = recent.get("primaryDocument", [])
 
-    cutoff_date = (datetime.now() - timedelta(days=months * 30)).strftime("%Y-%m-%d")
+    window_end = as_of if as_of else datetime.now().date()
+    cutoff_date = (
+        datetime.combine(window_end, datetime.min.time())
+        - timedelta(days=months * 30)
+    ).strftime("%Y-%m-%d")
+    window_end_str = window_end.isoformat()
 
     form4_filings = []
     for i, form in enumerate(forms):
-        if form in ("4", "4/A") and dates[i] >= cutoff_date:
-            accession_clean = accessions[i].replace("-", "")
-            filing_url = (
-                f"https://www.sec.gov/Archives/edgar/data/"
-                f"{cik.lstrip('0')}/{accession_clean}/{primary_docs[i]}"
-            )
-            form4_filings.append({
-                "form": form,
-                "filing_date": dates[i],
-                "accession_number": accessions[i],
-                "filing_url": filing_url,
-            })
+        if form not in ("4", "4/A"):
+            continue
+        if dates[i] < cutoff_date or dates[i] > window_end_str:
+            continue
+        accession_clean = accessions[i].replace("-", "")
+        filing_url = (
+            f"https://www.sec.gov/Archives/edgar/data/"
+            f"{cik.lstrip('0')}/{accession_clean}/{primary_docs[i]}"
+        )
+        form4_filings.append({
+            "form": form,
+            "filing_date": dates[i],
+            "accession_number": accessions[i],
+            "filing_url": filing_url,
+        })
 
     # Also provide OpenInsider as an alternative
     openinsider_url = f"http://openinsider.com/screener?s={ticker.upper()}&o=&pl=&ph=&ll=&lh=&fd=0&fdr=&td=0&tdr=&feession=&cession=&sidTids498=on&sidTidsOther=on&ession=&vession=&pession=&aession=&dession=&tession=&hasaliases=0&Order=5&Sort=0&maxresults=50&start=0"
@@ -257,7 +278,8 @@ def get_insider_trades(ticker: str, months: int = 12) -> Dict:
 # INSTITUTIONAL HOLDINGS (13F)
 # ============================================================
 
-def get_institutional_holdings(ticker: str) -> Dict:
+def get_institutional_holdings(ticker: str,
+                               as_of: Optional[date] = None) -> Dict:
     """
     Get institutional ownership data from SEC 13F filings.
 
@@ -268,6 +290,9 @@ def get_institutional_holdings(ticker: str) -> Dict:
 
     Args:
         ticker: Stock ticker
+        as_of: If set, the EFTS search window ends on as_of. Third-party
+               aggregators (WhaleWisdom, Finviz, Yahoo) are live snapshots
+               and are flagged as unsafe for historical mode.
 
     Returns:
         Dict with institutional ownership guidance and data sources
@@ -276,13 +301,23 @@ def get_institutional_holdings(ticker: str) -> Dict:
     if not cik:
         return {"error": f"Could not resolve ticker {ticker} to CIK"}
 
-    # SEC provides bulk 13F datasets
-    # Individual 13F lookups require searching by institution, not by stock
-    # So we provide guidance on the best free sources
+    window_end = as_of if as_of else datetime.now().date()
+    window_start = window_end - timedelta(days=120)
+    window_end_str = window_end.strftime("%Y-%m-%d")
+    window_start_str = window_start.strftime("%Y-%m-%d")
+    historical = _as_of.is_historical(as_of)
+
+    aggregator_note = (
+        "WARNING: live snapshot — reflects holdings as of today, not as_of. "
+        "Use SEC bulk 13F or EFTS search for point-in-time data."
+        if historical else
+        "Snapshot as of today."
+    )
 
     return {
         "ticker": ticker.upper(),
         "cik": cik,
+        "as_of": as_of.isoformat() if as_of else None,
         "data_sources": {
             "sec_bulk_13f": {
                 "url": "https://www.sec.gov/data-research/sec-markets-data/13f-securities-data-sets",
@@ -290,30 +325,44 @@ def get_institutional_holdings(ticker: str) -> Dict:
                                "These contain ALL 13F-reported holdings across ALL institutions.",
                 "format": "Tab-separated files, downloadable by quarter",
                 "delay": "Available ~2 months after quarter end",
+                "as_of_safe": True,
             },
             "sec_efts_search": {
-                "url": f"{EFTS_URL}/search-index?q=%22{ticker}%22&dateRange=custom&startdt={(datetime.now() - timedelta(days=120)).strftime('%Y-%m-%d')}&enddt={datetime.now().strftime('%Y-%m-%d')}&forms=13F-HR",
+                "url": f"{EFTS_URL}/search-index?q=%22{ticker}%22&dateRange=custom&startdt={window_start_str}&enddt={window_end_str}&forms=13F-HR",
                 "description": "Search for 13F-HR filings that mention this ticker",
+                "as_of_safe": True,
             },
             "whalewisdom_free": {
                 "url": f"https://whalewisdom.com/stock/{ticker.lower()}",
                 "description": "WhaleWisdom provides free 13F data for the last 9 quarters. "
                                "Shows top holders, position changes, and ownership concentration.",
+                "as_of_safe": False,
+                "note": aggregator_note,
             },
             "finviz": {
                 "url": f"https://finviz.com/quote.ashx?t={ticker.upper()}&ty=c&ta=1&p=d",
                 "description": "Finviz shows institutional ownership percentage and insider ownership.",
+                "as_of_safe": False,
+                "note": aggregator_note,
             },
             "yahoo_finance": {
                 "url": f"https://finance.yahoo.com/quote/{ticker.upper()}/holders/",
                 "description": "Yahoo Finance holders tab shows top institutional and mutual fund holders.",
+                "as_of_safe": False,
+                "note": aggregator_note,
             },
         },
         "retrieval_instructions": (
-            f"Institutional ownership data for {ticker} is available from multiple sources.\n"
-            f"Best approach: Use WebFetch on Yahoo Finance holders page for a quick summary,\n"
-            f"or WhaleWisdom for more detailed 13F history.\n"
-            f"For the most authoritative data, search SEC EDGAR for 13F-HR filings."
+            (
+                f"Historical mode (as_of={window_end_str}): use ONLY sec_bulk_13f "
+                "or sec_efts_search. The third-party aggregators are live snapshots "
+                "and will leak future holdings into a historical backtest.\n"
+            ) if historical else (
+                f"Institutional ownership data for {ticker} is available from multiple sources.\n"
+                f"Best approach: Use WebFetch on Yahoo Finance holders page for a quick summary,\n"
+                f"or WhaleWisdom for more detailed 13F history.\n"
+                f"For the most authoritative data, search SEC EDGAR for 13F-HR filings."
+            )
         )
     }
 
@@ -322,7 +371,8 @@ def get_institutional_holdings(ticker: str) -> Dict:
 # STRUCTURED FINANCIALS (XBRL)
 # ============================================================
 
-def get_financials(ticker: str, metrics: Optional[List[str]] = None) -> Dict:
+def get_financials(ticker: str, metrics: Optional[List[str]] = None,
+                   as_of: Optional[date] = None) -> Dict:
     """
     Get structured financial data from SEC XBRL API.
 
@@ -332,6 +382,9 @@ def get_financials(ticker: str, metrics: Optional[List[str]] = None) -> Dict:
     Args:
         ticker: Stock ticker
         metrics: Optional list of specific XBRL concepts to retrieve
+        as_of: If set, only include observations whose `filed` date is
+               on or before as_of (vintage filter — eliminates retroactive
+               restatements from being visible in a historical run).
 
     Returns:
         Dict with structured financial data
@@ -385,6 +438,8 @@ def get_financials(ticker: str, metrics: Optional[List[str]] = None) -> Dict:
     facts = data.get("facts", {})
     us_gaap = facts.get("us-gaap", {})
 
+    as_of_str = as_of.isoformat() if as_of else None
+
     for metric_name, taxonomy in metrics:
         if metric_name in us_gaap:
             concept = us_gaap[metric_name]
@@ -398,6 +453,14 @@ def get_financials(ticker: str, metrics: Optional[List[str]] = None) -> Dict:
                     if v.get("form") in ("10-K", "20-F")
                     and v.get("fp") in ("FY",)
                 ]
+
+                # Vintage filter: drop observations filed after as_of so that
+                # retroactive restatements can't leak into a historical run.
+                if as_of_str:
+                    annual_values = [
+                        v for v in annual_values
+                        if v.get("filed") and v.get("filed") <= as_of_str
+                    ]
 
                 if annual_values:
                     # Sort by date, take most recent
@@ -422,6 +485,7 @@ def get_financials(ticker: str, metrics: Optional[List[str]] = None) -> Dict:
         "company": company_name,
         "cik": cik,
         "source": "SEC EDGAR XBRL API",
+        "as_of": as_of_str,
         "metrics_found": len(results),
         "metrics_requested": len(metrics),
         "financials": results,
@@ -433,7 +497,8 @@ def get_financials(ticker: str, metrics: Optional[List[str]] = None) -> Dict:
 # ============================================================
 
 def search_filings(query: str, form_type: str = "", ticker: str = "",
-                   date_start: str = "", date_end: str = "") -> Dict:
+                   date_start: str = "", date_end: str = "",
+                   as_of: Optional[date] = None) -> Dict:
     """
     Full-text search across all SEC filings.
 
@@ -446,10 +511,17 @@ def search_filings(query: str, form_type: str = "", ticker: str = "",
         ticker: Filter by company ticker
         date_start: Start date (YYYY-MM-DD)
         date_end: End date (YYYY-MM-DD)
+        as_of: If set and date_end is unset, caps the search window at as_of.
+               Post-fetch result filtering also drops any hit with
+               file_date > as_of.
 
     Returns:
         Dict with search results
     """
+    as_of_str = as_of.isoformat() if as_of else None
+    if as_of_str and not date_end:
+        date_end = as_of_str
+
     params = {
         "q": query,
         "dateRange": "custom" if (date_start or date_end) else "",
@@ -487,9 +559,16 @@ def search_filings(query: str, form_type: str = "", ticker: str = "",
     total = hits.get("total", {}).get("value", 0)
     results = hits.get("hits", [])
 
+    if as_of_str:
+        results = [
+            r for r in results
+            if r.get("_source", {}).get("file_date", "") <= as_of_str
+        ]
+
     return {
         "query": query,
         "form_type": form_type or "all",
+        "as_of": as_of_str,
         "total_results": total,
         "results": [
             {
@@ -509,7 +588,8 @@ def search_filings(query: str, form_type: str = "", ticker: str = "",
 # COMPANY OVERVIEW
 # ============================================================
 
-def get_company_overview(ticker: str) -> Dict:
+def get_company_overview(ticker: str,
+                         as_of: Optional[date] = None) -> Dict:
     """
     Get comprehensive company information from SEC.
 
@@ -517,6 +597,8 @@ def get_company_overview(ticker: str) -> Dict:
 
     Args:
         ticker: Stock ticker
+        as_of: If set, the filing summary and counts include only filings
+               with filingDate <= as_of.
 
     Returns:
         Dict with company overview
@@ -535,17 +617,24 @@ def get_company_overview(ticker: str) -> Dict:
     forms = recent.get("form", [])
     dates = recent.get("filingDate", [])
 
+    as_of_str = as_of.isoformat() if as_of else None
+    if as_of_str:
+        pairs = [(f, d) for f, d in zip(forms, dates) if d <= as_of_str]
+        forms = [f for f, _ in pairs]
+        dates = [d for _, d in pairs]
+
     # Categorize recent filings
     filing_summary = {}
-    for form, date in zip(forms, dates):
+    for form, d in zip(forms, dates):
         if form not in filing_summary:
-            filing_summary[form] = {"count": 0, "latest": date}
+            filing_summary[form] = {"count": 0, "latest": d}
         filing_summary[form]["count"] += 1
 
     return {
         "ticker": ticker.upper(),
         "company": data.get("name", "Unknown"),
         "cik": cik,
+        "as_of": as_of_str,
         "sic": data.get("sic", ""),
         "sic_description": data.get("sicDescription", ""),
         "state": data.get("stateOfIncorporation", ""),
@@ -594,19 +683,23 @@ Examples:
     filing_parser.add_argument("ticker", help="Stock ticker")
     filing_parser.add_argument("form_type", help="Filing type (10-K, 10-Q, DEF-14A, 8-K, etc.)")
     filing_parser.add_argument("--count", type=int, default=1, help="Number of filings (default: 1)")
+    _as_of.add_argument(filing_parser)
 
     # Insider
     insider_parser = subparsers.add_parser("insider", help="Insider trading data")
     insider_parser.add_argument("ticker", help="Stock ticker")
     insider_parser.add_argument("--months", type=int, default=12, help="Months of history (default: 12)")
+    _as_of.add_argument(insider_parser)
 
     # Institutional
     inst_parser = subparsers.add_parser("institutional", help="Institutional holdings guidance")
     inst_parser.add_argument("ticker", help="Stock ticker")
+    _as_of.add_argument(inst_parser)
 
     # Financials
     fin_parser = subparsers.add_parser("financials", help="XBRL structured financials")
     fin_parser.add_argument("ticker", help="Stock ticker")
+    _as_of.add_argument(fin_parser)
 
     # Search
     search_parser = subparsers.add_parser("search", help="Full-text filing search")
@@ -615,10 +708,12 @@ Examples:
     search_parser.add_argument("--ticker", default="", help="Company ticker filter")
     search_parser.add_argument("--start", default="", help="Start date (YYYY-MM-DD)")
     search_parser.add_argument("--end", default="", help="End date (YYYY-MM-DD)")
+    _as_of.add_argument(search_parser)
 
     # Company
     company_parser = subparsers.add_parser("company", help="Company overview")
     company_parser.add_argument("ticker", help="Stock ticker")
+    _as_of.add_argument(company_parser)
 
     args = parser.parse_args()
 
@@ -626,18 +721,20 @@ Examples:
         parser.print_help()
         sys.exit(1)
 
+    as_of = _as_of.resolve(getattr(args, "as_of", None))
+
     if args.command == "filing":
-        result = get_filing(args.ticker, args.form_type, args.count)
+        result = get_filing(args.ticker, args.form_type, args.count, as_of=as_of)
     elif args.command == "insider":
-        result = get_insider_trades(args.ticker, args.months)
+        result = get_insider_trades(args.ticker, args.months, as_of=as_of)
     elif args.command == "institutional":
-        result = get_institutional_holdings(args.ticker)
+        result = get_institutional_holdings(args.ticker, as_of=as_of)
     elif args.command == "financials":
-        result = get_financials(args.ticker)
+        result = get_financials(args.ticker, as_of=as_of)
     elif args.command == "search":
-        result = search_filings(args.query, args.form, args.ticker, args.start, args.end)
+        result = search_filings(args.query, args.form, args.ticker, args.start, args.end, as_of=as_of)
     elif args.command == "company":
-        result = get_company_overview(args.ticker)
+        result = get_company_overview(args.ticker, as_of=as_of)
     else:
         parser.print_help()
         sys.exit(1)

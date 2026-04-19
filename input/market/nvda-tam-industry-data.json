@@ -1,0 +1,142 @@
+{
+  "ticker": "NVDA",
+  "source_tier": "5-7",
+  "retrieval_date": "2026-03-19",
+  "note": "Multiple sources with varying methodologies — treat as ranges, not point estimates",
+  "ai_gpu_market_tam": {
+    "source_1": {
+      "source": "Verified Market Research",
+      "url": "https://www.verifiedmarketresearch.com/product/ai-gpu-market/",
+      "2026_estimate_usd_bn": 120.4,
+      "methodology": "Broad AI GPU market"
+    },
+    "source_2": {
+      "source": "AI infrastructure TAM (SparkCo)",
+      "url": "https://sparkco.ai/blog/ai-infrastructure",
+      "2025_estimate_usd_bn": 160,
+      "2027_estimate_usd_bn": 280,
+      "implied_cagr_pct": 25,
+      "methodology": "Broader AI infrastructure (includes networking, storage)"
+    },
+    "source_3": {
+      "source": "Precedence Research — AI Data Center GPU",
+      "url": "https://www.precedenceresearch.com/ai-data-center-gpu-market",
+      "2026_estimate_usd_bn": 12.83,
+      "2035_estimate_usd_bn": 77.15,
+      "cagr_pct": 22.06,
+      "note": "Narrower definition: data center GPU only, excluding networking"
+    },
+    "source_4": {
+      "source": "Fortune Business Insights — AI Accelerator Market",
+      "url": "https://www.fortunebusinessinsights.com/ai-accelerator-market-113873",
+      "methodology": "AI accelerators (GPU + ASIC + FPGA)"
+    },
+    "nvidia_implied_tam": {
+      "source": "Jensen Huang GTC 2026 keynote",
+      "date": "2026-03-16",
+      "statement": "At least $1 trillion in revenue opportunity from 2025 through 2027 (Blackwell + Rubin combined orders)",
+      "annual_equivalent_usd_bn": 333,
+      "note": "This is order volume, not market size; includes NVIDIA's full platform (hardware + networking + software)"
+    },
+    "nvidia_previous_tar": {
+      "statement": "$500 billion Blackwell and Rubin opportunity through 2026",
+      "now_exceeded_per": "Q4 FY2026 earnings call — Kress said sequential growth throughout calendar 2026 exceeds $500B figure"
+    }
+  },
+  "semiconductor_industry_outlook_2026": {
+    "source": "Deloitte, PwC, KPMG, SemiWiki (Tier 5-6)",
+    "global_semiconductor_market_2026_usd_bn": 975,
+    "growth_2026_pct": 26,
+    "growth_2025_pct": 22,
+    "ai_subsegment_growth_premium_note": "AI semiconductor growing materially faster than overall semiconductor market",
+    "drivers": [
+      "AI infrastructure buildout",
+      "HBM memory supercycle",
+      "Advanced packaging (CoWoS) demand",
+      "Sovereign AI national programs"
+    ],
+    "risks": [
+      "AI boom or crash",
+      "China property and debt problems",
+      "Tariffs and trade restrictions",
+      "Supply chain normalization"
+    ]
+  },
+  "hyperscaler_capex_2026": {
+    "source": "CreditSights, CNBC, Introl Blog (Tier 6-7)",
+    "amazon_aws_usd_bn": 200,
+    "alphabet_google_usd_bn": 185,
+    "microsoft_usd_bn": 140,
+    "meta_usd_bn": 135,
+    "total_big4_usd_bn": 660,
+    "ai_percentage": 75,
+    "ai_specific_spend_usd_bn": 495,
+    "yoy_growth_pct": 36,
+    "nvidia_capture_rate_pct": 90,
+    "nvidia_implied_hyperscaler_revenue_usd_bn": 180
+  },
+  "inference_vs_training_split": {
+    "2023": {"inference_pct": 33, "training_pct": 67},
+    "2026_projected": {"inference_pct": 66, "training_pct": 34},
+    "source": "Deloitte projection",
+    "nvidia_commentary": "Jensen Huang GTC 2026: 'The inference inflection has arrived'"
+  },
+  "application_demand_decomposition": {
+    "note": "Application-level breakdown estimated from multiple Tier 6-8 sources [ESTIMATED]",
+    "applications": {
+      "llm_training": {
+        "adoption_stage": "Early majority",
+        "growth_model": "Exponential (model scale doubling ~2x/year)",
+        "compute_intensity": "Very High",
+        "nvidia_share": ">95%"
+      },
+      "llm_inference": {
+        "adoption_stage": "Growth",
+        "growth_model": "Exponential (Jevons paradox driving volume)",
+        "compute_intensity": "High",
+        "nvidia_share": "60-75%",
+        "trend": "Fastest growing workload by volume"
+      },
+      "agentic_ai": {
+        "adoption_stage": "Early adopter",
+        "growth_model": "Nascent but accelerating",
+        "compute_intensity": "High (multi-step reasoning loops)",
+        "nvidia_share": "[DATA GAP]",
+        "jensen_commentary": "'The ChatGPT moment of agentic AI has arrived' (Q4 FY2026 call)"
+      },
+      "sovereign_ai": {
+        "adoption_stage": "Early adopter",
+        "growth_model": "Policy-driven (GDP-correlated)",
+        "compute_intensity": "High",
+        "nvidia_share": "[ESTIMATED] Very high — CUDA dominance in national programs",
+        "note": "Every country building national AI infrastructure; NVIDIA positioning as key provider"
+      },
+      "physical_ai_robotics": {
+        "adoption_stage": "Early",
+        "growth_model": "Multi-year buildout",
+        "compute_intensity": "Medium (training) + Edge (inference)",
+        "partners": "BYD, Hyundai, ABB, Universal Robots, KUKA, Uber",
+        "timeline": "Significant revenue likely FY2028+"
+      },
+      "enterprise_ai": {
+        "adoption_stage": "Early majority",
+        "growth_model": "Steady state",
+        "compute_intensity": "Medium",
+        "nvidia_share": "~70%"
+      }
+    }
+  },
+  "technology_adoption_analogues": {
+    "cloud_computing": {
+      "description": "Public cloud infrastructure buildout 2010-2020",
+      "early_capex_boom": "Amazon AWS founded 2006; hyperscaler capex exceeded $100B total by ~2015",
+      "cagr": "~25-30% revenue CAGR for cloud infra market over 10 years",
+      "applicability": "AI infrastructure spending resembles early cloud compute buildout; AI capex cycle may be 3-5x faster in scale"
+    },
+    "mobile_internet": {
+      "description": "iPhone launch 2007 → global smartphone penetration",
+      "lesson": "Even with early demand visibility, supply constraints (TSMC, ASML) gated adoption curve",
+      "applicability": "NVIDIA's CoWoS packaging constraints parallel ASML EUV availability constraints in mobile era"
+    }
+  }
+}

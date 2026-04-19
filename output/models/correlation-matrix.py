@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
-"""Correlation Matrix Calculator for: META,GOOGL,SNAP,PINS"""
+"""Correlation Matrix Calculator for: NVDA,QQQ,SMH,TLT,SPY"""
 import json
 import urllib.request
 import time
 
-tickers = ["META", "GOOGL", "SNAP", "PINS"]
+tickers = ["NVDA", "QQQ", "SMH", "TLT", "SPY"]
 period = "3y"
 
 def fetch_prices(ticker, days=756):

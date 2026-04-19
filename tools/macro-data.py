@@ -20,8 +20,11 @@ import sys
 import urllib.request
 import urllib.error
 import urllib.parse
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from typing import Dict, List, Optional
+
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import _as_of  # noqa: E402
 
 # ============================================================
 # CONFIGURATION
@@ -99,7 +102,8 @@ FRED_SERIES = {
 
 
 def fetch_fred_series(series_ids: List[str], api_key: str = "",
-                      observation_start: str = "", limit: int = 60) -> Dict:
+                      observation_start: str = "", limit: int = 60,
+                      as_of: Optional[date] = None) -> Dict:
     """
     Fetch data series from FRED (Federal Reserve Economic Data).
 
@@ -111,15 +115,27 @@ def fetch_fred_series(series_ids: List[str], api_key: str = "",
         api_key: FRED API key (or set FRED_API_KEY env var)
         observation_start: Start date (YYYY-MM-DD), defaults to 5 years ago
         limit: Max observations per series
+        as_of: If set, applies two filters:
+               (1) observation_end = as_of — drop observations for periods
+                   after as_of
+               (2) realtime_start = realtime_end = as_of — return the data
+                   vintage that was visible on as_of, not current revisions.
+               This is the FRED-native lookahead guard.
 
     Returns:
         Dict with series data
     """
     key = api_key or FRED_API_KEY
+    as_of_str = as_of.isoformat() if as_of else None
 
     if not key:
-        # Return guidance on how to use FRED without API key
+        # Return guidance on how to use FRED without API key.
+        # CSV endpoint supports `cosd=` (observation start) and `coed=`
+        # (observation end) but NOT vintage / realtime params — so the
+        # no-key path cannot produce true point-in-time data.
+        csv_qs = f"&coed={as_of_str}" if as_of_str else ""
         return {
+            "as_of": as_of_str,
             "error": "No FRED API key provided",
             "instructions": {
                 "register": "Get a free API key at https://fred.stlouisfed.org/docs/api/api_key.html",
@@ -130,16 +146,37 @@ def fetch_fred_series(series_ids: List[str], api_key: str = "",
                     for series_id in series_ids
                 },
                 "csv_download": {
-                    series_id: f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}"
+                    series_id: f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}{csv_qs}"
                     for series_id in series_ids
                 },
             },
-            "note": "CSV download URLs work without an API key. "
-                    "Use WebFetch to retrieve the CSV data directly."
+            "note": (
+                "CSV download URLs work without an API key. "
+                "Use WebFetch to retrieve the CSV data directly."
+                + (
+                    f" WARNING: CSV with coed={as_of_str} filters by observation "
+                    "date but NOT vintage; values shown reflect CURRENT revisions, "
+                    "not the data as it was known on as_of. For vintage-correct "
+                    "data, use an API key (realtime_end is API-only)."
+                    if as_of_str else ""
+                )
+            )
         }
 
     if not observation_start:
-        observation_start = (datetime.now() - timedelta(days=5 * 365)).strftime("%Y-%m-%d")
+        anchor = as_of if as_of else datetime.now().date()
+        observation_start = (
+            datetime.combine(anchor, datetime.min.time()) - timedelta(days=5 * 365)
+        ).strftime("%Y-%m-%d")
+
+    # FRED vintage params — only add when as_of is set
+    vintage_qs = ""
+    if as_of_str:
+        vintage_qs = (
+            f"&observation_end={as_of_str}"
+            f"&realtime_start={as_of_str}"
+            f"&realtime_end={as_of_str}"
+        )
 
     results = {}
 
@@ -153,6 +190,7 @@ def fetch_fred_series(series_ids: List[str], api_key: str = "",
             f"&observation_start={observation_start}"
             f"&sort_order=desc"
             f"&limit={limit}"
+            f"{vintage_qs}"
         )
 
         try:
@@ -162,13 +200,16 @@ def fetch_fred_series(series_ids: List[str], api_key: str = "",
 
             observations = data.get("observations", [])
 
-            # Get series info
+            # Get series info. The series-metadata endpoint accepts
+            # realtime_start/realtime_end but NOT observation_end.
             info_url = (
                 f"https://api.stlouisfed.org/fred/series"
                 f"?series_id={series_id}"
                 f"&api_key={key}"
                 f"&file_type=json"
             )
+            if as_of_str:
+                info_url += f"&realtime_start={as_of_str}&realtime_end={as_of_str}"
             req2 = urllib.request.Request(info_url, headers=HEADERS)
             with urllib.request.urlopen(req2, timeout=15) as resp2:
                 info_data = json.loads(resp2.read().decode())
@@ -201,6 +242,8 @@ def fetch_fred_series(series_ids: List[str], api_key: str = "",
 
     return {
         "source": "FRED (Federal Reserve Economic Data)",
+        "as_of": as_of_str,
+        "vintage_mode": bool(as_of_str),
         "series_count": len(results),
         "data": results,
     }
@@ -210,7 +253,8 @@ def fetch_fred_series(series_ids: List[str], api_key: str = "",
 # MACRO SNAPSHOT
 # ============================================================
 
-def macro_snapshot(api_key: str = "") -> Dict:
+def macro_snapshot(api_key: str = "",
+                   as_of: Optional[date] = None) -> Dict:
     """
     Get a comprehensive macro dashboard for equity research.
 
@@ -219,11 +263,13 @@ def macro_snapshot(api_key: str = "") -> Dict:
 
     Args:
         api_key: FRED API key
+        as_of: If set, return point-in-time vintage data as of this date.
 
     Returns:
         Dict with macro dashboard
     """
     key = api_key or FRED_API_KEY
+    as_of_str = as_of.isoformat() if as_of else None
 
     dashboard_series = [
         # Rates
@@ -241,33 +287,42 @@ def macro_snapshot(api_key: str = "") -> Dict:
     ]
 
     if not key:
-        # Provide CSV download URLs that work without API key
+        csv_qs = f"&coed={as_of_str}" if as_of_str else ""
         return {
-            "note": "No FRED API key set. Providing direct data URLs instead.",
+            "as_of": as_of_str,
+            "note": "No FRED API key set. Providing direct data URLs instead."
+                    + (
+                        f" NOTE: as_of={as_of_str} caps observation date via "
+                        "coed= but the CSV endpoint does not support realtime "
+                        "vintage. Use an API key for point-in-time correctness."
+                        if as_of_str else ""
+                    ),
             "instructions": "Use WebFetch to retrieve CSV data from these URLs:",
             "dashboard": {
                 series_id: {
                     "name": FRED_SERIES.get(series_id, series_id),
                     "url": f"https://fred.stlouisfed.org/series/{series_id}",
-                    "csv": f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}",
+                    "csv": f"https://fred.stlouisfed.org/graph/fredgraph.csv?id={series_id}{csv_qs}",
                 }
                 for series_id in dashboard_series
             },
             "combined_csv": (
                 "https://fred.stlouisfed.org/graph/fredgraph.csv?id="
                 + ",".join(dashboard_series)
+                + csv_qs
             ),
             "set_key": "export FRED_API_KEY='your_key_here' (register at fred.stlouisfed.org)",
         }
 
-    return fetch_fred_series(dashboard_series, key, limit=12)
+    return fetch_fred_series(dashboard_series, key, limit=12, as_of=as_of)
 
 
 # ============================================================
 # RATES SNAPSHOT
 # ============================================================
 
-def rates_snapshot(api_key: str = "") -> Dict:
+def rates_snapshot(api_key: str = "",
+                   as_of: Optional[date] = None) -> Dict:
     """
     Get current interest rate environment.
 
@@ -275,6 +330,7 @@ def rates_snapshot(api_key: str = "") -> Dict:
 
     Args:
         api_key: FRED API key
+        as_of: If set, return point-in-time rate vintage as of this date.
 
     Returns:
         Dict with current rates
@@ -288,14 +344,15 @@ def rates_snapshot(api_key: str = "") -> Dict:
         "T5YIE", "T10YIE",
     ]
 
-    return fetch_fred_series(rate_series, api_key, limit=5)
+    return fetch_fred_series(rate_series, api_key, limit=5, as_of=as_of)
 
 
 # ============================================================
 # INDUSTRY DATA SOURCES
 # ============================================================
 
-def industry_data_sources(sector: str) -> Dict:
+def industry_data_sources(sector: str,
+                          as_of: Optional[date] = None) -> Dict:
     """
     Get industry-specific government data sources.
 
@@ -304,6 +361,9 @@ def industry_data_sources(sector: str) -> Dict:
 
     Args:
         sector: Industry sector (energy, pharma, tech, financial, retail, etc.)
+        as_of: Pure reference output; in historical mode, a warning is added
+               reminding the agent that linked endpoints (EIA, FDA, FCC, etc.)
+               may return live data and must be post-filtered by dataset date.
 
     Returns:
         Dict with data sources, URLs, and retrieval instructions
@@ -520,6 +580,15 @@ def industry_data_sources(sector: str) -> Dict:
         "census_data": "https://data.census.gov/ — Economic Census data",
         "bea_industries": "https://www.bea.gov/data/industries — GDP by industry",
     }
+    if as_of:
+        as_of_str = as_of.isoformat()
+        result["as_of"] = as_of_str
+        result["historical_mode_warning"] = (
+            f"as_of={as_of_str}: these agency endpoints return live data. "
+            f"For every dataset you pull, filter to observations dated on or "
+            f"before {as_of_str}. Do not use aggregate industry snapshots from "
+            f"the agency homepage — they reflect the current state."
+        )
 
     return result
 
@@ -558,19 +627,24 @@ Available FRED series (common ones):
     fred_parser.add_argument("--api-key", default="", help="FRED API key")
     fred_parser.add_argument("--start", default="", help="Start date (YYYY-MM-DD)")
     fred_parser.add_argument("--limit", type=int, default=60, help="Max observations per series")
+    _as_of.add_argument(fred_parser)
 
     # Rates
-    subparsers.add_parser("rates", help="Interest rate snapshot")
+    rates_parser = subparsers.add_parser("rates", help="Interest rate snapshot")
+    _as_of.add_argument(rates_parser)
 
     # Macro snapshot
-    subparsers.add_parser("macro-snapshot", help="Full macro dashboard")
+    macro_parser = subparsers.add_parser("macro-snapshot", help="Full macro dashboard")
+    _as_of.add_argument(macro_parser)
 
     # Industry
     industry_parser = subparsers.add_parser("industry", help="Industry-specific data sources")
     industry_parser.add_argument("sector", help="Industry sector")
+    _as_of.add_argument(industry_parser)
 
-    # List series
-    subparsers.add_parser("list-series", help="List available FRED series")
+    # List series — static reference; as_of accepted but no-op
+    list_parser = subparsers.add_parser("list-series", help="List available FRED series")
+    _as_of.add_argument(list_parser)
 
     args = parser.parse_args()
 
@@ -578,15 +652,17 @@ Available FRED series (common ones):
         parser.print_help()
         sys.exit(1)
 
+    as_of = _as_of.resolve(getattr(args, "as_of", None))
+
     if args.command == "fred":
         series_list = [s.strip() for s in args.series.split(",")]
-        result = fetch_fred_series(series_list, args.api_key, args.start, args.limit)
+        result = fetch_fred_series(series_list, args.api_key, args.start, args.limit, as_of=as_of)
     elif args.command == "rates":
-        result = rates_snapshot()
+        result = rates_snapshot(as_of=as_of)
     elif args.command == "macro-snapshot":
-        result = macro_snapshot()
+        result = macro_snapshot(as_of=as_of)
     elif args.command == "industry":
-        result = industry_data_sources(args.sector)
+        result = industry_data_sources(args.sector, as_of=as_of)
     elif args.command == "list-series":
         result = {
             "available_series": {

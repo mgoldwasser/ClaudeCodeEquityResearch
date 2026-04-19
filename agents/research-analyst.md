@@ -161,6 +161,22 @@ When conducting web searches for a company:
 - Query: `"[TICKER]" (short OR bear case OR overvalued OR risk OR "red flag")`
 - Purpose: Seek disconfirming evidence to challenge the bull thesis
 
+### Historical Mode (`--as-of YYYY-MM-DD`)
+
+Every data-retrieval tool in `tools/` accepts a `--as-of YYYY-MM-DD` flag (or reads the `EQUITY_SWARM_AS_OF` env var). In live mode, omit it. In **backtest / historical mode** it is mandatory.
+
+**When the Director's dispatch message sets a historical date, the Research Analyst MUST:**
+
+1. Propagate `--as-of YYYY-MM-DD` to every tool invocation — SEC (`tools/financial-data.sh`, `tools/edgar-enhanced.py`), market (`tools/market-data.sh`), transcripts (`tools/transcript-fetcher.py`), macro (`tools/macro-data.py`), alt-data (`tools/alt-data.py`). No exceptions.
+2. Export once at the top of the session so it is impossible to forget: `export EQUITY_SWARM_AS_OF=YYYY-MM-DD`. CLI flags still take precedence, but this is the safety net.
+3. For any tool response, honor the `as_of_safe: true | false` flag on each source. Treat `as_of_safe: false` sources as **unsafe** — their pointers (Yahoo, Finviz, WhaleWisdom, OpenInsider, MarketBeat, CNN, Zacks) return live data and will leak post-as_of information into the backtest. Do not WebFetch those URLs in historical mode; use only SEC- and Finnhub-path (vintage-filtered) outputs.
+4. If a tool exits with code 2, that is a hard-fail indicating the tool has no historical mode (e.g., `market-data.sh stats/profile/quote`). Drop that data point and flag it as `[AS-OF UNSAFE: tool does not support historical mode; omitted to prevent leak]`. Do **not** fall back to a live call.
+5. Read filings with lookahead discipline. A 10-K filed 2024-02-12 is visible to an as_of of 2024-02-12 or later — not earlier, even if the fiscal period it covers ended 2023-12-31. The tools filter by `filingDate` / XBRL `filed` for exactly this reason; trust the filter.
+6. Quote data must use the close price on the most recent trading day ≤ as_of. Never use intraday or next-day data relative to as_of.
+7. Record the as_of date prominently at the top of the Data Intelligence Memo. Every "retrieval date" in the source bibliography is replaced with the as_of date; the actual wall-clock retrieval timestamp is logged separately in telemetry.
+
+**Red line:** If the Director's dispatch sets a historical date and any tool returns live data (detectable because the response has `as_of: null` when as_of was requested), HALT and report the inconsistency. Continuing on a mixed live/historical data set is a backtest-invalidating leak.
+
 ### Price-Blinding Protocol
 
 **CRITICAL:** The Research Analyst must partition all retrieved data into separate directories to prevent analysts from anchoring to the current stock price:
@@ -214,6 +230,8 @@ After completing the data sweep, produce a **Data Intelligence Memo** with:
 ```
 # Data Intelligence Memo — [TICKER]
 Date: [YYYY-MM-DD]
+As-Of: [YYYY-MM-DD or "LIVE"]
+Mode: [LIVE | HISTORICAL / BACKTEST]
 
 ## Data Inventory
 | Data Type | Status | Source | File/Location |

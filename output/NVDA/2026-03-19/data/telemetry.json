@@ -1,0 +1,65 @@
+{
+  "ticker": "NVDA",
+  "run_date": "2026-03-19",
+  "run_start": "2026-03-19T00:00:00Z",
+  "phases": {
+    "phase_0_data_gathering": {
+      "start": "2026-03-19T00:00:00Z",
+      "end": "2026-03-19T01:30:00Z",
+      "duration_est_minutes": 90,
+      "status": "complete"
+    }
+  },
+  "agents": {
+    "research_analyst_phase0": {
+      "model": "claude-sonnet-4-6",
+      "status": "complete",
+      "input_tokens": "[EST] 85000",
+      "output_tokens": "[EST] 22000",
+      "total_tokens_est": 107000,
+      "cost_est_usd": "[EST] /bin/bash.255 (input) + /bin/bash.330 (output) = /bin/bash.585"
+    }
+  },
+  "data_retrieval_summary": {
+    "tier1_sources_retrieved": true,
+    "tier2_sources_retrieved": true,
+    "edgar_tool_status": "FAILED - CIK resolution error; mitigated by web sources",
+    "market_data_tool_status": "FAILED - shell compatibility issue; mitigated by web sources",
+    "web_search_calls": 15,
+    "web_fetch_calls": 5
+  },
+  "files_written": {
+    "input_financials": [
+      "nvda-income-statement.json",
+      "nvda-balance-sheet.json"
+    ],
+    "input_transcripts": [
+      "nvda-q4-fy2026-earnings-call.md"
+    ],
+    "input_filings": [
+      "nvda-10k-fy2026-summary.md",
+      "nvda-insider-trading.md"
+    ],
+    "input_market": [
+      "nvda-competitive-landscape.md",
+      "nvda-tam-industry-data.json",
+      "nvda-product-roadmap.md"
+    ],
+    "input_macro": [
+      "nvda-macro-data.json"
+    ],
+    "input_alt_data": [
+      "nvda-institutional-short-interest.md"
+    ],
+    "input_price_data": [
+      "nvda-price-data.json"
+    ],
+    "output_data": [
+      "data-intelligence-memo.md",
+      "data-intelligence-memo-blinded.md"
+    ],
+    "output_pass1": [
+      "data-intelligence-memo.md"
+    ]
+  }
+}
