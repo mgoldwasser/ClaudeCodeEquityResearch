@@ -324,17 +324,30 @@ def mean_variance_optimize(expected_returns: List[float], cov_matrix: List[List[
     """
     try:
         import numpy as np
-        from scipy.optimize import minimize
     except ImportError:
-        return {"error": "numpy and scipy required. Install: pip install numpy scipy"}
+        return {"error": "numpy required. Install: pip install numpy"}
 
+    constraints = constraints or {}
     n = len(expected_returns)
     returns = np.array(expected_returns)
     cov = np.array(cov_matrix)
 
+    def _require_scipy():
+        try:
+            from scipy.optimize import minimize
+            return minimize
+        except ImportError:
+            return None
+
     if method == "equal-weight":
         weights = np.ones(n) / n
+    elif method == "risk-parity":
+        weights = _risk_parity_weights(cov)
     elif method == "min-variance":
+        minimize = _require_scipy()
+        if minimize is None:
+            return {"error": "scipy required for min-variance. Install: pip install scipy"}
+
         def portfolio_variance(w):
             return w @ cov @ w
 
@@ -344,20 +357,37 @@ def mean_variance_optimize(expected_returns: List[float], cov_matrix: List[List[
         result = minimize(portfolio_variance, x0, method="SLSQP", bounds=bounds, constraints=cons)
         weights = result.x
     elif method == "max-sharpe":
-        def neg_sharpe(w):
-            port_return = w @ returns
-            port_vol = np.sqrt(w @ cov @ w)
-            if port_vol < 1e-10:
-                return 1e10
-            return -(port_return - risk_free_rate) / port_vol
+        minimize = _require_scipy()
+        if minimize is None:
+            # Numpy-only analytical max-Sharpe (no-short, no-cap).
+            # w* proportional to Sigma^-1 (mu - rf), then clip to >=0 and
+            # renormalize. Caller must apply its own cap/renormalization
+            # afterward if bounds are required.
+            try:
+                cov_inv = np.linalg.inv(cov)
+            except np.linalg.LinAlgError:
+                return {"error": "covariance matrix not invertible"}
+            excess = returns - risk_free_rate
+            raw = cov_inv @ excess
+            raw = np.maximum(raw, 0.0)
+            s = raw.sum()
+            if s <= 0:
+                weights = np.ones(n) / n
+            else:
+                weights = raw / s
+        else:
+            def neg_sharpe(w):
+                port_return = w @ returns
+                port_vol = np.sqrt(w @ cov @ w)
+                if port_vol < 1e-10:
+                    return 1e10
+                return -(port_return - risk_free_rate) / port_vol
 
-        cons = [{"type": "eq", "fun": lambda w: np.sum(w) - 1.0}]
-        bounds = [(constraints.get("min_weight", 0.0), constraints.get("max_weight", 1.0)) for _ in range(n)]
-        x0 = np.ones(n) / n
-        result = minimize(neg_sharpe, x0, method="SLSQP", bounds=bounds, constraints=cons)
-        weights = result.x
-    elif method == "risk-parity":
-        weights = _risk_parity_weights(cov)
+            cons = [{"type": "eq", "fun": lambda w: np.sum(w) - 1.0}]
+            bounds = [(constraints.get("min_weight", 0.0), constraints.get("max_weight", 1.0)) for _ in range(n)]
+            x0 = np.ones(n) / n
+            result = minimize(neg_sharpe, x0, method="SLSQP", bounds=bounds, constraints=cons)
+            weights = result.x
     else:
         return {"error": f"Unknown method: {method}. Use max-sharpe, min-variance, risk-parity, equal-weight."}
 
@@ -393,26 +423,175 @@ def mean_variance_optimize(expected_returns: List[float], cov_matrix: List[List[
 
 
 def _risk_parity_weights(cov_matrix) -> 'np.ndarray':
-    """Equal risk contribution portfolio weights."""
+    """Equal risk contribution portfolio weights.
+
+    Uses scipy SLSQP when available; falls back to a numpy-only fixed-point
+    iteration (scale by sqrt(target_rc / rc), renormalize) when scipy is
+    not installed. The fixed-point scheme converges monotonically for
+    positive-definite covariance matrices in practice.
+    """
     import numpy as np
-    from scipy.optimize import minimize
 
     n = cov_matrix.shape[0]
 
-    def risk_parity_objective(w):
-        port_vol = np.sqrt(w @ cov_matrix @ w)
-        if port_vol < 1e-10:
-            return 1e10
-        mcr = (cov_matrix @ w) / port_vol
-        rc = w * mcr
-        target_rc = port_vol / n
-        return np.sum((rc - target_rc) ** 2)
+    try:
+        from scipy.optimize import minimize
 
-    cons = [{"type": "eq", "fun": lambda w: np.sum(w) - 1.0}]
-    bounds = [(0.01, 1.0) for _ in range(n)]
-    x0 = np.ones(n) / n
-    result = minimize(risk_parity_objective, x0, method="SLSQP", bounds=bounds, constraints=cons)
-    return result.x
+        def risk_parity_objective(w):
+            port_vol = np.sqrt(w @ cov_matrix @ w)
+            if port_vol < 1e-10:
+                return 1e10
+            mcr = (cov_matrix @ w) / port_vol
+            rc = w * mcr
+            target_rc = port_vol / n
+            return np.sum((rc - target_rc) ** 2)
+
+        cons = [{"type": "eq", "fun": lambda w: np.sum(w) - 1.0}]
+        bounds = [(0.01, 1.0) for _ in range(n)]
+        x0 = np.ones(n) / n
+        result = minimize(risk_parity_objective, x0, method="SLSQP",
+                          bounds=bounds, constraints=cons)
+        return result.x
+    except ImportError:
+        # Numpy-only fixed-point iteration.
+        w = np.ones(n) / n
+        for _ in range(500):
+            port_vol = np.sqrt(w @ cov_matrix @ w)
+            if port_vol < 1e-10:
+                break
+            mcr = (cov_matrix @ w) / port_vol
+            rc = w * mcr
+            target_rc = port_vol / n
+            # Avoid zero or negative rc by clipping below.
+            rc_safe = np.maximum(rc, 1e-12)
+            scale = np.sqrt(target_rc / rc_safe)
+            w_new = w * scale
+            s = w_new.sum()
+            if s <= 0:
+                break
+            w_new = w_new / s
+            if np.max(np.abs(w_new - w)) < 1e-9:
+                w = w_new
+                break
+            w = w_new
+        return w
+
+
+def black_litterman(prior_returns: List[float],
+                    cov_matrix: List[List[float]],
+                    views: List[Dict],
+                    tau: float = 0.05) -> Dict:
+    """Black-Litterman posterior expected returns.
+
+    Inputs
+    ------
+    prior_returns : equilibrium returns pi (length N). For a CAPM prior,
+                    pi_i = beta_i * (market_return - rf) + rf.
+    cov_matrix    : asset return covariance Sigma (N x N). Annualized.
+    views         : list of view dicts; each:
+                    {
+                      "assets": [ticker, ...],              # which assets
+                      "weights": [float, ...],              # pick weights (same len as assets);
+                                                            # for an absolute view on one asset, [1.0]
+                      "expected_return": float,             # Q_i
+                      "confidence": float,                  # 0..1, higher = more certain
+                    }
+                    All tickers in `views` must also appear in `tickers` passed in.
+    tau           : scalar (0.025-0.05 typical) reflecting uncertainty in prior.
+
+    Returns
+    -------
+    {
+      "prior_returns": [...],
+      "posterior_returns": [...],
+      "posterior_cov": [[...]],
+      "view_impact": [{"asset_index": i, "prior": x, "posterior": y, "delta": y-x}, ...]
+    }
+
+    This implementation uses the closed-form Black-Litterman posterior:
+      M^-1 = (tau*Sigma)^-1 + P' * Omega^-1 * P
+      E[R]_post = M * ((tau*Sigma)^-1 * pi + P' * Omega^-1 * Q)
+    where Omega is diag(P * (tau*Sigma) * P') / confidence_i (Idzorek-style
+    calibration: confidence=1 reproduces the view exactly; confidence=0 falls
+    back to the prior).
+    """
+    import numpy as np
+
+    pi = np.array(prior_returns, dtype=float)
+    sigma = np.array(cov_matrix, dtype=float)
+    n = len(pi)
+    if sigma.shape != (n, n):
+        return {"error": f"cov_matrix shape {sigma.shape} != ({n},{n})"}
+    if not views:
+        return {
+            "prior_returns": list(pi),
+            "posterior_returns": list(pi),
+            "posterior_cov": [list(row) for row in sigma.tolist()],
+            "view_impact": [],
+            "note": "no views provided; posterior == prior",
+        }
+
+    # Build P (K x N), Q (K), Omega (K x K)
+    tickers_by_idx = {i: i for i in range(n)}  # caller must pre-index views
+    K = len(views)
+    P = np.zeros((K, n))
+    Q = np.zeros(K)
+    confidences = np.zeros(K)
+    for k, v in enumerate(views):
+        idxs = v.get("asset_indices")
+        weights = v.get("weights")
+        if idxs is None or weights is None:
+            return {"error": f"view {k} missing asset_indices or weights"}
+        if len(idxs) != len(weights):
+            return {"error": f"view {k}: asset_indices and weights length mismatch"}
+        for idx, w in zip(idxs, weights):
+            if not 0 <= idx < n:
+                return {"error": f"view {k}: asset_index {idx} out of range"}
+            P[k, idx] += float(w)
+        Q[k] = float(v["expected_return"])
+        c = float(v.get("confidence", 0.5))
+        confidences[k] = max(min(c, 0.9999), 0.0001)
+
+    # Omega diagonal: Idzorek-style: variance of view = diag(P*(tau*Sigma)*P')
+    # scaled by (1/confidence - 1). confidence=1 -> Omega->0 (view dominates),
+    # confidence=0 -> Omega->infinity (prior dominates).
+    view_variance_uncalibrated = np.array(
+        [float(P[k] @ (tau * sigma) @ P[k]) for k in range(K)]
+    )
+    omega_diag = view_variance_uncalibrated * (1.0 / confidences - 1.0)
+    omega_diag = np.maximum(omega_diag, 1e-10)
+    omega = np.diag(omega_diag)
+
+    tau_sigma = tau * sigma
+    try:
+        tau_sigma_inv = np.linalg.inv(tau_sigma)
+        omega_inv = np.linalg.inv(omega)
+    except np.linalg.LinAlgError as e:
+        return {"error": f"matrix inversion failed: {e}"}
+
+    M_inv = tau_sigma_inv + P.T @ omega_inv @ P
+    try:
+        M = np.linalg.inv(M_inv)
+    except np.linalg.LinAlgError as e:
+        return {"error": f"posterior inversion failed: {e}"}
+
+    posterior = M @ (tau_sigma_inv @ pi + P.T @ omega_inv @ Q)
+    posterior_cov = sigma + M  # posterior covariance of returns
+
+    view_impact = [
+        {"asset_index": i, "prior": float(pi[i]),
+         "posterior": float(posterior[i]),
+         "delta": float(posterior[i] - pi[i])}
+        for i in range(n)
+    ]
+
+    return {
+        "prior_returns": [float(x) for x in pi],
+        "posterior_returns": [float(x) for x in posterior],
+        "posterior_cov": [[float(c) for c in row] for row in posterior_cov],
+        "view_impact": view_impact,
+        "tau": tau,
+    }
 
 
 # ============================================================
@@ -796,6 +975,7 @@ Examples:
   monte-carlo      Monte Carlo portfolio simulation
   beneish          Beneish M-Score (earnings manipulation)
   altman-z         Altman Z-Score (bankruptcy risk)
+  black-litterman  Black-Litterman posterior from prior + views
         """
     )
 
@@ -868,6 +1048,17 @@ Examples:
     # Altman Z-Score
     alt_parser = subparsers.add_parser("altman-z", help="Altman Z-Score")
     alt_parser.add_argument("--financials-file", type=str, required=True, help="JSON with financials")
+
+    # Black-Litterman
+    bl_parser = subparsers.add_parser("black-litterman", help="Black-Litterman posterior")
+    bl_parser.add_argument("--prior-file", type=str, required=True,
+                           help="JSON list of equilibrium (prior) returns, one per asset")
+    bl_parser.add_argument("--cov-file", type=str, required=True,
+                           help="JSON N x N covariance matrix (same ordering as prior)")
+    bl_parser.add_argument("--views-file", type=str, required=True,
+                           help="JSON list of view dicts: {asset_indices, weights, expected_return, confidence}")
+    bl_parser.add_argument("--tau", type=float, default=0.05,
+                           help="Prior uncertainty scalar (default 0.05)")
 
     args = parser.parse_args()
 
@@ -951,6 +1142,15 @@ Examples:
         with open(args.financials_file) as f:
             financials = json.load(f)
         result = altman_z_score(financials)
+
+    elif args.command == "black-litterman":
+        with open(args.prior_file) as f:
+            prior = json.load(f)
+        with open(args.cov_file) as f:
+            cov = json.load(f)
+        with open(args.views_file) as f:
+            views = json.load(f)
+        result = black_litterman(prior, cov, views, tau=args.tau)
 
     else:
         parser.print_help()

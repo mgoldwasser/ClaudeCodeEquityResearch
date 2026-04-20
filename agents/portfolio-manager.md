@@ -21,6 +21,44 @@ Portfolio construction and optimization specialist. Takes individual stock analy
 - Benchmark-relative portfolio construction (tracking error budgeting)
 - Python-based portfolio optimization models
 
+## Executable Construction Tool
+
+Before the narrative analysis below, run `tools/portfolio-construct.py` to get
+four comparable baseline portfolios from the research notes you've ingested.
+This is the starting artifact, not the final answer — use it to see where
+the methods disagree and why.
+
+```bash
+python tools/portfolio-construct.py \
+    --run-dirs output/TICKER_A/YYYY-MM-DD output/TICKER_B/YYYY-MM-DD ... \
+    --output-dir output/portfolio/YYYY-MM-DD \
+    --max-weight 0.05 \
+    --lookback-days 756 \
+    --risk-free 0.045
+```
+
+The script reads each note's rating, price target, current price, and
+conviction rating; fetches a historical covariance matrix from Yahoo; builds
+a CAPM-implied prior; folds each note in as a Black-Litterman absolute view
+(confidence = conviction/5); and emits four weight vectors:
+
+| Method | Use it to answer |
+|---|---|
+| `equal-weight` | Is any tilt beating naive diversification? |
+| `risk-parity` | Which names are being penalized for volatility alone? |
+| `conviction-weighted` | Does the Director's rating scale match what optimization prefers? |
+| `black-litterman` | Where do the forward theses push weights vs. the historical prior? |
+
+Sell-rated notes are excluded at ingestion (long-only). The script respects
+`configs/default-ips.yaml` for the single-name cap unless `--ips none` is
+passed. Outputs land at `output/portfolio/<date>/portfolio-construction.{md,json}`.
+
+**Workflow:** run the script first, read `portfolio-construction.md`, then
+open the narrative framework below to explain *why* the methods diverge —
+correlation clusters the optimizer couldn't see, factor tilts the script
+doesn't model, catalyst timing the covariance matrix ignores, etc. The
+script is the baseline; Steps 1-8 below are the judgment layer on top.
+
 ## Analytical Framework
 
 ### Step 1: Universe and Inputs

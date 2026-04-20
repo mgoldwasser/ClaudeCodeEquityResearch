@@ -1,0 +1,35 @@
+{
+  "summary": {
+    "total_records": 4,
+    "graded": 0,
+    "pending": 4,
+    "ungradeable": 0,
+    "message": "no GRADED records yet. Tracking begins once note horizons elapse."
+  },
+  "graded_records": [],
+  "by_horizon": {},
+  "reliability": [],
+  "rolling": [],
+  "pending_preview": [
+    {
+      "grade_id": "META-2026-03-13-6m",
+      "target_grade_date": "2026-09-13",
+      "horizon_months": 6
+    },
+    {
+      "grade_id": "META-2026-03-13-12m",
+      "target_grade_date": "2027-03-13",
+      "horizon_months": 12
+    },
+    {
+      "grade_id": "NVDA-2026-03-19-6m",
+      "target_grade_date": "2026-09-19",
+      "horizon_months": 6
+    },
+    {
+      "grade_id": "NVDA-2026-03-19-12m",
+      "target_grade_date": "2027-03-19",
+      "horizon_months": 12
+    }
+  ]
+}
